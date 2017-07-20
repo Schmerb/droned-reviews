@@ -1,0 +1,21 @@
+{
+  "name": "testflight",
+  "version": "1.0.0",
+  "description": "A user powered drone review website",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Mike Schmerbeck",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "morgan": "^1.8.2"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.2.1"
+  }
+}
