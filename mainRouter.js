@@ -7,7 +7,7 @@ const router = express.Router();
 router.use(bodyParser.json());
 
 router.get('/', (req, res) => {
-    res.sendFile('./public/index.html');
+    res.status(200).sendFile('./public/index.html');
 });
 
 module.exports = router;
