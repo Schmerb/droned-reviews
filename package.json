@@ -17,6 +17,7 @@
     "browser-sync": "^2.18.13",
     "chai": "^4.1.0",
     "chai-http": "^3.0.0",
+    "faker": "^4.1.0",
     "gulp": "^3.9.1",
     "gulp-nodemon": "^2.2.1",
     "mocha": "^3.4.2"

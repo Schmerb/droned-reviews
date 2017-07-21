@@ -8,7 +8,7 @@ const nodemon = require('gulp-nodemon');
 gulp.task('browser-sync', ['nodemon'], () =>  {
 	browserSync.init(null, {
 		proxy: "http://localhost:8080",
-        files: ["public/**/*.*"],
+        files: ["public/**/*.js"],
         browser: "google chrome",
         port: 7000,
 	});
@@ -36,5 +36,5 @@ gulp.task('nodemon', (cb) => {
 });
 
 gulp.task('default', ['browser-sync'], () => {
-	gulp.watch(["**/*.html", "**/*.css", "**/*.js", "*.json", "*.md"], () => reload());
+	gulp.watch(["**/*.html", "**/*.css", "**.*.js","*.json", "*.md"], () => reload());
 });

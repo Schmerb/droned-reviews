@@ -9,7 +9,116 @@
         <link href="styles/main.css" rel="stylesheet">
     </head>
     <body>
-        <h1>Testflight Buzz</h1>
-        <p>Hello World!!!</p>
+        <header class="banner" role="banner">
+            <div class="banner-wrap">
+                <div class="banner-top-wrap">
+                    <a href="/" class="logo">
+                        <h2 class="logo-title">TestFlight</h2>
+                        <h6 class="motto">Know before you fly!</h6>
+                    </a>
+                    <nav class="banner-nav" role="navigation">
+                        <a href="#!" class="burger-anchor">
+                            <div class="burger-icon-wrap">
+                                <div id="burger-icon"></div>
+                            </div>
+                        </a>
+                        <ul class="site-menu">
+                            <li class="write-review"><a href="#">Write a Review</a></li>
+                            <li class="reviews"><a href="#reviews">Reviews</a></li>
+                            <li class="news"><a href="#">News</a></li>
+                            <li class="mission"><a href="#">Mission</a></li>
+                        </ul>
+                        <ul class="user-nav">
+                            <li><a href="#" class="login">LogIn</a></li>
+                            <li><a href="#" class="signup">Sign Up</a></li>
+                        </ul>
+                        <ul class="mobile-menu">
+                            <li class="write-review"><a href="#">Write a Review</a></li>
+                            <li class="reviews"><a href="#reviews" >Reviews</a></li>
+                            <li class="news"><a href="#">News</a></li>
+                            <li class="mission"><a href="#">Mission</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="landing-greeting">
+                    <p>Hear directly from drone owners and get up to date on the latest and greatest intel in the personal drone industry.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN -->
+        <main role="main">
+
+            <!-- COMPANY BANNER-->
+            <section id="company-banner">
+                <ul class="drone-makers">
+                    <li class="drone-make" id="dji">
+                        <label for="dji">DJI</label>
+                    </li>
+                    <li class="drone-make" id="parrot">
+                        <label for="parrot">Parrot</label>
+                    </li>
+                    <li class="drone-make" id="gopro">
+                        <label for="gopro">GoPro</label>
+                    </li>
+                    <li class="drone-make" id="lily">
+                        <label for="lily">Lily Robotics</label>
+                    </li>
+                    <li class="drone-make" id="threedr">
+                        <label for="threedr">3D Robotics</label>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- REVIEWS -->
+            <section id="reviews">
+                <header role="header" class="review-header">
+                    <h2>User Reviews</h2>
+                </header>
+
+                <div id="reviews-container">
+                    <div class="review">
+                        <div class="details">
+                            <h3>Model: <span class="model">Phantom 4</span></h3>
+                            <h5>Manufacturer: <span class="maker"><b>DJI</b></span></h5>
+                            <dl class="specs">
+                                <dt>Specs</dt>
+                                <dd>Ave. Price: $1,000</dd>
+                                <dd>Camera: 4K/1080@120/10MP</dd>
+                                <dd>Max Flight Time: Approx. 28 minutes</dd>
+                                <dd>Max Range: 5000m</dd>
+                                <dd>Max Speed: 45MPH</dd>
+                                <dd>GPS?: Yes</dd>
+                                <dd>3-axis gimbal: Yes</dd>
+                                <dd>Intelligent Flight: Yes</dd>
+                                <dd>Avoidance: Yes</dd>
+                                <dd>Return Home: Yes</dd>
+                                <dd>Follow-Me Mode: Yes</dd>
+                                <dd>Tracking Mode: Yes</dd>
+                            </dl>
+                        </div>
+                        <div class="post">
+                            <p class="content">The Phantom 4 has the perfect mix of professional grade equipment and easy to use in-flight controls. The camera itself is worthy of its own review. The P4 comes with a 4K camera mounted on a gimbal for extremely stable shots. Shoots 1080p video @120f/s which makes for the smoothest slow-motion playback. The intelligent flight modes allow for custom movement using gps for precision accuracy and with return-to-home mode, you never have to worry about not making it back to the take-off area since a series of warnings and auto-flight controls are triggered if battery power drops below a certain threshold. This is the ultimate quad-copter currently on the market and for the price, you get what you pay for!</p>
+                            <label for="">By: <span class="author">Mike Schmerbeck</span></label>
+                            <div class="interactions">
+                                <button class="upvote-btn" type="button">Up Vote</button>
+                                <span>Votes: <span class="votes js-votes">0</span></span>
+                                <button class="comment-btn" type="button">Comment</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+
+        <footer role="contentinfo">
+            
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
+        <script src="https://use.fontawesome.com/3e1d7b509c.js"></script>
+        <script type="text/javascript" src="./js/drone-specs.js"></script>
+        <script type="text/javascript" src="./js/app.js"></script>
     </body>
 </html>

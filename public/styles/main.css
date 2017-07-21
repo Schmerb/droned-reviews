@@ -1,0 +1,502 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: lightgrey;
+    margin: 0;
+    height: 200vh;
+}
+
+/*============================================================/
+/* Header (Base / Mobile)
+/*===========================================================*/
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.banner {
+    background: url('../assets/phantom-3-aaron-burden.jpg') center;
+    background-size: cover;
+    /* color: #b0bec5; */
+    color: #cfd8dc;
+    position: relative;
+    height: 100vh;
+    min-height: 500px;
+    /* border: 1px solid black; */
+}
+
+.banner::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.4);
+}
+
+ .banner a {
+    color: #cfd8dc;
+    color: white;
+} 
+
+.banner-wrap {
+    position: relative; 
+    z-index: 2;
+}
+
+.banner-top-wrap {
+    /* background: rgba(255,255,255,0.3); */
+    width: 90%;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+a.logo {
+    color: whitesmoke;
+    position: relative;
+    font-size: 24px;
+    float: left; 
+    z-index: 1;
+}
+
+.logo h2,
+.logo h6 {
+    margin: 0;
+}
+
+h6.motto {
+    margin-left: 10px;
+}
+
+/*========================================/
+/* burger menu icon
+/*=======================================*/
+.burger-anchor {
+    /* z-index: 5; */
+}
+
+.burger-icon-wrap {
+    display: inline-block;
+    /* background: rgba(40,40,40,0.3); */
+    position: absolute;
+    top: 50%;
+    right: 5%; 
+    width: 35px;
+    height: 30px;
+    transform: translate(0, -50%);
+    z-index: 5;
+    border: 1px solid white;
+}
+
+.burger-icon-wrap.open {
+    position: fixed;
+    top: 0;
+    transform: translate(0, 50%);
+}
+
+#burger-icon {
+    position: absolute;
+    background: white;
+    top: 50%;
+    height: 5px;
+    width: 30px;
+    transform: translate(0, -50%);
+}
+
+#burger-icon.open, 
+#burger-icon.open::before,
+#burger-icon.open::after {
+    background: black;
+}
+
+
+#burger-icon::before,
+#burger-icon::after {
+    position: absolute;
+    background: white;
+    content: '';
+    height: 5px;
+    width: 30px;
+}
+
+#burger-icon::before {
+    bottom: 8px;
+}
+
+#burger-icon::after {
+    bottom: -8px;
+}
+
+/*========================================/
+/* banner nav
+/*=======================================*/
+
+.banner-nav {
+    position: relative; 
+    height: 70px;
+    z-index: 1;
+}
+
+.site-menu li,
+.user-nav li {
+    display: inline-block;
+    list-style: none;
+}
+
+.site-menu {
+    display: inline-block;
+}
+
+.user-nav {
+    position: absolute;
+    right: 0;
+    display: inline-block;
+}
+
+.user-nav a {
+    color: #f44336;
+}
+
+.site-menu li:not(:last-of-type)::after {
+/* .user-nav li:not(:last-of-type)::after { */
+    content: '|';
+    margin-left: 5px;
+}
+
+.site-menu a {
+    padding-bottom: 5px;
+    border-bottom: 4px solid transparent;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out; 
+}
+
+.site-menu a:hover {
+    border-bottom-color: #f44336;
+}
+
+.mobile-menu {
+    display: none;
+}
+
+
+.login,
+.signup {
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out; 
+}
+
+.login {
+    border-bottom: 3px solid transparent; 
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.login:hover {
+    /* color: white;  */
+    border-bottom-color: white;
+}
+
+a.signup {
+    /* color: #455a64; */
+    /* background: white; */
+    padding: 5px 10px;
+    border: 3px solid white;
+}
+
+.signup:hover {
+    background: white;
+    border-color: #f44336;
+    /* color: #37474f; */
+}
+
+.landing-greeting {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    font-size: 20px;
+    margin: 0 auto;
+    transform: translate(-50%, 50%);
+}
+
+/*========================================/
+/* Main (Base/ Mobile)
+/*=======================================*/
+
+main {
+    height: 100%;
+}
+
+#company-banner {
+    overflow: auto;
+}
+
+.drone-makers {
+    padding: 0;
+    margin: 0;
+    list-style: none; 
+}
+
+.drone-make {
+    position: relative;
+    background: white;
+    float: left;
+    width: 100%;
+    height: 20vh;
+    min-height: 145px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.drone-make:not(:first-of-type) {
+    border-top: 1px solid lightgrey;
+}
+
+.drone-make label {
+    color: #37474f;
+    position: relative;
+    font-weight: bold;
+    z-index: 1;
+}
+
+#dji::after {
+    background: url('../assets/DJI-inspire.jpg') center;
+    background-size: 130%;
+    background-repeat: no-repeat;
+}
+
+#parrot::after {
+    background: url('../assets/parrot-square.jpg') center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#gopro::after {
+    background: url('../assets/gopro-karma.jpg') center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#lily::after {
+    background: url('../assets/lily-robotics.jpg') center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#threedr::after {
+    background: url('../assets/3dr.jpg') center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.drone-make::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: all 1.5s ease-in-out;
+    -moz-transition: all 1.5s ease-in-out;
+    transition: all 1.5s ease-in-out; 
+}
+
+#drone-make:hover::after, 
+#dji:hover::after,
+#parrot:hover::after, 
+#gopro:hover::after, 
+#lily:hover::after,
+#threedr:hover::after {
+     transform: scale(1.1); 
+}
+
+/*========================================/
+/* Reviews (Base/ Mobile)
+/*=======================================*/
+.review-header {
+    width: 200px;
+    margin: 0 auto;
+}
+
+.review {
+    position: relative;
+    max-width: 800px;
+    margin: 50px auto;
+    padding-bottom: 50px;
+    border: 1px solid black;
+    overflow: auto;
+}
+
+.review label {
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+
+.details {
+    display: inline-block;
+    width: 100%;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.details h3,
+.details h5 {
+    margin: 0;
+}
+
+.post {
+    overflow: hidden;
+}
+
+.specs {
+    margin: 0;
+}
+
+.specs dd {
+    margin-left: 0;
+    padding: 5px 5px;
+    border-bottom: 1px solid grey;
+}
+
+.specs span {
+    font-weight: bold;
+    float: right;
+}
+
+.max-flight {
+    margin-left: 10px;
+}
+
+.content {
+    padding: 10px;
+    margin: 0;
+    overflow: hidden;
+}
+
+.interactions {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    border: 1px solid black;
+} 
+
+.votes {
+    margin-right: 100px;
+}
+
+.comment-btn {
+
+}
+
+/*============================================================/
+/* MOBILE PORTRAIT ONLY
+/*===========================================================*/
+@media only screen and (max-width: 415px) {
+    .site-menu,
+    .user-nav  {
+        display: none;
+    }
+
+    .mobile-menu.open {
+        display: block;
+        position: fixed;
+        left: 0;
+        width: 100%;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        top: 10%;
+        text-align: center;
+    }
+
+    .mobile-menu li {
+        display: block;
+        padding: 10px;
+        border-bottom: 1px solid black;
+    }
+
+    .mobile-menu li a {
+        color: black;
+    }
+    
+    .mobile-menu::after {
+        content: '';
+        background: rgba(0,0,0,0.7);
+        background: url('../assets/phantom-below-matthew-brodeur.jpg') center;
+        background-size: cover;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        z-index: -1;
+    }
+   
+}
+
+
+/*============================================================/
+/* Landscape & Desktop
+/*===========================================================*/
+@media screen and (min-width: 416px) {
+    .banner {
+        background: url('../assets/phantom-3-aaron-burden.jpg') center;
+        background-attachment: fixed;
+        background-size: cover;
+        height: 80vh;
+    }
+
+    .banner-nav {
+        overflow: hidden; 
+    }
+
+
+    .burger-icon-wrap {
+        display: none;
+    }
+
+    .landing-greeting {
+        font-size: 36px;
+        width: 500px;
+    }
+
+    .drone-make {
+        width: 20%;
+    }
+
+    .drone-make:not(:last-of-type) {
+        border-right: 1px solid lightgrey;
+    }
+}
+
+/*============================================================/
+/* DESKTOP & TABLETS ONLY
+/*===========================================================*/
+
+@media only screen and (min-width: 737px) {
+
+    /*========================================/
+    /* Reviews (DESKTOP / TABLET)
+    /*=======================================*/
+
+  
+    .review {
+        padding-bottom: 0;
+    }
+
+   .details {
+        float: left;  
+        width: auto;
+    }
+
+    ul.mobile-menu.open {
+        display: none;
+    }
+}
