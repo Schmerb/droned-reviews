@@ -3,8 +3,13 @@
 }
 
 body {
+    font-family: 'Trirong', serif;
+    font-family: 'Rubik', sans-serif;
     background: lightgrey;
+    background: #116466;
     margin: 0;
+    width: 100%;
+    min-width: 300px;
     height: 200vh;
 }
 
@@ -17,14 +22,25 @@ a {
 }
 
 .banner {
-    background: url('../assets/phantom-3-aaron-burden.jpg') center;
+    background: url('../assets/phantom-3-aaron-burden-compressor.jpg') center;
     background-size: cover;
+    background-position-x: 10%;
     /* color: #b0bec5; */
     color: #cfd8dc;
     position: relative;
     height: 100vh;
     min-height: 500px;
     /* border: 1px solid black; */
+}
+
+.banner::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    height: 40px;
+    width: 100%;
+    background: linear-gradient(rgba(0,0,0,0.4), transparent);
 }
 
 .banner::after {
@@ -45,11 +61,26 @@ a {
 .banner-wrap {
     position: relative; 
     z-index: 2;
+    -webkit-transition: background 0.4s ease;
+    -moz-transition: background 0.4s ease;
+    transition: background 0.4s ease;
+}
+
+.banner-wrap.fixed-nav {
+    background: rgba(0,0,0,0.8);
+    position: fixed;
+    width: 100vw; 
+    padding-left: 30px;
+    padding-right: 30px;
+    left: 0;
+    top: 0;
+    box-shadow: 0 0 20px 8px rgba(0,0,0,0.5);
 }
 
 .banner-top-wrap {
     /* background: rgba(255,255,255,0.3); */
     width: 90%;
+    min-width: 230px;
     margin: 0 auto;
     overflow: auto;
 }
@@ -80,20 +111,19 @@ h6.motto {
 
 .burger-icon-wrap {
     display: inline-block;
-    /* background: rgba(40,40,40,0.3); */
     position: absolute;
-    top: 50%;
-    right: 5%; 
+    top: 50%; 
+    right: 15px;
     width: 35px;
     height: 30px;
-    transform: translate(0, -50%);
+    transform: translate(0, -50%); 
     z-index: 5;
-    border: 1px solid white;
 }
 
 .burger-icon-wrap.open {
-    position: fixed;
-    top: 0;
+     /* position: fixed;  */
+    top: 6px;
+    right: 30px;
     transform: translate(0, 50%);
 }
 
@@ -106,7 +136,10 @@ h6.motto {
     transform: translate(0, -50%);
 }
 
-#burger-icon.open, 
+#burger-icon.open {
+    background: transparent;
+}
+
 #burger-icon.open::before,
 #burger-icon.open::after {
     background: black;
@@ -120,6 +153,9 @@ h6.motto {
     content: '';
     height: 5px;
     width: 30px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 #burger-icon::before {
@@ -128,6 +164,16 @@ h6.motto {
 
 #burger-icon::after {
     bottom: -8px;
+}
+
+#burger-icon.open::before {
+    transform: rotate(45deg);
+    bottom: 0;
+}
+
+#burger-icon.open::after {
+    transform: rotate(-45deg);
+    top: 0;
 }
 
 /*========================================/
@@ -140,28 +186,36 @@ h6.motto {
     z-index: 1;
 }
 
+.site-menu,
+.user-nav {
+     position: absolute;
+     display: inline-block; 
+    margin: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.site-menu {
+    display: none;
+}
+
 .site-menu li,
 .user-nav li {
     display: inline-block;
     list-style: none;
 }
 
-.site-menu {
-    display: inline-block;
-}
-
 .user-nav {
-    position: absolute;
     right: 0;
-    display: inline-block;
+    /* display: inline-block; */
 }
 
 .user-nav a {
+    color: #116466;
     color: #f44336;
 }
 
 .site-menu li:not(:last-of-type)::after {
-/* .user-nav li:not(:last-of-type)::after { */
     content: '|';
     margin-left: 5px;
 }
@@ -175,13 +229,40 @@ h6.motto {
 }
 
 .site-menu a:hover {
+    border-bottom-color: #116466;
     border-bottom-color: #f44336;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
-.mobile-menu {
-    display: none;
+ .mobile-menu {
+    background: url('../assets/phantom-below-matthew-brodeur-compressor.jpg') center;
+    background-size: cover;
+    position: fixed;
+    right: -100%;
+    left: 200%;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}  
+
+.mobile-menu li {
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
 }
 
+.mobile-menu li:hover {
+    background: rgba(0,0,0,0.5);
+}
 
 .login,
 .signup {
@@ -191,9 +272,11 @@ h6.motto {
 }
 
 .login {
-    border-bottom: 3px solid transparent; 
     padding: 5px;
     margin-right: 10px;
+    border-bottom: 3px solid transparent; 
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 .login:hover {
@@ -209,32 +292,442 @@ a.signup {
 }
 
 .signup:hover {
-    background: white;
+    background: #116466;
+    background: #f44336;
+    border-color: #116466;
     border-color: #f44336;
-    /* color: #37474f; */
+    border-radius: 3px;
+    color: white; 
+}
+
+.mobile-menu .signup:hover {
+    border-color: black;
+}
+
+.mobile-menu .login:hover {
+    border-bottom-color: black;
+}
+
+.mobile-menu .login {
+    margin-top: 50px;
+    margin-right: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .landing-greeting {
     color: white;
     position: absolute;
-    top: 50%;
+    top: 35%; 
     left: 50%;
     width: 300px;
     font-size: 20px;
     margin: 0 auto;
-    transform: translate(-50%, 50%);
+    transform: translate(-50%, 0);
+    z-index: 1;
 }
 
 /*========================================/
-/* Main (Base/ Mobile)
+/* Login / Signup (Base / Mobile)
+/*=======================================*/
+
+#login-signup {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 10;
+}
+
+.login-signup-container {
+    position: relative;
+    background: #116466; 
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#login-signup-x.fa.fa-times {
+    position: absolute;
+    color: #17252A;
+    right: 5px;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+.form-inner-container {
+    width: 95%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.login-signup-container input {
+    background: #DEF2F1;
+    color: black;
+    height: 40px;
+    line-height: 40px;
+    border: 2px solid #17252A;
+}
+
+.login-signup-container input::placeholder {
+    color: #17252A;
+}
+
+.login-signup-container button {
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.login-signup-container button:hover{
+    background: #DEF2F1;
+    color: #3AAFA9;;
+} 
+
+.screen-btn-wrap {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 0;
+}
+
+.signup-screen-btn,
+.login-screen-btn  {
+    color: #DEF2F1;
+    display: inline-block;
+    font-size: 14px;
+    width: 40%;
+    height: 40px;
+    border: none;
+    border-radius: 2px;
+}
+
+.signup-screen-btn {
+    background: #3AAFA9;
+}
+
+.login-screen-btn {
+    background: #17252A;
+}
+
+.active-btn  {
+    background: #3AAFA9;
+}
+
+.inactive-btn  {
+    background: #17252A;
+}
+
+.form-labels {
+    color: #DEF2F1;
+    padding: 30px 0;
+}
+
+.name-fields {
+    margin: 0 auto;
+    overflow: auto;
+}
+
+.firstname-input,
+.lastname-input {
+    width: 49%;
+}
+
+.firstname-input{
+    float: left;
+}
+
+.lastname-input {
+    float: right;
+}
+
+.email-input,
+.pass-input {
+    display: block;
+    width: 100%;
+    margin: 20px auto;
+}
+
+.submit-btn {
+    background: #3AAFA9;
+    color: #DEF2F1;
+    width: 100%;
+    height: 60px;
+    font-size: 20px;
+    border: none;
+    border-radius: 2px;
+}
+
+/*========================================/
+/* Write Review Form  (Base / Mobile)
+/*=======================================*/
+#review-form-screen,
+#review-post-preview {
+    background: rgba(0,0,0,0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 2;
+}
+
+.review-form-modal,
+.post-preview-modal {
+    background: #3AAFA9;
+    width: 100%;
+    min-width: 350px;
+    height: 100%;
+    margin: 0 auto;
+    overflow: scroll;
+    border: 1px solid white;
+    box-shadow: 0 0 20px 2px rgba(0,0,0,0.3);
+}
+
+
+.post-preview-modal {
+    height: 500px;
+}
+
+.post-preview-modal h1 {
+    margin: 0;
+}
+
+.preview-banner,
+.review-form-banner {
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid white;
+}
+
+.review-form-title {
+    display: inline-block;
+    margin: 0;
+    padding-left: 20px;
+    line-height: 40px;
+}
+
+.preview-close-btn,
+.close-btn {
+    background: transparent;
+    position: relative;
+    float: right;
+    border: none;
+    border-left: 1px solid white;
+    font-size: 12px;
+    width: 100px;
+    height: 100%;
+    cursor: pointer;
+}
+
+.preview-close-btn span {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+}
+
+.preview-close-btn:hover,
+.close-btn:hover {
+    background: #DEF2F1;
+}
+
+#preview-back.fa.fa-arrow-circle-o-left {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    font-size: 24px;
+    transform: translate(0, -50%);
+}
+
+#review-form-x.fa.fa-times {
+    font-size: 20px;
+}
+
+.select-drone-container {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 20px;
+    /* border: 1px solid black; */
+}
+
+label[for="dropdown-options"] {
+    display: block;
+}
+
+#dropdown-options {
+    background: white;
+    display: block;
+    width: 95%;
+    height: 30px;
+    margin: 0 auto;
+}
+
+.select-drone-container span {
+    display: block;
+    width: 20px;
+    margin: 10px auto;
+}
+
+label[for="drone-search"] {
+    display: block;
+}
+
+#drone-search {
+    display: block;
+    width: 95%;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 auto;
+    border: none;
+    border-radius: 2px;
+}
+
+#dropdown-options,
+#drone-search {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.post-content-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px; 
+    /* border: 1px solid black; */
+}
+
+.review-label p {
+    margin: 0;
+ }
+
+.post-title-label {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.title-input {
+    display: block;
+    width: 100%;
+    max-width: 412px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 2px;
+}
+
+.review-label {
+    display: block;
+}
+
+.review-label span {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.post-content {
+    width: 100%;
+    max-width: 412px;
+    border: none;
+    border-radius: 2px;
+}
+
+.star-rating-container {
+    
+}
+
+.star-box {
+    display: inline-block;
+    background: url('../assets/icons/star.png');
+    background-color: transparent;
+    background-size:  100%;
+    background-repeat: no-repeat;
+    padding: 0;
+    height: 20px;
+    width: 20px;
+}
+
+.media-assets {
+    margin-top: 20px;
+    text-align: center; 
+    /* border: 1px solid black; */
+}
+
+label[for="file-img"],
+label[for="file-video"] {
+    display: inline-block;
+    cursor: pointer;
+    padding: 5px; 
+    border: 1px solid rgba(255,255,255,0.5);
+}
+
+label[for="file-img"] {
+    margin-bottom: 20px; 
+}
+
+input[type="file"] {
+    width: 200px;
+    padding-top: 10px;
+}
+
+
+#file-img,
+#file-video {
+    text-align: left;
+    display: block;
+}
+
+.bottom-btns {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.bottom-btns button {
+    color: white;
+    background: #17252A;
+    font-size: 18px;
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.bottom-btns button:hover {
+    color: #17252A;
+    background: #DEF2F1;
+}
+
+.preview-btn {
+    position: relative;
+}
+
+#preview-eye.fa.fa-eye {
+    position: absolute;
+    font-size: 28px;
+    top: 50%;
+    right: 10px;
+    transform: translate(0, -50%);
+}
+
+
+/*========================================/
+/* Main (Base / Mobile)
 /*=======================================*/
 
 main {
-    height: 100%;
+    /* height: 100%; */
 }
 
 #company-banner {
     overflow: auto;
+    border-bottom: 5px solid transparent;
+    border-top: 5px solid transparent;
 }
 
 .drone-makers {
@@ -262,6 +755,7 @@ main {
     color: #37474f;
     position: relative;
     font-weight: bold;
+    margin-left: 20px;
     z-index: 1;
 }
 
@@ -319,21 +813,48 @@ main {
 /*========================================/
 /* Reviews (Base/ Mobile)
 /*=======================================*/
-.review-header {
-    width: 200px;
-    margin: 0 auto;
-}
-
-.review {
-    position: relative;
-    max-width: 800px;
-    margin: 50px auto;
-    padding-bottom: 50px;
-    border: 1px solid black;
+#reviews {
     overflow: auto;
 }
 
-.review label {
+.review-header {
+    position: relative;
+    background: url('../assets/phantom-gimbal-william-stitt-compressor.jpg') center;
+    background-size: cover;
+    width: 100%;
+    height: 40vh;
+    box-shadow: 0 0 20px 1px rgba(0,0,0,0.3);
+}
+
+.reviews-title {
+    color: #00FFDC;
+    position: absolute;
+    text-align: center;
+    font-size: 20px;
+    bottom: -25px;
+    left: 50%;
+    margin: 0;
+    transform: translate(-50%, 50%);
+    text-shadow: 0 0 2px rgba(0,0,0,0.3);
+}
+
+.post-title {
+    margin: 0;
+    padding: 10px;
+}
+
+.review {
+    /* background: #D1E8E2; */
+    background: #e0f7fa;
+    position: relative;
+    max-width: 800px;
+    margin: 50px auto;
+    border: 1px solid black;
+    overflow: auto;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.author-label{
     margin-left: 30px;
     margin-top: 10px;
 }
@@ -352,7 +873,18 @@ main {
 }
 
 .post {
+    position: relative; 
+    /* height: 428px; */
     overflow: hidden;
+    /* margin-bottom: 50px; */
+}
+
+.post-preview-modal .review {
+    margin-top: 0;
+}
+
+.post-preview-modal .post {
+    overflow: unset;
 }
 
 .specs {
@@ -366,6 +898,7 @@ main {
 }
 
 .specs span {
+    color: #f44336;
     font-weight: bold;
     float: right;
 }
@@ -377,69 +910,159 @@ main {
 .content {
     padding: 10px;
     margin: 0;
-    overflow: hidden;
+    /* overflow: hidden; */
+}
+
+.post-img {
+    float: right;
+    width: 200px;
+    height: auto;
+    border: 4px solid grey;
+}
+
+.comment-hr {
+    margin-bottom: 50px;
 }
 
 .interactions {
-    position: absolute;
-    bottom: 0;
+     position: absolute; 
+     bottom: 0; 
+    width: 100%;
+    padding: 10px 0;
     text-align: center;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 } 
 
-.votes {
-    margin-right: 100px;
+
+
+.comment-btn,
+.upvote-btn {
+    background: #f44336;
+    color: white;
+    font-size: 12px;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
-.comment-btn {
-
+.comment-btn:hover,
+.upvote-btn:hover {
+    box-shadow: inset 0 0 20px 2px rgba(0,0,0,0.3);
 }
+
+.comments-container {
+    clear: both;
+    width: 90%;
+    height: 0;
+    max-height: 0; 
+    margin: 0 auto;
+     overflow: auto; 
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.comments-container.expand {
+    height: unset;
+    max-height: unset; 
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.comments-header {
+    text-align: center;
+}
+
+.comment-input {
+    display: block;
+    width: 100%;
+    max-width: 100%; 
+    height: 100px;
+    margin-top: 20px;
+}
+
+.comment {
+    background: rgba(17, 100, 102, 0.2);
+    margin-bottom: 20px;
+    padding: 10px;
+    /* border: 1px solid blue; */
+}
+
+.comment-content {
+    margin: 0;
+}
+
+.comment-metadata {
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.thumbs {
+    margin-left: 20px;
+    display: inline-block;
+}
+
+.like,
+.dislike {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.reply-btn {
+    color: #f44336;
+    background: #e0f7fa;
+    display: block;
+    width: 100px;
+    height: 30px;
+    margin: 10px auto 0;
+    border: 1px solid #f44336;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.reply-btn:hover {
+    color: #e0f7fa;
+    background: #f44336;
+    border-color: #e0f7fa;
+}
+
+.shadow-hr {
+	height: 12px;
+	border: 0;
+	box-shadow: inset 0 12px 12px -12px rgba(67,70,75, 0.9);
+}
+
+/*========================================/
+/* Footer (Base / Mobile)
+/*=======================================*/
+.my-info {
+    color: #00FFDC;
+    width: 300px;
+    margin: 0 auto 20px;
+}
+
+@media only screen and (max-width: 350px) {
+    .burger-icon-wrap.open {
+        position: absolute;
+        right: 15px;
+    }
+} 
+
 
 /*============================================================/
 /* MOBILE PORTRAIT ONLY
 /*===========================================================*/
-@media only screen and (max-width: 415px) {
-    .site-menu,
+@media only screen and (max-width: 414px) {
     .user-nav  {
         display: none;
     }
-
-    .mobile-menu.open {
-        display: block;
-        position: fixed;
-        left: 0;
-        width: 100%;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        top: 10%;
-        text-align: center;
-    }
-
-    .mobile-menu li {
-        display: block;
-        padding: 10px;
-        border-bottom: 1px solid black;
-    }
-
-    .mobile-menu li a {
-        color: black;
-    }
-    
-    .mobile-menu::after {
-        content: '';
-        background: rgba(0,0,0,0.7);
-        background: url('../assets/phantom-below-matthew-brodeur.jpg') center;
-        background-size: cover;
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        width: 100vw;
-        z-index: -1;
-    }
-   
 }
+
+
+
 
 
 /*============================================================/
@@ -450,22 +1073,51 @@ main {
         background: url('../assets/phantom-3-aaron-burden.jpg') center;
         background-attachment: fixed;
         background-size: cover;
+        background-position-x: unset;
         height: 80vh;
     }
 
     .banner-nav {
-        overflow: hidden; 
+        /* overflow: hidden;  */
     }
 
 
     .burger-icon-wrap {
-        display: none;
-    }
+
+    } 
 
     .landing-greeting {
-        font-size: 36px;
-        width: 500px;
+        font-size: 20px;
     }
+
+    /*========================================/
+    /* Login / Signup (Landscape & Desktop)
+    /*=======================================*/
+    #login-signup {
+    }
+
+    .login-signup-container {
+        position: absolute;
+        top: 5%;
+        left: 50%;  
+        transform: translate(-50%, 0); 
+        width: 400px;
+        height: 400px; 
+    }
+
+    .signup-screen-btn,
+    .login-screen-btn  {
+        display: inline-block;
+        width: 40%;
+        height: 50px;
+    }
+
+    .login-screen-btn {
+    }
+
+    /*========================================/
+    /* Drone Banner / Reviews (Landscape & Desktop)
+    /*=======================================*/
 
     .drone-make {
         width: 20%;
@@ -473,6 +1125,190 @@ main {
 
     .drone-make:not(:last-of-type) {
         border-right: 1px solid lightgrey;
+    }
+
+    /*========================================/
+    /* Write Review Form (Landscape & Desktop)
+    /*=======================================*/
+
+     .review-form-modal,
+     .post-preview-modal {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        width: 600px;
+        height: 95%;
+        max-height: 770px; 
+        overflow: auto;
+    }
+
+    .post-preview-modal {
+        top: 20px;
+        min-width: 600px;
+        height: 95%;
+        max-height: 770px; 
+        overflow: scroll;
+    }
+
+    .review-form {
+        width: 500px;
+        margin: 0 auto;
+    }
+
+    .select-drone-container {
+        /* width: 500px; */
+    }
+
+    label[for="dropdown-options"],
+    label[for="drone-search"]  {
+        display: block;
+        max-width: 380px;
+        margin: 0 auto;
+    }
+
+    #dropdown-options {
+        display: block;
+    }
+
+    .select-drone-container span {
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 20px;
+    }
+
+
+    #drone-search {
+        display: block;
+    }
+
+    .post-content-container {
+        width: 440px;
+        padding: 10px;
+        /* padding-top: 30px; */
+        margin: 0 auto;
+    }
+
+
+
+    .review-label p {
+        vertical-align: top;
+    }
+
+
+    .media-assets {
+    }
+
+    .bottom-btns {
+        text-align: center;
+    }
+
+    .bottom-btns button {
+        width: 200px;
+        height: 60px;
+        border: none;
+        border-radius: 3px;
+    }
+
+
+    #preview-eye.fa.fa-eye {
+        right: 30px;
+    }
+
+}
+
+@media only screen and (max-width: 469px) {
+    .user-nav {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 470px) {
+    .burger-icon-wrap {
+        right: 60%; 
+        left: 40%;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .burger-icon-wrap.open {
+        left: 90%; 
+        right: 10%;
+    }
+
+    /* .mobile-menu .mobile-sign-in {
+        display: none;
+    }*/
+} 
+
+@media only screen and (min-width: 515px) {
+    .landing-greeting {
+        font-size: 36px;
+        width: 600px;
+    }
+    
+    .title-input {
+        display: inline-block;
+        width: 412px;
+        margin-left: 20px;
+    }
+
+    .reviews-title {
+        font-size: 36px;
+    }
+
+    .review-label p {
+        display: inline-block;
+    }
+
+    .post-content-container {
+        width: unset;
+    }
+
+    /* .post {
+         min-height: 428px; 
+    } */
+
+    .post-content {
+        width: 412px;
+    }
+
+    .reply-btn {
+        float: right;
+        margin: 0;
+    }
+}
+
+@media only screen and (min-width: 555px) {
+    label[for="dropdown-options"],
+    label[for="drone-search"] {
+        display: inline-block;
+        max-width: unset;
+
+    }
+    .select-drone-container {
+        width: 540px;
+    }
+}
+
+
+@media only screen and (max-width: 625px) {
+    .review-form-modal {
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    .review-form {
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (min-width: 650px) {
+    .burger-icon-wrap {
+        /* left: unset; */
+        /* margin-left: 60px; */
     }
 }
 
@@ -483,20 +1319,128 @@ main {
 @media only screen and (min-width: 737px) {
 
     /*========================================/
-    /* Reviews (DESKTOP / TABLET)
+    /* Write Review Form (DESKTOP / TABLET)
     /*=======================================*/
 
+    /* .review-form-modal {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        width: 600px;
+         height: auto; 
+    } */
+    label[for="file-img"] {
+        margin-left: 45px; 
+        margin-bottom: 0;
+    }
+
+    /*========================================/
+    /* Reviews (DESKTOP / TABLET)
+    /*=======================================*/
   
     .review {
         padding-bottom: 0;
     }
 
-   .details {
+     .post {
+         min-height: 428px; 
+    }
+
+    .details {
         float: left;  
         width: auto;
     }
 
-    ul.mobile-menu.open {
+    .post-preview-modal .details {
+        margin-right: 10px;
+    }
+
+    .interactions {
+        border: 1px solid black;
+        /* width: 60%; */
+    }
+
+    .votes {
+        margin-right: 100px;
+    }
+
+    .comments-container {
+        overflow: scroll;
+    }
+
+    .comments-container.expand {
+        height: auto;
+        max-height: 400px; 
+    }
+
+} 
+
+@media only screen and (max-width: 790px) {
+    
+
+    .mobile-menu.open {
+        right: 0;
+        left: 0;
+        min-width: 300px; 
+    }
+
+    .mobile-menu li {
+        background: rgba(255,255,255,0.3);
+        display: block;
+        padding: 10px;
+        border-bottom: 1px solid black;
+        box-shadow: 0 0 30px 6px rgba(255,255,255,0.2);
+    }
+
+    .mobile-menu li:first-of-type {
+        margin-top: 50px;
+    }
+
+    .mobile-menu li a {
+        color: black;
+    }
+
+    .mobile-menu li:hover a {
+        color: #00FFDC;
+    }
+    
+     /* .mobile-menu.open::after {
+        content: '';
+        background: rgba(0,0,0,0.7);
+        background: url('../assets/phantom-below-matthew-brodeur-compressor.jpg') center;
+        background-size: cover;
+        position: fixed;  
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        z-index: -1;
+    }   */
+   
+}
+
+@media only screen and (min-width: 791px) {
+    .burger-icon-wrap {
+            display: none;
+    }
+
+    .site-menu {
+        display: inline-block;
+    } 
+
+      ul.mobile-menu.open {
         display: none;
     }
+}
+
+
+.hidden {
+    display: none;
+}
+
+.no-scroll {
+    overflow: hidden; 
+    position: fixed;
+    width: 100%; 
 }

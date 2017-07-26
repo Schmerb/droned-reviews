@@ -4,7 +4,7 @@ let drones = {
             brand: "DJI",
             model: "Phantom 4",
             price: 1000,
-            camera: "4K@25/1080@120/10MP",
+            camera: "4K@25-30/1080@120/10MP",
             max_flight_time: "Approx. 28 minutes",
             max_range: "5000m",
             max_speed: "45mph",
@@ -224,7 +224,7 @@ let drones = {
     },
     parrot: {
         drone_name: {
-            brand: "",
+            brand: "Parrot",
             model: "",
             price: "",
             camera: "",
@@ -243,7 +243,7 @@ let drones = {
     },
     yuneec: {
         drone_name: {
-            brand: "",
+            brand: "Yuneec",
             model: "",
             price: "",
             camera: "",
@@ -262,7 +262,7 @@ let drones = {
     },
     syma: {
         drone_name: {
-            brand: "",
+            brand: "Syma",
             model: "",
             price: "",
             camera: "",

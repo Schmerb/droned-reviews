@@ -6,6 +6,9 @@
         <meta name="description" content="A user sourced drone review webpage">
         <meta name="author" content="Mike Schmerbeck">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+         <!-- Normalize.css, a cross-browser reset file -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Rubik|Trirong" rel="stylesheet">
         <link href="styles/main.css" rel="stylesheet">
     </head>
     <body>
@@ -24,7 +27,7 @@
                         </a>
                         <ul class="site-menu">
                             <li class="write-review"><a href="#">Write a Review</a></li>
-                            <li class="reviews"><a href="#reviews">Reviews</a></li>
+                            <li class="reviews"><a href="#">Reviews</a></li>
                             <li class="news"><a href="#">News</a></li>
                             <li class="mission"><a href="#">Mission</a></li>
                         </ul>
@@ -34,20 +37,171 @@
                         </ul>
                         <ul class="mobile-menu">
                             <li class="write-review"><a href="#">Write a Review</a></li>
-                            <li class="reviews"><a href="#reviews" >Reviews</a></li>
+                            <li class="reviews"><a href="#" >Reviews</a></li>
                             <li class="news"><a href="#">News</a></li>
                             <li class="mission"><a href="#">Mission</a></li>
+                            <li class="mobile-sign-in login"><a href="#">LogIn</a></li>
+                            <li class="mobile-sign-in signup"><a href="#">Sign Up</a></li>
                         </ul>
                     </nav>
                 </div>
-                <div class="landing-greeting">
-                    <p>Hear directly from drone owners and get up to date on the latest and greatest intel in the personal drone industry.</p>
-                </div>
+            </div>
+            <div class="landing-greeting">
+                <p>Hear directly from drone owners and get up to date on the latest and greatest intel in the personal drone industry.</p>
             </div>
         </header>
 
         <!-- MAIN -->
         <main role="main">
+
+            <!-- Login / Signup Forms -->
+            <section id="login-signup" class="hidden">
+                <div class="login-signup-container">
+                    <i id="login-signup-x" class="fa fa-times" aria-hidden="true"></i>
+                    <div class="screen-btn-wrap">
+                        <button class="login-screen-btn" id="login-screen" type="button">Log In</button>
+                        <button class="signup-screen-btn" id="signup-screen" type="button">Sign Up</button>
+                    </div>
+                    <!-- Signup Form -->
+                    <form class="signup-form" method="POST" action="#">
+                        <div class="form-inner-container">
+                            <div class="form-labels">
+                                <label for="signup-screen" class="">Sign Up For Free</label>
+                            </div>
+                            <div class="name-fields">
+                                <input class="firstname-input" type="text" name="firstName" value="" placeholder="First Name *" required>
+                                <input class="lastname-input" type="text" name="lastName" value="" placeholder="Last Name *" required>
+                            </div>
+                            <input class="email-input" type="email" name="email" value="" placeholder="Email Address *" required>
+                            <input class="pass-input" type="password" name="" value="" placeholder="Password *" required>
+                             <button class="submit-btn get-started-btn" type="submit">Get Started</button> 
+                        </div>
+                    </form>
+                    <!-- Login Form -->
+                    <form class="login-form hidden" method="POST" action="#">
+                        <div class="form-inner-container">
+                            <div class="form-labels">
+                                <label for="login-screen" class="">Log In To Your Account</label>
+                            </div>
+                            <input class="email-input" type="email" name="" value="" placeholder="Email Address *" required>
+                            <input class="pass-input" type="password" name="" value="" placeholder="Password *" required>
+                            <button class="submit-btn login-btn" type="submit">Log In</button>
+                        </div>
+                    </form>
+
+                </div>
+            </section>
+
+
+
+            <!-- Write A Review Form -->
+            <section id="review-form-screen" class="hidden">
+                <div class="review-form-modal">
+                    <header class="review-form-banner">
+                        <h2 class="review-form-title">Write Your Review</h2>
+                        <button class="close-btn" type="button">Close <i id="review-form-x" class="fa fa-times" aria-hidden="true"></i></button>
+                    </header>
+                    <form class="review-form" method="" action="#">
+
+                        <!-- Drone Selector -->
+                        <div class="select-drone-container">
+                             <!--  dropdown options -->
+                            <label for="dropdown-options">Select a drone make and model
+                                <select id="dropdown-options" name="drone-make" required>
+                                    <!-- <optgroup label="DJI">
+                                        <option value="phantom_4">Phantom 4</option>
+                                        <option value="phantom_4_pro">Phantom 4 Pro</option>
+                                        <option value="phantom_4_pro_screen">Phantom 4 Pro w/ Screen</option>
+                                        <option value="phantom_3_standard">Phantom 3 Standard</option>
+                                        <option value="phantom_3_pro">Phantom 3 Pro</option>
+                                        <option value="phantom_3_advanced">Phantom 3 Advanced</option>
+                                        <option value="phantom_3_4K">Phantom 3 4K</option>
+                                        <option value="mavic_pro">Mavic Pro</option> 
+                                    </optgroup>
+                                    <optgroup label="Parrot">
+                                        <option value=""></option>
+                                    </optgroup>
+                                    <optgroup label="Yuneec">
+                                        <option value=""></option>
+                                    </optgroup>
+                                    <optgroup label="Syma">
+                                        <option value=""></option>
+                                    </optgroup> -->
+                                </select>
+                            </label>
+
+                            <span><b>OR</b></span>
+
+                            <!--  search options -->
+                            <label for="drone-search">Search for drone make and model
+                                <input id="drone-search" type="text" name="" value="" placeholder="search for drone . . .">
+                            </label>
+                        </div>
+
+                        <hr class="shadow-hr">
+
+                        <!-- Post text -->
+                        <div class="post-content-container">
+                            <label class="post-title-label" for="">
+                                Title:
+                                <input class="title-input" type="text" name="title" value="" placeholder="Title for review post" required>
+                            </label>
+                            
+                            <!--  post content -->
+                            <label class="review-label" for="">
+                                <span>Review: </span>
+                                <p><textarea class="post-content" name="post-content" rows="10" cols="60" placeholder="Type your review here" required></textarea></p>
+                            </label>
+
+                            <!--  star ratings -->
+                            <div class="star-rating-container">
+                                <span>Rate It: </span>
+                                <label class="star-box" for=""><input type="checkbox" name="star1" value=""></label>
+                                <label class="star-box" for=""><input type="checkbox" name="star2" value=""></label>
+                                <label class="star-box" for=""><input type="checkbox" name="star3" value=""></label>
+                                <label class="star-box" for=""><input type="checkbox" name="star4" value=""></label>
+                                <label class="star-box" for=""><input type="checkbox" name="star5" value=""></label>
+                            </div>
+
+                            <!--  image / video upload -->
+                            <div class="media-assets">
+                                <label for="file-img">
+                                    <i id="file-img" class="fa fa-file-image-o" aria-hidden="true">Upload an image</i>
+                                    <input type="file" name="photo" value="">
+                                </label>
+                                <label for="file-video">
+                                    <i id="file-video" class="fa fa-file-video-o" aria-hidden="true">Upload a video</i>
+                                    <input type="file" name="photo" value="">
+                                </label>
+                            </div>
+
+                        </div> <!-- post content container --> 
+
+                        <hr class="shadow-hr">
+
+                        <div class="bottom-btns">
+                            <button class="preview-btn" type="button">Preview <i id="preview-eye" class="fa fa-eye" aria-hidden="true"></i></button>
+                            <button type="submit">Post It</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- REVIEW POST PREVIEW MODAL-->
+            <section id="review-post-preview" class="hidden">
+                <div class="post-preview-modal">
+                    <div class="preview-banner">
+                        <button class="preview-close-btn" type="button"><span>Edit Post</span> <i id="preview-back" class="fa fa-arrow-circle-o-left" aria-hidden="true"></i></button>
+                        <h1>PREVIEW</h1>
+                    </div>
+                    <div class="preview-content">
+                        
+                    </div>
+                </div>
+            </section>
+
+
+
 
             <!-- COMPANY BANNER-->
             <section id="company-banner">
@@ -73,7 +227,7 @@
             <!-- REVIEWS -->
             <section id="reviews">
                 <header role="header" class="review-header">
-                    <h2>User Reviews</h2>
+                    <h2 class="reviews-title">User Reviews</h2>
                 </header>
 
                 <div id="reviews-container">
@@ -99,12 +253,38 @@
                         </div>
                         <div class="post">
                             <p class="content">The Phantom 4 has the perfect mix of professional grade equipment and easy to use in-flight controls. The camera itself is worthy of its own review. The P4 comes with a 4K camera mounted on a gimbal for extremely stable shots. Shoots 1080p video @120f/s which makes for the smoothest slow-motion playback. The intelligent flight modes allow for custom movement using gps for precision accuracy and with return-to-home mode, you never have to worry about not making it back to the take-off area since a series of warnings and auto-flight controls are triggered if battery power drops below a certain threshold. This is the ultimate quad-copter currently on the market and for the price, you get what you pay for!</p>
-                            <label for="">By: <span class="author">Mike Schmerbeck</span></label>
+                            <label class="author-label" for="">By: <span class="author">Mike Schmerbeck</span></label>
                             <div class="interactions">
                                 <button class="upvote-btn" type="button">Up Vote</button>
                                 <span>Votes: <span class="votes js-votes">0</span></span>
-                                <button class="comment-btn" type="button">Comment</button>
+                                <span class="js-comments-num">5</span> Comments
+                                <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                <button class="comment-btn" type="button">Comments</button>
                             </div>
+                        </div>
+                        <div class="comments-container">
+                            <header class="comments-header">
+                                <span class="js-comments-num">5</span> Comments
+                                <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                <textarea class="comment-input" rows="" cols="" placeholder="Write comment here . . ."></textarea>
+                            </header>
+                            <hr class="shadow-hr">
+
+
+                            <div class="comment">
+                                <p class="comment-content">Haec enim ipsa mihi sunt voluptati, et erant illa Torquatis. Ne amores quidem sanctos a sapiente alienos esse arbitrantur. Qui autem esse poteris, nisi te amor ipse ceperit? Quae cum dixisset, finem ille. Ostendit pedes et pectus.</p>
+                                <div class="comment-metadata">
+                                    <span class="date-posted">11/19/17 2:47 PM</span>
+                                    <span class="comment-user">- @schmerb</span>
+                                    <div class="thumbs">
+                                        <i class="like fa fa-thumbs-up" aria-hidden="true"></i>
+                                        <i class="dislike fa fa-thumbs-down" aria-hidden="true"></i>
+                                        <span class="like-dislikes">+1</span>
+                                    </div>
+                                    <button class="reply-btn" type="button">Reply</button>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -113,7 +293,12 @@
         </main>
 
         <footer role="contentinfo">
-            
+            <div class="my-info">
+                <span class="copy">copyright <span class="copy-symbol">&copy;</span> 2017 &nbsp;&nbsp;Mike Schmerbeck</span>
+                <span class="github-icon">
+                    <a href="https://github.com/Schmerb" target="__blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+                </span>
+            </div>
         </footer>
 
         <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
