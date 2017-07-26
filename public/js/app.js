@@ -403,6 +403,10 @@ function loginBtnClick() {
     $(LOGIN_BTN).on('click', (e) => {
         e.preventDefault();
         openLoginSignupModal('login');
+        $(MOBILE_MENU).removeClass('open');
+        $(BURGER_WRAP).removeClass('open');
+        $(BURGER_ICON).removeClass('open');
+        $('body').addClass('no-scroll');
     });
 }
 
@@ -410,6 +414,10 @@ function signupBtnClick() {
     $(SIGNUP_BTN).on('click', (e) => {
         e.preventDefault();
         openLoginSignupModal('signup');
+        $(MOBILE_MENU).removeClass('open');
+        $(BURGER_WRAP).removeClass('open');
+        $(BURGER_ICON).removeClass('open');
+        $('body').addClass('no-scroll');
     });
 }
 
