@@ -120,7 +120,7 @@ function formReviewPost(postData) {
                     </dl>
                 </div>
                 <div class="post">
-                    <img class="post-img" src="../assets/phantom-4-annie-spratt.jpg">
+                    <img class="post-img" src="../assets/phantom-4-annie-spratt-compressor.jpg">
                     <h2 class="post-title">${title}</h2>
                     <hr class="shadow-hr">
                     <p class="content" id="">${content}</p>
