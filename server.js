@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 
 const mainRouter = require('./mainRouter');
-const {DATABASE_URL, PORT} = require('./config');
+const {PORT} = require('./config');
 
 const app = express();
 
@@ -23,7 +23,7 @@ app.use('*', (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
-}
+});
 
 // let server;
 
@@ -66,4 +66,4 @@ app.listen(PORT, () => {
 // }
 
 // for testing
-module.exports = {app, runServer, closeServer};
+module.exports = {app};
