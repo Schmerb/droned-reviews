@@ -102,7 +102,8 @@ a.logo {
 }
 
 h6.motto {
-    margin-left: 10px;
+    font-size: 12px;
+     margin-left: 3px; 
 }
 
 /*========================================/
@@ -1478,6 +1479,17 @@ main {
     }
 }
 
+@media only screen and (min-width: 976px) {
+    #parrot::after {
+        background-size: cover; 
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    #lily::after {
+        background-size: cover; 
+    }
+}
 
 .hidden {
     display: none;
