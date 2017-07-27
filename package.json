@@ -11,6 +11,8 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
+    "feedparser": "^2.2.1",
+    "mongoose": "^4.11.4",
     "morgan": "^1.8.2"
   },
   "devDependencies": {
