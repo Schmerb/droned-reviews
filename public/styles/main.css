@@ -5,9 +5,12 @@
 body {
     font-family: 'Trirong', serif;
     font-family: 'Rubik', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
     background: lightgrey;
     background: #37474f;
     background: #263238;
+    background: white;
     margin: 0;
     width: 100%;
     min-width: 300px;
@@ -738,8 +741,6 @@ main {
 
 #company-banner {
     overflow: auto;
-    border-bottom: 5px solid transparent;
-    border-top: 5px solid transparent;
 }
 
 .drone-makers {
