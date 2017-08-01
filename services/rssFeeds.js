@@ -1,5 +1,9 @@
+'use strict';
 
-function getFeed(req, res, next) {
+
+let jsonArr = [];
+
+exports.getFeed = (req, res) => {
   const FeedParser = require('feedparser');
   const request = require('request'); // for fetching the feed
 
@@ -32,10 +36,14 @@ function getFeed(req, res, next) {
 
     while (item = stream.read()) {
       console.log(item);
+      jsonArr.push(item);
     }
+    // This part errors
+    // Error: Can't set headers after they are sent.
+    // res.json({
+    //     "test": 123,
+    //     "json" : jsonArr
+    // });
+    res.send(jsonArr);
   });
-
-  next();
 }
-
-module.exports = getFeed;

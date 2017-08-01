@@ -5,6 +5,7 @@ const gulp = require('gulp');
 const browserSync = require('browser-sync');
 const reload = browserSync.reload;
 const nodemon = require('gulp-nodemon');
+// const cp = require('child_process');
 
 gulp.task('browser-sync', ['nodemon'], () =>  {
 	browserSync.init(null, {
@@ -37,5 +38,7 @@ gulp.task('nodemon', (cb) => {
 });
 
 gulp.task('default', ['browser-sync'], () => {
-	gulp.watch(["**/*.html", "**/*.css", "**.*.js","*.json", "*.md"], () => reload());
+	gulp.watch(["**/*.html", "**/*.css", "**.*.js","*.json", "*.md"], () => {
+		reload();
+	});
 });

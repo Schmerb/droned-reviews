@@ -3,6 +3,7 @@ let drones = {
         phantom_4: {
             brand: "DJI",
             model: "Phantom 4",
+            img: "http://asset1.djicdn.com/images/360/phantom-4/draggable_360_v2/0_0.png",
             price: 1000,
             camera: "4K@25-30/1080@120/10MP",
             max_flight_time: "Approx. 28 minutes",
@@ -20,6 +21,8 @@ let drones = {
         phantom_4_pro: {
             brand: "DJI",
             model: "Phantom 4 Pro",
+            // img: "http://www4.djicdn.com/assets/images/products/phantom-4-pro/s1/e-1-c55885e9b95910920cb5caba54e042ca.png",
+            img: "../assets/drones/phantom-4-pro-compressor.png",
             price: 1500,
             camera: "4K@50/1080@120/?",
             max_flight_time: "Approx. 30min",
@@ -37,6 +40,7 @@ let drones = {
         phantom_4_pro_screen: {
             brand: "DJI",
             model: "Phantom 4 Pro w/ Screen",
+            img: "http://www3.djicdn.com/assets/uploads/c55ee03076f684c1dccdd705818ba1e3.png",
             price: 1800,
             camera: "4K@50/1080@120/?",
             max_flight_time: "Approx. 30min",
@@ -54,6 +58,7 @@ let drones = {
         phantom_3_standard: {
             brand: "DJI",
             model: "Phantom 3 Standard",
+            img: "http://www5.djicdn.com/assets/images/products/phantom-3-standard/banner-a146eff5a320c56eb53fd580d91db342.jpg",
             price: 400,
             camera: "2K@30/720@60",
             max_flight_time: "Approx. 25min",
@@ -71,6 +76,7 @@ let drones = {
         phantom_3_pro: {
             brand: "DJI",
             model: "Phantom 3 Pro",
+            img: "http://www5.djicdn.com/assets/images/products/phantom-3-pro/index/phantom-3-pro-v2@2x-f5e6a62b37e6acd37a375f764ab2b6d9.jpg",
             price: 800,
             camera: "4K@25/1080@60",
             max_flight_time: "Approx. 23min",
@@ -88,6 +94,7 @@ let drones = {
         phantom_3_advanced: {
             brand: "DJI",
             model: "Phantom 3 Advanced",
+            img: "http://www4.djicdn.com/assets/images/products/phantom-3-adv/index/banner-cd3f6c8a6f622d769ad0867252aa8e61.jpg",
             price: 800,
             camera: "2K@30/1080@60",
             max_flight_time: "Approx. 23min",
@@ -105,6 +112,7 @@ let drones = {
         phantom_3_4K: {
             brand: "DJI",
             model: "Phantom 3 4K",
+            img: "http://www5.djicdn.com/assets/images/products/phantom3-4k/banner-0d4988d7e1a391b4d44e9d86af13bd6f.jpg",
             price: 800,
             camera: "4K@25/1080@60",
             max_flight_time: "Approx. 25min",
@@ -122,6 +130,8 @@ let drones = {
         mavic_pro: {
             brand: "DJI",
             model: "Mavic Pro",
+            // img: "http://www3.djicdn.com/assets/images/products/mavic/s2-img-v2-2927020e340017561b7f4906b79865d3.png",
+            img: "../assets/drones/mavic-pro-compressor.png",
             price: 1000,
             camera: "4K@30/720@120",
             max_flight_time: "Approx. 27min",
@@ -139,6 +149,7 @@ let drones = {
         inspire_1_pro: {
             brand: "DJI",
             model: "Inspire 1 Pro",
+            img: "http://www5.djicdn.com/assets/images/products/inspire-1/banner-product-333577d35493a3213ead13b4f8056e42.png",
             price: 4100,
             camera: "4K@25/1080@60",
             max_flight_time: "Approx. 18min",
@@ -156,6 +167,7 @@ let drones = {
         inspire_1_raw: {
             brand: "DJI",
             model: "Inspire 1 RAW",
+            img: "http://www5.djicdn.com/assets/images/products/inspire-1/banner-product-333577d35493a3213ead13b4f8056e42.png",
             price: 5400,
             camera: "4K@25/1080@60",
             max_flight_time: "Approx. 18min",
@@ -173,6 +185,7 @@ let drones = {
         inspire_1_standard: {
             brand: "DJI",
             model: "Inspire 1 Standard",
+            img: "http://www5.djicdn.com/assets/images/products/inspire-1/banner-product-333577d35493a3213ead13b4f8056e42.png",
             price: 2000,
             camera: "4K@25/1080@60",
             max_flight_time: "Approx. 18min",
@@ -190,6 +203,7 @@ let drones = {
         inspire_2_X4S: {
             brand: "DJI",
             model: "Inspire 2 X4S",
+            img: "http://www4.djicdn.com/assets/images/products/inspire-2/features-v2/env-l-4-8c482c1f39fcdab1c55c9d550865e4af.png",
             price: 3600,
             camera: "4K@60/2K@60",
             max_flight_time: "Approx. 27min",
@@ -207,6 +221,7 @@ let drones = {
         inspire_2_X5S: {
             brand: "DJI",
             model: "Inspire 2 X5S",
+            img: "http://www4.djicdn.com/assets/images/products/inspire-2/features-v2/env-l-4-8c482c1f39fcdab1c55c9d550865e4af.png",
             price: 4900,
             camera: "5K@30/2K@60",
             max_flight_time: "Approx. 27min",
