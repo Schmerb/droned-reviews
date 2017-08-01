@@ -192,6 +192,7 @@ describe('Droned /Posts API resource', function() {
             // the data was inserted into db)
             const newPost = generatePostData();
             
+            
             let res;
             return chai.request(app)
                 .post('/posts')
