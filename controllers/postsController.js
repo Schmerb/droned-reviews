@@ -13,7 +13,7 @@ exports.createPost = (req, res) => {
     const requiredProps = ['title', 'drone', 'content', 'author', 'rating'];
     const nestedProps = ['make', 'model'];
 
-    console.log('CHECK THIS: ', req.body);
+    // console.log('CHECK THIS: ', req.body);
 
     // Check for required fields in request body
     for (let field of requiredProps) {

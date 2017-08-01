@@ -65,7 +65,7 @@ exports.getComments = (req, res) => {
 // GET Comment by ID
 // * * * * * * * * * * * * * * * 
 exports.getCommentById = (req, res) => {
-    console.log(req.params.id);
+    // console.log(req.params.id);
     Comment
         .findById(req.params.id)
         .exec()
@@ -83,7 +83,7 @@ exports.getCommentById = (req, res) => {
 // * * * * * * * * * * * * * * * 
 exports.getCommentByPostId = (req, res) => {
     let postId = req.params.id;
-    console.log('postId: ', postId, typeof(postId));
+    // console.log('postId: ', postId, typeof(postId));
     Comment
         .find({postId: postId})
         .exec()
@@ -104,7 +104,7 @@ exports.getCommentByPostId = (req, res) => {
 // * * * * * * * * * * * * * * * 
 exports.getReplyCommentsByCommentId = (req, res) => {
     let commentId = req.params.id;
-    console.log('commentId: ', commentId, `typeof: ${typeof(commentId)}`);
+    // console.log('commentId: ', commentId, `typeof: ${typeof(commentId)}`);
     Comment
         .find({commentId: commentId})
         .exec()
