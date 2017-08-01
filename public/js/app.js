@@ -261,7 +261,7 @@ function getCommentTemplate(comment) {
         created = comment.created,
         likes = comment.likes,
         postId = comment.postId,
-        id = comment._id;
+        id = comment.id;
     let posNeg = '';
     if (likes < 0)
         posNeg = '&#45;';
