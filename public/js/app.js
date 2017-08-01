@@ -145,12 +145,12 @@ function displayPosts(_posts) {
 function displayComment(comment) {
     console.log('INSIDE UPDATE COMMENT');
     if ('postId' in comment) {
-        console.log("Inside post-id");
+        // console.log("Inside post-id");
         let postId = comment.postId;
         let commentHtml = getCommentTemplate(comment);
         $(`${COMMENTS_CONTENT}[data-post-id="${postId}"]`).append(commentHtml);
     } else {
-        console.log("Inside comment-id");
+        // console.log("Inside comment-id");
         let commentId = comment.commentId;
         let commentHtml = getReplyCommentTemplate(comment);
         // FOR COMMENT
@@ -398,7 +398,7 @@ function reviewFormHandler($form) {
     posting.done(function(data) {
         // alert('success');
         window.location.replace('/');
-        console.log(data);
+        // console.log(data);
     });
 }
 
@@ -420,7 +420,7 @@ function commentFormHandler($form) {
     } else if(postId !== undefined) {
         comment.postId = postId;
     }
-    console.log('COMMENT: ', comment);
+    // console.log('COMMENT: ', comment);
     // call to ajax POST method
     postComment(comment);
     // reset form after submit
@@ -538,7 +538,6 @@ function commentsHandler(comments, mainComments = true, id) {
             getCommentsFromDb(comment._id, false);
         });
     } else {
-        console.log("\n\n\n INSIDE \n\n\n");
         let commentId = id;
         let commentsHtml = comments.map((comment) => { 
             return getReplyCommentTemplate(comment);
@@ -636,7 +635,6 @@ function getCommentsFromDb(id, mainComments = true) {
         url = `/posts/${id}/comments`;
     } else {
         url = `/posts/comments/${id}/comments`;
-        console.log("ITSREACHING ", id);
     }
     $.ajax({
         url: url,
@@ -670,7 +668,7 @@ function updatePost(updateData) {
         dataType: 'json',
         data: updateData,
         success: res => {
-            console.log('Success', res);
+            console.log('Success');
         }
     });
 }
@@ -683,7 +681,7 @@ function updateComment(updateData) {
         dataType: 'json',
         data: updateData,
         success: res => {
-            console.log('Success', res);
+            console.log('Success');
         }
     });
 }
