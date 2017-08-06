@@ -87,9 +87,9 @@ exports.getCommentByPostId = (req, res) => {
     Comment
         .find({postId: postId})
         .exec()
-        .then(comment => {
+        .then(comments => {
             res.json({
-                comments: comment
+                comments: comments.map(comment => comment.apiRepr())
             });
         })
         .catch(err => {
@@ -108,9 +108,9 @@ exports.getReplyCommentsByCommentId = (req, res) => {
     Comment
         .find({commentId: commentId})
         .exec()
-        .then(comment => {
+        .then(comments => {
             res.json({
-                comments: comment
+                comments: comments.map(comment => comment.apiRepr())
             });
         })
         .catch(err => {

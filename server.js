@@ -1,36 +1,58 @@
 'use strict';
 
-const express = require('express');
-const morgan = require('morgan');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const express       = require('express');
+const session       = require('express-session');
+const morgan        = require('morgan');
+const mongoose      = require('mongoose');
+const bodyParser    = require('body-parser');
+const cookieParser  = require('cookie-parser');
+const path          = require('path');
+// const swigTemplates = require('swig-templates');
+const flash         = require('connect-flash');
+const engine        = require('ejs-mate');
 
-const router = require('./routes');
-const {DATABASE_URL, PORT} = require('./config');
+const router               = require('./routes');
+const {DATABASE_URL, PORT} = require('./config/database');
 
 // Use ES6 promises
 mongoose.Promise = global.Promise;
 
-
+// create express app instance
 const app = express();
 
-// middelware
 
-// log the http layer
-app.use(morgan('common'));
-// root folder for static files
-app.use(express.static('public'));
-// parses request and exposes it on req.body
-app.use(bodyParser.json());
+// CONFIGURE APP
+// const swig = new swigTemplates.Swig();
+// app.engine('swig', swig.renderFile);
+// app.set('view engine', 'swig');
+app.engine('ejs', engine);
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '/views'));
 
 
-// routes
+// MIDDLEWARE
+app.use(morgan('common')); // log the http layer
+app.use(express.static(path.join(__dirname, 'public'))); // root folder for static files
+app.use(cookieParser());
+app.use(bodyParser.json()); // parses request and exposes it on req.body
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// required for passport
+app.use(session({ secret: 'secret' }));
+app.use(flash());
+
+// ROUTES
 app.use(router);
+
 
 // fallback error message for all non-existant endpoints
 app.use('*', (req, res) => {
     res.status(404).json({message: 'Not Found'});
 });
+
+
+// SERVER / DB CONNECTION
 
 // closeServer needs access to a server object, but that only
 // gets created when `runServer` runs, so we declare `server` here

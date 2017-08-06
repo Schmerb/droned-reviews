@@ -1,0 +1,35 @@
+<% layout('layout') %>
+
+
+<% include ./pages/signup-login %>
+
+<!-- REVIEW FORM-->
+<% include ./partials/review-form%>
+
+<!-- REVIEW POST PREVIEW MODAL-->
+<% include ./partials/preview-review %>
+
+
+<!-- COMPANY BANNER-->
+<section id="company-banner">
+    <ul class="drone-makers">
+        <li class="drone-make" id="dji">
+            <label for="dji">DJI</label>
+        </li>
+        <li class="drone-make" id="parrot">
+            <label for="parrot">Parrot</label>
+        </li>
+        <li class="drone-make" id="gopro">
+            <label for="gopro">GoPro</label>
+        </li>
+        <li class="drone-make" id="lily">
+            <label for="lily">Lily Robotics</label>
+        </li>
+        <li class="drone-make" id="threedr">
+            <label for="threedr">3D Robotics</label>
+        </li>
+    </ul>
+</section>
+
+<!-- REVIEWS -->
+<% include ./pages/reviews %>

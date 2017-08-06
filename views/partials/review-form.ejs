@@ -1,0 +1,89 @@
+
+
+<!-- REVIEW FORM --> 
+
+<section id="review-form-screen" class="hidden">
+    <div class="review-form-modal">
+        <header class="review-form-banner">
+            <h2 class="review-form-title">Write Your Review</h2>
+            <button class="close-btn" type="button">Close <i id="review-form-x" class="fa fa-times" aria-hidden="true"></i></button>
+        </header>
+
+        <form id="review-form" method="POST" action="/posts">
+            <!-- Drone Selector -->
+            <div class="select-drone-container">
+                    <!--  dropdown options -->
+                <label for="dropdown-options">Select a drone make and model
+                    <select id="dropdown-options" name="make" required>
+                        <!-- <optgroup label="DJI">
+                            <option value="phantom_4">Phantom 4</option>
+                            <option value="phantom_4_pro">Phantom 4 Pro</option>
+                            <option value="phantom_4_pro_screen">Phantom 4 Pro w/ Screen</option>
+                            <option value="phantom_3_standard">Phantom 3 Standard</option>
+                            <option value="phantom_3_pro">Phantom 3 Pro</option>
+                            <option value="phantom_3_advanced">Phantom 3 Advanced</option>
+                            <option value="phantom_3_4K">Phantom 3 4K</option>
+                            <option value="mavic_pro">Mavic Pro</option> 
+                        </optgroup>
+                        <optgroup label="Parrot">
+                            <option value=""></option>
+                        </optgroup>
+                        <optgroup label="Yuneec">
+                            <option value=""></option>
+                        </optgroup>
+                        <optgroup label="Syma">
+                            <option value=""></option>
+                        </optgroup> -->
+                    </select>
+                </label>
+            </div>
+
+            <hr class="shadow-hr">
+
+            <!-- Post text -->
+            <div class="post-content-container">
+                <label class="post-title-label" for="">
+                    Title:
+                    <input id="title-input" type="text" name="title" value="" placeholder="Title for review post" required>
+                </label>
+                
+                <!--  post content -->
+                <label class="review-label" for="">
+                    <span>Review: </span>
+                    <p><textarea id="post-content" name="content" rows="10" cols="60" placeholder="Type your review here" required></textarea></p>
+                </label>
+
+                <!--  star ratings -->
+                <div class="star-rating-container">
+                    <span>Rate It: </span>
+                    <label class="star-box" for=""><input class="star-input" type="radio" name="star" value="1" required></label>
+                    <label class="star-box" for=""><input class="star-input" type="radio" name="star" value="2"></label>
+                    <label class="star-box" for=""><input class="star-input" type="radio" name="star" value="3"></label>
+                    <label class="star-box" for=""><input class="star-input" type="radio" name="star" value="4"></label>
+                    <label class="star-box" for=""><input class="star-input" type="radio" name="star" value="5"></label>
+                </div>
+
+                <!--  image / video upload -->
+                <div class="media-assets">
+                    <label for="file-img">
+                        <i id="file-img" class="fa fa-file-image-o" aria-hidden="true">Upload an image</i>
+                        <input type="file" name="photo" value="">
+                    </label>
+                    <label for="file-video">
+                        <i id="file-video" class="fa fa-file-video-o" aria-hidden="true">Upload a video</i>
+                        <input type="file" name="photo" value="">
+                    </label>
+                </div>
+
+            </div> <!-- post content container --> 
+
+            <hr class="shadow-hr">
+
+            <div class="bottom-btns">
+                <button class="preview-btn" type="button">Preview <i id="preview-eye" class="fa fa-eye" aria-hidden="true"></i></button>
+                <button type="submit">Post It</button>
+            </div>
+        </form> <!-- post form --> 
+
+    </div>
+</section>

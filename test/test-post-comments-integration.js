@@ -12,6 +12,9 @@ const {app, runServer, closeServer} = require('../server');
 const {TEST_DATABASE_URL} = require('../config');
 
 chai.use(chaiHttp);
+
+let testId;
+
 //
 // Seeds database with random comment data
 //
@@ -77,7 +80,8 @@ function generateCommentData(id = faker.random.uuid()) {
         content: faker.lorem.paragraph(),
         author: {
             username: faker.internet.email()
-        }
+        },
+        created: Date.now()
     };
 }
 
@@ -143,7 +147,7 @@ describe('Droned /Comments API resource', function() {
     // Runs before each and every test to seed database
     // with fresh data
     beforeEach(function() {
-      return seedCommentData(); 
+      return seedCommentData()
     });
 
     // Runs after each and every test to clear database
@@ -190,55 +194,105 @@ describe('Droned /Comments API resource', function() {
             //       back comments associated with that id
             //    5. confirm a comment we get back has same postId as 
             //       Post id we fetched from db
-            console.log('\n\n\n\n\n');
-            let id;
-            return seedPostData()
-                .then(function() {
-                    Post
-                    .findOne()
-                    .exec()
-                    .then(function(post) {
-                        id = post._id.toString();
-                        console.log("id: ", id, typeof(id));
-                        return seedCommentsForPostData(id)
-                        //     .then(function() {
-                        //     console.log("AFTER DB SEED", id);
-                        //     return chai.request(app)
-                        //         .get(`/posts/${id}/comments`)
-                        //         .then(function(res) {
-                        //             console.log('INSIDE GET REQ', res.body.comments[0]);
-                        //             res.should.have.status(200);
-                        //             res.body.comments[0].postId.should.equal(id);
-                        //         });
-                        // });
-                    })
-                    .then(function(){
-                        console.log("THEN");
-                    });
-                });
         });
         
-        // it('should return reply comments for a specific post comment ID', function() {
-        //     // strategy:
-        //     //   1. Get a random post comment's id
-        //     //   2. make GET request to '/posts/comments/:id/comments'
-        //     //      and get back reply comments associated with id
-        //     //   3. confirm one of the reply comments returned has same
-        //     //      comment id as post comment from db
-        //     console.log('\n\n\n\n\n');
-        //     Comment
-        //         .findOne({}, {postId: 1})
-        //         .exec()
-        //         .then(function(comment) {
-        //             let id = comment._id;
-        //             return chai.request(app)
-        //                 .get(`/posts/comments/${id}/comments`)
-        //                 .then(function(res) {
-        //                     res.status.should.be(200);
-        //                 })
-        //         })
+        it('should return reply comments for a specific post comment ID', function() {
+            // strategy:
+            //   1. Get a random post comment's id
+            //   2. make GET request to '/posts/comments/:id/comments'
+            //      and get back reply comments associated with id
+            //   3. confirm one of the reply comments returned has same
+            //      comment id as post comment from db
+            console.log('\n\n\n\n\n');
+            Comment
+                .findOne({}, {postId: 1})
+                .exec()
+                .then(function(comment) {
+                    let id = comment._id;
+                    return chai.request(app)
+                        .get(`/posts/comments/${id}/comments`)
+                        .then(function(res) {
+                            res.should.have.status(200);
+                            
+                        })
+                })
 
-        // });
+        });
+
+    });
+
+    // POST -- CREATE
+    describe('POST endpoints', function() {
+
+        it('should add a new comment', function() {
+            // strategy:
+            //   1. Create a new comment
+            //   2. Make a POST request to '/posts/comments'
+            //      and send new comment
+            //   3. Check it returns proper respone
+            //   4. lookup comment in db and compare to new comment
+
+            let newComment = generateCommentData();
+            let res;
+            return chai.request(app)
+                .post('/posts/comments')
+                .send(newComment)
+                .then(function(_res) {
+                    res = _res;
+                    res.should.have.status(201);
+                    res.should.be.json;
+                    res.body.should.be.a('object');
+                    res.body.should.include.keys(
+                        'id', 'author', 'content', 'created', 'postId'
+                    );
+                    res.body.author.username.should.equal(newComment.author.username);
+                    res.body.content.should.equal(newComment.content);
+                    return Comment.findById(res.body.id).exec()
+                })
+                .then(function(comment) {
+                    comment.author.username.should.equal(newComment.author.username);
+                    comment.content.should.equal(newComment.content);
+                    comment.id.should.equal(res.body.id);
+                });
+        });
+
+    });
+
+    describe('PUT endpoints', function() {
+
+        it('should update comment', function() {
+            // strategy:
+            //   1. Get comment from db
+            //   2. Update comment and send to db
+            //   3. check proper response
+            //   4. look up comment in db to confirm changes
+            let updateComment = {
+                content: "Updated comment!",
+                likes: 20
+            };
+            return Comment
+                .findOne()
+                .exec()
+                .then(function(comment) {
+                    updateComment.id = comment.id;
+                    return chai.request(app)
+                        .put(`/posts/comments/${comment.id}`)
+                        .send(updateComment);
+                })
+                .then(function(res) {
+                    res.should.have.status(201);
+                    res.should.be.json;
+                    res.body.should.be.a('object');
+                    res.body.should.include.keys(
+                        'id', 'author', 'content', 'created'
+                    );
+                    return Comment.findById(res.body.id).exec()
+                })
+                .then(function(comment) {
+                    comment.content = updateComment.content;
+                    comment.likes = updateComment.likes;
+                });
+        });
 
     });
 });

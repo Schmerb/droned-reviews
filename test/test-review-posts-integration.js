@@ -226,12 +226,34 @@ describe('Droned /Posts API resource', function() {
 
     // PUT -- UPDATE
     describe('PUT endpoint', function() {
-        // strategy:
-        //  1. Get an existing post from db
-        //  2. Make a PUT request to update that post
-        //  3. Prove post returned by request contains data we sent
-        //  4. Prove post in db is correctly updated
-
+        it('should update post', function() {
+            // strategy:
+            //  1. Get an existing post from db
+            //  2. Make a PUT request to update that post
+            //  3. Prove post returned by request contains data we sent
+            //  4. Prove post in db is correctly updated
+            let updatePost = {
+                votes: 20
+            };
+            return Post
+                .findOne()
+                .exec()
+                .then(function(post) {
+                    updatePost.id = post.id;
+                    return chai.request(app)
+                        .put(`/posts/${post.id}`)
+                        .send(updatePost);
+                })
+                .then(function(res) {
+                    res.should.have.status(201);
+                    
+                    return Post.findById(res.body.id).exec();
+                })
+                .then(function(post) {
+                    post.votes.should.equal(updatePost.votes);
+                    post.id.should.equal(updatePost.id);
+                })
+        })
     });
 
     // DELETE -- DESTROY

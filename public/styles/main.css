@@ -198,6 +198,7 @@ h6.motto {
     position: relative; 
     height: 70px;
     z-index: 1;
+    overflow: hidden;
 }
 
 .site-menu,
@@ -227,6 +228,8 @@ h6.motto {
 .user-nav a {
     color: #116466;
     color: #f44336;
+    color: #4fc3f7;
+    color: #29b6f6;
 }
 
 .site-menu li:not(:last-of-type)::after {
@@ -245,6 +248,8 @@ h6.motto {
 .site-menu a:hover {
     border-bottom-color: #116466;
     border-bottom-color: #f44336;
+    border-bottom-color: #4fc3f7;
+    border-bottom-color: #29b6f6;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
@@ -308,8 +313,12 @@ a.signup {
 .signup:hover {
     background: #116466;
     background: #f44336;
+    background: #4fc3f7;
+    background: #29b6f6;
     border-color: #116466;
     border-color: #f44336;
+    border-color: #4fc3f7;
+    border-color: #29b6f6;
     border-radius: 3px;
     color: white; 
 }
@@ -345,16 +354,26 @@ a.signup {
 /* Login / Signup (Base / Mobile)
 /*=======================================*/
 
+#login,
+#signup,
 #login-signup {
     position: fixed;
     width: 100%;
     height: 100vh;
-    top: 0;
+    top: -100%; 
     left: 0;
-    background: rgba(0,0,0,0.8);
+    overflow: auto;
     z-index: 10;
-    overflow: scroll;
+    -webkit-transition: all 0.3s ease-in 0.2s;
+    -moz-transition: all 0.3s ease-in 0.2s;
+    transition: all 0.3s ease-in 0.2s;
 }
+
+
+ #login-signup.slide {
+    background: rgba(0,0,0,0.8);   
+    top: 0;
+} 
 
 .login-signup-container {
     position: relative;
@@ -451,7 +470,7 @@ a.signup {
     overflow: auto;
 }
 
-.firstname-input,
+/* .firstname-input,
 .lastname-input {
     width: 49%;
 }
@@ -462,13 +481,24 @@ a.signup {
 
 .lastname-input {
     float: right;
-}
+} */
 
 .email-input,
+.username-input,
 .pass-input {
     display: block;
     width: 100%;
-    margin: 20px auto;
+    margin: 10px auto;
+}
+
+.pass-input.error {
+    border-width: 5px;
+    border-color: red;
+}
+
+.email-input,
+.username-input {
+    margin-bottom: 20px;
 }
 
 .submit-btn {
@@ -499,7 +529,7 @@ a.signup {
 .review-form-modal,
 .post-preview-modal {
     color: #DEF2F1;
-    background: #4D7284;
+    background-color: #4D7284;
     width: 100%;
     min-width: 350px;
     height: 100%;
@@ -511,6 +541,8 @@ a.signup {
 
 
 .post-preview-modal {
+    color: black;
+    background-color: white;
     height: 500px;
 }
 
@@ -874,7 +906,7 @@ main {
 .review {
     position: relative;
     max-width: 900px;
-    margin: 20px auto;
+    margin: 40px auto;
     /* overflow: auto; */
     /* border: 1px solid black; */
      /* box-shadow: 0 0 86px rgba(0,0,0,0.1);  */
@@ -1142,12 +1174,15 @@ main {
 .comment-btn,
 .reply-btn {
     color: #f44336;
+    color: #29b6f6;
     background: #e0f7fa;
+    font-weight: bold;
     display: block;
     width: 100px;
     height: 30px;
     margin: 10px auto 0;
     border: 1px solid #f44336;
+    border: 1px solid #29b6f6;
     border-radius: 2px;
     cursor: pointer;
     -webkit-transition: all 0.2s ease-in-out;
@@ -1159,6 +1194,7 @@ main {
 .reply-btn:hover {
     color: #e0f7fa;
     background: rgba(244, 67, 54, 0.9);
+    background: #29b6f6;
 }
 
 .comment-btn {
@@ -1241,7 +1277,7 @@ main {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 .reply-comment-form.expand {
@@ -1345,15 +1381,27 @@ main {
     /* Login / Signup (Landscape & Desktop)
     /*=======================================*/
     #login-signup {
+        -webkit-transition-delay: 0s;
+        -moz-transition-delay: 0s;
+        transition-delay: 0s;
     }
 
     .login-signup-container {
         position: absolute;
-        top: 5%;
-        left: 50%;  
+        top: -100%;   
+        left: 50%;
         transform: translate(-50%, 0); 
         width: 400px;
-        height: 400px; 
+        height: unset;
+        min-height: 400px; 
+        padding-bottom: 10px;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .login-signup-container.slide {
+        top: 5%;
     }
 
     .signup-screen-btn,
@@ -1474,7 +1522,7 @@ main {
 @media only screen and (min-width: 470px) {
     .burger-icon-wrap {
         right: 60%; 
-        left: 40%;
+        left: 20%;
         -webkit-transition: all 0.3s ease-in-out;
         -moz-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
@@ -1491,10 +1539,10 @@ main {
 } 
 
 @media only screen and (min-width: 515px) {
-    .landing-greeting {
-        font-size: 36px;
-        width: 600px;
-    }
+     .landing-greeting {
+        font-size: 28px;
+        width: 450px;
+    } 
     
     #title-input {
         display: inline-block;
@@ -1555,6 +1603,12 @@ main {
      }
 }
 
+@media only screen and (min-width: 615px) {
+    .landing-greeting {
+        font-size: 36px;
+        width: 600px;
+    }
+}
 
 @media only screen and (max-width: 625px) {
     .review-form-modal {
@@ -1637,7 +1691,7 @@ main {
         position: absolute;
         display: unset;
         /* float: right;  */
-        top: 50%;
+        top: 55%;
         right: 0;
         height: 100px;
         width: 30px;

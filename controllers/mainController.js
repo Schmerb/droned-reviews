@@ -2,6 +2,16 @@
 
 
 exports.getIndex = (req, res) => {
-    res.status(200).sendFile('../public/index.html');
-};
+    let loggedIn = false;
+    
+    if (req.isAuthenticated()) {
+        console.log("Yes, user logged in");
+        loggedIn = true;
+    } else {
+        console.log("NO, user not logged in");
+    }
 
+    res.status(200).render('index', {
+        loggedIn: loggedIn
+    });
+};

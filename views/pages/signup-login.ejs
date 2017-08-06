@@ -1,0 +1,42 @@
+
+
+    <!-- SIGNUP / LOGIN FORM --> 
+
+    <section id="login-signup" class="">
+        <div class="login-signup-container">
+            <i id="login-signup-x" class="fa fa-times" aria-hidden="true"></i>
+            <div class="screen-btn-wrap">
+                <button class="login-screen-btn" id="login-screen" type="button">Log In</button>
+                <button class="signup-screen-btn" id="signup-screen" type="button">Sign Up</button>
+            </div>
+
+            <!-- Signup Form -->
+            <form class="signup-form" method="POST" action="#">
+                <div class="form-inner-container">
+                    <div class="form-labels">
+                        <label for="signup-screen" class="">Sign Up For Free</label>
+                    </div>
+
+                    <input class="email-input" type="email" name="email" value="" placeholder="Email Address *" required>
+                    <input class="username-input" type="test" name="username" value="" placeholder="Enter a Username *" required>
+                    <input class="pass-input" type="password" name="password" value="" placeholder="Password *" required>
+                    <input class="pass-input re-pass-input" type="password" name="re-password" value="" placeholder="Retype Password *" required>
+                    <button class="submit-btn get-started-btn" type="submit">Get Started</button> 
+                </div>
+            </form>
+
+            <!-- Login Form -->
+            <form class="login-form hidden" method="POST" action="#">
+                <div class="form-inner-container">
+                    <div class="form-labels">
+                        <label for="login-screen" class="">Log In To Your Account</label>
+                    </div>
+                    <input class="username-input" type="text" name="username" value="" placeholder="username*" required>
+                    <input class="pass-input" type="password" name="password" value="" placeholder="Password *" required>
+                    <button class="submit-btn login-btn" type="submit">Log In</button>
+                </div>
+            </form>
+
+        </div> 
+    </section>
+

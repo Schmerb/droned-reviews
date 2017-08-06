@@ -1,7 +1,8 @@
 'use strict';
 
 let state = {
-    post: null
+    loggedIn: false,
+    post: null    
 };
 
 // Banner Nav
@@ -14,13 +15,16 @@ const MOBILE_MENU_ITEM = '.mobile-menu li';
 const REVIEWS_NAV_ITEM = '.reviews';
 const LOGIN_BTN = '.login';
 const SIGNUP_BTN = '.signup';
+const LOGOUT_BTN = '.logout';
 // Login / Signup Modal
-const LOGIN_SIGNUP_MODAL = '#login-signup';
+const LOGIN_SIGNUP_PAGE = '#login-signup';
+const LOGIN_SIGNUP_MODAL = '.login-signup-container';
 const SIGNUP_FORM = '.signup-form';
 const LOGIN_FORM = '.login-form';
 const SIGNUP_SCREEN_BTN = '.signup-screen-btn';
 const LOGIN_SCREEN_BTN = '.login-screen-btn';
 const LOGIN_SIGNUP_X = '#login-signup-x';
+const PASS_INPUT = '.pass-input';
 // Write Review Form
 const REVIEW_FORM_SCREEN = '#review-form-screen';
 const REVIEW_FORM = '#review-form';
@@ -129,7 +133,6 @@ function getAndDisplayReviews() {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function displayPosts(_posts) {
     let posts = _posts.map((post) => {
-        console.log("DISPLAY POSTS: ", post);
         let specs = getDroneData(post.drone.make, post.drone.model);
         Object.assign(post, {specs});
         return formReviewPost(post); 
@@ -143,17 +146,16 @@ function displayPosts(_posts) {
 // page refresh
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function displayComment(comment) {
-    console.log('INSIDE UPDATE COMMENT');
+
     if ('postId' in comment) {
-        // console.log("Inside post-id");
+        // Main comments
         let postId = comment.postId;
         let commentHtml = getCommentTemplate(comment);
         $(`${COMMENTS_CONTENT}[data-post-id="${postId}"]`).append(commentHtml);
     } else {
-        // console.log("Inside comment-id");
+        // Reply comments
         let commentId = comment.commentId;
         let commentHtml = getReplyCommentTemplate(comment);
-        // FOR COMMENT
         $(`.reply-comments-content[data-comment-id=${commentId}]`).append(commentHtml);
     }
 }
@@ -165,6 +167,7 @@ function displayComment(comment) {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function formReviewPost(postData) {
     let $this = postData;
+    console.log("this obj", $this);
     let id = $this.id,
         author = $this.author.username,
         make = $this.drone.make,
@@ -173,7 +176,7 @@ function formReviewPost(postData) {
         content = $this.content,
         specs = $this.specs,
         img_src = specs.img,
-        votes = $this.votes;
+        votes = $this.votes || 0;
         let posNeg = '';
         if (votes < 0)
             posNeg = '&#45;';
@@ -258,7 +261,7 @@ function formReviewPost(postData) {
 function getCommentTemplate(comment) {
     let content = comment.content,
         username = comment.author.username,
-        created = comment.created,
+        created = new Date(comment.created).toDateString(),
         likes = comment.likes,
         postId = comment.postId,
         id = comment.id;
@@ -302,7 +305,7 @@ function getCommentTemplate(comment) {
 function getReplyCommentTemplate(comment) {
     let content = comment.content,
         username = comment.author.username,
-        created = comment.created,
+        created = new Date(comment.created).toDateString(),
         likes = comment.likes,
         commentId = comment.commentId,
         id = comment._id;
@@ -314,7 +317,7 @@ function getReplyCommentTemplate(comment) {
     return `<div class="reply-comment" data-this-id="${id}">
                 <p class="reply-comment-content gen-comment">${content}</p>
                 <div class="reply-comment-metadata">
-                    <span class="date-posted">2017-07-31T00:26:05.826Z</span>
+                    <span class="date-posted">${created}</span>
                     <span class="comment-user">- @${username}</span>
                     <div class="thumbs">
                         <i class="like fa fa-thumbs-up" aria-hidden="true"></i>
@@ -327,7 +330,9 @@ function getReplyCommentTemplate(comment) {
 
 
 function openLoginSignupModal(screen) {
-    show(LOGIN_SIGNUP_MODAL);
+    show(LOGIN_SIGNUP_PAGE);
+    $(LOGIN_SIGNUP_PAGE).addClass('slide');
+    $(LOGIN_SIGNUP_MODAL).addClass('slide');
     screen === 'login' ? displayLoginForm() : displaySignupForm();
     $('body').addClass('no-scroll');
 }
@@ -373,6 +378,35 @@ function show() {
 }
 
 
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Collects user signup data and submits it to server
+// to create a new user
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function signupFormHandler($form) {
+    let email = $form.find('.email-input').val(),
+        username = $form.find('.username-input').val(),
+        password = $form.find(PASS_INPUT).val(),
+        rePassword = $form.find('.re-pass-input').val();
+    if (password !== rePassword) {
+        alert('passwords did not match.');
+        $(PASS_INPUT).addClass('error');
+    } else {
+        $(PASS_INPUT).removeClass('error');
+        let data = {email, username, password};
+        createNewUser(data); // makes call to api
+    }
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Collects username and password from user and 
+// calls ajax function to attempt to log user in to session
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function loginFormHandler($form) {
+    let username = $form.find('.username-input').val(),
+        password = $form.find(PASS_INPUT).val();
+    let data = {username, password};
+    logUserIn(data); // makes call to api
+}
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Collects data from form and submits data to API
@@ -396,9 +430,7 @@ function reviewFormHandler($form) {
     });
 
     posting.done(function(data) {
-        // alert('success');
         window.location.replace('/');
-        // console.log(data);
     });
 }
 
@@ -420,7 +452,6 @@ function commentFormHandler($form) {
     } else if(postId !== undefined) {
         comment.postId = postId;
     }
-    // console.log('COMMENT: ', comment);
     // call to ajax POST method
     postComment(comment);
     // reset form after submit
@@ -448,8 +479,10 @@ function previewReviewHandler() {
         content,
         author: user,
         img: droneData.img,
-        make: droneData.brand,
-        model: droneData.model,
+        drone: {
+            make: droneData.brand,
+            model: droneData.model
+        },
         specs: droneData,
     };
 
@@ -525,7 +558,7 @@ function toggleSpecs(specBtn) {
 // Bundles comments and displays them in
 // the associated post's comment section
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-function commentsHandler(comments, mainComments = true, id) {
+function commentsFromDbHandler(comments, mainComments = true, id) {
     if (mainComments) {
         let postId = comments[0].postId;
         let commentsHtml = comments.map((comment) => { 
@@ -534,8 +567,9 @@ function commentsHandler(comments, mainComments = true, id) {
         // Find comments-content by data-id and append 
         $(`${COMMENTS_CONTENT}[data-post-id="${postId}"]`).append(commentsHtml.join(''));
 
+        // Make additional calls to db to fetch each reply comment
         comments.forEach((comment) => {
-            getCommentsFromDb(comment._id, false);
+            getCommentsFromDb(comment.id, false);
         });
     } else {
         let commentId = id;
@@ -643,12 +677,57 @@ function getCommentsFromDb(id, mainComments = true) {
         success: function(res) {
             if (res.comments.length > 0) {
                                //  Main comment                //  Reply comment
-                mainComments ? commentsHandler(res.comments) : commentsHandler(res.comments, false, id)
+                mainComments ? commentsFromDbHandler(res.comments) : commentsFromDbHandler(res.comments, false, id)
             }
         }
     });
 }
 
+function createNewUser(userData) {
+    $.ajax({
+        url: '/users',
+        type: 'POST',
+        dataType: 'json',
+        data: userData,
+        success: (res) => {
+            console.log('SUCCESS');
+            console.log(res);
+        }
+    });
+}
+
+function logUserIn(loginData) {
+    console.log(loginData);
+    $.ajax({
+        url: '/users/login',
+        type: 'POST',
+        dataType: 'json',
+        data: loginData,
+        success: (res) => {
+            if(res.loggedIn) {
+                state.loggedIn = true;
+            } else {
+                state.loggedIn = false;
+            }
+            console.log("RESPONSE", res);
+            console.log("state.loggedIn: ", state.loggedIn);
+        }
+    });
+}
+
+function logUserOut() {
+    $.ajax({
+        url: 'users/logout',
+        type: 'GET',
+        dataType: 'json',
+        success: (res) => {
+            if(!res.loggedIn) {
+                state.loggedIn = false;
+            }
+            console.log("state.loggedIn: ", state.loggedIn);
+        }
+    });
+}
 
 function postComment(commentObj) {
     $.ajax({
@@ -759,6 +838,9 @@ function reviewsNavItemClick() {
     });
 }
 
+//
+// Login modal btn
+//
 function loginBtnClick() {
     $(LOGIN_BTN).on('click', (e) => {
         e.preventDefault();
@@ -770,6 +852,19 @@ function loginBtnClick() {
     });
 }
 
+//
+// Login form SUBMIT
+//
+function loginFormSubmit() {
+    $(LOGIN_FORM).on('submit', function(e) {
+        e.preventDefault();
+        loginFormHandler($(this));
+    });
+}
+
+//
+// Signup modal btn
+//
 function signupBtnClick() {
     $(SIGNUP_BTN).on('click', (e) => {
         e.preventDefault();
@@ -778,6 +873,26 @@ function signupBtnClick() {
         $(BURGER_WRAP).removeClass('open');
         $(BURGER_ICON).removeClass('open');
         $('body').addClass('no-scroll');
+    });
+}
+
+//
+// Signup form SUBMIT
+//
+function signupFormSubmit() {
+    $(SIGNUP_FORM).on('submit', function(e) {
+        e.preventDefault();
+        signupFormHandler($(this));
+    });
+}
+
+//
+// Logout btn
+//
+function logOutBtnClick() {
+    $(LOGOUT_BTN).on('click', (e) => {
+        e.preventDefault();
+        logUserOut();
     });
 }
 
@@ -797,8 +912,9 @@ function loginScreenClick() {
 
 function signupLoginCloseClick() {
     $(window).on('click', (e) => {
-        if(e.target === $(LOGIN_SIGNUP_MODAL)[0] || e.target === $(LOGIN_SIGNUP_X)[0]) {
-            hide(LOGIN_SIGNUP_MODAL);
+        if(e.target === $(LOGIN_SIGNUP_PAGE)[0] || e.target === $(LOGIN_SIGNUP_X)[0]) {
+            $(LOGIN_SIGNUP_MODAL).removeClass('slide');
+            $(LOGIN_SIGNUP_PAGE).removeClass('slide');
             $('body').removeClass('no-scroll');
         }
     });
@@ -898,7 +1014,7 @@ function commentFormSubmit() {
 function replyCommentFormSubmit() {
     $(REVIEWS).on('submit', REPLY_COMMENT_FORM, function(e) {
         e.preventDefault();
-        replyCommentFormHandler($(this));
+        commentFormHandler($(this));
     });
 }
 
@@ -919,6 +1035,7 @@ function specsBtnClick() {
     });
 }
 
+
 //================================================================================
 // Event Listener Groups
 //================================================================================
@@ -928,12 +1045,15 @@ function navMenuClicks() {
     reviewsNavItemClick();
     loginBtnClick();
     signupBtnClick();
+    logOutBtnClick();
 }
 
 function signupLoginFormClicks() {
     signupScreenClick();
     loginScreenClick();
     signupLoginCloseClick();
+    signupFormSubmit();
+    loginFormSubmit();
 }
 
 function writeReviewFormClick() {
