@@ -12,52 +12,7 @@ exports.createUser = (req, res) => {
         return res.status(400).json({ message: 'No request body' });
     }
 
-    let { username, password, email } = req.body;
-
-    // Email
-    if (!email) {
-        return res.status(422).json({ message: 'Missing field: email' });
-    }
-
-    if (typeof email !== 'string') {
-        return res.status(422).json({ message: 'Incorrect field type: email' });
-    }
-
-    email = email.trim();
-
-    if (email === '') {
-        return res.status(422).json({ message: 'Incorrect field length: email' });
-    }
-
-    // Username
-    if (!username) {
-        return res.status(422).json({ message: 'Missing field: username' });
-    }
-
-    if (typeof username !== 'string') {
-        return res.status(422).json({ message: 'Incorrect field type: username' });
-    }
-
-    username = username.trim();
-
-    if (username === '') {
-        return res.status(422).json({ message: 'Incorrect field length: username' });
-    }
-
-    // Password
-    if (!(password)) {
-        return res.status(422).json({ message: 'Missing field: password' });
-    }
-
-    if (typeof password !== 'string') {
-        return res.status(422).json({ message: 'Incorrect field type: password' });
-    }
-
-    password = password.trim();
-
-    if (password === '') {
-        return res.status(422).json({ message: 'Incorrect field length: password' });
-    }
+  
 
     // check for existing user --> CHECK FOR EMAIL FIRST (Multiple account check) and then for username availability 
     return User
