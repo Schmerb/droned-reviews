@@ -93,7 +93,8 @@ exports.createUser = (req, res) => {
                 })
         })
         .then(user => {
-            return res.status(201).json(user.apiRepr());
+            
+            return res.status(201).json({username, password});
         })
         .catch(err => {
             res.status(500).json({message: 'Internal server error'})
@@ -105,7 +106,10 @@ exports.getAllUsers = (req, res) => {
     return User
         .find()
         .exec()
-        .then(users => res.json(users.map(user => user.apiRepr())))
+        .then(users => res.json({
+            users: users.map(user => user.apiRepr()),
+            loggedIn: req.user
+        }))
         .catch(err => {
             res.status(500).json({message: 'Internal server error'})
         }); 
@@ -115,16 +119,6 @@ exports.getAllUsers = (req, res) => {
 exports.getUser = (req, res) => {
     res.json({user: req.user.apiRepr()});
 };
-
-// logs user in to session
-// exports.logUserIn = (req, res) => {
-//     console.log("BEFORE SERIAL");
-//     req.login;
-//     passport.serializeUser(req.user);
-//     console.log('User logged in to session');
-//     res.redirect('/');
-// };
-
 
 
 

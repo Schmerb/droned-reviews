@@ -1,21 +1,21 @@
 'use strict';
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const router = express.Router();
+const express    = require('express'),
+      bodyParser = require('body-parser');
+const router     = express.Router();
 
 // router.use(bodyParser());
 router.use(bodyParser.urlencoded({ extended: true }));
-
 
 
 const mainController = require('../controllers/mainController');
 const feedUpdateController = require('../controllers/feedUpdateController');
 
 
-const postsRouter = require('./postsRouter');
+const postsRouter    = require('./postsRouter');
 const commentsRouter = require('./commentsRouter');
-const usersRouter = require('./usersRouter');
+const usersRouter    = require('./usersRouter');
+const fileRouter     = require('./fileRouter');
 
 // routes for app
 
@@ -38,6 +38,7 @@ router.all(['/posts/',
 
 router.use('/users/', usersRouter);
 
+router.use('/file', fileRouter);
 
 
 module.exports = router;

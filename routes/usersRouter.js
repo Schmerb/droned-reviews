@@ -1,19 +1,22 @@
 'use strict';
 
-const express = require('express');
+const express    = require('express');
 const bodyParser = require('body-parser');
 
-const { passport, isLoggedIn } = require('../services/authenticate');
-const usersController = require('../controllers/usersController');
+const { passport, 
+		isLoggedIn, 
+		basicStrategy } = require('../services/authenticate');
+const usersController   = require('../controllers/usersController');
 
 
 const router = express.Router();
 router.use(bodyParser());
 router.use(bodyParser.json());
 
+// Passport requirements
+passport.use(basicStrategy);
 router.use(passport.initialize())
 router.use(passport.session());
-
 
 
 
@@ -31,61 +34,39 @@ router.get('/me',
 );
 
 
+router.post('/login', 
+	 passport.authenticate('basic', {session: true}),
+	(req, res) => {
+		console.log('sucessfully logged in');
 
+		// set cookie here that user is logged in and username
+		// checks if client sent a cookie
+		const cookie = req.cookies.cookieName;
 
-// router.post('/login',
-// 	passport.authenticate('local', {
-// 		successRedirect: '/', // redirect to the secure profile section
-// 		failureRedirect: '/', // redirect back to the signup page if there is an error
-// 		failureFlash: true // allow flash messages
-// 	}));
+		console.log('cookie', req.cookies);
 
-// router.post('/login', 
-// 	 passport.authenticate('basic', {session: true}),
-//   (req, res) => res.json({user: req.user.apiRepr()})
-// );
-
-router.post('/login', function (req, res, next) {
-	passport.authenticate('basic', function (err, user, info) {
-		if (err) { 
-			return next(err); 
+		if (cookie === undefined) {
+			// Sets 'loggedIn' to name of user currently logged in session
+			res.cookie('loggedIn', req.user.username);
 		}
-		if (!user) { 
-			return res.send('Wrong Username or Password'); 
-		}
-		req.logIn(user, function (err) {
-			if (err) { 
-				return next(err); 
-			}
-			console.log('logged in!!');
-			res.status(200).json({
-				loggedIn: true
-			});
+
+		res.status(200).json({
+			loggedIn: req.user
 		});
-	})(req, res, next);
-});
-
+	}	
+);
 
 
 router.get('/logout', (req, res) => {
 	req.session.destroy(() => {
 		console.log('logged out');
-		res.json({
-			loggedIn: false
-		});
+		// remove username from 'loggedIn' cookie
+		res.cookie('loggedIn', '');
+		res.status(200).json({
+		  loggedIn: false
+	  });
 	});
 });
-
-// router.get('/logout', function(req, res, next) {
-//   passport.authenticate('local', function(err, user, info) {
-//     if (err) { return next(err); }
-//     if (!user) { return res.send('NO USER'); }
-//     req.logOut(user, function(err) {
-//       if (err) { return next(err); }
-//       return res.send('LOGGINED OUT!!!');
-//     });
-//   })(req, res, next);
-// });
 
 
 

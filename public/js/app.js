@@ -51,6 +51,8 @@ const REPLY_COMMENT_CONTENT = '.reply-comments-content';
 const DETAILS = '.details';
 const SPECS_BTN = '.specs-btn';
 const EXPAND = '.expand';
+const SUB_SIGNUP_BTN = '.sub-signup';
+const SUB_LOGIN_BTN = '.sub-login';
 
 const REVIEWS_CONTAINER = '#reviews-container';
 const REVIEWS_CONTENT = '#reviews-content';
@@ -167,7 +169,7 @@ function displayComment(comment) {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function formReviewPost(postData) {
     let $this = postData;
-    console.log("this obj", $this);
+    // console.log("this obj", $this);
     let id = $this.id,
         author = $this.author.username,
         make = $this.drone.make,
@@ -182,77 +184,88 @@ function formReviewPost(postData) {
             posNeg = '&#45;';
         else if (votes > 0)
             posNeg = '+';
-    return  `<div class="review">
-                <div class="post" data-post-id="${id}">
-                    <div class="img-container">
-                        <img class="post-img" src="${img_src}">
-                        <h3>Model: <span class="model">${model}</span></h3>
-                        <h5>Manufacturer: <span class="maker"><b>${make}</b></span></h5>
-                    </div>
-                    <h2 class="post-title">${title}</h2>
-                    <hr class="shadow-hr">
-                    <div class="vote-aside">
-                        <div class="arrow-wrap">
-                            <i class="up-vote-arrow fa fa-arrow-up" aria-hidden="true"></i>
-                            <span class="posNeg">${posNeg}</span><span class="js-votes">${votes}</span>
-                            <i class="down-vote-arrow fa fa-arrow-down" aria-hidden="true"></i>
+    let review  =   `<div class="review">
+                        <div class="post" data-post-id="${id}">
+                            <div class="img-container">
+                                <img class="post-img" src="${img_src}">
+                                <h3>Model: <span class="model">${model}</span></h3>
+                                <h5>Manufacturer: <span class="maker"><b>${make}</b></span></h5>
+                            </div>
+                            <h2 class="post-title">${title}</h2>
+                            <hr class="shadow-hr">
+                            <div class="vote-aside">
+                                <div class="arrow-wrap">
+                                    <i class="up-vote-arrow fa fa-arrow-up" aria-hidden="true"></i>
+                                    <span class="posNeg">${posNeg}</span><span class="js-votes">${votes}</span>
+                                    <i class="down-vote-arrow fa fa-arrow-down" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <p class="content">${content}</p>
+                            <label class="author-label" for="">By: <span class="author">${author}</span></label>
+                            
+                            <div class="mobile-vote-aside">
+                                <i class="up-vote-arrow fa fa-arrow-up" aria-hidden="true"></i>
+                                <span class="posNeg">${posNeg}</span><span class="votes js-votes">${votes}</span>
+                                <i class="down-vote-arrow fa fa-arrow-down" aria-hidden="true"></i>
+                            </div>
+                            <div class="interactions">
+                                <button class="specs-btn" type="button">
+                                    Specs
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </button>
+                                <button class="comments-btn" type="button">
+                                    Comments
+                                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <p class="content">${content}</p>
-                    <label class="author-label" for="">By: <span class="author">${author}</span></label>
-                    
-                    <div class="mobile-vote-aside">
-                        <i class="up-vote-arrow fa fa-arrow-up" aria-hidden="true"></i>
-                        <span class="posNeg">${posNeg}</span><span class="votes js-votes">${votes}</span>
-                        <i class="down-vote-arrow fa fa-arrow-down" aria-hidden="true"></i>
-                    </div>
-                    <div class="interactions">
-                        <button class="specs-btn" type="button">
-                            Specs
-                            <i class="fa fa-plus" aria-hidden="true"></i>
-                        </button>
-                        <button class="comments-btn" type="button">
-                            Comments
-                            <i class="fa fa-comment-o" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="details">
-                    <h3>Model: <span class="model">${model}</span></h3>
-                    <h5>Manufacturer: <span class="maker"><b>${make}</b></span></h5>
-                    <dl class="specs">
-                        <dt>Specs</dt>
-                        <dd>Ave. Price: <span>$${specs.price}</span></dd>
-                        <dd>Camera: <span>${specs.camera}</span></dd>
-                        <dd>Max Flight Time: <span class="max-flight">${specs.max_flight_time}</span></dd>
-                        <dd>Max Range: <span>${specs.max_range}</span></dd>
-                        <dd>Max Speed: <span>${specs.max_speed}</span></dd>
-                        <dd>GPS?: <span>${specs.gps}</span></dd>
-                        <dd>3-axis gimbal: <span>${specs.gimbal}</span></dd>
-                        <dd>Intelligent Flight: <span>${specs.intelligent_flight}</span></dd>
-                        <dd>Avoidance: <span>${specs.avoidance}</span></dd>
-                        <dd>Return Home: <span>${specs.return_home}</span></dd>
-                        <dd>Follow-Me Mode: <span>${specs.follow_me_mode}</span></dd>
-                        <dd>Tracking Mode: <span>${specs.tracking_mode}</span></dd>
-                    </dl>
-                </div>
-                <div class="comments-container">
-                    <header class="comments-header">
-                        <span class="js-comments-num">5</span> Comments
-                        <i class="fa fa-comment-o" aria-hidden="true"></i>
-                    </header>
-                    <div class="comments-content" data-post-id="${id}">
+                        <div class="details">
+                            <h3>Model: <span class="model">${model}</span></h3>
+                            <h5>Manufacturer: <span class="maker"><b>${make}</b></span></h5>
+                            <dl class="specs">
+                                <dt>Specs</dt>
+                                <dd>Ave. Price: <span>$${specs.price}</span></dd>
+                                <dd>Camera: <span>${specs.camera}</span></dd>
+                                <dd>Max Flight Time: <span class="max-flight">${specs.max_flight_time}</span></dd>
+                                <dd>Max Range: <span>${specs.max_range}</span></dd>
+                                <dd>Max Speed: <span>${specs.max_speed}</span></dd>
+                                <dd>GPS?: <span>${specs.gps}</span></dd>
+                                <dd>3-axis gimbal: <span>${specs.gimbal}</span></dd>
+                                <dd>Intelligent Flight: <span>${specs.intelligent_flight}</span></dd>
+                                <dd>Avoidance: <span>${specs.avoidance}</span></dd>
+                                <dd>Return Home: <span>${specs.return_home}</span></dd>
+                                <dd>Follow-Me Mode: <span>${specs.follow_me_mode}</span></dd>
+                                <dd>Tracking Mode: <span>${specs.tracking_mode}</span></dd>
+                            </dl>
+                        </div>
+                        <div class="comments-container">
+                            <header class="comments-header">
+                                <span class="js-comments-num">5</span> Comments
+                                <i class="fa fa-comment-o" aria-hidden="true"></i>
+                            </header>
+                            <div class="comments-content" data-post-id="${id}">
 
+                            </div>
+                            <hr class="shadow-hr">`;
+            if (state.loggedIn) { // Logged in, comment form displayed
+                review +=   `<form class="comment-form" method="post" action="/posts/comments">
+                                <textarea class="comment-input" rows="" cols="" placeholder="Write comment here . . ." required></textarea>
+                                <button class="comment-btn" type="submit">Comment</button>
+                            </form>`;
+            } else { // Not logged in, message to log in to write comment
+                review +=  `<div class="login-message-container">
+                                <p class="login-message">Must be logged in to write a comment.</p>
+                                <ul class="comment-nav">
+                                    <li><a href="#" class="sub-login">LogIn</a></li>
+                                    <li><a href="#" class="sub-signup">Sign Up</a></li>
+                                </ul>
+                            </div>`;
+            }                
+            // close review <div>'s            
+            review +=     `</div>
                     </div>
-                    <hr class="shadow-hr">
-                    <form class="comment-form" method="post" action="/posts/comments">
-                        <textarea class="comment-input" rows="" cols="" placeholder="Write comment here . . ." required></textarea>
-                        <button class="comment-btn" type="submit">Comment</button>
-                    </form>
-                
-                </div>
-            </div>
-            <hr>`;
+                    <hr>`;
+    return review;
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -271,32 +284,38 @@ function getCommentTemplate(comment) {
     else if (likes > 0)
         posNeg = '+';
     
-    return `<div class="comment gen-comment" id="_${id}" data-post-id="${postId}" data-this-id="${id}">
-                <p class="comment-content">${content}</p>
-                <div class="comment-metadata">
-                    <span class="date-posted">${created}</span>
-                    <span class="comment-user">- @${username}</span>
-                    <div class="thumbs">
-                        <i class="like fa fa-thumbs-up" aria-hidden="true"></i>
-                        <i class="dislike fa fa-thumbs-down" aria-hidden="true"></i>
-                        <span class="posNeg">${posNeg}</span><span class="like-dislikes">${likes}</span>
+    let commentTemp =  
+                `<div class="comment gen-comment" id="_${id}" data-post-id="${postId}" data-this-id="${id}">
+                    <p class="comment-content">${content}</p>
+                    <div class="comment-metadata">
+                        <span class="date-posted">${created}</span>
+                        <span class="comment-user">- @${username}</span>
+                        <div class="thumbs">
+                            <i class="like fa fa-thumbs-up" aria-hidden="true"></i>
+                            <i class="dislike fa fa-thumbs-down" aria-hidden="true"></i>
+                            <span class="posNeg">${posNeg}</span><span class="like-dislikes">${likes}</span>
+                        </div>
+                        <label class="reply-c-btn-label" for="">
+                            <span>comments</span>
+                            <button class="expand-reply-comments-btn" type="button"></button>
+                        </label>
                     </div>
-                    <label class="reply-c-btn-label" for="">
-                        <span>comments</span>
-                        <button class="expand-reply-comments-btn" type="button"></button>
-                    </label>
-                </div>
-                <div class="reply-comments-container">
-                    <hr class="shadow-hr">
-                    <div class="reply-comments-content" data-comment-id="${id}">
+                    <div class="reply-comments-container">
                         
-                    </div>
-                    <form class="reply-comment-form comment-form expand" method="POST" action="/posts/comments">
-                        <textarea class="reply-comment-input comment-input" rows="" cols="" placeholder="Type your reply here . . ." required></textarea>
-                        <button class="reply-comment-btn" type="submit">Reply</button>
-                    </form>
-                </div>
-            </div>`;
+                        <div class="reply-comments-content" data-comment-id="${id}">
+                            
+                        </div>`;
+                        // <hr class="shadow-hr">`;
+    if (state.loggedIn) { // Logged in, reply comment form displayed
+        commentTemp +=  `<form class="reply-comment-form comment-form expand" method="POST" action="/posts/comments">
+                            <textarea class="reply-comment-input comment-input" rows="" cols="" placeholder="Type your reply here . . ." required></textarea>
+                             <button class="reply-comment-btn" type="submit">Reply</button>
+                        </form>`;
+    } 
+    // close comment <div>'s  
+    commentTemp +=  `</div>
+                 </div>`; 
+    return commentTemp;
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -314,7 +333,8 @@ function getReplyCommentTemplate(comment) {
         posNeg = '&#45;';
     else if (likes > 0)
         posNeg = '+';
-    return `<div class="reply-comment" data-this-id="${id}">
+    return `<hr class="thin-hr">
+            <div class="reply-comment" data-this-id="${id}">
                 <p class="reply-comment-content gen-comment">${content}</p>
                 <div class="reply-comment-metadata">
                     <span class="date-posted">${created}</span>
@@ -389,9 +409,9 @@ function signupFormHandler($form) {
         rePassword = $form.find('.re-pass-input').val();
     if (password !== rePassword) {
         alert('passwords did not match.');
-        $(PASS_INPUT).addClass('error');
+        $('.signup-form ' + PASS_INPUT).addClass('error');
     } else {
-        $(PASS_INPUT).removeClass('error');
+        $('.signup-form ' + PASS_INPUT).removeClass('error');
         let data = {email, username, password};
         createNewUser(data); // makes call to api
     }
@@ -421,17 +441,17 @@ function reviewFormHandler($form) {
         rating = $('input[name=star]:checked').val(),
         username = 'Schmerb';
     
-    let posting = $.post(url, {
+    let post = {
+        url,
         drone: {make, model}, 
         title, 
         content, 
         rating, 
         author: {username}
-    });
-
-    posting.done(function(data) {
-        window.location.replace('/');
-    });
+    };
+    
+    // ajax POST request to db
+    createPost(post);
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -690,27 +710,27 @@ function createNewUser(userData) {
         dataType: 'json',
         data: userData,
         success: (res) => {
-            console.log('SUCCESS');
-            console.log(res);
+            // Successfully signed user up, now log them in
+            logUserIn({
+                username: res.username,
+                password: res.password
+            });
         }
     });
 }
 
 function logUserIn(loginData) {
-    console.log(loginData);
+    // console.log(loginData);
     $.ajax({
         url: '/users/login',
         type: 'POST',
         dataType: 'json',
-        data: loginData,
+        beforeSend: function(xhr) {
+            // Send basic auth, uri-encoded header with request
+            xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(unescape(encodeURIComponent(loginData.username + ':' + loginData.password))));
+        },
         success: (res) => {
-            if(res.loggedIn) {
-                state.loggedIn = true;
-            } else {
-                state.loggedIn = false;
-            }
-            console.log("RESPONSE", res);
-            console.log("state.loggedIn: ", state.loggedIn);
+            location.reload();
         }
     });
 }
@@ -721,21 +741,21 @@ function logUserOut() {
         type: 'GET',
         dataType: 'json',
         success: (res) => {
-            if(!res.loggedIn) {
-                state.loggedIn = false;
-            }
-            console.log("state.loggedIn: ", state.loggedIn);
+            location.reload();
         }
     });
 }
 
-function postComment(commentObj) {
-    $.ajax({
-        url: "/posts/comments",
+function createPost(postData) {
+     $.ajax({
+        url: `/posts`,
         type: 'POST',
         dataType: 'json',
-        data: commentObj,
-        success: displayComment
+        data: postData,
+        success: res => {
+            console.log('Success');
+            location.reload();
+        }
     });
 }
 
@@ -752,6 +772,16 @@ function updatePost(updateData) {
     });
 }
 
+function postComment(commentObj) {
+    $.ajax({
+        url: "/posts/comments",
+        type: 'POST',
+        dataType: 'json',
+        data: commentObj,
+        success: displayComment
+    });
+}
+
 function updateComment(updateData) {
     let id = updateData.id;
     $.ajax({
@@ -764,6 +794,9 @@ function updateComment(updateData) {
         }
     });
 }
+
+
+
 
 //================================================================================
 // Utility functions
@@ -841,8 +874,18 @@ function reviewsNavItemClick() {
 //
 // Login modal btn
 //
-function loginBtnClick() {
+function loginBtnsClick() {
+    // main nav login-btn
     $(LOGIN_BTN).on('click', (e) => {
+        e.preventDefault();
+        openLoginSignupModal('login');
+        $(MOBILE_MENU).removeClass('open');
+        $(BURGER_WRAP).removeClass('open');
+        $(BURGER_ICON).removeClass('open');
+        $('body').addClass('no-scroll');
+    });
+    // comments login-btn
+    $(REVIEWS).on('click', SUB_LOGIN_BTN, (e) => {
         e.preventDefault();
         openLoginSignupModal('login');
         $(MOBILE_MENU).removeClass('open');
@@ -865,8 +908,18 @@ function loginFormSubmit() {
 //
 // Signup modal btn
 //
-function signupBtnClick() {
+function signupBtnsClick() {
+    // main nav signup-btn
     $(SIGNUP_BTN).on('click', (e) => {
+        e.preventDefault();
+        openLoginSignupModal('signup');
+        $(MOBILE_MENU).removeClass('open');
+        $(BURGER_WRAP).removeClass('open');
+        $(BURGER_ICON).removeClass('open');
+        $('body').addClass('no-scroll');
+    });
+    // comments signup-btn
+    $(REVIEWS).on('click', SUB_SIGNUP_BTN, (e) => {
         e.preventDefault();
         openLoginSignupModal('signup');
         $(MOBILE_MENU).removeClass('open');
@@ -973,14 +1026,20 @@ function commentBtnClick() {
 function upVoteClick() {
     $(REVIEWS).on('click', UPVOTE_ARROW, function(e) {
         e.preventDefault();
-        voteOnPost($(this));
+        if (state.loggedIn) 
+            voteOnPost($(this));
+        else
+           console.log('Must be logged in');
     });
 }
 
 function downVoteClick() {
     $(REVIEWS).on('click', DOWNVOTE_ARROW, function(e) {
         e.preventDefault();
-        voteOnPost($(this), false);
+        if (state.loggedIn) 
+            voteOnPost($(this), false);
+        else
+            console.log('Must be logged in');
     });
 }
 
@@ -990,14 +1049,20 @@ function downVoteClick() {
 function commentLikeClick() {
     $(REVIEWS).on('click', LIKE, function(e) {
         e.preventDefault();
-        likeDislikeComment($(this));
+        if (state.loggedIn) 
+            likeDislikeComment($(this));
+        else
+           console.log('Must be logged in');
     });
 }
 
 function commentDislikeClick() {
     $(REVIEWS).on('click', DISLIKE, function(e) {
         e.preventDefault();
-        likeDislikeComment($(this), false);
+        if (state.loggedIn) 
+            likeDislikeComment($(this), false);
+        else
+           console.log('Must be logged in');
     });
 }
 
@@ -1007,14 +1072,20 @@ function commentDislikeClick() {
 function commentFormSubmit() {
     $(REVIEWS).on('submit', COMMENT_FORM, function(e) {
         e.preventDefault();
-        commentFormHandler($(this));
+        if (state.loggedIn) 
+            commentFormHandler($(this));
+        else
+           console.log('Must be logged in');
     })
 }
 
 function replyCommentFormSubmit() {
     $(REVIEWS).on('submit', REPLY_COMMENT_FORM, function(e) {
         e.preventDefault();
-        commentFormHandler($(this));
+        if (state.loggedIn) 
+            commentFormHandler($(this));
+        else
+           console.log('Must be logged in');
     });
 }
 
@@ -1043,8 +1114,8 @@ function navMenuClicks() {
     burgerMenuClick();
     mobileMenuItemClick();
     reviewsNavItemClick();
-    loginBtnClick();
-    signupBtnClick();
+    loginBtnsClick();
+    signupBtnsClick();
     logOutBtnClick();
 }
 

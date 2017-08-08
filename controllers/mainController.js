@@ -2,16 +2,20 @@
 
 
 exports.getIndex = (req, res) => {
+    // if (req.cookies.loggedIn !== '') {
+    //     console.log('COOKIE WORKED', req.cookies.loggedIn);
+    // }
+    // console.log("cookies", req.cookies);
+
     let loggedIn = false;
+    let username = req.cookies.loggedIn;
     
-    if (req.isAuthenticated()) {
-        console.log("Yes, user logged in");
+    if (username !== '') {
         loggedIn = true;
-    } else {
-        console.log("NO, user not logged in");
     }
 
     res.status(200).render('index', {
-        loggedIn: loggedIn
+        loggedIn: loggedIn,
+        username: username
     });
 };

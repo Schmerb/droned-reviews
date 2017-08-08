@@ -11,6 +11,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
+    "busboy-body-parser": "^0.3.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "ejs": "^2.5.7",
@@ -18,13 +19,12 @@
     "express": "^4.15.3",
     "express-session": "^1.15.5",
     "feedparser": "^2.2.1",
+    "gridfs-stream": "^1.1.1",
     "mongoose": "^4.11.5",
     "morgan": "^1.8.2",
     "passport": "^0.3.2",
     "passport-http": "^0.3.0",
-    "passport-local": "^1.0.0",
-    "swig": "^1.4.2",
-    "swig-templates": "^2.0.2"
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "browser-sync": "^2.18.13",

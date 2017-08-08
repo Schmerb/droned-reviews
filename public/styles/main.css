@@ -284,13 +284,16 @@ h6.motto {
 }
 
 .login,
+.logout,
+.me,
 .signup {
     -webkit-transition: all 0.1s ease-in-out;
     -moz-transition: all 0.1s ease-in-out;
     transition: all 0.1s ease-in-out; 
 }
 
-.login {
+.login,
+.me {
     padding: 5px;
     margin-right: 10px;
     border-bottom: 3px solid transparent; 
@@ -298,19 +301,22 @@ h6.motto {
     border-bottom-right-radius: 4px;
 }
 
-.login:hover {
+.login:hover,
+.me:hover {
     /* color: white;  */
     border-bottom-color: white;
 }
 
-a.signup {
+a.signup,
+a.logout {
     /* color: #455a64; */
     /* background: white; */
     padding: 5px 10px;
     border: 3px solid white;
 }
 
-.signup:hover {
+.signup:hover,
+.logout:hover {
     background: #116466;
     background: #f44336;
     background: #4fc3f7;
@@ -349,6 +355,44 @@ a.signup {
     transform: translate(-50%, 0);
     z-index: 1;
 }
+
+.login-message-container {
+    text-align: center;
+}
+
+.login-message {
+    margin-bottom: 5px;
+}
+
+.comment-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.comment-nav li {
+    display: inline-block;
+    text-decoration: underline;
+    font-size: 12px;
+}
+
+.comment-nav li a {
+    color: black;
+}
+
+.comment-nav li:hover {
+
+}
+
+.sub-login {
+    margin-right: 10px;
+}
+
+.sub-signup {
+
+}
+
+
 
 /*========================================/
 /* Login / Signup (Base / Mobile)
@@ -403,6 +447,7 @@ a.signup {
     color: black;
     height: 40px;
     line-height: 40px;
+    padding-left: 10px;
     border: 2px solid #263238;
 }
 
@@ -1304,11 +1349,15 @@ main {
 }
 
 
-
 .shadow-hr {
 	height: 12px;
 	border: 0;
 	box-shadow: inset 0 12px 12px -12px rgba(90, 118, 132, 0.9);
+}
+
+.thin-hr {
+     border: none;
+     border-bottom: 1px solid rgba(0,0,0,0.5);
 }
 
 /*========================================/

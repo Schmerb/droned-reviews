@@ -26,6 +26,7 @@ exports.createPost = (req, res) => {
             return res.status(400).send(`Missing ${field} in request body`);
         }
     }
+
     // Create new Post object from request body fields
     const newPost = {
         title: req.body.title,
@@ -34,7 +35,9 @@ exports.createPost = (req, res) => {
             model: req.body.drone.model
         },
         content: req.body.content,
-        author: req.body.author,
+        author: {
+            username: req.cookies.loggedIn // grab username from loggedIn cookie
+        },
         rating: req.body.rating,
         created: Date.now()
     };

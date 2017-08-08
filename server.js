@@ -1,18 +1,18 @@
 'use strict';
 
-const express       = require('express');
-const session       = require('express-session');
-const morgan        = require('morgan');
-const mongoose      = require('mongoose');
-const bodyParser    = require('body-parser');
-const cookieParser  = require('cookie-parser');
-const path          = require('path');
-// const swigTemplates = require('swig-templates');
-const flash         = require('connect-flash');
-const engine        = require('ejs-mate');
+const express          = require('express'),
+      session          = require('express-session'),
+      morgan           = require('morgan'),
+      mongoose         = require('mongoose'),
+      bodyParser       = require('body-parser'),
+      cookieParser     = require('cookie-parser'),
+      path             = require('path'),
+      flash            = require('connect-flash'),
+      engine           = require('ejs-mate'),
+      busboyBodyParser = require('busboy-body-parser');
 
-const router               = require('./routes');
-const {DATABASE_URL, PORT} = require('./config/database');
+const router                 = require('./routes');
+const { DATABASE_URL, PORT } = require('./config/database');
 
 // Use ES6 promises
 mongoose.Promise = global.Promise;
@@ -22,9 +22,6 @@ const app = express();
 
 
 // CONFIGURE APP
-// const swig = new swigTemplates.Swig();
-// app.engine('swig', swig.renderFile);
-// app.set('view engine', 'swig');
 app.engine('ejs', engine);
 
 app.set('view engine', 'ejs');
@@ -32,15 +29,29 @@ app.set('views', path.join(__dirname, '/views'));
 
 
 // MIDDLEWARE
-app.use(morgan('common')); // log the http layer
+
+// CORS
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+  if (req.method === 'OPTIONS') {
+    return res.send(204);
+  }
+  next();
+});
+
 app.use(express.static(path.join(__dirname, 'public'))); // root folder for static files
-app.use(cookieParser());
+app.use(morgan('common')); // log the http layer
+app.use(cookieParser()); // parses and handles cookies
 app.use(bodyParser.json()); // parses request and exposes it on req.body
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(busboyBodyParser({ limit: '10mb' }));  
 
 // required for passport
 app.use(session({ secret: 'secret' }));
 app.use(flash());
+
 
 // ROUTES
 app.use(router);

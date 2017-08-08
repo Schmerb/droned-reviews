@@ -12,24 +12,36 @@
                 </div>
             </a>
             <ul class="site-menu">
-                <li class="write-review"><a href="#">Write a Review</a></li>
+                <% if ( loggedIn ) { %>
+                    <li class="write-review"><a href="#">Write a Review</a></li>
+                <% } %>
                 <li class="reviews"><a href="#">Reviews</a></li>
                 <li class="news"><a href="#">News</a></li>
                 <li class="mission"><a href="#">Mission</a></li>
             </ul>
             <ul class="user-nav">
-                <li><a href="/users/me" class="">Me</a></li>
-                <li><a href="#" class="logout">Log Out</a></li>
-                <li><a href="#" class="login">LogIn</a></li>
-                <li><a href="#" class="signup">Sign Up</a></li>
+                <% if ( loggedIn ) { %>
+                    <li><a href="/users/me" class="me">Me</a></li>
+                    <li><a href="#" class="logout">Log Out</a></li>
+                <% } else { %>
+                    <li><a href="#" class="login">LogIn</a></li>
+                    <li><a href="#" class="signup">Sign Up</a></li>
+                <% } %>
             </ul>
             <ul class="mobile-menu">
-                <li class="write-review"><a href="#">Write a Review</a></li>
+                <% if ( loggedIn ) { %>
+                    <li class="write-review"><a href="#">Write a Review</a></li>
+                <% } %>
                 <li class="reviews"><a href="#" >Reviews</a></li>
                 <li class="news"><a href="#">News</a></li>
                 <li class="mission"><a href="#">Mission</a></li>
-                <li class="mobile-sign-in login"><a href="#">LogIn</a></li>
-                <li class="mobile-sign-in signup"><a href="#">Sign Up</a></li>
+                <% if ( loggedIn ) { %>
+                    <li><a href="/users/me" class="me">Me</a></li>
+                    <li><a href="#" class="logout">Log Out</a></li>
+                <% } else { %>
+                    <li class="mobile-sign-in login"><a href="#">LogIn</a></li>
+                    <li class="mobile-sign-in signup"><a href="#">Sign Up</a></li>
+                <% } %>
             </ul>
         </nav>
     </div>

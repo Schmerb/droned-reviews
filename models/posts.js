@@ -16,6 +16,9 @@ const postSchema = mongoose.Schema({
     },
     rating: {type: Number, required: true},
     votes: {type: Number, default: 0},
+    files: {
+        imgId: String
+    },
     created: {type: Date, default: Date.now()}
 });
 
