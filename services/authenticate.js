@@ -18,21 +18,32 @@ const basicStrategy = new BasicStrategy((username, password, done) => {
         .then(_user => {
             user = _user;
             if (!user) {
-                return done(null, false);
+                console.log('Username doesnt exist');
+                return Promise.reject({
+                    reason: 'LoginError',
+                    message: 'Incorrect username or password',
+                });
             }
             return user.validatePassword(password);
         })
         .then(isValid => {
             if (!isValid) {
-                console.log("Basic, NO Match");
-                return done(null, false);
+                console.log("password incorrect");
+                return Promise.reject({
+                    reason: 'LoginError',
+                    message: 'Incorrect username or password',
+                });
             }
-            else {
-                console.log("Basic, Password MATCH");
-                return done(null, user);
-            }
+            console.log("Basic, Password MATCH");
+            return done(null, user);
+            
         })
-        .catch(err => done(err)); 
+        .catch(err => {
+            if (err.reason === 'LoginError') {
+                return done(null, false, err);
+            }
+            return done(err, false);
+        });
 });
 
 

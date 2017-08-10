@@ -1,15 +1,13 @@
+<!-- EDIT REVIEW FORM --> 
 
-
-<!-- REVIEW FORM --> 
-
-<section id="review-form-screen" class="hidden">
+<section id="edit-review-form-screen" class="hidden">
     <div class="review-form-modal">
         <header class="review-form-banner">
-            <h2 class="review-form-title">Write Your Review</h2>
-            <button class="close-btn" type="button">Close <i id="review-form-x" class="fa fa-times" aria-hidden="true"></i></button>
+            <h2 class="review-form-title">Edit Your Review</h2>
+            <button class="close-btn" type="button">Close <i id="edit-review-form-x" class="fa fa-times" aria-hidden="true"></i></button>
         </header>
 
-        <form id="review-form" method="POST" action="/posts">
+        <form id="edit-review-form" method="UPDATE" action="/posts" data-post-id="">
             <!-- Drone Selector -->
             <div class="select-drone-container">
                     <!--  dropdown options -->
@@ -44,13 +42,13 @@
             <div class="post-content-container">
                 <label class="post-title-label" for="">
                     Title:
-                    <input id="title-input" type="text" name="title" value="" placeholder="Title for review post" required>
+                    <input id="edit-title-input" type="text" name="title" value="" placeholder="Title for review post" required>
                 </label>
                 
                 <!--  post content -->
                 <label class="review-label" for="">
                     <span>Review: </span>
-                    <p><textarea id="post-content" name="content" rows="10" cols="60" placeholder="Type your review here" required></textarea></p>
+                    <p><textarea id="edit-post-content" name="content" rows="10" cols="60" placeholder="Type your review here" required></textarea></p>
                 </label>
 
                 <!--  star ratings -->
@@ -65,12 +63,12 @@
 
                 <!--  image / video upload -->
                 <div class="media-assets">
-                    <label for="file-img">
-                        <i id="file-img" class="fa fa-file-image-o" aria-hidden="true">Upload an image</i>
+                    <label for="edit-file-img">
+                        <i id="edit-file-img" class="fa fa-file-image-o" aria-hidden="true">Upload an image</i>
                         <input type="file" name="photo" value="">
                     </label>
-                    <label for="file-video">
-                        <i id="file-video" class="fa fa-file-video-o" aria-hidden="true">Upload a video</i>
+                    <label for="edit-file-video">
+                        <i id="edit-file-video" class="fa fa-file-video-o" aria-hidden="true">Upload a video</i>
                         <input type="file" name="video" value="">
                     </label>
                 </div>
@@ -81,7 +79,13 @@
 
             <div class="bottom-btns">
                 <button class="preview-btn" type="button">Preview <i id="preview-eye" class="fa fa-eye" aria-hidden="true"></i></button>
-                <button type="submit">Post It</button>
+                <button type="submit">UPDATE</button>
+                <button class="delete-post-modal-btn" type="button">Delete</button>
+                <div class="delete-confirm-modal hidden">
+                    <p>Are you positive you want to remove this post?</p>
+                    <button class="delete-post-btn" type="button">Yes, delete my post</button>
+                    <button class="go-back-btn" type="button">No, back</button>
+                </div>
             </div>
         </form> <!-- post form --> 
 

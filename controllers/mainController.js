@@ -16,6 +16,6 @@ exports.getIndex = (req, res) => {
 
     res.status(200).render('index', {
         loggedIn: loggedIn,
-        username: username
+        username: JSON.stringify(username)
     });
 };

@@ -10,6 +10,11 @@ Grid.mongo = mongoose.mongo;
 let gfs;
 
 
+
+// ==================================================
+//   FILE routes
+// ==================================================
+
 conn.once('open', () => {
     gfs = Grid(conn.db);
 
@@ -41,8 +46,18 @@ conn.once('open', () => {
 
             readstream.on('end', () => {
                 data = Buffer.concat(data);
-                console.log('filename:', req.params.imgname);
-                let img = 'data:image;base64,' + Buffer(data).toString('base64');
+                let imgName = req.params.imgname;
+
+                // parses file type extension from file name
+                let temp = [];
+                for (let i = imgName.length - 1; i >= 0; i--) {
+                    if (imgName[i] === '.') {
+                        break;
+                    }
+                    temp.push(imgName[i]);
+                }
+                let fileExt = temp.reverse().join('');
+                let img = `data:image/${fileExt};base64,` + Buffer(data).toString('base64');
                 res.end(img);
             });
 

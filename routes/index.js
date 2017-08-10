@@ -8,7 +8,7 @@ const router     = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
 
 
-const mainController = require('../controllers/mainController');
+const mainController       = require('../controllers/mainController');
 const feedUpdateController = require('../controllers/feedUpdateController');
 
 

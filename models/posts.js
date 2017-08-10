@@ -16,6 +16,9 @@ const postSchema = mongoose.Schema({
     },
     rating: {type: Number, required: true},
     votes: {type: Number, default: 0},
+    usersVoted: [
+        {type: String, default: ''}
+    ],
     files: {
         imgId: String
     },
@@ -37,6 +40,7 @@ postSchema.methods.apiRepr = function() {
         content: this.content,
         rating: this.rating,
         votes: this.votes,
+        usersVoted: this.usersVoted,
         created: this.created
     };
 }

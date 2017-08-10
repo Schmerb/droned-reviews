@@ -129,7 +129,7 @@ exports.updateComment = (req, res) => {
         });
     }
     const updated = {};
-    const updateableFields = ['content', 'likes'];
+    const updateableFields = ['content', 'likes', 'usersLiked'];
     updateableFields.forEach(field => {
         if (field in req.body) {
             updated[field] = req.body[field];

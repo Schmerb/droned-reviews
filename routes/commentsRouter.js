@@ -11,7 +11,10 @@ router.use(bodyParser.json());
 
 
 
-// Comments
+
+// ==================================================
+//   COMMENTS routes
+// ==================================================
 
 // tested
 router.put('/posts/comments/:id', commentsController.updateComment);

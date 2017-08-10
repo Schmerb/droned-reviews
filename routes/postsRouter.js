@@ -10,20 +10,26 @@ router.use(bodyParser());
 
 const postsController = require('../controllers/postsController');
 
+// ==================================================
+//   Posts routes
+// ==================================================
 
-// Posts
+// GET posts
+router.get('/posts', postsController.getPosts) // tested
 
-// tested
-router.get('/posts', postsController.getPosts)
+// GET posts by ID
+router.get('/posts/:id', postsController.getPostById); // tested
 
-// tested
-router.get('/posts/:id', postsController.getPostById);
+// UPDATE post
+router.put('/posts/:id', postsController.updatePost); // NEEDS testing for up/down votes / content
 
-// tested
-router.put('/posts/:id', postsController.updatePost); // NEEDS testing for up/down votes
+// CREATE post
+router.post('/posts', postsController.createPost); // tested
 
-// tested
-router.post('/posts', postsController.createPost);
+// REMOVE post
+router.delete('/posts/:id', postsController.deletePost) // NEEDS Testing
+
+
 
 
 module.exports = router;

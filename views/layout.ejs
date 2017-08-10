@@ -27,6 +27,7 @@
         <% if ( loggedIn ) { %>
             <script>
                 state.loggedIn = true;
+                state.user = <%- username %>
             </script>
         <% } %>
     </body>

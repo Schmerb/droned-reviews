@@ -7,10 +7,45 @@ mongoose.Promise = global.Promise;
 
 
 // * * * * * * * * * * * * * * * 
+// GET all posts
+// * * * * * * * * * * * * * * * 
+exports.getPosts = (req, res) => {
+    Post
+        .find()
+        // returns promise
+        .exec()
+        .then(posts => {
+            res.json({
+                posts: posts.map(post => post.apiRepr())
+            });
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).send('Internal server error');
+        });
+};
+
+// * * * * * * * * * * * * * * * 
+// GET post by ID
+// * * * * * * * * * * * * * * * 
+exports.getPostById = (req, res) => {
+    Post
+        .findById(req.params.id)
+        .exec()
+        .then(post => {
+            res.json(post.apiRepr());
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).send('Internal server error');
+        });
+};
+
+// * * * * * * * * * * * * * * * 
 // CREATE Post
 // * * * * * * * * * * * * * * * 
 exports.createPost = (req, res) => {
-    const requiredProps = ['title', 'drone', 'content', 'author', 'rating'];
+    const requiredProps = ['title', 'drone', 'content', 'rating'];
     const nestedProps = ['make', 'model'];
 
     // console.log('CHECK THIS: ', req.body);
@@ -56,41 +91,22 @@ exports.createPost = (req, res) => {
 };
 
 // * * * * * * * * * * * * * * * 
-// GET all posts
+// DELETE post by ID
 // * * * * * * * * * * * * * * * 
-exports.getPosts = (req, res) => {
+exports.deletePost = (req, res) => {
     Post
-        .find()
-        // returns promise
+        .findByIdAndRemove(req.params.id)
         .exec()
-        .then(posts => {
-            res.json({
-                posts: posts.map(post => post.apiRepr())
-            });
-        })
-        .catch(err => {
-            console.error(err);
-            res.status(500).send('Internal server error');
-        });
-};
-
-// * * * * * * * * * * * * * * * 
-// GET post by ID
-// * * * * * * * * * * * * * * * 
-exports.getPostById = (req, res) => {
-    Post
-        .findById(req.params.id)
-        .exec()
-        .then(post => {
-            res.json(post.apiRepr());
-        })
-        .catch(err => {
-            console.error(err);
-            res.status(500).send('Internal server error');
+        .then(() => {
+            console.log(`Deleted blog post with id \`${req.params.id}\``);
+            res.status(204).end();
         });
 };
 
 
+// * * * * * * * * * * * * * * * 
+// UPDATE post by ID
+// * * * * * * * * * * * * * * * 
 exports.updatePost = (req, res) => {
     if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
         res.status(400).json({
@@ -98,7 +114,7 @@ exports.updatePost = (req, res) => {
         });
     }
     const updated = {};
-    const updateableFields = ['title', 'content', 'rating', 'votes'];
+    const updateableFields = ['title', 'content', 'rating', 'votes', 'usersVoted'];
     updateableFields.forEach(field => {
         if (field in req.body) {
             updated[field] = req.body[field]

@@ -12,6 +12,7 @@ const commentSchema = mongoose.Schema({
         username: {type: String, required: true}
     },
     likes: {type: Number, default: 0},
+    usersLiked: [{type: String, default: ''}],
     created: {type: Date, default: new Date()}
 });
 
@@ -23,6 +24,7 @@ commentSchema.methods.apiRepr = function() {
         content: this.content,
         author: this.author,
         likes: this.likes,
+        usersLiked: this.usersLiked,
         created: Date.parse(this.created)
     };
 };

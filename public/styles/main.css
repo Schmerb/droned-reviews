@@ -515,19 +515,6 @@ a.logout {
     overflow: auto;
 }
 
-/* .firstname-input,
-.lastname-input {
-    width: 49%;
-}
-
-.firstname-input{
-    float: left;
-}
-
-.lastname-input {
-    float: right;
-} */
-
 .email-input,
 .username-input,
 .pass-input {
@@ -536,9 +523,27 @@ a.logout {
     margin: 10px auto;
 }
 
+.email-input.error,
+.username-input.error,
 .pass-input.error {
     border-width: 5px;
     border-color: red;
+}
+
+.signup-error,
+.login-error {
+    color: red;
+    background: white;
+    height: 60px;
+    width: 90%;
+    margin: 0 auto 5px;
+    border-radius: 3px;
+}
+
+.signup-error p,
+.login-error p {
+    margin: 0;
+    line-height: 60px;
 }
 
 .email-input,
@@ -556,10 +561,13 @@ a.logout {
     border-radius: 2px;
 }
 
+
+
 /*========================================/
 /* Write Review Form  (Base / Mobile)
 /*=======================================*/
 #review-form-screen,
+#edit-review-form-screen,
 #review-post-preview {
     background: rgba(0,0,0,0.6);
     position: fixed;
@@ -659,7 +667,7 @@ label[for="dropdown-options"] {
     display: block;
 }
 
-#dropdown-options {
+.dropdown-options {
     background: white;
     display: block;
     width: 95%;
@@ -687,7 +695,7 @@ label[for="drone-search"] {
     border-radius: 2px;
 }
 
-#dropdown-options,
+.dropdown-options,
 #drone-search {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -709,7 +717,8 @@ label[for="drone-search"] {
     margin-bottom: 20px;
 }
 
-#title-input {
+#title-input,
+#edit-title-input {
     display: block;
     width: 100%;
     max-width: 412px;
@@ -727,7 +736,8 @@ label[for="drone-search"] {
     margin-bottom: 10px;
 }
 
-#post-content {
+#post-content,
+#edit-post-content {
     width: 100%;
     max-width: 412px;
     border: none;
@@ -756,14 +766,17 @@ label[for="drone-search"] {
 }
 
 label[for="file-img"],
-label[for="file-video"] {
+label[for="edit-file-img"],
+label[for="file-video"],
+label[for="edit-file-video"] {
     display: inline-block;
     cursor: pointer;
     padding: 5px; 
     border: 1px solid rgba(255,255,255,0.5);
 }
 
-label[for="file-img"] {
+label[for="file-img"] ,
+label[for="edit-file-img"] {
     margin-bottom: 20px; 
 }
 
@@ -774,14 +787,17 @@ input[type="file"] {
 
 
 #file-img,
-#file-video {
+#edit-file-img,
+#file-video,
+#edit-file-video {
     text-align: left;
     display: block;
 }
 
 .bottom-btns {
+    position: relative;
     margin-top: 20px;
-    margin-bottom: 100px;
+    margin-bottom: 40px;
     text-align: center;
 }
 
@@ -806,6 +822,14 @@ input[type="file"] {
     position: relative;
 }
 
+button.delete-post-modal-btn {
+    display: block;
+    margin-top: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    background: darkred;
+}
+
 #preview-eye.fa.fa-eye {
     position: absolute;
     font-size: 28px;
@@ -814,6 +838,38 @@ input[type="file"] {
     transform: translate(0, -50%);
 }
 
+.delete-confirm-modal {
+    position: absolute;
+    background: white;
+    color: black;
+    width: 300px;
+    /* height: 200px; */
+    top: -70px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    z-index: 5;
+    border-radius: 4px;
+}
+
+.review-form-modal.faded::after {
+    position: absolute;
+    content: '';
+    background: rgba(0,0,0,0.5);
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+
+.delete-confirm-modal button {
+    margin-bottom: 10px;
+}
+
+button.delete-post-btn {
+    background: darkred;
+}
 
 /*========================================/
 /* Main (Base / Mobile)
@@ -969,6 +1025,11 @@ main {
     margin: 0;
 }
 
+.img-container h3,
+.img-container h5 {
+    padding: 5px;
+}
+
 .post {
     position: relative; 
     /* height: 428px; */
@@ -992,7 +1053,7 @@ main {
 .content {
     padding: 10px;
     margin: 0;
-    /* overflow: hidden; */
+    min-height: 85px;
 }
 
 .img-container {
@@ -1033,6 +1094,21 @@ main {
 .down-vote-arrow {
     color: red;
     cursor: pointer;
+}
+
+.post-attr {
+    width: 80%;
+    margin: 0 auto 20px;
+}
+
+#edit-post-icon {
+    font-size: 18px;
+    float: right;
+    cursor: pointer;
+}
+
+#edit-post-icon:hover {
+    color: grey;
 }
 
 .interactions {
@@ -1519,7 +1595,7 @@ main {
         margin: 0 auto;
     }
 
-    #dropdown-options {
+    .dropdown-options {
         display: block;
     }
 
@@ -1553,6 +1629,11 @@ main {
         height: 60px;
         border: none;
         border-radius: 3px;
+    }
+
+    button.delete-post-modal-btn {
+        width: 100px;
+        height: 30px;
     }
 
 
@@ -1593,7 +1674,8 @@ main {
         width: 450px;
     } 
     
-    #title-input {
+    #title-input,
+    #edit-title-input {
         display: inline-block;
         width: 412px;
         margin-left: 20px;
@@ -1620,7 +1702,8 @@ main {
          max-height: 770px;  
     }
 
-    #post-content {
+    #post-content,
+    #edit-post-content {
         width: 412px;
     }
 
@@ -1746,6 +1829,10 @@ main {
         width: 30px;
         transform: translate(0, -50%);
         border: 1px solid black;
+    }
+
+    .post-preview-modal .vote-aside {
+        top: 65%;
     }
 
     .arrow-wrap {

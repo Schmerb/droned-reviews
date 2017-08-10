@@ -21,18 +21,24 @@
                     <input class="username-input" type="test" name="username" value="" placeholder="Enter a Username *" required>
                     <input class="pass-input" type="password" name="password" value="" placeholder="Password *" required>
                     <input class="pass-input re-pass-input" type="password" name="re-password" value="" placeholder="Retype Password *" required>
+                    <div class="signup-error hidden">
+                        <p class="error-message"></p>
+                    </div>
                     <button class="submit-btn get-started-btn" type="submit">Get Started</button> 
                 </div>
             </form>
 
             <!-- Login Form -->
-            <form class="login-form hidden" method="POST" action="#">
+            <form class="login-form " method="POST" action="#">
                 <div class="form-inner-container">
                     <div class="form-labels">
                         <label for="login-screen" class="">Log In To Your Account</label>
                     </div>
                     <input class="username-input" type="text" name="username" value="" placeholder="Username *" required>
                     <input class="pass-input" type="password" name="password" value="" placeholder="Password *" required>
+                    <div class="login-error hidden">
+                        <p class="error-message"></p>
+                    </div>
                     <button class="submit-btn login-btn" type="submit">Log In</button>
                 </div>
             </form>
