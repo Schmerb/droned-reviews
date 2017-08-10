@@ -71,7 +71,8 @@ exports.createPost = (req, res) => {
         },
         content: req.body.content,
         author: {
-            username: req.cookies.loggedIn // grab username from loggedIn cookie
+            username:   req.cookies.loggedIn     // grab username from loggedIn cookie or
+                     || req.body.author.username // from req.body (for TESTING)
         },
         rating: req.body.rating,
         created: Date.now()
