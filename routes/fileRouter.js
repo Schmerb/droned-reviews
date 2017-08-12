@@ -2,13 +2,13 @@
 
 const router     = require('express').Router(),
       fs         = require('fs'),
-      mongoose = require('mongoose');
+      mongoose   = require('mongoose'),
+      ObjectID   = require('mongodb').ObjectID;
 
 let Grid = require('gridfs-stream');
 let conn = mongoose.connection;
 Grid.mongo = mongoose.mongo;
 let gfs;
-
 
 
 // ==================================================
@@ -24,10 +24,11 @@ conn.once('open', () => {
     });
 
     // GET '/file/img/:imgname'
-    router.get('/img/:imgname', (req, res) => {
-        gfs.files.find({
-            filename: req.params.imgname
-        }).toArray((err, files) => {
+    router.get('/img/:imgId', (req, res) => {
+        let objId = ObjectID(req.params.imgId);
+        gfs.files.find(
+            ObjectID(req.params.imgId)
+        ).toArray((err, files) => {
 
             if (files.length === 0) {
                 return res.status(400).send({
@@ -46,7 +47,7 @@ conn.once('open', () => {
 
             readstream.on('end', () => {
                 data = Buffer.concat(data);
-                let imgName = req.params.imgname;
+                let imgName = files[0].filename;
 
                 // parses file type extension from file name
                 let temp = [];
@@ -58,7 +59,7 @@ conn.once('open', () => {
                 }
                 let fileExt = temp.reverse().join('');
                 let img = `data:image/${fileExt};base64,` + Buffer(data).toString('base64');
-                res.end(img);
+                res.json({url: img});
             });
 
             readstream.on('error', (err) => {
@@ -68,9 +69,26 @@ conn.once('open', () => {
         });
     });
 
+    router.delete('/img/:imgId', (req, res) => {
+        let objId = {
+            _id: ObjectID(req.params.imgId)
+        };
+        // gfs.remove(
+        //     objId
+        // );
+        gfs.remove(objId, function (err) {
+            if (err) return handleError(err);
+            console.log('success');
+            res.status(204).json({
+                status: 'success, img removed from db'
+            });
+        });
+    });
+
     // POST '/img'
     router.post('/img', (req, res) => {
         let part = req.files.file;
+        console.log(part);
         let writeStream = gfs.createWriteStream({
             filename: 'img_' + part.name,
             mode: 'w',
@@ -78,6 +96,7 @@ conn.once('open', () => {
         });
 
         writeStream.on('close', (file) => {
+            console.log(file);
             return res.status(200).send({
                 message: 'Success',
                 file: file

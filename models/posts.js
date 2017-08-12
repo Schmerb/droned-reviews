@@ -19,9 +19,7 @@ const postSchema = mongoose.Schema({
     usersVoted: [
         {type: String, default: ''}
     ],
-    files: {
-        imgId: String
-    },
+    imgId: {type: String, default: ''},
     created: {type: Date, default: Date.now()}
 });
 
@@ -41,6 +39,7 @@ postSchema.methods.apiRepr = function() {
         rating: this.rating,
         votes: this.votes,
         usersVoted: this.usersVoted,
+        imgId: this.imgId,
         created: this.created
     };
 }

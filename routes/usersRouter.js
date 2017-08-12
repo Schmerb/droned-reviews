@@ -10,7 +10,7 @@ const usersController = require('../controllers/usersController');
 
 
 const router = express.Router();
-router.use(bodyParser());
+router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 // Passport requirements

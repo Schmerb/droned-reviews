@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const commentsController = require('../controllers/commentsController');
 
 const router = express.Router();
-router.use(bodyParser());
+router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 

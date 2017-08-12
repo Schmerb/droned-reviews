@@ -237,6 +237,26 @@ let drones = {
             tracking_mode: "YES"
         }
     },
+    gopro: {
+        karma: {
+            brand: "GoPro",
+            model: "Karma",
+            img: "https://shop.gopro.com/on/demandware.static/-/Library-Sites-sharedGoProLibrary/default/dw9dbd822e/images/karma2016/karma-drone-main.png",
+            price: 799.99,
+            camera: "Hero5(Black)",
+            max_flight_time: "Approx. 20min",
+            max_range: "3,000m",
+            max_speed: "35mph",
+            headless: "YES",
+            gps: "",
+            gimbal: "YES",
+            intelligent_flight: "",
+            avoidance: "",
+            return_home: "",
+            follow_me_mode: "",
+            tracking_mode: ""
+        }
+    },
     parrot: {
         drone_name: {
             brand: "Parrot",

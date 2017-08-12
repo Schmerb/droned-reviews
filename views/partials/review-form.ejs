@@ -9,7 +9,7 @@
             <button class="close-btn" type="button">Close <i id="review-form-x" class="fa fa-times" aria-hidden="true"></i></button>
         </header>
 
-        <form id="review-form" method="POST" action="/posts">
+        <form id="review-form" enctype="multipart/form-data" method="POST" action="/posts">
             <!-- Drone Selector -->
             <div class="select-drone-container">
                     <!--  dropdown options -->
@@ -67,7 +67,7 @@
                 <div class="media-assets">
                     <label for="file-img">
                         <i id="file-img" class="fa fa-file-image-o" aria-hidden="true">Upload an image</i>
-                        <input type="file" name="photo" value="">
+                        <input class="img-file-input" type="file" name="photo" value="" accept=".jpg, .jpeg, .png">
                     </label>
                     <label for="file-video">
                         <i id="file-video" class="fa fa-file-video-o" aria-hidden="true">Upload a video</i>
@@ -87,3 +87,4 @@
 
     </div>
 </section>
+

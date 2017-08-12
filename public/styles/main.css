@@ -7,6 +7,7 @@ body {
     font-family: 'Rubik', sans-serif;
     font-family: 'Roboto', sans-serif;
     font-weight: lighter;
+    position: relative;
     background: lightgrey;
     background: #37474f;
     background: #263238;
@@ -14,7 +15,8 @@ body {
     margin: 0;
     width: 100%;
     min-width: 300px;
-    height: 200vh;
+    min-height: 200vh;
+    overflow-x: hidden;
 }
 
 /*============================================================/
@@ -96,7 +98,7 @@ a.logo {
     font-size: 24px;
     cursor: pointer;
     float: left; 
-    z-index: 5;
+    /* z-index: 5; */
 }
 
 .logo h2,
@@ -130,7 +132,7 @@ h6.motto {
 .burger-icon-wrap.open {
      /* position: fixed;  */
     top: 6px;
-    right: 30px;
+    /* right: 30px; */
     transform: translate(0, 50%);
 }
 
@@ -198,7 +200,7 @@ h6.motto {
     position: relative; 
     height: 70px;
     z-index: 1;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .site-menu,
@@ -404,7 +406,7 @@ a.logout {
     position: fixed;
     width: 100%;
     height: 100vh;
-    top: -100%; 
+    top: -150%; 
     left: 0;
     overflow: auto;
     z-index: 10;
@@ -770,7 +772,7 @@ label[for="edit-file-img"],
 label[for="file-video"],
 label[for="edit-file-video"] {
     display: inline-block;
-    cursor: pointer;
+    /* cursor: pointer; */
     padding: 5px; 
     border: 1px solid rgba(255,255,255,0.5);
 }
@@ -783,6 +785,7 @@ label[for="edit-file-img"] {
 input[type="file"] {
     width: 200px;
     padding-top: 10px;
+    cursor: pointer;
 }
 
 
@@ -871,30 +874,102 @@ button.delete-post-btn {
     background: darkred;
 }
 
+
 /*========================================/
-/* Main (Base / Mobile)
+/* Drone Banner (Base / Mobile)
 /*=======================================*/
-
-main {
-    /* height: 100%; */
-}
-
 #company-banner {
-    overflow: auto;
+    overflow: hidden;
+    height: 200px;
 }
 
-.drone-makers {
+/* .drone-makers {
     padding: 0;
     margin: 0;
     list-style: none; 
+} */
+
+.slick-slider {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    /* margin: auto; */
 }
 
+
+.slick-list,
+.slick-track {
+    overflow: hidden;
+    height: 200px;
+}
+
+.slick-slider .slick-prev.slick-arrow,
+.slick-slider .slick-next.slick-arrow {
+    width: 50px;
+    height: 200px;
+    z-index: 2;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.slick-prev {
+    left: 0;
+}
+
+.slick-next {
+    right: 0;
+}
+
+.slick-prev:hover {
+    background: linear-gradient(-90deg, transparent, rgba(0,0,0,0.5));
+}
+
+.slick-next:hover {
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.5));
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+
+.slick-slider .slick-prev::before,
+.slick-slider .slick-next::before  {
+    color: white;
+    font-family: FontAwesome; 
+    font-size: 36px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    -webkit-transition: all 0.7s ease-in-out;
+    -moz-transition: all 0.7s ease-in-out;
+    transition: all 0.7s ease-in-out;
+}
+
+.slick-slider .slick-prev::before {
+    content: '\f053';
+    left: 0;
+}
+
+.slick-slider .slick-next::before {
+    content: '\f054';
+    right: 0;
+}
+
+.slick-prev:hover .slick-slider .slick-prev:before,
+.slick-next:hover .slick-slider .slick-next:before  {
+     color: black; 
+}
+
+
 .drone-make {
+    display: inline-block;
     position: relative;
-    background: white;
-    float: left;
-    width: 100%;
-    height: 20vh;
+    /* background: blue; */
+    /* float: left; */
+    width: 100vw;
+    height: 200px;
     min-height: 145px;
     cursor: pointer;
     overflow: hidden;
@@ -904,15 +979,9 @@ main {
     border-top: 1px solid #5A7684;
 }
 
-.drone-make label {
-    color: #37474f;
-    position: relative;
-    font-weight: bold;
-    margin-left: 20px;
-    z-index: 1;
-}
 
-#dji::after {
+
+ #dji::after {
     background: url('../assets/DJI-inspire-compressor.jpg') center;
     background-size: 130%;
     background-repeat: no-repeat;
@@ -920,7 +989,7 @@ main {
 
 #parrot::after {
     background: url('../assets/parrot-square-compressor.jpg') center;
-    background-size: contain;
+    background-size: 100%;
     background-repeat: no-repeat;
 }
 
@@ -932,8 +1001,9 @@ main {
 
 #lily::after {
     background: url('../assets/lily-robotics-compressor.jpg') center;
-    background-size: contain;
+    background-size: 100%;
     background-repeat: no-repeat;
+    background-position-y: -10%;
 }
 
 #threedr::after {
@@ -954,6 +1024,18 @@ main {
     transition: all 1.5s ease-in-out; 
 }
 
+.slide-label {
+    color: #37474f;
+    position: relative;
+    font-weight: bold;
+    margin-left: 20px;
+    z-index: 1;
+}
+
+.drone-make:hover .slide-label {
+    color: grey;
+}
+
 #drone-make:hover::after, 
 #dji:hover::after,
 #parrot:hover::after, 
@@ -964,10 +1046,102 @@ main {
 }
 
 /*========================================/
+/* Drone Filter ASIDE (Base/ Mobile)
+/*=======================================*/
+
+/* .review-page-container {
+    position: relative;
+}
+
+#aside-filter {
+    position: relative;
+    width: 20%;
+    min-height: 50vh;
+    float: right;
+    margin-top: 20px;
+}
+
+.aside-slide-btn {
+    content: '';
+    position: absolute;
+    background: unset;
+    left: -30px;
+    top: 50%;
+    width: 30px;
+    height: 50%;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.aside-slide-btn:hover {
+    background: rgba(0,0,0,0.3);
+}
+
+.aside-chevron {
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.aside-chevron.flip {
+    transform: rotateY(180deg);
+}
+
+.aside-container {
+    position: absolute;
+    width: 100%;
+    right: -100%;
+    padding: 10px;
+    border: 1px solid black;    
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.aside-container.slide {
+    right: 0;
+}
+
+.search-filter {
+    width: 100%;
+}
+
+.drone-search-btn,
+.aside-btns {
+    background: lightblue;
+    margin-top: 5px;
+    padding: 5px 30px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.drone-search-btn:hover,
+.aside-btns:hover {
+    background: lightseagreen;
+}
+
+#radio-filter-form {
+    margin-top: 30px;
+}
+
+.drone-radio {
+    cursor: pointer;
+}
+
+#radio-filter-form label {
+    display: block;
+    margin-bottom: 15px;
+    cursor: pointer;
+} */
+
+/*========================================/
 /* Reviews (Base/ Mobile)
 /*=======================================*/
 #reviews {
-    overflow: auto;
+    overflow: hidden;
     padding-bottom: 400px;
 }
 
@@ -987,11 +1161,10 @@ main {
 
 .reviews-title {
     color: black;
-    /* position: absolute; */
+    position: relative;
     text-align: center;
     font-size: 20px;
-    bottom: -25px;
-    left: 50%;
+    left: 100px;
     margin: 0;
     /* transform: translate(-50%, 50%); */
     text-shadow: 0 0 2px rgba(0,0,0,0.3);
@@ -1014,8 +1187,11 @@ main {
 }
 
 .author-label{
-    margin-left: 30px;
+    /* margin-left: 30px; */
     margin-top: 10px;
+}
+
+.c-date-edit-wrap {
 }
 
 .img-container h3,
@@ -1141,10 +1317,14 @@ main {
 .specs-btn:hover,
 .comments-btn:hover {
     background: #e2f1fc;
+    background: #cfd8dc;
+    background: #eceff1;
 } 
 
 .btn-active {
     background: #e2f1fc;
+    background: #cfd8dc;
+    background: #eceff1;
     border-bottom-color: transparent;
 }
 
@@ -1163,6 +1343,8 @@ main {
 
 .details {
     background: #e2f1fc;
+    background: #cfd8dc;
+    background: #eceff1;
     display: block;
     width: 100%;
     /* height: 0; */
@@ -1178,6 +1360,8 @@ main {
 
 .specs {
     background: #e2f1fc;
+    background: #cfd8dc;
+    background: #eceff1;
     clear: both;
     width: 100%;
     margin: 0 auto; 
@@ -1208,6 +1392,8 @@ main {
 
 .comments-container {
     background: #e2f1fc;
+    background: #cfd8dc;
+    background: #eceff1;
     clear: both;
     width: 100%;
     max-height: 0; 
@@ -1227,12 +1413,16 @@ main {
 
 .comments-container::-webkit-scrollbar{
     background-color: #e2f1fc;
+    background-color: #cfd8dc;
+    background-color: #eceff1;
 }
 
 .comments-container::-webkit-scrollbar-corner,
 .comments-container::-webkit-scrollbar-track,
 .comments-container::-webkit-scrollbar-corner {
     background-color: #e2f1fc;
+    background-color: #cfd8dc;
+    background-color: #eceff1;
 }
 
 .comments-container::-webkit-scrollbar-button,
@@ -1294,17 +1484,16 @@ main {
 
 .comment-btn,
 .reply-btn {
-    color: #f44336;
-    color: #29b6f6;
-    background: #e0f7fa;
+    color: #90a4ae;
+    color: #546e7a;
+    background: #cfd8dc;
     font-weight: bold;
     display: block;
     width: 100px;
     height: 30px;
     margin: 10px auto 0;
-    border: 1px solid #f44336;
-    border: 1px solid #29b6f6;
-    border-radius: 2px;
+    border: 1px solid #90a4ae;
+    border-radius: 6px;
     cursor: pointer;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
@@ -1313,9 +1502,8 @@ main {
 
 .comment-btn:hover,
 .reply-btn:hover {
-    color: #e0f7fa;
-    background: rgba(244, 67, 54, 0.9);
-    background: #29b6f6;
+    color: white;
+    background: #90a4ae;
 }
 
 .comment-btn {
@@ -1411,7 +1599,7 @@ main {
 }
 
 .reply-comment-btn {
-    background-color: rgba(25, 118, 210, 0.3);
+    background-color: #cfd8dc;
     width: 80px;
     height: 30px;
     border: none;
@@ -1421,7 +1609,7 @@ main {
 }
 
 .reply-comment-btn:hover {
-    background-color: rgba(25, 118, 210, 0.7);
+    background-color: #90a4ae;;
 }
 
 
@@ -1441,13 +1629,46 @@ main {
 /*=======================================*/
 
 .main-footer {
-    text-align: center;
+    position: absolute;
+    background: #cfd8dc;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    padding: 20px 10px 10px;
 }
 
-.my-info {
+.footer-links {
+    width: 40%;
+    margin: 0 auto;
+}
+
+.footer-links ul {
     display: inline-block;
+    vertical-align: top;
+}
+
+.footer-links li {
+    list-style: none;
+}
+
+.footer-links li a {
+    color: black;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+
+.footer-links li:hover a {
+    color: gray;
+}
+
+
+.my-info {
+    text-align: center;
     color: black;
     font-size: 12px;
+    margin: 20px 0 10px;
 }
 
 .fa.fa-github {
@@ -1540,19 +1761,29 @@ main {
     }
 
     /*========================================/
-    /* Drone Banner / Reviews (Landscape & Desktop)
+    /* Drone Banner (Landscape & Desktop)
     /*=======================================*/
 
     .drone-make {
-        width: 20%;
+        /* width: 200px; */
+        width: 20vw;
     }
-
+     
     .drone-make:not(:last-of-type) {
         border-right: 1px solid #5A7684;
     }
 
     #company-banner .drone-make {
         border-top: none;
+    } 
+
+    #parrot::after {
+        background-size: contain;
+    }
+
+    #lily::after {
+        background-size: contain;
+        background-position-y: 50%;
     }
 
     /*========================================/
@@ -1651,8 +1882,8 @@ main {
 
 @media only screen and (min-width: 470px) {
     .burger-icon-wrap {
-        right: 60%; 
-        left: 20%;
+        right: 55%; 
+        left: 45%;
         -webkit-transition: all 0.3s ease-in-out;
         -moz-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
@@ -1795,15 +2026,153 @@ main {
     }
 
     /*========================================/
+    /* Drone Banner (Base / Mobile)
+    /*=======================================*/
+    #company-banner {
+        height: 20vh;
+    }
+
+    .slick-slider {
+        height: 20vh;
+    }
+
+    .slick-slider .slick-prev.slick-arrow,
+    .slick-slider .slick-next.slick-arrow {
+        height: 20vh;
+    }
+
+
+    /*========================================/
+    /* Drone Filter ASIDE (DESKTOP / TABLET)
+    /*=======================================*/
+
+    .review-page-container {
+        position: relative;
+        padding-left: 20px;
+    }
+
+    #aside-filter {
+        position: relative;
+        width: 20%;
+        min-height: 50vh;
+        float: right;
+        margin-top: 20px;
+    }
+
+    .aside-slide-btn {
+        content: '';
+        position: absolute;
+        background: linear-gradient(90deg, #cfd8dc, #cfd8dc);;
+        left: -30px;
+        top: 20%;
+        /* bottom: -1px; */
+        width: 30px;
+        height: 150px;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        border: 1px solid #546e7a;
+        border-right: none;
+        cursor: pointer;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
+
+    .aside-slide-btn:hover {
+        background: linear-gradient(90deg, #90a4ae, #cfd8dc);
+    }
+
+    .aside-chevron.fa.fa-angle-left {
+        color: rgba(0,0,0,0.5);
+        color: #546e7a;
+        font-size: 50px;
+        font-weight: lighter;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .aside-chevron.flip {
+        transform: rotateY(180deg);
+    }
+
+    .aside-container {
+        position: absolute;
+        background: #cfd8dc;
+        width: 100%;
+        height: 100%;
+        right: -100%;
+        padding: 10px;
+        border: 1px solid #546e7a;  
+        border-right: none;
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;  
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .aside-container.slide {
+        right: 0;
+    }
+
+    .search-filter {
+        width: 100%;
+    }
+
+    
+    #radio-filter-form {
+        margin-top: 30px;
+    }
+    
+    .drone-radio {
+        cursor: pointer;
+    }
+    
+    #radio-filter-form label {
+        display: block;
+        margin-bottom: 15px;
+        cursor: pointer;
+    }
+    
+    .drone-search-btn,
+    .aside-btns {
+        display: block;
+        background: #90a4ae;
+        margin-top: 10px;
+        padding: 5px 30px;
+        border-radius: 4px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        box-shadow: 0 2px 1px rgba(0,0,0,0.4);
+        -webkit-transition: all 0.1s ease-in-out;
+        -moz-transition: all 0.1s ease-in-out;
+        transition: all 0.1s ease-in-out;
+    }
+
+    .drone-search-btn:hover,
+    .aside-btns:hover {
+        border-color: #62757f;
+    }
+
+    .filter-alert {
+        color: red;
+    }
+
+    /*========================================/
     /* Reviews (DESKTOP / TABLET)
     /*=======================================*/
   
+    #reviews-container {
+        margin-right: 30px;
+    }
+
     .review {
         padding-bottom: 0;
     }
 
-    .post {
-         /* min-height: 428px;  */
+    .post:first-of-type {
+         /* margin-right: 30px; */
     }
 
     .details {
@@ -1917,6 +2286,19 @@ main {
         color: white;
         color: #DEF2F1
     }
+
+    .mobile-menu a.me:hover {
+        border-bottom-color: transparent;
+    }
+
+    .mobile-menu a.logout {
+        border: none;
+    }
+
+    .mobile-menu a.logout:hover {
+        background: unset;
+        border: none;
+    }
     
      /* .mobile-menu.open::after {
         content: '';
@@ -1953,7 +2335,7 @@ main {
     }
 }
 
-@media only screen and (min-width: 1440px) {
+@media only screen and (min-width: 1280px) {
     #lily::after {
         background-size: cover; 
     }

@@ -63,6 +63,9 @@ passport.deserializeUser(function (id, done) {
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 
+    console.log(`req.session.passport.user: 
+                ${JSON.stringify(req.session.passport)}`);
+
     // if user is authenticated in the session, carry on 
     if (req.isAuthenticated())
         return next();

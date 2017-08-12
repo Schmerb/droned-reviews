@@ -115,7 +115,7 @@ exports.updatePost = (req, res) => {
         });
     }
     const updated = {};
-    const updateableFields = ['title', 'content', 'rating', 'votes', 'usersVoted'];
+    const updateableFields = ['title', 'content', 'rating', 'votes', 'usersVoted', 'imgId'];
     updateableFields.forEach(field => {
         if (field in req.body) {
             updated[field] = req.body[field]
