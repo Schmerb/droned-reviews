@@ -69,6 +69,8 @@ const NUM_COMMENTS = '.js-comments-num';
 const REPLY_COMMENT_FORM = '.reply-comment-form';
 const REPLY_COMMENT_INPUT = '.reply-comment-input';
 const REPLY_COMMENT_CONTENT = '.reply-comments-content';
+const SHOW_REPLY_COMMENTS_TXT = '.show-reply-comments-txt';
+const CLOSE_REPLY_COMMENTS_TXT = '.close-reply-comments-txt';
 const DETAILS = '.details';
 const SPECS_BTN = '.specs-btn';
 const EXPAND = '.expand';
@@ -268,7 +270,7 @@ function formReviewPost(postData, byThisUser = false, userVoted) {
     // close review <div>'s            
     review += `</div>
                     </div>
-                    <hr>`;
+                    <hr class="post-hr">`;
     return review;
 }
 
@@ -300,7 +302,7 @@ function getCommentTemplate(comment, byThisUser, didUserLike) {
                             <span class="posNeg">${posNeg}</span><span class="like-dislikes">${likes}</span>
                         </div>
                         <label class="reply-c-btn-label" for="">
-                            <span>comments</span>
+                            <span class="show-reply-comments-txt">comments</span><span class="close-reply-comments-txt hidden">hide</span>
                             <button class="expand-reply-comments-btn" type="button"></button>
                         </label>
                     </div>
@@ -313,7 +315,7 @@ function getCommentTemplate(comment, byThisUser, didUserLike) {
     if (state.loggedIn) { // Logged in, reply comment form displayed
         commentTemp += `<form class="reply-comment-form comment-form expand" method="POST" action="/posts/comments">
                             <textarea class="reply-comment-input comment-input" rows="" cols="" placeholder="Type your reply here . . ." required></textarea>
-                             <button class="reply-comment-btn" type="submit">Reply</button>
+                            <button class="reply-comment-btn" type="submit">Reply</button>
                         </form>`;
     }
     // close comment <div>'s  
@@ -378,7 +380,9 @@ function displayPosts(_posts) {
         return formReviewPost(post, byThisUser, didUserVote);
     });
     // Need to append when fetching batch at a time
-    $(REVIEWS_CONTENT).html(posts.join(''));
+    let postsStr = posts.join('');
+    postsStr = postsStr.replace('\t', '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+    $(REVIEWS_CONTENT).html(postsStr);
 }
 
 
@@ -631,6 +635,9 @@ function reviewFormHandler($form, editForm = false) {
     let $fileInput = $form.find('.img-file-input');
     let file = $fileInput.val() !== undefined ? $fileInput[0].files[0] : null;
     console.log(file);
+
+    // content = `<pre>${content}</pre>`;
+
 
     // REMOVE USERNAME FROM AJAX REQUEST AND UPDATE TESTS
     let post = {
@@ -1338,6 +1345,48 @@ function fixBannerNav() {
     });
 }
 
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Gets tabs from user in textarea and adds correct ascii
+// char to text, '\t'
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function tabFromTextareaHandler(textarea) {
+    // grab caret position/selection
+    let start = textarea.selectionStart;
+    let end   = textarea.selectionEnd;
+    let $textarea = $(textarea);
+    let value = $textarea.val();
+
+    console.log('tab pressed');
+
+    // set textarea value to text before caret + '\t' + text after caret
+    $textarea.val(value.substring(0, start) 
+                + '\t' 
+                + value.substring(end));
+    // put caret at right position again +1 for tab
+    textarea.selectionStart = textarea.selectionEnd = start + 1;
+}
+
+// function enableTab(id) {
+//     var el = document.getElementById(id);
+//     el.onkeydown = function(e) {
+//         if (e.keyCode === 9) { // tab was pressed
+
+//             // get caret position/selection
+//             var val = this.value,
+//                 start = this.selectionStart,
+//                 end = this.selectionEnd;
+
+//             // set textarea value to: text before caret + tab + text after caret
+//             this.value = val.substring(0, start) + '\t' + val.substring(end);
+
+//             // put caret at right position again
+//             this.selectionStart = this.selectionEnd = start + 1;
+
+//             // prevent the focus lose
+//             return false;
+
+//         }
+//     };
 
 
 //================================================================================
@@ -1707,9 +1756,10 @@ function replyCommentsArrowClick() {
     $(REVIEWS).on('click', '.expand-reply-comments-btn', function (e) {
         e.preventDefault();
         $(this).closest('.comment')
-            .find('.reply-comments-container')
-            .toggleClass('expand');
+               .find('.reply-comments-container')
+               .toggleClass('expand');
         $(this).toggleClass('open');
+        $(this).siblings().toggleClass('hidden');
     });
 }
 
@@ -1720,6 +1770,18 @@ function specsBtnClick() {
     });
 }
 
+// * * * * * * * * * * * * 
+// Textarea Keydown (TAB)
+// * * * * * * * * * * * * 
+function getTabFromTextarea() {
+    $('textarea').keydown(function(e) {
+        if (e.keyCode === 9) {
+            e.preventDefault();
+            console.log('in listener');
+            tabFromTextareaHandler(this);
+        }
+    });
+}
 
 //================================================================================
 // Event Listener Groups
@@ -1751,6 +1813,7 @@ function writeReviewFormEvents() {
     deletePostModalBtnClick();
     deletePostBtnClick();
     goBackBtnClick();
+    getTabFromTextarea();
 }
 
 function asideEvents() {
