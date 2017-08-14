@@ -143,6 +143,9 @@ exports.createUser = (req, res) => {
                 })
         })
         .then(user => {
+            // Successfully created user
+            // log them in
+            // res.cookie('loggedIn', user.username);
             return res.status(201).json(user.apiRepr());
         })
         .catch(err => {

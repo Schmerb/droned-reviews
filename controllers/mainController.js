@@ -9,7 +9,9 @@ exports.getIndex = (req, res) => {
 
     let loggedIn = false;
     let username = req.cookies.loggedIn;
-    
+
+    console.log(req.cookies);
+
     if (username !== '') {
         loggedIn = true;
     }

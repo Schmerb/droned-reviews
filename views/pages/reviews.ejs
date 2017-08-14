@@ -6,49 +6,7 @@
 <div class="review-page-container">
 
     <!-- ASIDE FILTER -->
-    <section id="aside-filter">
-        <div class="aside-container">
-            <button class="aside-slide-btn" type="button">
-                <!-- <i class="aside-chevron fa fa-chevron-left" aria-hidden="true"></i> -->
-                <i class="aside-chevron fa fa-angle-left" aria-hidden="true"></i>                    
-            </button>
-
-            <form id="search-filter-form" method="" action="#!">
-                <input class="search-filter" type="text" name="search-filter" value="" placeholder="Search . . .">
-                <button class="drone-search-btn" type="submit">Find</button>
-            </form>
-            
-            <form id="radio-filter-form" method="" action="#!">
-                <label for="dji-filter">
-                    <input class="drone-radio" id="dji-filter" type="radio" name="filter" value="dji" required>
-                    DJI
-                </label>
-                <label for="parrot-filter">
-                    <input class="drone-radio" id="parrot-filter" type="radio" name="filter" value="parrot">
-                    Parrot
-                </label>
-                <label for="gopro-filter">
-                    <input class="drone-radio" id="gopro-filter" type="radio" name="filter" value="gopro">
-                    GoPro
-                </label>
-                <label for="lily-filter">
-                    <input class="drone-radio" id="lily-filter" type="radio" name="filter" value="lily">
-                    Lily Robotics
-                </label>
-                <label for="_3dr-filter">
-                    <input class="drone-radio" id="_3dr-filter" type="radio" name="filter" value="3dr">
-                    3D Robotics
-                </label>
-
-                <div class="filter-alert hidden">
-                    <span>Sorry, no match found</span>
-                </div>
-        
-                <button class="aside-btns filter-btn" type="submit">filter</button>
-                <button class="aside-btns clear-btn" type="button">clear</button>
-            </form>
-        </div>
-    </section>
+    <% include ../partials/aside-filter %>
     
     
     <section id="reviews">

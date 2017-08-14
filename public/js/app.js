@@ -2,8 +2,7 @@
 
 let state = {
     loggedIn: false,
-    user: '',
-    userPosts: []
+    user: ''
 };
 
 // Banner Nav
@@ -175,7 +174,14 @@ function formReviewPost(postData, byThisUser = false, userVoted) {
         specs   = $this.specs,
         img_src = specs.img,
         votes   = $this.votes || 0,
-        created = new Date($this.created).toDateString();
+        created = getElapsedTime(new Date($this.created));
+    
+    content = content.map((paragraph) => {
+        return `<p class="paragraph">${paragraph}</p>`;
+    });
+
+    console.log(content);
+    console.log(content.join(''));
 
     let posNeg  = '';
     if (votes < 0)
@@ -183,7 +189,7 @@ function formReviewPost(postData, byThisUser = false, userVoted) {
     else if (votes > 0)
         posNeg = '+';
     // console.log({userVoted});
-    console.log(`postData: ${postData}`);
+    // console.log(`postData: ${postData}`);
     let review = `<div class="review">
                         <div class="post" data-post-id="${id}">
                             <div class="img-container">
@@ -200,11 +206,13 @@ function formReviewPost(postData, byThisUser = false, userVoted) {
                                     <i class="down-vote-arrow fa fa-arrow-down" aria-hidden="true" data-user-voted="${userVoted}"></i>
                                 </div>
                             </div>
-                            <p class="content">${content}</p>
+                            <div class="content">
+                                ${content.join('')}
+                            </div>
                             <div class="post-attr">
-                                <label class="author-label" for="">By: <span class="author">${author}</span></label>
+                                
                                 <div class="c-date-edit-wrap">
-                                    <span class="date-posted">Posted: ${created}</span>
+                                    <span class="date-posted">submitted  ${created} ${/\d/.test(created) ? 'ago' : ''} by</span> <label class="author-label" for=""><span class="author">${author}</span></label>
                                     ${byThisUser ? '<i id="edit-post-icon" class="fa fa-pencil-square-o" aria-hidden="true"></i>' : ''} 
                                 </div>
                             </div>
@@ -280,7 +288,7 @@ function formReviewPost(postData, byThisUser = false, userVoted) {
 function getCommentTemplate(comment, byThisUser, didUserLike) {
     let content = comment.content,
         username = comment.author.username,
-        created = new Date(comment.created).toDateString(),
+        created = getElapsedTime(new Date(comment.created)),
         likes = comment.likes,
         postId = comment.postId,
         id = comment.id;
@@ -294,8 +302,8 @@ function getCommentTemplate(comment, byThisUser, didUserLike) {
         `<div class="comment gen-comment" id="_${id}" data-post-id="${postId}" data-this-id="${id}">
                     <p class="comment-content">${content}</p>
                     <div class="comment-metadata">
-                        <span class="date-posted">${created}</span>
                         <span class="comment-user">- @${username}</span>
+                        <span class="date-posted">${created} ${/\d/.test(created) ? 'ago' : ''}</span>
                         <div class="thumbs">
                             <i class="like fa fa-thumbs-up" aria-hidden="true" data-user-liked="${didUserLike}"></i>
                             <i class="dislike fa fa-thumbs-down" aria-hidden="true" data-user-liked="${didUserLike}"></i>
@@ -330,7 +338,7 @@ function getCommentTemplate(comment, byThisUser, didUserLike) {
 function getReplyCommentTemplate(comment, byThisUser, didUserLike) {
     let content = comment.content,
         username = comment.author.username,
-        created = new Date(comment.created).toDateString(),
+        created = getElapsedTime(new Date(comment.created)),
         likes = comment.likes,
         commentId = comment.commentId,
         id = comment._id;
@@ -343,8 +351,8 @@ function getReplyCommentTemplate(comment, byThisUser, didUserLike) {
             <div class="reply-comment" data-this-id="${id}">
                 <p class="reply-comment-content gen-comment">${content}</p>
                 <div class="reply-comment-metadata">
-                    <span class="date-posted">${created}</span>
                     <span class="comment-user">- @${username}</span>
+                    <span class="date-posted">${created} ${/\d/.test(created) ? 'ago' : ''}</span>
                     <div class="thumbs">
                         <i class="like fa fa-thumbs-up" aria-hidden="true" data-user-liked="${didUserLike}"></i>
                         <i class="dislike fa fa-thumbs-down" aria-hidden="true" data-user-liked="${didUserLike}"></i>
@@ -381,7 +389,8 @@ function displayPosts(_posts) {
     });
     // Need to append when fetching batch at a time
     let postsStr = posts.join('');
-    postsStr = postsStr.replace('\t', '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+    postsStr = postsStr.replace('/\t/g', '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+    postsStr = postsStr.replace('/\n/g', '<br>');
     $(REVIEWS_CONTENT).html(postsStr);
 }
 
@@ -391,23 +400,6 @@ function displayPosts(_posts) {
 // page refresh
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function displayComment(comment) {
-    // check if current session user voted on this post
-    // let usersLiked = comment.usersLiked;
-    // let didUserLike = usersLiked.find((user) => {
-    //     return user === state.user
-    // });
-    // // Check if comment is by the current session user
-    // let byThisUser = false;
-    // if (comment.author.username === state.user) {
-    //     byThisUser = true;
-    // }
-
-    // console.log({didUserLike});
-
-    // if (didUserLike !== undefined) {
-    //     console.log(`"${didUserLike}" voted on this comment, ${comment.id}!`);
-    // }
-
     if ('postId' in comment) {
         // Main comments
         let postId = comment.postId;
@@ -456,9 +448,11 @@ function filterReviewHandler() {
             .each(function (index, review) {
                 let make = $(this).find('.maker').first().text().toLowerCase();
                 console.log(`make: ${make}`);
+                let $hr = $(this).prev();
                 if (make.indexOf(target) === -1) {
-                    let $hr = $(this).prev();
                     $(this).add($hr).hide();
+                } else {
+                    $(this).add($hr).show();
                 }
             });
         $(`${REVIEW}:visible`).first().prev('hr').hide(); // removes <hr> from top of filtered reviews
@@ -510,6 +504,16 @@ function displaySignupForm() {
     $(LOGIN_SCREEN_BTN).addClass('inactive-btn');
     hide(LOGIN_FORM);
     show(SIGNUP_FORM);
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Displays welcome message to new user
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function displayWelcomeMessage(user) {
+    show('.welcome-message-wrap');
+    $('.new-user').text(user);
+    $('.login-form .username-input').val(user);
+    $('.login-form .pass-input').focus();
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -636,10 +640,9 @@ function reviewFormHandler($form, editForm = false) {
     let file = $fileInput.val() !== undefined ? $fileInput[0].files[0] : null;
     console.log(file);
 
-    // content = `<pre>${content}</pre>`;
+    content = content.split('\n\n');
+    console.log({content});
 
-
-    // REMOVE USERNAME FROM AJAX REQUEST AND UPDATE TESTS
     let post = {
         drone: { make, model },
         title,
@@ -649,10 +652,11 @@ function reviewFormHandler($form, editForm = false) {
 
     if (editForm) {
         post.content = $('#edit-post-content').val();
+        console.log(post.content);
+        post.content = post.content.split('\n\n');
+        console.log(post.content);
         post.id = $form.attr('data-post-id');
         post.title = $('#edit-title-input').val();
-
-        console.log("INSIDE EDIT FORM HANDLER", file);
 
         // ajax PUT request to db
         updatePost(post, file);
@@ -677,6 +681,11 @@ function previewReviewHandler(form) {
         content = elements['content'].value,
         user = state.user,
         post = { user, droneData, title, content };
+
+    content = content.split('\n\n');
+
+
+    // MAKE sure text going into edit review mode doesnt have <p> already 
 
     let postData = {
         title,
@@ -841,14 +850,17 @@ function checkIfFromCurrentUser(comment) {
         byThisUser = true;
     }
 
-    console.log({ didUserLike });
+    // console.log({ didUserLike });
 
     if (didUserLike !== undefined) {
-        console.log(`"${didUserLike}" voted on this comment, ${comment.id}!`);
+        // console.log(`"${didUserLike}" voted on this comment, ${comment.id}!`);
     }
     return { byThisUser, didUserLike };
 }
 
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Sets img from db to corresponding post  
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function addImgToPostHandler(imgRes, postId = null) {
     $(REVIEWS).find(`.post[data-post-id="${postId}"]`)
         .find('.post-img')
@@ -868,7 +880,7 @@ function postsHandler(posts) {
     displayPosts(posts);
     // Make call to api to get comments for each post
     posts.forEach((post) => {
-        console.log(post);
+        // console.log(post);
         if (post.imgId !== '') {
             getFile(post.imgId, post.id);
         }
@@ -981,10 +993,10 @@ function createNewUser(userData) {
         data: userData,
         success: (res) => {
             // Successfully signed user up, now log them in
-            logUserIn({
-                username: res.username,
-                password: res.password
-            });
+            // location.reload();
+            $(SIGNUP_FORM)[0].reset();
+            openLoginSignupModal('login');
+            displayWelcomeMessage(res.username);
         },
         error: (err) => {
             let message = err.responseJSON.message;
@@ -1346,6 +1358,34 @@ function fixBannerNav() {
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Calculates time elapsed since date given and returns
+// the appropriate time unit, rounding down to nearest whole
+// number 
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function getElapsedTime(prevDate) {
+    let diff   = Date.now() - prevDate,
+        min    = Math.floor(diff / 60000),  // 60,000 ms / min
+        hrs    = Math.floor(diff / 3600000), // 3,600,000 ms / hr
+        days   = Math.floor(diff / 86400000), // 6,400,000 ms / day
+        months = Math.floor(diff / 2629746000),// 2629746000 ms / month
+        years  = Math.floor(diff / 31556952000);// 31,556,952,000 ms / year
+
+    if (min < 60) {
+        if(min < 1)        return 'just now';
+        else if(min === 1) return 'a minute';
+        else               return min + ' minutes';
+    } else if (hrs < 24) {
+        return `${hrs} ${hrs === 1 ? 'hour' : 'hours'}`;
+    } else if (days < 31) {
+        return `${days} ${days === 1 ? 'day' : 'days'}`;
+    } else if (months < 12) {
+        return `${months} ${months === 1 ? 'month' : 'months'}`;
+    } else {
+        return `${years} ${years === 1 ? 'year' : 'years'}`;
+    }
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Gets tabs from user in textarea and adds correct ascii
 // char to text, '\t'
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -1366,28 +1406,6 @@ function tabFromTextareaHandler(textarea) {
     textarea.selectionStart = textarea.selectionEnd = start + 1;
 }
 
-// function enableTab(id) {
-//     var el = document.getElementById(id);
-//     el.onkeydown = function(e) {
-//         if (e.keyCode === 9) { // tab was pressed
-
-//             // get caret position/selection
-//             var val = this.value,
-//                 start = this.selectionStart,
-//                 end = this.selectionEnd;
-
-//             // set textarea value to: text before caret + tab + text after caret
-//             this.value = val.substring(0, start) + '\t' + val.substring(end);
-
-//             // put caret at right position again
-//             this.selectionStart = this.selectionEnd = start + 1;
-
-//             // prevent the focus lose
-//             return false;
-
-//         }
-//     };
-
 
 //================================================================================
 // Event Listeners
@@ -1403,7 +1421,7 @@ function burgerMenuClick() {
         $(MOBILE_MENU).toggleClass('open');
         $(BURGER_WRAP).toggleClass('open');
         $(BURGER_ICON).toggleClass('open');
-        $('body').toggleClass('no-scroll');
+        // $('body').toggleClass('no-scroll');
     });
 }
 
@@ -1548,6 +1566,9 @@ function asideFilterBtnHover() {
     });
 }
 
+//
+// Clear filters -- show all reviews
+//
 function clearAsideFiltersClick() {
     $('.clear-btn').on('click', (e) => {
         e.preventDefault();
@@ -1566,7 +1587,6 @@ function filterBtnClick() {
     $(FILTER_FORM).submit(e => {
         e.preventDefault();
         hide(FILTER_ALERT);
-        $(REVIEW).add($('hr')).show();
         filterReviewHandler();
     });
 }
@@ -1813,7 +1833,7 @@ function writeReviewFormEvents() {
     deletePostModalBtnClick();
     deletePostBtnClick();
     goBackBtnClick();
-    getTabFromTextarea();
+    // getTabFromTextarea();
 }
 
 function asideEvents() {

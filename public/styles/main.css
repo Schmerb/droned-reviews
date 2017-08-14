@@ -145,15 +145,6 @@ h6.motto {
     transform: translate(0, -50%);
 }
 
-#burger-icon.open {
-    background: transparent;
-}
-
-#burger-icon.open::before,
-#burger-icon.open::after {
-    background: #37474f;
-}
-
 
 #burger-icon::before,
 #burger-icon::after {
@@ -188,16 +179,26 @@ h6.motto {
 .banner-wrap.fixed-nav #burger-icon,
 .banner-wrap.fixed-nav #burger-icon::before,
 .banner-wrap.fixed-nav #burger-icon::after {
-    background: #8EBBD1;
-    background: #DEF2F1;
+    /* background: #8EBBD1;
+    background: #DEF2F1; */
 }
+
+#burger-icon.open {
+    background: transparent;
+}
+
+#burger-icon.open::before,
+#burger-icon.open::after {
+    background: #37474f;
+}
+
 
 /*========================================/
 /* banner nav
 /*=======================================*/
 
 .banner-nav {
-    position: relative; 
+    /* position: relative;  */
     height: 70px;
     z-index: 1;
     /* overflow: hidden; */
@@ -223,7 +224,7 @@ h6.motto {
 }
 
 .user-nav {
-    right: 0;
+    right: 40px;
     /* display: inline-block; */
 }
 
@@ -507,6 +508,13 @@ a.logout {
     background: #263238;
 }
 
+p.welcome-message {
+    color: #DEF2F1;
+    margin: 0;
+    margin-top: 20px;
+    font-size: 30px
+}
+
 .form-labels {
     color: #DEF2F1;
     padding: 30px 0;
@@ -536,7 +544,6 @@ a.logout {
 .login-error {
     color: red;
     background: white;
-    height: 60px;
     width: 90%;
     margin: 0 auto 5px;
     border-radius: 3px;
@@ -545,7 +552,7 @@ a.logout {
 .signup-error p,
 .login-error p {
     margin: 0;
-    line-height: 60px;
+    padding: 20px;
 }
 
 .email-input,
@@ -579,6 +586,10 @@ a.logout {
     height: 100vh;
     z-index: 2;
      overflow: scroll; 
+}
+
+#review-post-preview {
+    background: unset;
 }
 
 .review-form-modal,
@@ -1146,8 +1157,8 @@ button.delete-post-btn {
 }
 
 #reviews-container {
-    max-width: 1000px;
-    margin: 0 auto;
+    max-width: 1100px;
+    margin-left: 50px;
 }
 
 .review-header {
@@ -1183,6 +1194,10 @@ button.delete-post-btn {
     /* overflow: auto; */
     /* border: 1px solid black; */
      /* box-shadow: 0 0 86px rgba(0,0,0,0.1);  */
+}
+
+.review:first-of-type {
+    /* margin-right: 30px; */
 }
 
 .author-label{
@@ -1230,6 +1245,15 @@ button.delete-post-btn {
     margin: 0;
     min-height: 85px;
 }
+
+.content p {
+    margin: 0;
+    text-indent: 1em;
+}
+
+.content p:not(:first-of-type) {
+    margin-top: 1em;
+} 
 
 .img-container {
     float: left;
@@ -1313,6 +1337,10 @@ button.delete-post-btn {
     transition: all 0.3s ease-in-out;
 }
 
+.specs-btn {
+    border-right: 1px solid rgba(0,0,0,0.1);
+}
+
 .specs-btn:hover,
 .comments-btn:hover {
     background: #e2f1fc;
@@ -1385,6 +1413,10 @@ button.delete-post-btn {
     color: #f44336;
     font-weight: bold;
     float: right;
+}
+
+.date-posted {
+    color: #888;
 }
 
 /* Comments  */
@@ -1607,12 +1639,15 @@ button.delete-post-btn {
     height: 30px;
     margin-top: 10px;
     border: 1px solid #90a4ae;
-    -webkit-transition: all 0.1s ease-in-out;
-    -moz-transition: all 0.1s ease-in-out;
-    transition: all 0.1s ease-in-out;
+    border-radius: 6px;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 .reply-comment-btn:hover {
+    color: white;
     background-color: #90a4ae;;
 }
 
@@ -1629,6 +1664,7 @@ button.delete-post-btn {
 }
 
 .post-hr {
+
     width: 95%;
 }
 
@@ -2075,23 +2111,23 @@ button.delete-post-btn {
 
     .review-page-container {
         position: relative;
-        padding-left: 20px;
     }
 
     #aside-filter {
         position: relative;
         width: 20%;
         max-width: 180px;
-        min-height: 50vh;
-        float: right;
+        min-height: 500px;
+        float: left;
         margin-top: 20px;
     }
 
     .aside-slide-btn {
+        display: none;
         content: '';
         position: absolute;
         background: linear-gradient(90deg, #cfd8dc, #cfd8dc);;
-        left: -30px;
+        right: -30px;
         top: 20%;
         /* bottom: -1px; */
         width: 30px;
@@ -2126,15 +2162,16 @@ button.delete-post-btn {
 
     .aside-container {
         position: absolute;
-        background: #cfd8dc;
+        /* background: #cfd8dc; */
         width: 100%;
         height: 100%;
-        right: -100%;
+        /* left: -100%; */
         padding: 10px;
-        border: 1px solid #546e7a;  
-        border-right: none;
-        border-top-left-radius: 6px;
-        border-bottom-left-radius: 6px;  
+        /* border: 1px solid #546e7a;   */
+        /* border-right: none; */
+        /* border-top-left-radius: 6px; */
+        /* border-bottom-left-radius: 6px;   */
+        border-right: 1px solid rgba(0,0,0,0.1);
         -webkit-transition: all 0.3s ease-in-out;
         -moz-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
@@ -2144,13 +2181,24 @@ button.delete-post-btn {
         right: 0;
     }
 
+    label[for="search-filter-form"] {
+        display: block;
+        font-size: 13px;
+    }
+
+    label[for="radio-filter-form"] {
+        display: block;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
     .search-filter {
         width: 100%;
     }
 
     
     #radio-filter-form {
-        margin-top: 30px;
+        /* margin-top: 30px; */
     }
     
     .drone-radio {
@@ -2170,7 +2218,7 @@ button.delete-post-btn {
         margin-top: 10px;
         padding: 5px 30px;
         border-radius: 4px;
-        border: 2px solid white;
+        border: 2px solid lightgrey;
         cursor: pointer;
         /* box-shadow: 0 2px 1px rgba(0,0,0,0.4); */
         -webkit-transition: all 0.1s ease-in-out;
@@ -2193,23 +2241,14 @@ button.delete-post-btn {
     /*=======================================*/
   
     #reviews-container {
-        margin-right: 30px;
+        /* margin-right: 30px; */
     }
 
     .review {
         padding-bottom: 0;
     }
 
-    .reviews-title {
-        left: 100px;
-    }
-
-    .post:first-of-type {
-         /* margin-right: 30px; */
-    }
-
     .details {
-        /* width: 80%; */
         padding: 0 10%;
     }
 
@@ -2224,7 +2263,6 @@ button.delete-post-btn {
     .vote-aside {
         position: absolute;
         display: unset;
-        /* float: right;  */
         top: 55%;
         right: 0;
         height: 100px;

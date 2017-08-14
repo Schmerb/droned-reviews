@@ -10,7 +10,9 @@ const postSchema = mongoose.Schema({
         make: {type: String, requiure: true},
         model: {type: String, requiure: true}
     },
-    content: {type: String, required: true},
+    content: [
+        {type: String, required: true}
+    ],
     author: {
         username: {type: String, required: true}
     },

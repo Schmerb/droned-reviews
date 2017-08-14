@@ -52,14 +52,13 @@ router.post('/login', function (req, res, next) {
 			if (err) { 
 				return next(err); 
 			}
-			const cookie = req.cookies.cookieName;
 
 			console.log('cookie', req.cookies);
 
-			if (cookie === undefined) {
-				// Sets 'loggedIn' to name of user currently logged in session
-				res.cookie('loggedIn', req.user.username);
-			}
+			
+			// Sets 'loggedIn' to name of user currently logged in session
+			res.cookie('loggedIn', req.user.username);
+			
 			return res.json({
 				status: true,
 				message: 'success'
@@ -68,33 +67,6 @@ router.post('/login', function (req, res, next) {
 	})(req, res, next);
 });
 
-// router.post('/login', 
-// 	 passport.authenticate('basic', {session: true}),
-// 	(req, res) => {
-// 		// logs user in
-// 		req.login(req.user, (err) => {
-// 			if (err) {
-// 				return next(err);
-// 			}
-
-// 			console.log('sucessfully logged in');
-
-// 			// set cookie here that user is logged in and username
-// 			// checks if client sent a cookie
-// 			const cookie = req.cookies.cookieName;
-
-// 			console.log('cookie', req.cookies);
-
-// 			if (cookie === undefined) {
-// 				// Sets 'loggedIn' to name of user currently logged in session
-// 				res.cookie('loggedIn', req.user.username);
-// 			}
-// 			res.status(200).json({
-// 				loggedIn: req.user
-// 			});
-// 		});
-// 	}	
-// );
 
 
 
