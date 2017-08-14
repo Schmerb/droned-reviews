@@ -6,86 +6,90 @@ let state = {
 };
 
 // Banner Nav
-const BANNER_WRAP = '.banner-wrap';
-const BURGER_ANCHOR = '.burger-anchor';
-const BURGER_WRAP = '.burger-icon-wrap';
-const BURGER_ICON = '#burger-icon';
-const MOBILE_MENU = '.mobile-menu';
+const BANNER_WRAP      = '.banner-wrap';
+const BURGER_ANCHOR    = '.burger-anchor';
+const BURGER_WRAP      = '.burger-icon-wrap';
+const BURGER_ICON      = '#burger-icon';
+const MOBILE_MENU      = '.mobile-menu';
 const MOBILE_MENU_ITEM = '.mobile-menu li';
 const REVIEWS_NAV_ITEM = '.reviews';
-const LOGIN_BTN = '.login';
-const SIGNUP_BTN = '.signup';
-const LOGOUT_BTN = '.logout';
+const LOGIN_BTN        = '.login';
+const SIGNUP_BTN       = '.signup';
+const LOGOUT_BTN       = '.logout';
 // Login / Signup Modal
-const LOGIN_SIGNUP_PAGE = '#login-signup';
+const LOGIN_SIGNUP_PAGE  = '#login-signup';
 const LOGIN_SIGNUP_MODAL = '.login-signup-container';
-const SIGNUP_FORM = '.signup-form';
-const LOGIN_FORM = '.login-form';
-const SIGNUP_SCREEN_BTN = '.signup-screen-btn';
-const LOGIN_SCREEN_BTN = '.login-screen-btn';
-const LOGIN_SIGNUP_X = '#login-signup-x';
-const PASS_INPUT = '.pass-input';
-const EMAIL_INPUT = '.email-input';
-const USERNAME_INPUT = '.username-input';
-const SIGNUP_ERROR = '.signup-error';
-const LOGIN_ERROR = '.login-error';
+const SIGNUP_FORM        = '.signup-form';
+const LOGIN_FORM         = '.login-form';
+const SIGNUP_SCREEN_BTN  = '.signup-screen-btn';
+const LOGIN_SCREEN_BTN   = '.login-screen-btn';
+const LOGIN_SIGNUP_X     = '#login-signup-x';
+const PASS_INPUT         = '.pass-input';
+const EMAIL_INPUT        = '.email-input';
+const USERNAME_INPUT     = '.username-input';
+const SIGNUP_ERROR       = '.signup-error';
+const LOGIN_ERROR        = '.login-error';
 // Write Review Form
-const REVIEW_FORM_SCREEN = '#review-form-screen';
+const REVIEW_FORM_SCREEN      = '#review-form-screen';
 const EDIT_REVIEW_FORM_SCREEN = '#edit-review-form-screen';
-const REVIEW_FORM = '#review-form';
-const EDIT_REVIEW_FORM = '#edit-review-form';
-const CLOSE_BTN = '.close-btn';
-const WRITE_REVIEW_NAV = '.write-review';
-const DELETE_POST_MODAL_BTN = '.delete-post-modal-btn';
-const DELETE_POST_MODAL = '.delete-confirm-modal';
-const DELETE_POST_BTN = '.delete-post-btn';
-const GO_BACK_BTN = '.go-back-btn';
+const REVIEW_FORM             = '#review-form';
+const EDIT_REVIEW_FORM        = '#edit-review-form';
+const CLOSE_BTN               = '.close-btn';
+const WRITE_REVIEW_NAV        = '.write-review';
+const DELETE_POST_MODAL_BTN   = '.delete-post-modal-btn';
+const DELETE_POST_MODAL       = '.delete-confirm-modal';
+const DELETE_POST_BTN         = '.delete-post-btn';
+const GO_BACK_BTN             = '.go-back-btn';
 // Review Preview Screen
-const PREVIEW_SCREEN = '#review-post-preview';
-const PREVIEW_CONTENT = '.preview-content';
-const PREVIEW_BTN = '.preview-btn';
+const PREVIEW_SCREEN    = '#review-post-preview';
+const PREVIEW_CONTENT   = '.preview-content';
+const PREVIEW_BTN       = '.preview-btn';
 const PREIVEW_CLOSE_BTN = '.preview-close-btn';
-const INTERACTIONS = '.interactions';
+const INTERACTIONS      = '.interactions';
 // Drone carousel
 const DRONE_SLIDER = '.drone-slider';
 // Aside Filter
-const ASIDE_BTN = '.aside-slide-btn';
+const ASIDE_BTN       = '.aside-slide-btn';
 const ASIDE_CONTAINER = '.aside-container';
-const FILTER_FORM = '#radio-filter-form';
-const FILTER_ALERT = '.filter-alert';
-const FILTER_BTN = '.filter-btn';
-const CLEAR_BTN = '.clear-btn';
-// Review / Comments
-const REVIEWS = '#reviews';
-const REVIEW = '.review';
-const COMMENTS_BTN = '.comments-btn';
-const COMMENTS_CONTAINER = '.comments-container';
-const COMMENT_BTN = '.comment-btn';
-const COMMENTS_CONTENT = '.comments-content';
-const COMMENT_FORM = '.comment-form';
-const COMMENT_INPUT = '.comment-input';
-const NUM_COMMENTS = '.js-comments-num';
-const REPLY_COMMENT_FORM = '.reply-comment-form';
-const REPLY_COMMENT_INPUT = '.reply-comment-input';
-const REPLY_COMMENT_CONTENT = '.reply-comments-content';
-const SHOW_REPLY_COMMENTS_TXT = '.show-reply-comments-txt';
-const CLOSE_REPLY_COMMENTS_TXT = '.close-reply-comments-txt';
-const DETAILS = '.details';
-const SPECS_BTN = '.specs-btn';
-const EXPAND = '.expand';
-const SUB_SIGNUP_BTN = '.sub-signup';
-const SUB_LOGIN_BTN = '.sub-login';
-
+const FILTER_FORM     = '#radio-filter-form';
+const FILTER_ALERT    = '.filter-alert';
+const FILTER_BTN      = '.filter-btn';
+const CLEAR_BTN       = '.clear-btn';
+// Review 
+const REVIEWS           = '#reviews';
 const REVIEWS_CONTAINER = '#reviews-container';
-const REVIEWS_CONTENT = '#reviews-content';
-const UPVOTE_ARROW = '.up-vote-arrow';
+const REVIEWS_CONTENT   = '#reviews-content';
+const REVIEW            = '.review';
+const DETAILS           = '.details';
+const SPECS_BTN         = '.specs-btn';
+const EXPAND            = '.expand';
+// 
+const UPVOTE_ARROW   = '.up-vote-arrow';
 const DOWNVOTE_ARROW = '.down-vote-arrow';
-const VOTES = '.js-votes';
-const LIKE = '.like';
-const DISLIKE = '.dislike';
-const LIKES = '.like-dislikes';
-const POSNEG = '.posNeg';
+const VOTES          = '.js-votes';
+const LIKE           = '.like';
+const DISLIKE        = '.dislike';
+const LIKES          = '.like-dislikes';
+const POSNEG         = '.posNeg';
 const EDIT_POST_ICON = '#edit-post-icon';
+// Comments
+const COMMENTS_BTN       = '.comments-btn';
+const COMMENTS_CONTAINER = '.comments-container';
+const COMMENT_BTN        = '.comment-btn';
+const COMMENTS_CONTENT   = '.comments-content';
+const COMMENT_FORM       = '.comment-form';
+const COMMENT_INPUT      = '.comment-input';
+const NUM_COMMENTS       = '.js-comments-num';
+// reply comments
+const REPLY_COMMENT_FORM       = '.reply-comment-form';
+const REPLY_COMMENT_INPUT      = '.reply-comment-input';
+const REPLY_COMMENT_CONTENT    = '.reply-comments-content';
+const SHOW_REPLY_COMMENTS_TXT  = '.show-reply-comments-txt';
+const CLOSE_REPLY_COMMENTS_TXT = '.close-reply-comments-txt';
+const SUB_SIGNUP_BTN           = '.sub-signup';
+const SUB_LOGIN_BTN            = '.sub-login';
+
+
 
 
 let MOCK_REVIEW_DATA = [
@@ -180,8 +184,8 @@ function formReviewPost(postData, byThisUser = false, userVoted) {
         return `<p class="paragraph">${paragraph}</p>`;
     });
 
-    console.log(content);
-    console.log(content.join(''));
+    // console.log(content);
+    // console.log(content.join(''));
 
     let posNeg  = '';
     if (votes < 0)
@@ -262,12 +266,12 @@ function formReviewPost(postData, byThisUser = false, userVoted) {
                             </div>
                             <hr class="shadow-hr">`;
     if (state.loggedIn) { // Logged in, comment form displayed
-        review += `<form class="comment-form" method="post" action="/posts/comments">
+        review +=           `<form class="comment-form" method="post" action="/posts/comments">
                                 <textarea class="comment-input" rows="" cols="" placeholder="Write comment here . . ." required></textarea>
                                 <button class="comment-btn" type="submit">Comment</button>
                             </form>`;
     } else { // Not logged in, message to log in to write comment
-        review += `<div class="login-message-container">
+        review +=           `<div class="login-message-container">
                                 <p class="login-message">Must be logged in to write a comment.</p>
                                 <ul class="comment-nav">
                                     <li><a href="#" class="sub-login">LogIn</a></li>
@@ -276,7 +280,7 @@ function formReviewPost(postData, byThisUser = false, userVoted) {
                             </div>`;
     }
     // close review <div>'s            
-    review += `</div>
+    review +=           `</div>
                     </div>
                     <hr class="post-hr">`;
     return review;
@@ -286,12 +290,12 @@ function formReviewPost(postData, byThisUser = false, userVoted) {
 // returns populated comment template
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function getCommentTemplate(comment, byThisUser, didUserLike) {
-    let content = comment.content,
+    let content  = comment.content,
         username = comment.author.username,
-        created = getElapsedTime(new Date(comment.created)),
-        likes = comment.likes,
-        postId = comment.postId,
-        id = comment.id;
+        created  = getElapsedTime(new Date(comment.created)),
+        likes    = comment.likes,
+        postId   = comment.postId,
+        id       = comment.id;
     let posNeg = '';
     if (likes < 0)
         posNeg = '&#45;';
@@ -336,12 +340,12 @@ function getCommentTemplate(comment, byThisUser, didUserLike) {
 // returns populated reply comment template
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function getReplyCommentTemplate(comment, byThisUser, didUserLike) {
-    let content = comment.content,
-        username = comment.author.username,
-        created = getElapsedTime(new Date(comment.created)),
-        likes = comment.likes,
+    let content   = comment.content,
+        username  = comment.author.username,
+        created   = getElapsedTime(new Date(comment.created)),
+        likes     = comment.likes,
         commentId = comment.commentId,
-        id = comment._id;
+        id        = comment._id;
     let posNeg = '';
     if (likes < 0)
         posNeg = '&#45;';
@@ -387,10 +391,12 @@ function displayPosts(_posts) {
         }
         return formReviewPost(post, byThisUser, didUserVote);
     });
+
+    console.log(posts[4]);
+
+
     // Need to append when fetching batch at a time
     let postsStr = posts.join('');
-    postsStr = postsStr.replace('/\t/g', '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
-    postsStr = postsStr.replace('/\n/g', '<br>');
     $(REVIEWS_CONTENT).html(postsStr);
 }
 
@@ -407,7 +413,7 @@ function displayComment(comment) {
         let $commentsContent = $(`${COMMENTS_CONTENT}[data-post-id="${postId}"]`);
 
         let $numComments = $commentsContent.parent(COMMENTS_CONTAINER)
-            .find(NUM_COMMENTS);
+                                           .find(NUM_COMMENTS);
         let count = parseInt($numComments.text());
         console.log('count', count);
         count++;
@@ -435,19 +441,22 @@ function filterReviewHandler() {
     let isMatch = false;
     $(REVIEWS_CONTENT).find(REVIEW)
         .each(function (index, review) {
-            let make = $(this).find('.maker').first().text().toLowerCase();
-            console.log(`make: ${make}`);
+            let make = $(this).find('.maker')
+                              .first()
+                              .text()
+                              .toLowerCase();
             if (make.indexOf(target) >= 0) {
                 isMatch = true;
                 return;
             }
-            console.log(`index: ${index}`);
         });
     if (isMatch) {
         $(REVIEWS_CONTENT).find(REVIEW)
             .each(function (index, review) {
-                let make = $(this).find('.maker').first().text().toLowerCase();
-                console.log(`make: ${make}`);
+                let make = $(this).find('.maker')
+                                  .first()
+                                  .text()
+                                  .toLowerCase();
                 let $hr = $(this).prev();
                 if (make.indexOf(target) === -1) {
                     $(this).add($hr).hide();
@@ -525,12 +534,12 @@ function displaySignupError(location, message) {
     show(SIGNUP_ERROR);
     if (location === 'email') {
         $(EMAIL_INPUT).addClass('error')
-            .val('')
-            .focus();
+                      .val('')
+                      .focus();
     } else if (location === 'username') {
         $(USERNAME_INPUT).addClass('error')
-            .val('')
-            .focus();
+                         .val('')
+                         .focus();
     } else if (location === 'password') {
         location = location[0].toUpperCase() + location.slice(1);
         err = `${location}: ${message}`;
@@ -554,15 +563,21 @@ function displayLoginError(message) {
 // Displays EDIT review post modal
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function displayEditPostForm($post) {
-    let content = $post.find('.content').text(),
+    let content = $post.find('.content').html(),
         postTitle = $post.find('.post-title').text(),
         model = $post.find('.model').text(),
         id = $post.attr('data-post-id');
 
-    console.log(id);
-
+    // Removes <p> tags and adds '\n\n' chars to end of each paragraph
+    // to display text in form the same way it is displayed on screen
+    content = content.split('<p class="paragraph">')
+                     .join('')
+                     .split('</p>')
+                     .map(para => para += '\n\n')
+                     .join('')
+                     .trim();
+    
     show(EDIT_REVIEW_FORM_SCREEN);
-    // $(EDIT_REVIEW_FORM_SCREEN).find()
     $('#edit-title-input').val(postTitle);
     $('#edit-post-content').val(content);
     $(`.dropdown-options option[value="${model}"]`).prop('selected', true);
@@ -595,9 +610,9 @@ function show() {
 // to create a new user
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function signupFormHandler($form) {
-    let email = $form.find('.email-input').val(),
-        username = $form.find('.username-input').val(),
-        password = $form.find(PASS_INPUT).val(),
+    let email      = $form.find('.email-input').val(),
+        username   = $form.find('.username-input').val(),
+        password   = $form.find(PASS_INPUT).val(),
         rePassword = $form.find('.re-pass-input').val();
     if (password !== rePassword) {
         alert('passwords did not match.');
@@ -629,12 +644,15 @@ function loginFormHandler($form) {
 // Collects data from form and submits data to API
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function reviewFormHandler($form, editForm = false) {
-    let $selectedOpt = $($form).find('.dropdown-options').find(":selected"),
-        make = $selectedOpt.parent().attr('label').toLowerCase(),
-        model = $selectedOpt[0].value,
-        title = $('#title-input').val(),
-        content = $('#post-content').val(),
-        rating = $('input[name=star]:checked').val();
+    let $selectedOpt = $($form).find('.dropdown-options')
+                               .find(":selected"),
+        make         = $selectedOpt.parent()
+                                   .attr('label')
+                                   .toLowerCase(),
+        model        = $selectedOpt[0].value,
+        title        = $('#title-input').val(),
+        content      = $('#post-content').val(),
+        rating       = $('input[name=star]:checked').val();
 
     let $fileInput = $form.find('.img-file-input');
     let file = $fileInput.val() !== undefined ? $fileInput[0].files[0] : null;
@@ -652,9 +670,7 @@ function reviewFormHandler($form, editForm = false) {
 
     if (editForm) {
         post.content = $('#edit-post-content').val();
-        console.log(post.content);
-        post.content = post.content.split('\n\n');
-        console.log(post.content);
+        post.content = post.content.split('\n\n'); // Create array of strings, one per paragraph
         post.id = $form.attr('data-post-id');
         post.title = $('#edit-title-input').val();
 
@@ -672,17 +688,17 @@ function reviewFormHandler($form, editForm = false) {
 // submitting
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function previewReviewHandler(form) {
-    let elements = $(form)[0].elements,
+    let elements     = $(form)[0].elements,
         $selectedOpt = $(elements["make"]).find(":selected"),
-        droneMake = $selectedOpt.parent().attr('label'),
-        droneModel = $selectedOpt[0].value,
-        droneData = getDroneData(droneMake, droneModel),
-        title = elements['title'].value,
-        content = elements['content'].value,
-        user = state.user,
-        post = { user, droneData, title, content };
+        droneMake    = $selectedOpt.parent().attr('label'),
+        droneModel   = $selectedOpt[0].value,
+        droneData    = getDroneData(droneMake, droneModel),
+        title        = elements['title'].value,
+        content      = elements['content'].value,
+        user         = state.user,
+        post         = { user, droneData, title, content };
 
-    content = content.split('\n\n');
+    content = content.split('\n\n'); // Create array of strings, one per paragraph
 
 
     // MAKE sure text going into edit review mode doesnt have <p> already 
@@ -710,15 +726,19 @@ function previewReviewHandler(form) {
 // Collects data from comment form and submits data to API
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function commentFormHandler($form) {
-    let url = $form.attr('action'),
-        content = $form.find('.comment-input').val(),
-        postId = $form.siblings(COMMENTS_CONTENT).attr('data-post-id'),
+    let url      = $form.attr('action'),
+        content  = $form.find('.comment-input').val(),
+        postId   = $form.siblings(COMMENTS_CONTENT).attr('data-post-id'),
         username = state.user;
     let comment = {
         url,
         content,
-        author: { username }
+        author: { username },
+        created: Date.now()
     }
+
+    console.log(comment.created);
+
     if ($form.hasClass('reply-comment-form')) {
         comment['commentId'] = $form.closest('.comment').attr('data-this-id');
     } else if (postId !== undefined) {
@@ -767,10 +787,10 @@ function fillDroneOptGroups() {
 // and hides Specs if open
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function toggleComments(commentsBtn) {
-    let $review = $(commentsBtn).parents(REVIEW);
-    let $commentSection = $review.find(COMMENTS_CONTAINER);
-    let $details = $review.find(DETAILS);
-    let $specs_btn = $review.find(SPECS_BTN);
+    let $review         = $(commentsBtn).parents(REVIEW),
+        $commentSection = $review.find(COMMENTS_CONTAINER),
+        $details        = $review.find(DETAILS),
+        $specs_btn      = $review.find(SPECS_BTN);
     $details.removeClass('expand');
     $specs_btn.removeClass('btn-active');
     $commentSection.toggleClass('expand');
@@ -782,10 +802,10 @@ function toggleComments(commentsBtn) {
 // and hides comments if open
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function toggleSpecs(specBtn) {
-    let $review = $(specBtn).parents(REVIEW);
-    let $details = $review.find(DETAILS);
-    let $commentSection = $review.find(COMMENTS_CONTAINER);
-    let $commentS_btn = $review.find(COMMENTS_BTN);
+    let $review         = $(specBtn).parents(REVIEW),
+        $details        = $review.find(DETAILS),
+        $commentSection = $review.find(COMMENTS_CONTAINER),
+        $commentS_btn   = $review.find(COMMENTS_BTN);
     $commentSection.removeClass('expand');
     $commentS_btn.removeClass('btn-active');
     $details.toggleClass('expand');
@@ -892,20 +912,18 @@ function postsHandler(posts) {
 // Upvote / Downvote post handler
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function voteOnPost($voteBtn, upVote = true) {
-
     if ($voteBtn.attr('data-user-voted') === state.user) {
         alert('Already voted');
         return;
     }
 
-    let $votes = $voteBtn.siblings(VOTES);
-    let $posNeg = $voteBtn.siblings(POSNEG);
-    let count = parseInt($votes.text());
-    let postId = $voteBtn.closest('.post').attr('data-post-id');
+    let $votes  = $voteBtn.siblings(VOTES),
+        $posNeg = $voteBtn.siblings(POSNEG),
+        count   = parseInt($votes.text()),
+        postId  = $voteBtn.closest('.post').attr('data-post-id'),
+        posNeg  = '';
 
     upVote ? ++count : --count;
-
-    let posNeg = '';
     if (count < 0)
         posNeg = '&#45;';
     else if (count > 0)
@@ -936,12 +954,13 @@ function likeDislikeComment($btn, like = true) {
         return;
     }
 
-    let $likes = $btn.siblings(LIKES);
-    let $posNeg = $btn.siblings(POSNEG);
-    let count = parseInt($likes.text());
-    let commentId = $btn.closest('.gen-comment').attr('data-this-id');
+    let $likes    = $btn.siblings(LIKES),
+        $posNeg   = $btn.siblings(POSNEG),
+        count     = parseInt($likes.text()),
+        commentId = $btn.closest('.gen-comment').attr('data-this-id'),
+        posNeg    = '';
+
     like ? ++count : --count;
-    let posNeg = '';
     if (count < 0)
         posNeg = '&#45;';
     else if (count > 0)
@@ -1391,10 +1410,10 @@ function getElapsedTime(prevDate) {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function tabFromTextareaHandler(textarea) {
     // grab caret position/selection
-    let start = textarea.selectionStart;
-    let end   = textarea.selectionEnd;
+    let start     = textarea.selectionStart;
+    let end       = textarea.selectionEnd;
     let $textarea = $(textarea);
-    let value = $textarea.val();
+    let value     = $textarea.val();
 
     console.log('tab pressed');
 

@@ -1158,7 +1158,6 @@ button.delete-post-btn {
 
 #reviews-container {
     max-width: 1100px;
-    margin-left: 50px;
 }
 
 .review-header {
@@ -1189,8 +1188,8 @@ button.delete-post-btn {
 
 .review {
     position: relative;
-    max-width: 900px;
-    margin: 100px auto;
+    max-width: 1000px;
+    margin: 100px 0;
     /* overflow: auto; */
     /* border: 1px solid black; */
      /* box-shadow: 0 0 86px rgba(0,0,0,0.1);  */
@@ -1258,7 +1257,7 @@ button.delete-post-btn {
 .img-container {
     float: left;
     width: 100%;
-    margin-right: 10px;
+    /* margin-right: 10px; */
     /* border: 1px solid rgba(0,0,0,0.1);  */
 }
 
@@ -1664,8 +1663,9 @@ button.delete-post-btn {
 }
 
 .post-hr {
-
-    width: 95%;
+    height: 1px;
+    border: 0px;
+    box-shadow: inset 1px -2px 20px -4px rgba(0,0,0,0.3);
 }
 
 /*========================================/
@@ -2241,7 +2241,8 @@ button.delete-post-btn {
     /*=======================================*/
   
     #reviews-container {
-        /* margin-right: 30px; */
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
     .review {
@@ -2258,6 +2259,10 @@ button.delete-post-btn {
 
     .content {
         margin-right: 30px;
+    }
+
+    .date-posted {
+        margin-left: 15px;
     }
 
     .vote-aside {
