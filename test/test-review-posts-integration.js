@@ -32,7 +32,7 @@ function generatePostData() {
             make: faker.company.companyName(),
             model: faker.commerce.product()
         },
-        content: faker.lorem.paragraph(),
+        content: [faker.lorem.paragraph()],
         author: {
             username: faker.internet.email()
         },
@@ -139,7 +139,7 @@ describe('Droned /Posts API resource', function() {
                 .then(function(post) {
                     resPost.id.should.equal(post.id);
                     resPost.title.should.equal(post.title);
-                    resPost.content.should.equal(post.content);
+                    resPost.content.should.deep.equal(post.content);
                     resPost.author.username.should.equal(post.author.username);
                     resPost.drone.make.should.equal(post.drone.make);
                     resPost.drone.model.should.equal(post.drone.model);
@@ -174,7 +174,7 @@ describe('Droned /Posts API resource', function() {
                             res.should.have.status(200);
                             // db._id is 'Object', res.id is 'String', need to convert _id to string to compare
                             res.body.id.should.equal(post._id.toString());
-                            res.body.content.should.equal(post.content);
+                            res.body.content.should.deep.equal(post.content);
                             normalizeResDate(res.body.created).should.equal(normalizeDbDate(post.created));
                         });
                 });
@@ -206,7 +206,7 @@ describe('Droned /Posts API resource', function() {
                         'id', 'title', 'drone', 'content', 'author', 'rating', 'created'
                     );
                     res.body.title.should.equal(newPost.title);
-                    res.body.content.should.equal(newPost.content);
+                    res.body.content.should.deep.equal(newPost.content);
                     res.body.drone.model.should.equal(newPost.drone.model);
                     res.body.author.username.should.equal(newPost.author.username);
                     res.body.rating.should.equal(newPost.rating);
@@ -215,7 +215,7 @@ describe('Droned /Posts API resource', function() {
                 })
                 .then(function(post) {
                     post.title.should.equal(newPost.title);
-                    post.content.should.equal(newPost.content);
+                    post.content.should.deep.equal(newPost.content);
                     post.author.username.should.equal(newPost.author.username);
                     post.drone.model.should.equal(newPost.drone.model);
                     post.drone.make.should.equal(newPost.drone.make);
