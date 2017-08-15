@@ -1,8 +1,8 @@
 <section id="aside-filter">
     <div class="aside-container">
-        <button class="aside-slide-btn" type="button">
+        <!-- <button class="aside-slide-btn" type="button">
             <i class="aside-chevron fa fa-angle-left" aria-hidden="true"></i>                    
-        </button>
+        </button> -->
 
 
         <label for="search-filter-form">Search for specific make or model</label>
@@ -25,21 +25,40 @@
                 <input class="drone-radio" id="gopro-filter" type="radio" name="filter" value="gopro">
                 GoPro
             </label>
-            <label for="lily-filter">
+            <!-- <label for="lily-filter">
                 <input class="drone-radio" id="lily-filter" type="radio" name="filter" value="lily">
                 Lily Robotics
-            </label>
+            </label> -->
             <label for="_3dr-filter">
                 <input class="drone-radio" id="_3dr-filter" type="radio" name="filter" value="3dr">
                 3D Robotics
+            </label>
+            <label for="yuneec-filter">
+                <input class="drone-radio" id="yuneec-filter" type="radio" name="filter" value="yuneec">
+                Yuneec
+            </label>
+            <label for="syma-filter">
+                <input class="drone-radio" id="syma-filter" type="radio" name="filter" value="syma">
+                Syma
+            </label>
+            <label for="hubsan-filter">
+                <input class="drone-radio" id="hubsan-filter" type="radio" name="filter" value="hubsan">
+                Hubsan
+            </label>
+            <label for="xiro-filter">
+                <input class="drone-radio" id="xiro-filter" type="radio" name="filter" value="xiro">
+                Xiro
             </label>
 
             <div class="filter-alert hidden">
                 <span>Sorry, no match found</span>
             </div>
     
-            <button class="aside-btns filter-btn" type="submit">filter</button>
-            <button class="aside-btns clear-btn" type="button">clear</button>
+            <div class="aside-btn-container">
+                <button class="aside-btns filter-btn" type="submit">filter</button>
+                <button class="aside-btns clear-btn" type="button">clear</button>
+            </div>
+            <hr class="mobile-only">
         </form>
     </div>
 </section>

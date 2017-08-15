@@ -1023,6 +1023,30 @@ button.delete-post-btn {
     background-repeat: no-repeat;
 }
 
+#yuneec::after {
+    background: url('../assets/typhoonh-compressor.png') center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#syma::after {
+    background: url('../assets/SYMA-X8SC-compressor.png') center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#hubsan::after {
+    background: url('../assets/hubsan-h107-compressor.png') center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#xiro::after {
+    background: url('../assets/xiro_v_features1-compressor.png') center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 .drone-make::after {
     content: '';
     position: absolute;
@@ -1052,7 +1076,11 @@ button.delete-post-btn {
 #parrot:hover::after, 
 #gopro:hover::after, 
 #lily:hover::after,
-#threedr:hover::after {
+#threedr:hover::after,
+#yuneec:hover::after,
+#syma:hover::after,
+#hubsan:hover::after,
+#xiro:hover::after {
      transform: scale(1.1); 
 }
 
@@ -1170,10 +1198,10 @@ button.delete-post-btn {
 }
 
 .reviews-title {
-    color: black;
+    color: #62757f;
     position: relative;
     text-align: center;
-    font-size: 20px;
+    font-size: 26px;
     margin: 0;
     /* transform: translate(-50%, 50%); */
     text-shadow: 0 0 2px rgba(0,0,0,0.3);
@@ -1436,7 +1464,7 @@ button.delete-post-btn {
 
 .comments-container.expand {
     max-height: unset; 
-    padding: 20px;
+    /* padding: 20px; */
     border: 1px solid rgba(0,0,0,0.1);
     border-top: none;
 }
@@ -1478,9 +1506,18 @@ button.delete-post-btn {
 
 .comment {
     background: rgba(17, 100, 102, 0.2);
-    margin-bottom: 20px;
+    background: unset;
+    /* margin-bottom: 20px; */
     padding: 10px;
+    padding-bottom: 20px;
     /* border: 1px solid blue; */
+}
+
+.comment:nth-of-type(2n) {
+    background: rgba(17, 100, 102, 0.3);
+    background: #C8CACC;
+    background: #ADDEFF;
+    background: #FFFFFF;
 }
 
 .comment-content {
@@ -1632,10 +1669,32 @@ button.delete-post-btn {
     margin: 0 auto;
 }
 
+.reply-comment-content.gen-comment {
+    margin: 0;
+    padding: 10px;
+}
+
+.reply-comment:nth-of-type(2n) {
+    background: #ccc;
+}
+
+.reply-comment:nth-of-type(2n + 1) {
+    background: #cbb;
+}
+
+.reply-comment-metadata {
+    padding: 10px;
+}
+
+.reply-comments-container .thin-hr {
+    display: none;
+}
+
 .reply-comment-btn {
+    color: #546e7a;
     background-color: #cfd8dc;
-    width: 80px;
-    height: 30px;
+    width: 140px;
+    height: 40px;
     margin-top: 10px;
     border: 1px solid #90a4ae;
     border-radius: 6px;
@@ -1647,7 +1706,7 @@ button.delete-post-btn {
 
 .reply-comment-btn:hover {
     color: white;
-    background-color: #90a4ae;;
+    background-color: #90a4ae;
 }
 
 
@@ -1810,7 +1869,7 @@ button.delete-post-btn {
 
     .drone-make {
         /* width: 200px; */
-        width: 20vw;
+        width: 25vw;
         height: 20vh;
     }
 
@@ -1929,11 +1988,18 @@ button.delete-post-btn {
         border: 1px solid rgba(0,0,0,0.1); 
     }
 
-    .reply-comment-input {
+    .comment-input {
         width: 80%;
-        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .reply-comment-input {
+        width: 60%;
+        max-width: 60%;
         margin: 0 auto;
     }
+
 
 }
 
@@ -1977,6 +2043,7 @@ button.delete-post-btn {
 
     .reviews-title {
         font-size: 36px;
+        max-width: 1000px;
     }
 
     .review-label p {
@@ -2056,11 +2123,99 @@ button.delete-post-btn {
     }
 }
 
+/*============================================================/
+/* PORTRAIT & LANDSCAPE ONLY
+/*===========================================================*/
+
 @media only screen and (max-width: 736px) {
     .no-scroll {
         overflow: hidden; 
         position: fixed;
         width: 100%; 
+    }
+    /*========================================/
+    /* Drone Filter ASIDE (MOBILE / LANDSCAPE)
+    /*=======================================*/
+
+    .review-page-container {
+        position: relative;
+    }
+
+    .reviews-title {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    #aside-filter {
+        position: relative;
+        top: 50px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    #search-filter-form {
+        font-size: 0;
+    }
+
+    .search-filter {
+        width: 80%;
+        height: 40px;
+        line-height: 40px;
+        font-size: 16px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    label[for="radio-filter-form"] {
+        display: block;
+        margin-top: 15px;
+        margin-bottom: 5px;
+    }
+
+    .aside-btn-container {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .drone-search-btn,
+    .aside-btns {
+        color: #546e7a;
+        background: #cfd8dc;
+        height: 40px;
+        border: 1px solid #90a4ae;
+        border-radius: 6px;
+    }
+
+    .drone-search-btn {
+        font-size: 16px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        transform: translateY(1px);
+    }
+
+    .aside-btns {
+        width: 40%;
+    }
+
+    .filter-btn {
+        margin-right: 10px;
+    }
+
+    /*========================================/
+    /* Reviews  (MOBILE / LANDSCAPE)
+    /*=======================================*/
+    .up-vote-arrow.fa,
+    .down-vote-arrow.fa  {
+        font-size: 34px;
+    }
+
+    .up-vote-arrow.fa {
+        margin-right: 25px;
+    }
+    .down-vote-arrow.fa {
+        margin-left: 25px;
     }
 }
 
@@ -2089,7 +2244,7 @@ button.delete-post-btn {
     }
 
     /*========================================/
-    /* Drone Banner (Base / Mobile)
+    /* Drone Banner (DESKTOP / TABLET)
     /*=======================================*/
     #company-banner {
         height: 20vh;
@@ -2116,7 +2271,7 @@ button.delete-post-btn {
     #aside-filter {
         position: relative;
         width: 20%;
-        max-width: 180px;
+        max-width: 250px;
         min-height: 500px;
         float: left;
         margin-top: 20px;
@@ -2172,6 +2327,7 @@ button.delete-post-btn {
         /* border-top-left-radius: 6px; */
         /* border-bottom-left-radius: 6px;   */
         border-right: 1px solid rgba(0,0,0,0.1);
+        border-bottom: 1px solid rgba(0,0,0,0.1);
         -webkit-transition: all 0.3s ease-in-out;
         -moz-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
@@ -2214,11 +2370,12 @@ button.delete-post-btn {
     .drone-search-btn,
     .aside-btns {
         display: block;
+        color: #7699A8;
         background: transparent;
         margin-top: 10px;
         padding: 5px 30px;
         border-radius: 4px;
-        border: 2px solid lightgrey;
+        border: 2px solid #cfd8dc;
         cursor: pointer;
         /* box-shadow: 0 2px 1px rgba(0,0,0,0.4); */
         -webkit-transition: all 0.1s ease-in-out;
@@ -2234,6 +2391,10 @@ button.delete-post-btn {
 
     .filter-alert {
         color: red;
+    }
+
+    .mobile-only {
+        display: none;
     }
 
     /*========================================/
@@ -2324,6 +2485,7 @@ button.delete-post-btn {
         height: auto;
         max-height: 1200px; 
     }
+
 
     .no-scroll {
         overflow: hidden; 

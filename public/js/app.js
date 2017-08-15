@@ -213,6 +213,7 @@ function formReviewPost(postData, byThisUser = false, userVoted) {
                             <div class="content">
                                 ${content.join('')}
                             </div>
+                            <hr class="mobile-only">
                             <div class="post-attr">
                                 
                                 <div class="c-date-edit-wrap">
@@ -250,10 +251,11 @@ function formReviewPost(postData, byThisUser = false, userVoted) {
                                 <dd>GPS?: <span>${specs.gps}</span></dd>
                                 <dd>3-axis gimbal: <span>${specs.gimbal}</span></dd>
                                 <dd>Intelligent Flight: <span>${specs.intelligent_flight}</span></dd>
-                                <dd>Avoidance: <span>${specs.avoidance}</span></dd>
-                                <dd>Return Home: <span>${specs.return_home}</span></dd>
-                                <dd>Follow-Me Mode: <span>${specs.follow_me_mode}</span></dd>
-                                <dd>Tracking Mode: <span>${specs.tracking_mode}</span></dd>
+                                <dd>Avoidance: <span>${specs.avoidance || 'NO'}</span></dd>
+                                <dd>Return Home: <span>${specs.return_home || 'NO'}</span></dd>
+                                <dd>Follow-Me Mode: <span>${specs.follow_me_mode || 'NO'}</span></dd>
+                                <dd>Tracking Mode: <span>${specs.tracking_mode || 'NO'}</span></dd>
+                                <dd>Flips: <span>${specs.flips || 'NO'}</span></dd>
                             </dl>
                         </div>
                         <div class="comments-container">
@@ -392,7 +394,7 @@ function displayPosts(_posts) {
         return formReviewPost(post, byThisUser, didUserVote);
     });
 
-    console.log(posts[4]);
+    // console.log(posts[4]);
 
 
     // Need to append when fetching batch at a time
@@ -733,8 +735,7 @@ function commentFormHandler($form) {
     let comment = {
         url,
         content,
-        author: { username },
-        created: Date.now()
+        author: { username }
     }
 
     console.log(comment.created);
@@ -1247,8 +1248,8 @@ function initDroneSlider() {
         arrows: true,
         infinite: false,
         speed: 2400,
-        slidesToShow: 5,
-        slidesToScroll: 5,
+        slidesToShow: 4,
+        slidesToScroll: 4,
         variableWidth: true,
         responsive: [
             {
@@ -1382,16 +1383,20 @@ function fixBannerNav() {
 // number 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function getElapsedTime(prevDate) {
-    let diff   = Date.now() - prevDate,
+    let currentDate = Date.now();
+    console.log('PREV:', prevDate);
+    console.log('CURRENT: ', currentDate);
+    console.log('DIFF: ', currentDate - prevDate);
+    let diff   = currentDate - prevDate,
         min    = Math.floor(diff / 60000),  // 60,000 ms / min
         hrs    = Math.floor(diff / 3600000), // 3,600,000 ms / hr
         days   = Math.floor(diff / 86400000), // 6,400,000 ms / day
         months = Math.floor(diff / 2629746000),// 2629746000 ms / month
         years  = Math.floor(diff / 31556952000);// 31,556,952,000 ms / year
-
+    console.log({min,hrs,days,months,years});
     if (min < 60) {
         if(min < 1)        return 'just now';
-        else if(min === 1) return 'a minute';
+        else if(min === 1) return 'a minute ago';
         else               return min + ' minutes';
     } else if (hrs < 24) {
         return `${hrs} ${hrs === 1 ? 'hour' : 'hours'}`;
@@ -1425,6 +1430,20 @@ function tabFromTextareaHandler(textarea) {
     textarea.selectionStart = textarea.selectionEnd = start + 1;
 }
 
+function toggleMobileMenu() {
+    $(MOBILE_MENU).toggleClass('open');
+    $(BURGER_WRAP).toggleClass('open');
+    $(BURGER_ICON).toggleClass('open');
+    $('body').toggleClass('no-scroll'); // Sends user to top of page
+}
+
+function closeMobileMenu() {
+    $(MOBILE_MENU).removeClass('open');
+    $(BURGER_WRAP).removeClass('open');
+    $(BURGER_ICON).removeClass('open');
+    $('body').removeClass('no-scroll');
+}
+
 
 //================================================================================
 // Event Listeners
@@ -1437,20 +1456,14 @@ function tabFromTextareaHandler(textarea) {
 function burgerMenuClick() {
     $(BURGER_ANCHOR).on('click', (e) => {
         e.preventDefault();
-        $(MOBILE_MENU).toggleClass('open');
-        $(BURGER_WRAP).toggleClass('open');
-        $(BURGER_ICON).toggleClass('open');
-        // $('body').toggleClass('no-scroll');
+        toggleMobileMenu();
     });
 }
 
 function mobileMenuItemClick() {
     $(MOBILE_MENU_ITEM).on('click', (e) => {
         e.preventDefault();
-        $(MOBILE_MENU).removeClass('open');
-        $(BURGER_WRAP).removeClass('open');
-        $(BURGER_ICON).removeClass('open');
-        $('body').removeClass('no-scroll');
+        closeMobileMenu();
     });
 }
 
@@ -1469,19 +1482,13 @@ function loginBtnsClick() {
     $(LOGIN_BTN).on('click', (e) => {
         e.preventDefault();
         openLoginSignupModal('login');
-        $(MOBILE_MENU).removeClass('open');
-        $(BURGER_WRAP).removeClass('open');
-        $(BURGER_ICON).removeClass('open');
-        $('body').addClass('no-scroll');
+        closeMobileMenu();
     });
     // comments login-btn
     $(REVIEWS).on('click', SUB_LOGIN_BTN, (e) => {
         e.preventDefault();
         openLoginSignupModal('login');
-        $(MOBILE_MENU).removeClass('open');
-        $(BURGER_WRAP).removeClass('open');
-        $(BURGER_ICON).removeClass('open');
-        $('body').addClass('no-scroll');
+        closeMobileMenu();
     });
 }
 
@@ -1516,19 +1523,13 @@ function signupBtnsClick() {
     $(SIGNUP_BTN).on('click', (e) => {
         e.preventDefault();
         openLoginSignupModal('signup');
-        $(MOBILE_MENU).removeClass('open');
-        $(BURGER_WRAP).removeClass('open');
-        $(BURGER_ICON).removeClass('open');
-        $('body').addClass('no-scroll');
+        closeMobileMenu();
     });
     // comments signup-btn
     $(REVIEWS).on('click', SUB_SIGNUP_BTN, (e) => {
         e.preventDefault();
         openLoginSignupModal('signup');
-        $(MOBILE_MENU).removeClass('open');
-        $(BURGER_WRAP).removeClass('open');
-        $(BURGER_ICON).removeClass('open');
-        $('body').addClass('no-scroll');
+        closeMobileMenu();
     });
 }
 
@@ -1593,7 +1594,7 @@ function clearAsideFiltersClick() {
         e.preventDefault();
         console.log('click');
         hide(FILTER_ALERT);
-        $(REVIEW).add($('hr')).show();
+        $(REVIEW).add($('.post-hr')).show();
 
         $('#radio-filter-form')[0].reset();
     });
@@ -1616,10 +1617,16 @@ function filterBtnClick() {
 // Reviews / Posts
 // * * * * * * * * * * * * * 
 function writeReviewNavClick() {
-    $(WRITE_REVIEW_NAV).on('click', (e) => {
+    $(WRITE_REVIEW_NAV).on('click', function(e) {
         e.preventDefault();
-        show(REVIEW_FORM_SCREEN);
-        $('body').addClass('no-scroll');
+        let delay = 0;
+        if ($(this).hasClass('mobile-write')) {
+            delay = 500; // if click comes from mobile menu, delay so menu closes before form opens
+        }
+        setTimeout(function() {
+            show(REVIEW_FORM_SCREEN);
+            $('body').addClass('no-scroll');
+        }, delay);
     });
 }
 
@@ -1816,7 +1823,6 @@ function getTabFromTextarea() {
     $('textarea').keydown(function(e) {
         if (e.keyCode === 9) {
             e.preventDefault();
-            console.log('in listener');
             tabFromTextareaHandler(this);
         }
     });
