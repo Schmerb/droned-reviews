@@ -2,7 +2,8 @@
 
 let state = {
     loggedIn: false,
-    user: ''
+    user: '',
+    isMobile: false
 };
 
 // Banner Nav
@@ -49,12 +50,19 @@ const INTERACTIONS      = '.interactions';
 // Drone carousel
 const DRONE_SLIDER = '.drone-slider';
 // Aside Filter
-const ASIDE_BTN       = '.aside-slide-btn';
-const ASIDE_CONTAINER = '.aside-container';
-const FILTER_FORM     = '#radio-filter-form';
-const FILTER_ALERT    = '.filter-alert';
-const FILTER_BTN      = '.filter-btn';
-const CLEAR_BTN       = '.clear-btn';
+const ASIDE_BTN            = '.aside-slide-btn';
+const ASIDE_CONTAINER      = '.aside-container';
+const SEARCH_FILTER_FORM   = '#search-filter-form';
+const SEARCH_FILTER        = '.search-filter';
+const QUERY_TEXT           = '.query-text';
+const USER_QUERY           = '.js-user-query';
+const QUERY_ERROR_MESSAGE  = '.query-error-message';
+const FILTER_FORM          = '#radio-filter-form';
+const USER_FILTER          = '.js-user-filter';
+const FILTER_STATUS        = '.filter-status';
+const FILTER_ALERT         = '.filter-alert';
+const FILTER_BTN           = '.filter-btn';
+const CLEAR_BTN            = '.clear-btn';
 // Review 
 const REVIEWS           = '#reviews';
 const REVIEWS_CONTAINER = '#reviews-container';
@@ -63,7 +71,7 @@ const REVIEW            = '.review';
 const DETAILS           = '.details';
 const SPECS_BTN         = '.specs-btn';
 const EXPAND            = '.expand';
-// 
+// review/comment Interactions
 const UPVOTE_ARROW   = '.up-vote-arrow';
 const DOWNVOTE_ARROW = '.down-vote-arrow';
 const VOTES          = '.js-votes';
@@ -430,51 +438,6 @@ function displayComment(comment) {
     }
 }
 
-
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// Filters reviews 
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-function filterReviewHandler() {
-    // Get checked radio
-    let target = $('input[name="filter"]:checked', FILTER_FORM).val();
-    // console.log(`make: ${make}`);
-    // loop through DOM and check if any matches
-    // if yes, loop through DOM and remove reviews that dont match
-    let isMatch = false;
-    $(REVIEWS_CONTENT).find(REVIEW)
-        .each(function (index, review) {
-            let make = $(this).find('.maker')
-                              .first()
-                              .text()
-                              .toLowerCase();
-            if (make.indexOf(target) >= 0) {
-                isMatch = true;
-                return;
-            }
-        });
-    if (isMatch) {
-        $(REVIEWS_CONTENT).find(REVIEW)
-            .each(function (index, review) {
-                let make = $(this).find('.maker')
-                                  .first()
-                                  .text()
-                                  .toLowerCase();
-                let $hr = $(this).prev();
-                if (make.indexOf(target) === -1) {
-                    $(this).add($hr).hide();
-                } else {
-                    $(this).add($hr).show();
-                }
-            });
-        $(`${REVIEW}:visible`).first().prev('hr').hide(); // removes <hr> from top of filtered reviews
-    } else {
-        // display message, no reviews matching
-        console.log('No Match');
-        show(FILTER_ALERT);
-    }
-}
-
-
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Opens login/signup modal
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -586,6 +549,59 @@ function displayEditPostForm($post) {
     $(EDIT_REVIEW_FORM).attr('data-post-id', id);
 }
 
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Populates drone dropdown selector with all current models
+// stored in drones object. Now you only have to update one
+// place in code to add new drone options to form
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function fillDroneOptGroups() {
+    $('.dropdown-options').empty();
+    for (let make in drones) {
+        let models = [];
+        let displayMake;
+        for (let model in drones[make]) {
+            let specs = drones[make][model];
+            displayMake === undefined ? displayMake = specs.brand : null;
+            let option = `<option value="${model}">${specs.model}</option>`;
+            models.push(option);
+        }
+        let optGroup = `<optgroup label="${displayMake}">
+                            ${models.join('')}
+                        </optgroup>`;
+        $('.dropdown-options').append(optGroup);
+    }
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Toggles (shows/hides) comments for given post
+// and hides Specs if open
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function toggleComments(commentsBtn) {
+    let $review         = $(commentsBtn).parents(REVIEW),
+        $commentSection = $review.find(COMMENTS_CONTAINER),
+        $details        = $review.find(DETAILS),
+        $specs_btn      = $review.find(SPECS_BTN);
+    $details.removeClass('expand');
+    $specs_btn.removeClass('btn-active');
+    $commentSection.toggleClass('expand');
+    $(commentsBtn).toggleClass('btn-active');
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Toggles (shows/hides) specs for given post
+// and hides comments if open
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function toggleSpecs(specBtn) {
+    let $review         = $(specBtn).parents(REVIEW),
+        $details        = $review.find(DETAILS),
+        $commentSection = $review.find(COMMENTS_CONTAINER),
+        $commentS_btn   = $review.find(COMMENTS_BTN);
+    $commentSection.removeClass('expand');
+    $commentS_btn.removeClass('btn-active');
+    $details.toggleClass('expand');
+    $(specBtn).toggleClass('btn-active');
+}
+
 
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -606,6 +622,11 @@ function show() {
     });
 }
 
+
+
+//================================================================================
+// API handlers / Display handlers
+//================================================================================
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Collects user signup data and submits it to server
@@ -732,13 +753,16 @@ function commentFormHandler($form) {
         content  = $form.find('.comment-input').val(),
         postId   = $form.siblings(COMMENTS_CONTENT).attr('data-post-id'),
         username = state.user;
+    let created = Date.now();
     let comment = {
         url,
         content,
-        author: { username }
+        author: { username },
+        created,
     }
 
-    console.log(comment.created);
+    console.log('Should Be DIFF: ', comment.created);
+    console.log('Should Be DIFF: ', new Date(comment.created));
 
     if ($form.hasClass('reply-comment-form')) {
         comment['commentId'] = $form.closest('.comment').attr('data-this-id');
@@ -761,57 +785,97 @@ function getDroneData(make, model) {
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// Populates drone dropdown selector with all current models
-// stored in drones object. Now you only have to update one
-// place in code to add new drone options to form
+// Filters reviews 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-function fillDroneOptGroups() {
-    $('.dropdown-options').empty();
-    for (let make in drones) {
-        let models = [];
-        let displayMake;
-        for (let model in drones[make]) {
-            let specs = drones[make][model];
-            displayMake === undefined ? displayMake = specs.brand : null;
-            let option = `<option value="${model}">${specs.model}</option>`;
-            models.push(option);
-        }
-        let optGroup = `<optgroup label="${displayMake}">
-                            ${models.join('')}
-                        </optgroup>`;
-        $('.dropdown-options').append(optGroup);
+function filterReviewHandler() {
+    // Get checked radio
+    let target = $('input[name="filter"]:checked', FILTER_FORM).val();
+    // console.log(`make: ${make}`);
+    // loop through DOM and check if any matches
+    // if yes, loop through DOM and remove reviews that dont match
+    let isMatch = false;
+    $(REVIEWS_CONTENT)
+        .find(REVIEW)
+        .each(function (index, review) {
+            let make = $(this).find('.maker')
+                              .first()
+                              .text()
+                              .toLowerCase();
+            if (make.indexOf(target) >= 0) {
+                isMatch = true;
+                return;
+            }
+        });
+    if (isMatch) {
+        $(REVIEWS_CONTENT)
+            .find(REVIEW)
+            .each(function (index, review) {
+                let make = $(this).find('.maker')
+                                  .first()
+                                  .text()
+                                  .toLowerCase();
+                let $hr = $(this).prev();
+                if (make.indexOf(target) === -1) {
+                    $(this).add($hr).hide();
+                } else {
+                    $(this).add($hr).show();
+                }
+            });
+        $(`${REVIEW}:visible`).first().prev('hr').hide(); // removes <hr> from top of filtered reviews
+        show(FILTER_STATUS);
+        $(USER_FILTER).text(droneBrands[target]);
+    } else {
+        // display message, no reviews matching
+        console.log('No Match');
+        show(FILTER_ALERT);
     }
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// Toggles (shows/hides) comments for given post
-// and hides Specs if open
+// Search reviews filter
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-function toggleComments(commentsBtn) {
-    let $review         = $(commentsBtn).parents(REVIEW),
-        $commentSection = $review.find(COMMENTS_CONTAINER),
-        $details        = $review.find(DETAILS),
-        $specs_btn      = $review.find(SPECS_BTN);
-    $details.removeClass('expand');
-    $specs_btn.removeClass('btn-active');
-    $commentSection.toggleClass('expand');
-    $(commentsBtn).toggleClass('btn-active');
+function searchFilterHandler() {
+    // user input
+    let baseQuery = $(SEARCH_FILTER).val()
+                                    .trim();
+    // grab each search keyword
+    let query = baseQuery.toLowerCase()
+                         .split(' ');
+
+    let resultFound = false;
+    $(REVIEWS_CONTENT)
+        .find(REVIEW)
+        .each(function(index, review) {
+            let make = $(this).find('.maker')
+                              .first()
+                              .text()
+                              .toLowerCase();
+            let model = $(this).find('.model')
+                               .first()
+                               .text()
+                               .toLowerCase();
+            let $hr = $(this).prev();
+
+            let found = query.map((keyword) => {
+                if(make.indexOf(keyword) >= 0 || model.indexOf(keyword) >= 0) {
+                    return 1;
+                } 
+            });
+            if(found.indexOf(1) === -1) {
+                $(review).add($hr).hide();
+            } else {
+                $(review).add($hr).show();
+                resultFound = true;
+            }
+        });
+    $(USER_QUERY).text(baseQuery);
+    if(resultFound) {
+        show(QUERY_TEXT);
+    } else {
+        show(QUERY_ERROR_MESSAGE);
+    }
 }
 
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// Toggles (shows/hides) specs for given post
-// and hides comments if open
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-function toggleSpecs(specBtn) {
-    let $review         = $(specBtn).parents(REVIEW),
-        $details        = $review.find(DETAILS),
-        $commentSection = $review.find(COMMENTS_CONTAINER),
-        $commentS_btn   = $review.find(COMMENTS_BTN);
-    $commentSection.removeClass('expand');
-    $commentS_btn.removeClass('btn-active');
-    $details.toggleClass('expand');
-    $(specBtn).toggleClass('btn-active');
-}
 
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -887,10 +951,6 @@ function addImgToPostHandler(imgRes, postId = null) {
         .find('.post-img')
         .attr('src', imgRes.url);
 }
-
-//================================================================================
-// API handlers 
-//================================================================================
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Displays posts to screen and makes call for each
@@ -1383,17 +1443,13 @@ function fixBannerNav() {
 // number 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function getElapsedTime(prevDate) {
-    let currentDate = Date.now();
-    console.log('PREV:', prevDate);
-    console.log('CURRENT: ', currentDate);
-    console.log('DIFF: ', currentDate - prevDate);
-    let diff   = currentDate - prevDate,
+    let diff   = Date.now() - prevDate,
         min    = Math.floor(diff / 60000),  // 60,000 ms / min
         hrs    = Math.floor(diff / 3600000), // 3,600,000 ms / hr
         days   = Math.floor(diff / 86400000), // 6,400,000 ms / day
         months = Math.floor(diff / 2629746000),// 2629746000 ms / month
         years  = Math.floor(diff / 31556952000);// 31,556,952,000 ms / year
-    console.log({min,hrs,days,months,years});
+    
     if (min < 60) {
         if(min < 1)        return 'just now';
         else if(min === 1) return 'a minute ago';
@@ -1448,7 +1504,6 @@ function closeMobileMenu() {
 //================================================================================
 // Event Listeners
 //================================================================================
-
 
 // * * * * * * * * * * * * *
 //   Nav item clicks
@@ -1587,13 +1642,28 @@ function asideFilterBtnHover() {
 }
 
 //
+// Search Filter Form SUBMIT
+//
+function searchFilterFormSubmit() {
+    $(SEARCH_FILTER_FORM).on('submit', function(e) {
+        e.preventDefault();
+        hide(FILTER_ALERT, 
+             FILTER_STATUS);
+        searchFilterHandler();
+    });
+}
+
+//
 // Clear filters -- show all reviews
 //
 function clearAsideFiltersClick() {
     $('.clear-btn').on('click', (e) => {
         e.preventDefault();
         console.log('click');
-        hide(FILTER_ALERT);
+        hide(FILTER_ALERT, 
+             FILTER_STATUS, 
+             QUERY_ERROR_MESSAGE, 
+             QUERY_TEXT);
         $(REVIEW).add($('.post-hr')).show();
 
         $('#radio-filter-form')[0].reset();
@@ -1606,7 +1676,9 @@ function clearAsideFiltersClick() {
 function filterBtnClick() {
     $(FILTER_FORM).submit(e => {
         e.preventDefault();
-        hide(FILTER_ALERT);
+        hide(FILTER_ALERT, 
+             QUERY_ERROR_MESSAGE, 
+             QUERY_TEXT);
         filterReviewHandler();
     });
 }
@@ -1865,6 +1937,7 @@ function asideEvents() {
     asideFilterBtnHover();
     clearAsideFiltersClick();
     filterBtnClick();
+    searchFilterFormSubmit();
 }
 
 function reviewEvents() {
@@ -1884,6 +1957,7 @@ function utils() {
     fillDroneOptGroups();
     displayDroneSlider(); // inits drone slider and conceals FOUC
     responsiveReslick();
+    checkSizeHandler();
 }
 
 //================================================================================

@@ -442,7 +442,7 @@ let drones = {
             brand: "Hubsan",
             model: "H107C+ HD",
             img: "https://dronepedia.xyz/wp-content/uploads/2015/11/H107C-0402.408-1024x662.png",
-            price: 40-50,
+            price: "40-50",
             camera: "720",
             max_flight_time: "Approx. 7mins",
             max_range: "50-150m",
@@ -473,5 +473,40 @@ let drones = {
             follow_me_mode: "YES",
             tracking_mode: "N/A"
         }
+    },
+    udi: {
+        u818a: {
+            brand: "UDI",
+            model: "Discovery 2 U818A",
+            img: "../assets/discovery-2-compressor.png",
+            price: "50-70",
+            camera: "720@30/1MP",
+            max_flight_time: "Approx. 15mins",
+            max_range: "60m - 150m",
+            max_speed: "~18mph",
+            headless: "YES",
+            gps: "NO",
+            gimbal: "NO",
+            intelligent_flight: "NO",
+            avoidance: "NO",
+            return_home: "NO",
+            follow_me_mode: "NO",
+            tracking_mode: "N/A"
+        }
     }
+};
+
+
+//
+// For quick reference to drone brands correct casing
+//
+droneBrands = {
+    dji: 'DJI',
+    gopro: 'GoPro',
+    parrot: 'Parrot',
+    yuneec: 'Yuneec',
+    syma: 'Syma',
+    hubsan: 'Hubsan',
+    xiro: 'Xiro',
+    udi: 'UDI'
 };

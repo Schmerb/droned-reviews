@@ -870,7 +870,7 @@ button.delete-post-modal-btn {
     position: absolute;
     content: '';
     background: rgba(0,0,0,0.5);
-    height: 100vh;
+    height: 100%;
     width: 100%;
     top: 0;
     left: 0;
@@ -918,7 +918,7 @@ button.delete-post-btn {
 .slick-slider .slick-next.slick-arrow {
     width: 50px;
     height: 200px;
-    z-index: 2;
+    z-index: 1;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
@@ -1000,13 +1000,13 @@ button.delete-post-btn {
 
 #parrot::after {
     background: url('../assets/parrot-square-compressor.jpg') center;
-    background-size: 100%;
+    background-size: 90%;
     background-repeat: no-repeat;
 }
 
 #gopro::after {
     background: url('../assets/gopro-karma-compressor.jpg') center;
-    background-size: contain;
+    background-size: 100%;
     background-repeat: no-repeat;
 }
 
@@ -1031,13 +1031,13 @@ button.delete-post-btn {
 
 #syma::after {
     background: url('../assets/SYMA-X8SC-compressor.png') center;
-    background-size: contain;
+    background-size: 100%;
     background-repeat: no-repeat;
 }
 
 #hubsan::after {
     background: url('../assets/hubsan-h107-compressor.png') center;
-    background-size: contain;
+    background-size: 100%;
     background-repeat: no-repeat;
 }
 
@@ -1045,6 +1045,13 @@ button.delete-post-btn {
     background: url('../assets/xiro_v_features1-compressor.png') center;
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+#udi::after {
+    background: url('../assets/discovery-2-compressor.png') center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-y: 20px;
 }
 
 .drone-make::after {
@@ -1080,7 +1087,8 @@ button.delete-post-btn {
 #yuneec:hover::after,
 #syma:hover::after,
 #hubsan:hover::after,
-#xiro:hover::after {
+#xiro:hover::after,
+#udi:hover::after {
      transform: scale(1.1); 
 }
 
@@ -1088,97 +1096,43 @@ button.delete-post-btn {
 /* Drone Filter ASIDE (Base/ Mobile)
 /*=======================================*/
 
-/* .review-page-container {
-    position: relative;
-}
-
-#aside-filter {
-    position: relative;
-    width: 20%;
-    min-height: 50vh;
-    float: right;
-    margin-top: 20px;
-}
-
-.aside-slide-btn {
-    content: '';
-    position: absolute;
-    background: unset;
-    left: -30px;
-    top: 50%;
-    width: 30px;
-    height: 50%;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-    border: 1px solid black;
-    cursor: pointer;
-}
-
-.aside-slide-btn:hover {
-    background: rgba(0,0,0,0.3);
-}
-
-.aside-chevron {
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-}
-
-.aside-chevron.flip {
-    transform: rotateY(180deg);
-}
-
-.aside-container {
-    position: absolute;
-    width: 100%;
-    right: -100%;
-    padding: 10px;
-    border: 1px solid black;    
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-}
-
-.aside-container.slide {
-    right: 0;
-}
-
-.search-filter {
-    width: 100%;
-}
-
 .drone-search-btn,
 .aside-btns {
-    background: lightblue;
-    margin-top: 5px;
-    padding: 5px 30px;
-    border-radius: 4px;
-    border: none;
+    color: #7699A8;
+    background: transparent;
+    border: 2px solid #cfd8dc;
     cursor: pointer;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
 }
 
 .drone-search-btn:hover,
 .aside-btns:hover {
-    background: lightseagreen;
+    color: #62757f;
+    border-color: #62757f;
 }
 
-#radio-filter-form {
-    margin-top: 30px;
+.filter-status-container {
+    position: absolute;
+    text-align: center;
+    font-size: 22px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-.drone-radio {
-    cursor: pointer;
+.filter-alert {
+    color: red;
 }
-
-#radio-filter-form label {
-    display: block;
-    margin-bottom: 15px;
-    cursor: pointer;
-} */
 
 /*========================================/
 /* Reviews (Base/ Mobile)
 /*=======================================*/
+
+section.review-page-container {
+    min-height: 840px;
+}
+
 #reviews {
     overflow: hidden;
     padding-bottom: 400px;
@@ -1188,7 +1142,12 @@ button.delete-post-btn {
     max-width: 1100px;
 }
 
-.review-header {
+.reviews-header {
+    position: relative;
+    max-width: 1000px;
+}
+
+.wide-banner {
     position: relative;
     background: url('../assets/phantom-gimbal-william-stitt-compressor.jpg') center;
     background-size: cover;
@@ -1205,6 +1164,7 @@ button.delete-post-btn {
     margin: 0;
     /* transform: translate(-50%, 50%); */
     text-shadow: 0 0 2px rgba(0,0,0,0.3);
+    /* text-shadow: 3px 2px 4px rgba(0,0,0,0.3); */
 }
 
 .post-title {
@@ -1291,6 +1251,10 @@ button.delete-post-btn {
 
 .post-img {
     background: rgba(13,70,149,0.1);
+    background: linear-gradient(130deg, rgba(13,70,149,0.1), transparent);
+                /* -moz-linear-gradient(90deg, rgba(13,70,149,0.1), transparent),
+                -o-linear-gradient(90deg, rgba(13,70,149,0.1), transparent),
+                -webkit-linear-gradient(90deg, rgba(13, 69, 149, 0.10), transparent); */
     width: 100%;
     height: auto;
     /* border: 4px solid #5A7684; */
@@ -1669,17 +1633,21 @@ button.delete-post-btn {
     margin: 0 auto;
 }
 
+.reply-comments-content {
+    box-shadow: 0 0 20px rgb(196, 206, 212);
+}
+
 .reply-comment-content.gen-comment {
     margin: 0;
     padding: 10px;
 }
 
 .reply-comment:nth-of-type(2n) {
-    background: #ccc;
+    background: #c4ced4;
 }
 
 .reply-comment:nth-of-type(2n + 1) {
-    background: #cbb;
+    background: #d3dade;
 }
 
 .reply-comment-metadata {
@@ -1956,6 +1924,7 @@ button.delete-post-btn {
     }
 
     .media-assets {
+
     }
 
     .bottom-btns {
@@ -1974,7 +1943,6 @@ button.delete-post-btn {
         height: 30px;
     }
 
-
     #preview-eye.fa.fa-eye {
         right: 30px;
     }
@@ -1985,6 +1953,7 @@ button.delete-post-btn {
     .img-container {
         float: left;
         width: 30%;
+        margin-right: 6px;
         border: 1px solid rgba(0,0,0,0.1); 
     }
 
@@ -2137,17 +2106,6 @@ button.delete-post-btn {
     /* Drone Filter ASIDE (MOBILE / LANDSCAPE)
     /*=======================================*/
 
-    .review-page-container {
-        position: relative;
-    }
-
-    .reviews-title {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
     #aside-filter {
         position: relative;
         top: 50px;
@@ -2157,6 +2115,7 @@ button.delete-post-btn {
 
     #search-filter-form {
         font-size: 0;
+        margin-top: 10px;
     }
 
     .search-filter {
@@ -2164,8 +2123,18 @@ button.delete-post-btn {
         height: 40px;
         line-height: 40px;
         font-size: 16px;
+        border: 1px solid #90a4ae;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
+    }
+
+    .filter-status-container {
+        width: 95%;
+        padding-top: 10px;
+    }
+
+    #radio-filter-form {
+        margin-top: 10px;
     }
 
     label[for="radio-filter-form"] {
@@ -2181,8 +2150,6 @@ button.delete-post-btn {
 
     .drone-search-btn,
     .aside-btns {
-        color: #546e7a;
-        background: #cfd8dc;
         height: 40px;
         border: 1px solid #90a4ae;
         border-radius: 6px;
@@ -2203,9 +2170,30 @@ button.delete-post-btn {
         margin-right: 10px;
     }
 
+    .filter-alert {
+        margin: 15px 0;
+    }
+
+
+
     /*========================================/
     /* Reviews  (MOBILE / LANDSCAPE)
     /*=======================================*/
+    .review-page-container {
+        position: relative;
+    }
+
+    .reviews-title {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    #reviews-container {
+        padding-top: 100px;
+    }
+
     .up-vote-arrow.fa,
     .down-vote-arrow.fa  {
         font-size: 34px;
@@ -2272,7 +2260,7 @@ button.delete-post-btn {
         position: relative;
         width: 20%;
         max-width: 250px;
-        min-height: 500px;
+        min-height: 560px;
         float: left;
         margin-top: 20px;
     }
@@ -2370,17 +2358,9 @@ button.delete-post-btn {
     .drone-search-btn,
     .aside-btns {
         display: block;
-        color: #7699A8;
-        background: transparent;
         margin-top: 10px;
         padding: 5px 30px;
         border-radius: 4px;
-        border: 2px solid #cfd8dc;
-        cursor: pointer;
-        /* box-shadow: 0 2px 1px rgba(0,0,0,0.4); */
-        -webkit-transition: all 0.1s ease-in-out;
-        -moz-transition: all 0.1s ease-in-out;
-        transition: all 0.1s ease-in-out;
     }
 
     .drone-search-btn:hover,
@@ -2389,9 +2369,9 @@ button.delete-post-btn {
         border-color: #62757f;
     }
 
-    .filter-alert {
+    /* .filter-alert {
         color: red;
-    }
+    } */
 
     .mobile-only {
         display: none;

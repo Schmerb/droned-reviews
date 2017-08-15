@@ -27,7 +27,8 @@ exports.createComment = (req, res) => {
         postId: req.body.postId,
         commentId: req.body.commentId,
         content: req.body.content,
-        author: req.body.author
+        author: req.body.author,
+        created: req.body.created || Date.now()
     };
 
 

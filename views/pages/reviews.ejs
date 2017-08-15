@@ -1,20 +1,36 @@
-<section class="review-header">
+<section class="wide-banner">
     <!-- <h2 class="reviews-title">User Reviews</h2> -->
 </section>
 
 
-<div class="review-page-container">
+<section class="review-page-container">
 
     <!-- ASIDE FILTER -->
     <% include ../partials/aside-filter %>
     
     
-    <section id="reviews">
+    <div id="reviews">
     
         <div id="reviews-container">
-            <h2 class="reviews-title">User Reviews</h2>
-                
-    
+
+            <header class="reviews-header">
+                <h2 class="reviews-title">User Reviews</h2>
+                    
+                <div class="filter-status-container">
+                    <h3 class="query-text hidden">
+                        '<span class="js-user-query"></span>' 
+                        Results
+                    </h3>
+                    <p class="query-error-message hidden">
+                        Sorry, no results for 
+                        '<span class="js-user-query"></span>'
+                    </p>
+                    <h3 class="filter-status hidden">
+                        Reviews on <span class="js-user-filter"></span> drones
+                    </h3>
+                </div>
+            </header>
+
             <div id="reviews-content">
                 
                 <hr>
@@ -149,6 +165,6 @@
     
         </div>
     
-    </section>
+    </div>
     
-</div>
+</section>
