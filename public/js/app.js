@@ -581,10 +581,18 @@ function toggleComments(commentsBtn) {
         $commentSection = $review.find(COMMENTS_CONTAINER),
         $details        = $review.find(DETAILS),
         $specs_btn      = $review.find(SPECS_BTN);
+
+    let delay = 0;
+    if($details.hasClass('expand')) {
+        delay = 100;
+    }
     $details.removeClass('expand');
     $specs_btn.removeClass('btn-active');
-    $commentSection.toggleClass('expand');
-    $(commentsBtn).toggleClass('btn-active');
+    setTimeout(function() {
+        $commentSection.toggleClass('expand');
+        $(commentsBtn).toggleClass('btn-active');
+    }, delay);
+
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -596,10 +604,16 @@ function toggleSpecs(specBtn) {
         $details        = $review.find(DETAILS),
         $commentSection = $review.find(COMMENTS_CONTAINER),
         $commentS_btn   = $review.find(COMMENTS_BTN);
+    let delay = 0;
+    if($commentSection.hasClass('expand')) {
+        delay = 100;
+        }
     $commentSection.removeClass('expand');
     $commentS_btn.removeClass('btn-active');
-    $details.toggleClass('expand');
-    $(specBtn).toggleClass('btn-active');
+    setTimeout(function() {
+        $details.toggleClass('expand');
+        $(specBtn).toggleClass('btn-active');
+    }, delay);
 }
 
 
@@ -814,14 +828,16 @@ function filterReviewHandler() {
                                   .first()
                                   .text()
                                   .toLowerCase();
-                let $hr = $(this).prev();
+                let $hr = $(this).prev('hr');
                 if (make.indexOf(target) === -1) {
                     $(this).add($hr).hide();
                 } else {
                     $(this).add($hr).show();
                 }
             });
-        $(`${REVIEW}:visible`).first().prev('hr').hide(); // removes <hr> from top of filtered reviews
+        $(`${REVIEW}:visible`).first()
+                              .prev('hr')
+                              .hide(); // removes <hr> from top of filtered reviews
         show(FILTER_STATUS);
         $(USER_FILTER).text(droneBrands[target]);
     } else {
@@ -835,6 +851,7 @@ function filterReviewHandler() {
 // Search reviews filter
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function searchFilterHandler() {
+    hide(QUERY_ERROR_MESSAGE);
     // user input
     let baseQuery = $(SEARCH_FILTER).val()
                                     .trim();
@@ -854,7 +871,7 @@ function searchFilterHandler() {
                                .first()
                                .text()
                                .toLowerCase();
-            let $hr = $(this).prev();
+            let $hr = $(this).prev('hr');
 
             let found = query.map((keyword) => {
                 if(make.indexOf(keyword) >= 0 || model.indexOf(keyword) >= 0) {
@@ -871,9 +888,13 @@ function searchFilterHandler() {
     $(USER_QUERY).text(baseQuery);
     if(resultFound) {
         show(QUERY_TEXT);
+        $(`${REVIEW}:visible`).first()
+                              .prev('hr')
+                              .hide();
     } else {
         show(QUERY_ERROR_MESSAGE);
     }
+    $(SEARCH_FILTER_FORM)[0].reset();
 }
 
 
@@ -1645,7 +1666,7 @@ function asideFilterBtnHover() {
 // Search Filter Form SUBMIT
 //
 function searchFilterFormSubmit() {
-    $(SEARCH_FILTER_FORM).on('submit', function(e) {
+    $(SEARCH_FILTER_FORM).submit(function(e) {
         e.preventDefault();
         hide(FILTER_ALERT, 
              FILTER_STATUS);

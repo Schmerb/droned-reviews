@@ -1017,12 +1017,6 @@ button.delete-post-btn {
     background-position-y: -10%;
 }
 
-#threedr::after {
-    background: url('../assets/3dr.jpg') center;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
 #yuneec::after {
     background: url('../assets/typhoonh-compressor.png') center;
     background-size: contain;
@@ -1095,6 +1089,10 @@ button.delete-post-btn {
 /*========================================/
 /* Drone Filter ASIDE (Base/ Mobile)
 /*=======================================*/
+
+.filter-radio-groups {
+    font-size: 14px;
+}
 
 .drone-search-btn,
 .aside-btns {
@@ -1257,7 +1255,7 @@ section.review-page-container {
                 -webkit-linear-gradient(90deg, rgba(13, 69, 149, 0.10), transparent); */
     width: 100%;
     height: auto;
-    /* border: 4px solid #5A7684; */
+    border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .comment-hr {
@@ -1755,13 +1753,27 @@ section.review-page-container {
     }
 } 
 
+/*============================================================/
+/* Iphone 6 AND UP
+/*===========================================================*/
+@media only screen and (min-width: 375px) {
+    .filter-radio-groups {
+        font-size: 17px;
+    }
+}
+
+
 
 /*============================================================/
 /* MOBILE PORTRAIT ONLY
 /*===========================================================*/
-@media only screen and (max-width: 414px) {
+@media only screen and (max-width: 415px) {
     .user-nav  {
         display: none;
+    }
+
+    .drone-search-btn {
+        transform: translateY(1px);
     }
 }
 
@@ -2143,6 +2155,27 @@ section.review-page-container {
         margin-bottom: 5px;
     }
 
+    .filter-radio-groups {
+        padding: 0;
+        border: 1px solid #90a4ae;
+    }
+
+    #radio-filter-form label {
+        display: block;
+    }
+
+    #radio-filter-form label:first-of-type {
+        margin-bottom: 5px;
+    }
+
+    .col-3 {
+        float: left;
+        width: 25%;
+        padding: 5px;
+        /* border: 1px solid black; */
+    }
+
+
     .aside-btn-container {
         margin-top: 10px;
         text-align: center;
@@ -2157,9 +2190,10 @@ section.review-page-container {
 
     .drone-search-btn {
         font-size: 16px;
+        width: 20%;
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
-        transform: translateY(1px);
+        /* transform: translateY(1px); */
     }
 
     .aside-btns {
@@ -2192,6 +2226,10 @@ section.review-page-container {
 
     #reviews-container {
         padding-top: 100px;
+    }
+
+    .img-container {
+        border-bottom: 1px solid rgba(0,0,0,0.1);
     }
 
     .up-vote-arrow.fa,
@@ -2343,6 +2381,10 @@ section.review-page-container {
     
     #radio-filter-form {
         /* margin-top: 30px; */
+    }
+
+    .filter-radio-groups {
+        border: none;
     }
     
     .drone-radio {

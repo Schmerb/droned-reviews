@@ -13,38 +13,56 @@
         
         <label for="radio-filter-form">Filter review posts</label>
         <form id="radio-filter-form" method="" action="#!">
-            <label for="dji-filter">
-                <input class="drone-radio" id="dji-filter" type="radio" name="filter" value="dji" required>
-                DJI
-            </label>
-            <label for="parrot-filter">
-                <input class="drone-radio" id="parrot-filter" type="radio" name="filter" value="parrot">
-                Parrot
-            </label>
-            <label for="gopro-filter">
-                <input class="drone-radio" id="gopro-filter" type="radio" name="filter" value="gopro">
-                GoPro
-            </label>
-            <label for="yuneec-filter">
-                <input class="drone-radio" id="yuneec-filter" type="radio" name="filter" value="yuneec">
-                Yuneec
-            </label>
-            <label for="syma-filter">
-                <input class="drone-radio" id="syma-filter" type="radio" name="filter" value="syma">
-                Syma
-            </label>
-            <label for="hubsan-filter">
-                <input class="drone-radio" id="hubsan-filter" type="radio" name="filter" value="hubsan">
-                Hubsan
-            </label>
-            <label for="xiro-filter">
-                <input class="drone-radio" id="xiro-filter" type="radio" name="filter" value="xiro">
-                Xiro
-            </label>
-            <label for="udi-filter">
-                <input class="drone-radio" id="udi-filter" type="radio" name="filter" value="udi">
-                UDI
-            </label>
+
+
+            <fieldset class="filter-radio-groups">
+               
+                <div class="col-3">
+                    <label for="dji-filter">
+                        <input class="drone-radio" id="dji-filter" type="radio" name="filter" value="dji" required>
+                        DJI
+                    </label>
+                    <label for="parrot-filter">
+                        <input class="drone-radio" id="parrot-filter" type="radio" name="filter" value="parrot">
+                        Parrot
+                    </label>
+                </div>
+                <div class="col-3">
+                    <label for="gopro-filter">
+                        <input class="drone-radio" id="gopro-filter" type="radio" name="filter" value="gopro">
+                        GoPro
+                    </label>
+                    <label for="yuneec-filter">
+                        <input class="drone-radio" id="yuneec-filter" type="radio" name="filter" value="yuneec">
+                        Yuneec
+                    </label>
+                </div>
+                <div class="col-3">
+                    <label for="syma-filter">
+                        <input class="drone-radio" id="syma-filter" type="radio" name="filter" value="syma">
+                        Syma
+                    </label>
+                    <label for="hubsan-filter">
+                        <input class="drone-radio" id="hubsan-filter" type="radio" name="filter" value="hubsan">
+                        Hubsan
+                    </label>
+                </div>
+                <div class="col-3">
+                    <label for="xiro-filter">
+                        <input class="drone-radio" id="xiro-filter" type="radio" name="filter" value="xiro">
+                        Xiro
+                    </label>
+                    <label for="udi-filter">
+                        <input class="drone-radio" id="udi-filter" type="radio" name="filter" value="udi">
+                        UDI
+                    </label>
+                </div>
+                
+            </fieldset>
+
+
+
+
 
             <div class="filter-alert hidden">
                 <span>Sorry, no match found</span>
