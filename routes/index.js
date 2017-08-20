@@ -16,10 +16,16 @@ const postsRouter    = require('./postsRouter');
 const commentsRouter = require('./commentsRouter');
 const usersRouter    = require('./usersRouter');
 const fileRouter     = require('./fileRouter');
+const dronesRouter   = require('./dronesRouter');
 
 // routes for app
 
+// main page
 router.get('/', mainController.getIndex);
+
+// mission page
+router.get('/mission', mainController.getMission);
+
 // RSS Feed
 router.get('/feed', feedUpdateController.getFeed);
 
@@ -38,7 +44,11 @@ router.all(['/posts/',
 
 router.use('/users/', usersRouter);
 
+
 router.use('/file', fileRouter);
+
+
+router.use('/drones', dronesRouter);
 
 
 module.exports = router;

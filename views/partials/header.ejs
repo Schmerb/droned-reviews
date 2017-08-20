@@ -17,7 +17,7 @@
                 <% } %>
                 <li class="reviews"><a href="#">Reviews</a></li>
                 <li class="news"><a href="#">News</a></li>
-                <li class="mission"><a href="#">Mission</a></li>
+                <li class="mission"><a href="/mission">Mission</a></li>
             </ul>
             <ul class="user-nav">
                 <% if ( loggedIn ) { %>
@@ -34,7 +34,7 @@
                 <% } %>
                 <li class="reviews"><a href="#" >Reviews</a></li>
                 <li class="news"><a href="#">News</a></li>
-                <li class="mission"><a href="#">Mission</a></li>
+                <li class="mission"><a href="/mission">Mission</a></li>
                 <% if ( loggedIn ) { %>
                     <li class="me"><a href="/users/me">Me</a></li>
                     <li class="logout"><a href="#">Log Out</a></li>
@@ -47,5 +47,10 @@
     </div>
 </div>
 <div class="landing-greeting">
-    <p>Hear directly from drone owners and get up to date on the latest and greatest intel in the personal drone industry.</p>
+    <p class="greeting ">Hear directly from drone owners and get up to date on the latest and greatest intel in the personal drone industry.</p>
+    <div class="mission-container hidden">
+        <p>My mission at Droned Reviews is to bring together drone pilots and hobbyists such as myself to share and discuss our collective knowledge on current drone makes and models. As
+            a new, thriving market, there are quite a few choices you must decide between when looking to purchase a drone whether it be your first or 5th quadcopter. 
+        </p>
+    </div>
 </div>

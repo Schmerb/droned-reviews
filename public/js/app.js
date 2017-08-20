@@ -3,7 +3,14 @@
 let state = {
     loggedIn: false,
     user: '',
-    isMobile: false
+    isMobile: false,
+    player: null,
+    modal: null,
+    expanded: false,
+    video: {
+        query: '',
+        nextPageToken: ''
+    }
 };
 
 // Banner Nav
@@ -48,7 +55,26 @@ const PREVIEW_BTN       = '.preview-btn';
 const PREIVEW_CLOSE_BTN = '.preview-close-btn';
 const INTERACTIONS      = '.interactions';
 // Drone carousel
-const DRONE_SLIDER = '.drone-slider';
+const DRONE_SLIDER        = '.drone-slider';
+const DRONE_MODELS_SLIDER = '.drone-models-slider';
+// Drone detail page
+const DETAIL_MAKE    = '.detail-make';
+const DETAIL_MODEL   = '.detail-model';
+const DETAIL_LISTS   = '.detail-lists';
+const AMAZON_LINK    = '.amazon-link';
+const MAIN_VID       = '.main-video iframe';
+const G_VID_1        = '.g-top-left img';
+const G_VID_2        = '.g-top-right img';
+const G_VID_3        = '.g-bottom-left img';
+const G_VID_4        = '.g-bottom-right img';
+const G_IMG          = '.g-video img';
+const EXPAND_ARROW   = '.main-video-wrap .fa.fa-expand';
+const V_CLOSE_ICON   = '.v-modal-close.fa.fa-times';
+const VIDEO_BACKDROP = '.video-backdrop';
+const MODAL_IFRAME   = '.frame-wrap iframe';
+const MORE_ICON      = '.more-icon.fa';
+const SHOWCASE       = '.showcase-wrap';
+const GALLERY        = '.video-gallery';
 // Aside Filter
 const ASIDE_BTN            = '.aside-slide-btn';
 const ASIDE_CONTAINER      = '.aside-container';
@@ -96,7 +122,8 @@ const SHOW_REPLY_COMMENTS_TXT  = '.show-reply-comments-txt';
 const CLOSE_REPLY_COMMENTS_TXT = '.close-reply-comments-txt';
 const SUB_SIGNUP_BTN           = '.sub-signup';
 const SUB_LOGIN_BTN            = '.sub-login';
-
+// Footer
+const TOP_TOP_ARROW = '.to-top';
 
 
 
@@ -188,6 +215,9 @@ function formReviewPost(postData, byThisUser = false, userVoted) {
         votes   = $this.votes || 0,
         created = getElapsedTime(new Date($this.created));
     
+    // Amazon product link
+    let amazonLink = $this.specs.link;
+    
     content = content.map((paragraph) => {
         return `<p class="paragraph">${paragraph}</p>`;
     });
@@ -221,7 +251,7 @@ function formReviewPost(postData, byThisUser = false, userVoted) {
                             <div class="content">
                                 ${content.join('')}
                             </div>
-                            <hr class="mobile-only">
+                            <hr class="mobile-only post-hr">
                             <div class="post-attr">
                                 
                                 <div class="c-date-edit-wrap">
@@ -249,6 +279,9 @@ function formReviewPost(postData, byThisUser = false, userVoted) {
                         <div class="details">
                             <h3>Model: <span class="model">${model}</span></h3>
                             <h5>Manufacturer: <span class="maker"><b>${make}</b></span></h5>
+                            <div>
+                                <h4>Get it: ${amazonLink}</h4>
+                            </div>
                             <dl class="specs">
                                 <dt>Specs</dt>
                                 <dd>Ave. Price: <span>$${specs.price}</span></dd>
@@ -376,6 +409,244 @@ function getReplyCommentTemplate(comment, byThisUser, didUserLike) {
             </div>`;
 }
 
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+//
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function getDetailPageSpecsTemplate(data) {
+    return `<li>
+                <dl class="main-specs">
+                    <dt>Specs</dt>
+                    <dd>Ave. Price: <span>$${data.price}</span></dd>
+                    <dd>Camera: <span>${data.camera}</span></dd>
+                    <dd>Max Flight Time: <span class="">${data.max_flight_time}</span></dd>
+                    <dd>Max Range: <span>${data.max_range}</span></dd>
+                    <dd>Max Speed: <span>${data.max_speed}</span></dd>
+                    <dd>GPS?: <span>${data.gps}</span></dd>
+                    <dd>3-axis gimbal: <span>${data.gimbal}</span></dd>
+                    <dd>Flips: <span>${data.flips || 'NO'}</span></dd>
+                </dl>
+            </li>
+            <li>
+                <dl class="mode-specs">
+                    <dt>Modes</dt>
+                    <dd>Intelligent Flight: <span>${data.intelligent_flight}</span></dd>
+                    <dd>Avoidance: <span>${data.avoidance || 'NO'}</span></dd>
+                    <dd>Return Home: <span>${data.return_home || 'NO'}</span></dd>
+                    <dd>Follow-Me Mode: <span>${data.follow_me_mode || 'NO'}</span></dd>
+                    <dd>Tracking Mode: <span>${data.tracking_mode || 'NO'}</span></dd>
+                </dl>
+            </li>`;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+//
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function getGalleryTemplate(video) {
+    const EMBED_URL = "https://www.youtube.com/embed";
+    let imgUrl      = video.snippet.thumbnails.medium.url,
+        videoId     = video.id.videoId,
+        description = video.snippet.description;
+        
+    return `<div class="vid-wrap ${state.isMobile ? 'mobile-vid' : ''}">
+                <div class="g-video ${state.isMobile ? 'mobile-vid' : ''}">
+                    <img class="${state.isMobile ? 'hidden' : ''}" 
+                        src="${imgUrl}" 
+                        alt="${description}" 
+                        data-vid-url="${EMBED_URL}/${videoId}?enablejsapi=1">
+                    <iframe class="mobile-vid ${state.isMobile ? '' : 'hidden'}"
+                        src="${EMBED_URL}/${videoId}?enablejsapi=1" 
+                        data-alt="${description}" 
+                        data-vid-url="${EMBED_URL}/${videoId}?enablejsapi=1"></iframe>
+                </div>
+            </div>`;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+//
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function displayDetailSpecs(currentSlide) {
+    let $currentSlide = $(`.drone-model[data-slick-index="${currentSlide}"]`);
+    let model = $currentSlide.attr('data-model'),
+        make  = $currentSlide.attr('data-make');
+    // grab model data object from drones object
+    let data     = getDroneData(make, model),
+        specHtml = getDetailPageSpecsTemplate(data);
+
+    $(DETAIL_MODEL).text(data.model);
+    $(DETAIL_MAKE).text(data.brand);
+    $(DETAIL_LISTS).html(specHtml);
+    $(AMAZON_LINK).html(data.link);
+    updateDetailVideos($currentSlide);
+    let $specs = $('.main-specs span').add('.mode-specs span');
+    $specs.each(function(index) {
+        if($(this).text() === 'NO') {
+            $(this).css({color: 'black'});
+        }
+    });
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Gets videos from youtube api and updates current detail 
+// page video gallery
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function updateDetailVideos($currentSlide) {
+    const EMBED_URL = "https://www.youtube.com/embed";
+    let make  = $currentSlide.attr('data-cased-make'),
+        model = $currentSlide.find('label').text(); 
+    let query = `${make} ${model}`;
+    searchYoutubeVideos(query, res => {
+        // Save reference to current query and next page of search results
+        state.video.query         = query;
+        state.video.nextPageToken = res.nextPageToken;
+
+        let vids = res.items;
+        let mainVid = vids[0],
+            g_vid_1 = vids[1],
+            g_vid_2 = vids[2],
+            g_vid_3 = vids[3],
+            g_vid_4 = vids[4];
+
+        // state.player = new YT.Player('main-iframe');
+        $(MAIN_VID).attr('src', `${EMBED_URL}/${mainVid.id.videoId}?enablejsapi=1&html5=1`)
+                   .attr('data-thumbnail', mainVid.snippet.thumbnails.medium.url)
+                   .attr('data-alt', mainVid.snippet.description);
+
+        $(G_VID_1).attr('src', `${g_vid_1.snippet.thumbnails.medium.url}`)
+                  .attr('data-vid-url', `${EMBED_URL}/${g_vid_1.id.videoId}?enablejsapi=1`)
+                  .attr('alt', g_vid_1.snippet.description);
+
+        $(G_VID_2).attr('src', `${g_vid_2.snippet.thumbnails.medium.url}`)
+                  .attr('data-vid-url', `${EMBED_URL}/${g_vid_2.id.videoId}?enablejsapi=1`)
+                  .attr('alt', g_vid_2.snippet.description);
+
+        $(G_VID_3).attr('src', `${g_vid_3.snippet.thumbnails.medium.url}`)
+                  .attr('data-vid-url', `${EMBED_URL}/${g_vid_3.id.videoId}?enablejsapi=1`)
+                  .attr('alt', g_vid_3.snippet.description);
+
+        $(G_VID_4).attr('src', `${g_vid_4.snippet.thumbnails.medium.url}`)
+                  .attr('data-vid-url', `${EMBED_URL}/${g_vid_4.id.videoId}?enablejsapi=1`)
+                  .attr('alt', g_vid_4.snippet.description);
+    
+        nextSearchPageHandler(); // Load videos in 'checkout more' section
+    }, 5);
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+//
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function videoGalleryHandler($img) {
+    let vidUrl   = $img.attr('data-vid-url'),
+        thumbUrl = $img.attr('src'),
+        alt      = $img.attr('alt');
+    let mainVidUrl      = $(MAIN_VID).attr('src'),
+        mainVidThumbUrl = $(MAIN_VID).attr('data-thumbnail'),
+        mainVidAlt         = $(MAIN_VID).attr('data-alt');
+    // swap videos
+    $(MAIN_VID).attr('src', vidUrl);
+    $(MAIN_VID).attr('data-alt', alt);
+    $(MAIN_VID).attr('data-thumbnail', thumbUrl);
+
+    $img.attr('src', mainVidThumbUrl);
+    $img.attr('alt', mainVidAlt);
+    $img.attr('data-vid-url', mainVidUrl);
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Creates video elements for each video and appends to
+// gallery-content area
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function displayMoreVideos(videos) {
+    let frames = videos.map(video => {
+        return getGalleryTemplate(video);
+    });
+    $('.more-content').append(frames.join(''));
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Opens video modal and plays video from current time
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function openVideoModal(url, time = 0, index = '') {
+    show(VIDEO_BACKDROP);
+    $('body').addClass('no-scroll');
+    $(MODAL_IFRAME).attr('src', `${url}&start=${time}&autoplay=1`);
+    $(MAIN_VID).attr('src', url);
+    $(MODAL_IFRAME).attr('data-index', index);
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// closes video modal
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function closeVideoModal() {
+    hide(VIDEO_BACKDROP);
+    $('body').removeClass('no-scroll');
+    $(MODAL_IFRAME).attr('src', '');
+    $(MODAL_IFRAME).attr('data-index', '');
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Modal Video navigation controller for MAIN gallery
+// uses main video iframe url and the four gallery img urls
+// for 5 possible choices for video navigation
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function mainModalNavController(nextVideo) {
+    let imgs = [
+        $('.g-top-left img'),
+        $('.g-top-right img'),
+        $('.g-bottom-left img'),
+        $('.g-bottom-right img')
+    ];
+    let currentIndex = parseInt($(MODAL_IFRAME).attr('data-index')),
+        nextUrl,
+        nextIndex;
+    if (nextVideo === 'next') {
+        if(currentIndex === 3) { // end of videos met
+            alert('Go back to checkout more videos!');
+            return; // do nothing
+        }
+        if(currentIndex === -1) { // current modal video is from main iframe, get first gallery img url
+            nextUrl   = imgs[0].attr('data-vid-url');
+            nextIndex = 0;
+        } else {
+            nextIndex = currentIndex + 1;
+            nextUrl   = imgs[nextIndex].attr('data-vid-url');
+        }
+    } else {
+        if(currentIndex === -1) { // beginning of videos met
+            alert('Go back to checkout more videos!');
+            return; // do nothing
+        }
+        if(currentIndex === 0) { 
+            nextUrl   = $(MAIN_VID).attr('src'); // current modal video is first gallery img url, get main iframe url
+            nextIndex = -1;
+        }else {
+            nextIndex = currentIndex - 1;
+            nextUrl   = imgs[nextIndex].attr('data-vid-url');
+        }
+    }
+    $(MODAL_IFRAME).attr('src', `${nextUrl}&autoplay=1`);
+    $(MODAL_IFRAME).attr('data-index', nextIndex);
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Modal Video navigation controller for SUB gallery
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function modalVideoNavController(nextVideo) {
+    let currentIndex = parseInt($(MODAL_IFRAME).attr('data-index'));
+
+    let next = nextVideo === 'next' ? currentIndex + 1 : currentIndex - 1;
+    let url = $(`.more-content .vid-wrap:nth-of-type(${next + 1})`)
+                    .find('img')
+                    .attr('data-vid-url');
+
+    if (next > $('.more-content img').length - 1 || next < 0) {
+        next < 0 ? alert('Click next arrow for more') 
+                 : alert('Click prev arrow for more'); 
+    } else {
+        $(MODAL_IFRAME).attr('src', `${url}&autoplay=1`);
+        $(MODAL_IFRAME).attr('data-index', next);
+    }
+}
+
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Displays current posts in db to screen
@@ -443,8 +714,10 @@ function displayComment(comment) {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function openLoginSignupModal(screen) {
     show(LOGIN_SIGNUP_PAGE);
-    $(LOGIN_SIGNUP_PAGE).addClass('slide');
-    $(LOGIN_SIGNUP_MODAL).addClass('slide');
+    setTimeout(function() {
+        $(LOGIN_SIGNUP_PAGE).addClass('slide');
+        $(LOGIN_SIGNUP_MODAL).addClass('slide');
+    }, 200);
     screen === 'login' ? displayLoginForm() : displaySignupForm();
     $('body').addClass('no-scroll');
 }
@@ -454,7 +727,14 @@ function openLoginSignupModal(screen) {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function closeLoginSignupModal() {
     $(LOGIN_SIGNUP_MODAL).removeClass('slide');
-    $(LOGIN_SIGNUP_PAGE).removeClass('slide');
+    setTimeout(function() {
+        $(LOGIN_SIGNUP_PAGE).removeClass('slide');
+    }, 200);
+
+    setTimeout(function() {
+        hide(LOGIN_SIGNUP_PAGE);
+    }, 800);
+
     $('body').removeClass('no-scroll');
 }
 
@@ -525,6 +805,48 @@ function displayLoginError(message) {
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Slides review form in from top of screen, fades in 
+// background
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function slideInReviewForm($nav, SCREEN) {
+    let delay = $nav.hasClass('mobile-write') ? 500 : 0; // if click comes from mobile menu, delay so menu closes before form opens
+    let modalDelay  = state.isMobile ? 100 : 400,
+        screenDelay = state.isMobile ?   0 : 100;
+    
+    setTimeout(function() {
+        show(SCREEN);
+
+        setTimeout(function() {
+            $(SCREEN).addClass('fade-in');
+        }, screenDelay);
+
+        setTimeout(function() {
+            $('.review-form-modal').addClass('slide');
+        }, modalDelay);
+
+        $('body').addClass('no-scroll');
+    }, delay);
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Slides review form up out of view, fades out
+// background
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function slideUpReviewForm() {
+    $('.review-form-modal').removeClass('slide');
+    $(REVIEW_FORM_SCREEN).removeClass('fade-in');
+    $(EDIT_REVIEW_FORM_SCREEN).removeClass('fade-in');
+
+    let screenDelay = state.isMobile ? 400 : 800;
+    setTimeout(function() {
+        hide(REVIEW_FORM_SCREEN);
+        hide(EDIT_REVIEW_FORM_SCREEN);
+    }, screenDelay);
+
+    $('body').removeClass('no-scroll');
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Displays EDIT review post modal
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function displayEditPostForm($post) {
@@ -542,7 +864,9 @@ function displayEditPostForm($post) {
                      .join('')
                      .trim();
     
-    show(EDIT_REVIEW_FORM_SCREEN);
+    // show(EDIT_REVIEW_FORM_SCREEN);
+    slideInReviewForm($(EDIT_REVIEW_FORM_SCREEN), EDIT_REVIEW_FORM_SCREEN);
+
     $('#edit-title-input').val(postTitle);
     $('#edit-post-content').val(content);
     $(`.dropdown-options option[value="${model}"]`).prop('selected', true);
@@ -616,6 +940,26 @@ function toggleSpecs(specBtn) {
     }, delay);
 }
 
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Toggles (shows/hides) mobile menu
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function toggleMobileMenu() {
+    $(MOBILE_MENU).toggleClass('open');
+    $(BURGER_WRAP).toggleClass('open');
+    $(BURGER_ICON).toggleClass('open');
+    $('body').toggleClass('no-scroll'); // Sends user to top of page
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Hides mobile menu
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function closeMobileMenu() {
+    $(MOBILE_MENU).removeClass('open');
+    $(BURGER_WRAP).removeClass('open');
+    $(BURGER_ICON).removeClass('open');
+    $('body').removeClass('no-scroll');
+}
+
 
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -641,6 +985,16 @@ function show() {
 //================================================================================
 // API handlers / Display handlers
 //================================================================================
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Handles clicks on drone banner and redirects
+// to corresponding drone brand endpoint
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function droneBannerHandler($droneMake) {
+    let brand = $droneMake.attr('id');
+    let url = `/drones/${brand}`;
+    location.href = url;
+}
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Collects user signup data and submits it to server
@@ -1070,12 +1424,21 @@ function likeDislikeComment($btn, like = true) {
 // via its post ID with a reference to the uploaded file 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function fileUploadHandler(file, postId) {
-    console.log({ file, postId });
+    // console.log({ file, postId });
     let updateData = {
         id: postId,
         imgId: file.file._id
     };
     updatePost(updateData);
+}
+
+function nextSearchPageHandler() {
+    let q     = state.video.query,
+    token = state.video.nextPageToken;
+    searchYoutubeNextPage(q, token, res => {
+        state.video.nextPageToken = res.nextPageToken;
+        displayMoreVideos(res.items);
+    }, 6);
 }
 
 
@@ -1099,7 +1462,7 @@ function createNewUser(userData) {
             openLoginSignupModal('login');
             displayWelcomeMessage(res.username);
         },
-        error: (err) => {
+        error: (jqXHR, textStatus, err) => {
             let message = err.responseJSON.message;
             let location = err.responseJSON.location;
             displaySignupError(location, message);
@@ -1126,7 +1489,7 @@ function logUserIn(loginData) {
                 displayLoginError(res.message);
             }
         },
-        error: (err) => {
+        error: (jqXHR, textStatus, err) => {
             console.log(err);
         }
     });
@@ -1134,11 +1497,14 @@ function logUserIn(loginData) {
 
 function logUserOut() {
     $.ajax({
-        url: 'users/logout',
+        url: '/users/logout',
         type: 'GET',
         dataType: 'json',
         success: (res) => {
             location.reload();
+        },
+        error: (jqXHR, textStatus, err) => {
+            console.log(err);
         }
     });
 }
@@ -1152,6 +1518,9 @@ function getPostsFromDb() {
         dataType: 'json',
         success: function (res) {
             postsHandler(res.posts);
+        },
+        error: (jqXHR, textStatus, err) => {
+            console.log(err);
         }
     });
 }
@@ -1161,7 +1530,10 @@ function getPostById(id, callback) {
         url: `/posts/${id}`,
         type: 'GET',
         dataType: 'json',
-        success: callback
+        success: callback,
+        error: (jqXHR, textStatus, err) => {
+            console.log(err);
+        }
     });
 }
 
@@ -1179,6 +1551,9 @@ function createPost(postData, file) {
             } else {
                 location.reload();
             }
+        },
+        error: (jqXHR, textStatus, err) => {
+            console.log(err);
         }
     });
 }
@@ -1202,6 +1577,9 @@ function updatePost(updateData, file) {
                 if (res.hasOwnProperty('title') && !(updateData.hasOwnProperty('votes')))
                     location.reload();
             }
+        },
+        error: (jqXHR, textStatus, err) => {
+            console.log(err);
         }
     });
 }
@@ -1213,6 +1591,9 @@ function deletePost(id) {
         dataType: 'json',
         success: res => {
             location.reload();
+        },
+        error: (jqXHR, textStatus, err) => {
+            console.log(err);
         }
     });
 }
@@ -1232,8 +1613,8 @@ function uploadFile(blobFile, postId) {
         success: res => {
             fileUploadHandler(res, postId);
         },
-        error: (jqXHR, textStatus, errorMessage) => {
-            console.log(errorMessage);
+        error: (jqXHR, textStatus, err) => {
+            console.log(err);
         }
     });
 }
@@ -1245,6 +1626,9 @@ function getFile(id, postId) {
         dataType: 'json',
         success: res => {
             addImgToPostHandler(res, postId);
+        },
+        error: (jqXHR, textStatus, err) => {
+            console.log(err);
         }
     });
 }
@@ -1256,6 +1640,9 @@ function deleteFile(id) {
         success: res => {
             consle.log({ res });
             console.log(`successfully deleted img(${id})`);
+        },
+        error: (jqXHR, textStatus, err) => {
+            console.log(err);
         }
     });
 }
@@ -1278,6 +1665,9 @@ function getCommentsFromDb(id, mainComments = true) {
                 //  Main comment                //  Reply comment
                 mainComments ? commentsFromDbHandler(res.comments) : commentsFromDbHandler(res.comments, false, id)
             }
+        },
+        error: (jqXHR, textStatus, err) => {
+            console.log(err);
         }
     });
 }
@@ -1287,7 +1677,10 @@ function getCommentById(id, callback) {
         url: `/posts/comments/${id}`,
         type: 'GET',
         dataType: 'json',
-        success: callback
+        success: callback,
+        error: (jqXHR, textStatus, err) => {
+            console.log(err);
+        }
     });
 }
 
@@ -1297,7 +1690,10 @@ function postComment(commentObj) {
         type: 'POST',
         dataType: 'json',
         data: commentObj,
-        success: displayComment
+        success: displayComment,
+        error: (jqXHR, textStatus, err) => {
+            console.log(err);
+        }
     });
 }
 
@@ -1312,9 +1708,66 @@ function updateComment(updateData) {
         success: res => {
             console.log('Success');
             console.log({ res });
+        },
+        error: (jqXHR, textStatus, err) => {
+            console.log(err);
         }
     });
 }
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * 
+// YoutTube API calls
+// * * * * * * * * * * * * * * * * * * * * * * * * *
+const YOUTUBE_KEY = 'AIzaSyCSyc7hnCXopqsh5Z9HlklFAK3gvteRMAY';
+const YOUTUBE_URL = 'https://www.googleapis.com/youtube/v3';
+
+function searchYoutubeVideos(query = '', callback = printToConsole, maxResults = 10) {
+    $.ajax({
+        url: `${YOUTUBE_URL}/search/`,
+        type: 'GET',
+        dataType: 'json',
+        data: {
+            maxResults,
+            key: YOUTUBE_KEY,
+            part: 'snippet',
+            q: query
+        },
+        success: callback,
+        error: (jqXHR, textStatus, err) => {
+            console.log(err);
+        }
+    });
+}
+
+function searchYoutubeNextPage(query, pageToken, callback = printToConsole, maxResults = 10) {
+    $.ajax({
+        url: `${YOUTUBE_URL}/search/`,
+        type: 'GET',
+        dataType: 'json',
+        data: {
+            maxResults,
+            pageToken,
+            key: YOUTUBE_KEY,
+            part: 'snippet',
+            q: query,
+
+        },
+        success: callback,
+        error: (jqXHR, textStatus, err) => {
+            console.log(err);
+        }
+    });
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * 
+// API Utility, prints response to console
+// * * * * * * * * * * * * * * * * * * * * * * * * *
+function printToConsole(res) {
+    console.log(res);
+}
+
+
+
 
 // ================================================================================
 // Slick Carousel
@@ -1378,6 +1831,28 @@ function initDroneSlider() {
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * 
+// Drone Models carousel
+// * * * * * * * * * * * * * * * * * * * * * * * * * 
+function initDroneModelsSlider() {
+    $(DRONE_MODELS_SLIDER).slick({
+        dots: true,
+        arrows: true,
+        infinite: true,
+        speed: 500,
+        fade: true,
+        cssEase: 'linear',
+        responsive: [
+            {
+                breakpoint: 440,
+                settings: {
+                    dots: false
+                }
+            }
+        ]
+    });
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * 
 // Intializes drone slider and sets height to zero
 // before and unsets height after it is 'slicked'
 // to avoid FOUC
@@ -1385,6 +1860,12 @@ function initDroneSlider() {
 function displayDroneSlider() {
     $('.slick-slider').css('height', '0px');
     initDroneSlider();
+    $('.slick-slider').css('height', '');
+}
+
+function displayDroneModelsSlider() {
+    $('.slick-slider').css('height', '0px');
+    initDroneModelsSlider();
     $('.slick-slider').css('height', '');
 }
 
@@ -1410,6 +1891,9 @@ function responsiveReslick() {
         let width = parseInt($('body').css('width'));
         if (!$(DRONE_SLIDER).hasClass('slick-initialized')) {
             initDroneSlider();
+        }
+        if (!$(DRONE_MODELS_SLIDER).hasClass('slick-initialized')) {
+            initDroneModelsSlider();
         }
     });
 }
@@ -1441,6 +1925,29 @@ function checkSizeHandler() {
 
 function checkSize() {
     (parseInt($("body").css('width')) <= '414') ? state.isMobile = true : state.isMobile = false;
+
+    if (window.location.href.indexOf('drones') >= 0) {
+
+        if(parseInt($("body").css('width')) <= '400') {
+            hide('.more-content img');
+            show('.more-content iframe');
+            $('.more-content .vid-wrap').addClass('mobile-vid');
+        } else {
+            hide('.more-content iframe');
+            show('.more-content img');
+            $('.more-content .vid-wrap').removeClass('mobile-vid');
+        }
+
+        if(parseInt($("body").css('width')) <= '720') {
+            if(! $(GALLERY).prev().is(SHOWCASE)) {
+                $(SHOWCASE).detach().insertBefore(GALLERY);
+            }
+        } else {
+            if (! $(GALLERY).next().is(SHOWCASE)) {
+                $(SHOWCASE).detach().insertAfter(GALLERY);
+            }
+        }
+    }
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -1486,40 +1993,44 @@ function getElapsedTime(prevDate) {
     }
 }
 
+
+function hashUrlHandler() {
+    if(location.hash === '#reviews') {
+        smoothScroll(REVIEWS);
+    }
+}
+
+function checkEndpoint() {
+    let endpoint = window.location.pathname;
+    if (endpoint.indexOf('drones') >= 0) {
+        $('#main-header').removeClass('banner')
+                         .addClass('drone-header');
+        hide('.landing-greeting');
+        $(`.drone-list a[href="${endpoint}"]`).addClass('current-page');
+        $(`.drone-list a[href="${endpoint}"]`).parent().addClass('current-page');
+    } else if (endpoint.indexOf('mission') >= 0) {
+        show('.mission-container');
+        hide('.greeting');
+    }
+}
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// Gets tabs from user in textarea and adds correct ascii
-// char to text, '\t'
+// Gets reference to iframe 'showcase' video player
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-function tabFromTextareaHandler(textarea) {
-    // grab caret position/selection
-    let start     = textarea.selectionStart;
-    let end       = textarea.selectionEnd;
-    let $textarea = $(textarea);
-    let value     = $textarea.val();
-
-    console.log('tab pressed');
-
-    // set textarea value to text before caret + '\t' + text after caret
-    $textarea.val(value.substring(0, start) 
-                + '\t' 
-                + value.substring(end));
-    // put caret at right position again +1 for tab
-    textarea.selectionStart = textarea.selectionEnd = start + 1;
+function onYouTubeIframeAPIReady() {
+    state.player = new YT.Player('main-iframe', {
+        events: {
+            'onReady': () => {
+                console.log("Main Player Ready!!");
+            },
+            'onStateChange': () => {
+                console.log("Main Player state changed");
+                // console.log('TIME', this.getCurrentTime());
+            }
+        }
+    });
 }
 
-function toggleMobileMenu() {
-    $(MOBILE_MENU).toggleClass('open');
-    $(BURGER_WRAP).toggleClass('open');
-    $(BURGER_ICON).toggleClass('open');
-    $('body').toggleClass('no-scroll'); // Sends user to top of page
-}
-
-function closeMobileMenu() {
-    $(MOBILE_MENU).removeClass('open');
-    $(BURGER_WRAP).removeClass('open');
-    $(BURGER_ICON).removeClass('open');
-    $('body').removeClass('no-scroll');
-}
 
 
 //================================================================================
@@ -1546,9 +2057,31 @@ function mobileMenuItemClick() {
 function reviewsNavItemClick() {
     $(REVIEWS_NAV_ITEM).on('click', (e) => {
         e.preventDefault();
+        if (location.pathname !== '/') {
+            window.location = '/#reviews';
+        }
         smoothScroll('#reviews');
     });
 }
+
+// * * * * * * * * * * * * * 
+//   Drone banner clicks
+// * * * * * * * * * * * * * 
+function droneBannerClicks() {
+    $('.drone-make').on('click', function(e) {
+        e.preventDefault();
+        droneBannerHandler($(this));
+    });
+}
+
+function droneModelSlideChange() {
+    $(DRONE_MODELS_SLIDER).on('afterChange', function(e, slick, currentSlide) {
+        e.preventDefault();
+        displayDetailSpecs(currentSlide);
+    });
+}
+
+
 
 // * * * * * * * * * * * * * 
 //   Login modal btn
@@ -1712,25 +2245,18 @@ function filterBtnClick() {
 function writeReviewNavClick() {
     $(WRITE_REVIEW_NAV).on('click', function(e) {
         e.preventDefault();
-        let delay = 0;
-        if ($(this).hasClass('mobile-write')) {
-            delay = 500; // if click comes from mobile menu, delay so menu closes before form opens
-        }
-        setTimeout(function() {
-            show(REVIEW_FORM_SCREEN);
-            $('body').addClass('no-scroll');
-        }, delay);
+        slideInReviewForm($(this), REVIEW_FORM_SCREEN);
     });
 }
+
 
 function closeReviewFormClick() {
     $(CLOSE_BTN).on('click', (e) => {
         e.preventDefault();
-        hide(REVIEW_FORM_SCREEN);
-        hide(EDIT_REVIEW_FORM_SCREEN);
-        $('body').removeClass('no-scroll');
+        slideUpReviewForm();
     });
 }
+
 
 
 // * * * * * * * * * * * * * 
@@ -1910,14 +2436,105 @@ function specsBtnClick() {
 }
 
 // * * * * * * * * * * * * 
-// Textarea Keydown (TAB)
+// Detail page clicks
 // * * * * * * * * * * * * 
-function getTabFromTextarea() {
-    $('textarea').keydown(function(e) {
-        if (e.keyCode === 9) {
-            e.preventDefault();
-            tabFromTextareaHandler(this);
+
+// open video modal
+function expandArrowClick() {
+    $(EXPAND_ARROW).on('click', e => {
+        e.preventDefault();
+        let time = Math.floor(state.player.getCurrentTime()),
+            url  = $(MAIN_VID).attr('src');
+        state.expanded = true;
+        openVideoModal(url, time, -1);
+    });
+}
+
+// close video modal
+function closeVideoModalClick() {
+    $(V_CLOSE_ICON).on('click', e => {
+        e.preventDefault();
+        state.expanded = false;
+        closeVideoModal();
+    });
+}
+
+// next video click
+function nextVidBtnClick() {
+    $('.next-vid-btn').on('click', e => {
+        e.preventDefault();
+        if (state.expanded) {
+            mainModalNavController('next');
+        } else {
+            modalVideoNavController('next');
         }
+    });
+}
+
+// prev video click
+function prevVidBtnClick() {
+    $('.prev-vid-btn').on('click', e => {
+        e.preventDefault();
+        if (state.expanded) {
+            mainModalNavController('prev');
+        } else {
+            modalVideoNavController('prev');
+        }
+    });
+}
+
+
+// main gallery video clicks
+function videoGalleryClicks() {
+    $(G_IMG).on('click', function(e) {
+        e.preventDefault();
+        videoGalleryHandler($(this));
+    });
+}
+
+// sub gallery video clicks --> opens modal
+function moreVideoGalleryClicks() {
+    $('.more-content').on('click', G_IMG, function(e) {
+        e.preventDefault();
+        let url   = $(this).attr('data-vid-url'),
+            index = $('.more-content .g-video img').index(this);
+        openVideoModal(url, 0, index);
+    });
+}
+
+// opens sub video gallery
+function openMoreVideosBtnClick() {
+    $('.more-btn').on('click', function(e) {
+        e.preventDefault();
+        let $btn = $(this);
+        $('.more-content-container').toggleClass('slide');
+        $btn.toggleClass('open');
+        if($btn.hasClass('open')) {
+            $btn.text('Close');
+        } else {
+            setTimeout(function() {
+                $btn.text('Checkout More');
+            }, 150);
+        }
+    });
+}
+
+// call to api to fetch more videos
+function getMoreVideosIconClick() {
+    $(MORE_ICON).on('click', e => {
+        e.preventDefault();
+        nextSearchPageHandler();
+    });
+}
+
+
+// * * * * * * * * * * * * 
+// Footer clicks
+// * * * * * * * * * * * * 
+function toTopClick() {
+    $(TOP_TOP_ARROW).on('click', e => {
+        e.preventDefault();
+        smoothScroll('#main-header', 300);
     });
 }
 
@@ -1931,6 +2548,8 @@ function navMenuEvents() {
     loginBtnsClick();
     signupBtnsClick();
     logOutBtnClick();
+    droneBannerClicks();
+    toTopClick();
 }
 
 function signupLoginFormEvents() {
@@ -1973,12 +2592,31 @@ function reviewEvents() {
     editPostIconClick();
 }
 
+function detailPageClicks() {
+    expandArrowClick();
+    nextVidBtnClick();
+    prevVidBtnClick();
+    closeVideoModalClick();
+    openMoreVideosBtnClick();
+    getMoreVideosIconClick();
+    videoGalleryClicks();
+    moreVideoGalleryClicks();
+}
+
+function init() {
+    displayDroneSlider(); // inits drone slider and conceals FOUC
+    displayDroneModelsSlider();
+    droneModelSlideChange();
+    displayDetailSpecs(0);
+}
+
 function utils() {
     fixBannerNav();
     fillDroneOptGroups();
-    displayDroneSlider(); // inits drone slider and conceals FOUC
     responsiveReslick();
     checkSizeHandler();
+    hashUrlHandler();
+    checkEndpoint();
 }
 
 //================================================================================
@@ -1992,9 +2630,11 @@ $(function () {
     writeReviewFormEvents();
     asideEvents();
     reviewEvents();
+    detailPageClicks();
     // getAndDisplayReviews();
 
     // openLoginSignupModal('signup');
 
     getPostsFromDb();
+    init();
 });

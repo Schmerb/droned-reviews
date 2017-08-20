@@ -15,7 +15,8 @@ body {
     margin: 0;
     width: 100%;
     min-width: 300px;
-    min-height: 200vh;
+    /* height: 100%;
+    min-height: 200vh; */
     overflow-x: hidden;
 }
 
@@ -59,19 +60,21 @@ a {
     background: rgba(0,0,0,0.4);
 }
 
- .banner a {
+ .banner a,
+ .drone-header a {
     color: #e2f1fc;
     color: white;
 } 
 
 .banner-wrap {
     position: relative; 
-    z-index: 2;
+    z-index: 1010;
     -webkit-transition: background 0.6s ease;
     -moz-transition: background 0.6s ease;
     transition: background 0.6s ease;
 }
 
+.drone-header .banner-wrap,
 .banner-wrap.fixed-nav {
     background: rgba(47,61,69,0.9);
     background: rgba(0,0,0,0.9);
@@ -82,6 +85,9 @@ a {
     left: 0;
     top: 0;
     box-shadow: 0 0 20px 8px rgba(0,0,0,0.5);
+    -webkit-transition: background 0.6s ease;
+    -moz-transition: background 0.6s ease;
+    transition: background 0.6s ease;
 }
 
 .banner-top-wrap {
@@ -109,6 +115,11 @@ a.logo {
 h6.motto {
     font-size: 12px;
     margin-left: 3px;
+}
+
+
+.drone-header {
+    
 }
 
 /*========================================/
@@ -143,6 +154,9 @@ h6.motto {
     height: 5px;
     width: 30px;
     transform: translate(0, -50%);
+    -webkit-transition: background 0.3s ease;
+    -moz-transition: background 0.3s ease;
+    transition: background 0.3s ease;
 }
 
 
@@ -153,9 +167,12 @@ h6.motto {
     content: '';
     height: 5px;
     width: 30px;
-    -webkit-transition: all 0.4s ease-in-out;
-    -moz-transition: all 0.4s ease-in-out;
-    transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out,
+                background 0.3s ease;
+    -moz-transition: all 0.4s ease-in-out,
+                background 0.3s ease;
+    transition: all 0.4s ease-in-out,
+                background 0.3s ease;
 }
 
 #burger-icon::before {
@@ -164,6 +181,21 @@ h6.motto {
 
 #burger-icon::after {
     bottom: -8px;
+}
+
+.burger-icon-wrap:hover #burger-icon,
+.burger-icon-wrap:hover #burger-icon::before,
+.burger-icon-wrap:hover #burger-icon::after {
+    background: #29b6f6;
+}
+
+.burger-icon-wrap:hover #burger-icon.open {
+    background: transparent;
+}
+
+.burger-icon-wrap:hover #burger-icon.open::before,
+.burger-icon-wrap:hover #burger-icon.open::after {
+    background: lightgrey;
 }
 
 #burger-icon.open::before {
@@ -236,6 +268,7 @@ h6.motto {
 }
 
 .site-menu li:not(:last-of-type)::after {
+    color: white;
     content: '|';
     margin-left: 5px;
 }
@@ -331,24 +364,27 @@ a.logout {
     border-radius: 3px;
     color: white; 
 }
-
 .mobile-menu .signup:hover {
     border-color: black;
 }
 
-.mobile-menu .login:hover {
+.mobile-menu .me:hover,
+.mobile-menu .login:hover,
+.mobile-menu .logout:hover {
     border-bottom-color: black;
 }
 
+.mobile-menu .me,
+.mobile-menu .logout, 
 .mobile-menu .login {
-    /* margin-top: 50px; */
     margin-right: 0;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    border-radius: 0;
 }
 
 .landing-greeting {
     color: white;
+    font-family: 'Raleway', sans-serif;
+    /* font-family: 'Comfortaa', cursive; */
     position: absolute;
     top: 35%; 
     left: 50%;
@@ -361,6 +397,10 @@ a.logout {
 
 .login-message-container {
     text-align: center;
+}
+
+.mission-container {
+    /* font-family: 'Raleway', sans-serif; */
 }
 
 .login-message {
@@ -405,12 +445,13 @@ a.logout {
 #signup,
 #login-signup {
     position: fixed;
+    background: transparent;
     width: 100%;
     height: 100vh;
-    top: -150%; 
+    top: 0; 
     left: 0;
     overflow: auto;
-    z-index: 10;
+    z-index: 1100;
     -webkit-transition: all 0.3s ease-in 0.2s;
     -moz-transition: all 0.3s ease-in 0.2s;
     transition: all 0.3s ease-in 0.2s;
@@ -419,23 +460,33 @@ a.logout {
 
  #login-signup.slide {
     background: rgba(0,0,0,0.8);   
-    top: 0;
+    /* top: 0; */
 } 
 
 .login-signup-container {
-    position: relative;
+    position: absolute;
+    top: -110%;   
+    left: 50%;
+    transform: translate(-50%, 0); 
     background: #4D7284; 
     width: 100%;
     height: 100vh;
     margin: 0 auto;
     text-align: center;
+    -webkit-transition: all 0.7s ease-in-out;
+    -moz-transition: all 0.7s ease-in-out;
+    transition: all 0.7s ease-in-out;
+}
+
+.login-signup-container.slide {
+    top: 0;
 }
 
 #login-signup-x.fa.fa-times {
     position: absolute;
     color: #263238;
     right: 5px;
-    font-size: 32px;
+    font-size: 40px;
     cursor: pointer;
 }
 
@@ -470,11 +521,23 @@ a.logout {
     color: #263238;
 } 
 
+.login-form .fa.fa-lock,
+.signup-form .fa.fa-user-plus {
+    position: relative;
+    font-size: 32px;
+    top: 5px;
+}
+
+.signup-form .fa.fa-user-plus {
+    font-size: 28px;
+    right: 8px;
+}
+
 .screen-btn-wrap {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     text-align: center;
-    padding-top: 10px;
+    padding-top: 40px;
     font-size: 0;
 }
 
@@ -483,8 +546,8 @@ a.logout {
     color: #DEF2F1;
     display: inline-block;
     font-size: 14px;
-    width: 40%;
-    height: 40px;
+    width: 48%;
+    height: 55px;
     border: none;
     border-radius: 2px;
 }
@@ -566,6 +629,7 @@ p.welcome-message {
     width: 100%;
     height: 60px;
     font-size: 20px;
+    margin-top: 40px;
     border: none;
     border-radius: 2px;
 }
@@ -578,14 +642,14 @@ p.welcome-message {
 #review-form-screen,
 #edit-review-form-screen,
 #review-post-preview {
-    background: rgba(0,0,0,0.6);
+    /* background: rgba(0,0,0,0.6); */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    z-index: 2;
-     overflow: scroll; 
+    z-index: 1100;
+    overflow: scroll; 
 }
 
 #review-post-preview {
@@ -594,15 +658,20 @@ p.welcome-message {
 
 .review-form-modal,
 .post-preview-modal {
+    position: absolute;
+    top: -110%;
     color: #DEF2F1;
     background-color: #4D7284;
     width: 100%;
-    min-width: 350px;
+    min-width: 320px;
     height: 100%;
     margin: 0 auto;
     overflow: scroll;
     border: 1px solid white;
     box-shadow: 0 0 20px 2px rgba(0,0,0,0.3);
+    -webkit-transition: all 0.4s ease-in;
+    -moz-transition: all 0.4s ease-in;
+    transition: all 0.4s ease-in;
 }
 
 
@@ -611,6 +680,15 @@ p.welcome-message {
     background-color: white;
     height: 500px;
 }
+
+/* .review-form-modal {
+    top: -110%;
+} */
+
+.review-form-modal.slide {
+    top: 0;
+}
+
 
 .post-preview-modal h1 {
     margin: 0;
@@ -900,7 +978,7 @@ button.delete-post-btn {
     list-style: none; 
 } */
 
-.slick-slider {
+#company-banner .slick-slider {
     position: relative;
     width: 100%;
     height: 200px;
@@ -908,44 +986,42 @@ button.delete-post-btn {
 }
 
 
-.slick-list,
-.slick-track {
+#company-banner .slick-list,
+#company-banner .slick-track {
     overflow: hidden;
     height: 200px;
 }
 
-.slick-slider .slick-prev.slick-arrow,
-.slick-slider .slick-next.slick-arrow {
+#company-banner .slick-slider .slick-prev.slick-arrow,
+#company-banner .slick-slider .slick-next.slick-arrow {
     width: 50px;
     height: 200px;
     z-index: 1;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.6s ease-in-out;
+    -moz-transition: all 0.6s ease-in-out;
+    transition: all 0.6s ease-in-out;
 }
 
-.slick-prev {
+#company-banner .slick-prev {
     left: 0;
-}
-
-.slick-next {
-    right: 0;
-}
-
-.slick-prev:hover {
     background: linear-gradient(-90deg, transparent, rgba(0,0,0,0.5));
+    opacity: 0;
 }
 
-.slick-next:hover {
+#company-banner .slick-next {
+    right: 0;
     background: linear-gradient(90deg, transparent, rgba(0,0,0,0.5));
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+    opacity: 0;
+}
+
+#company-banner .slick-prev:hover,
+#company-banner .slick-next:hover {
+    opacity: 1;
 }
 
 
-.slick-slider .slick-prev::before,
-.slick-slider .slick-next::before  {
+#company-banner .slick-slider .slick-prev::before,
+#company-banner .slick-slider .slick-next::before  {
     color: white;
     font-family: FontAwesome; 
     font-size: 36px;
@@ -953,23 +1029,20 @@ button.delete-post-btn {
     top: 50%;
     transform: translateY(-50%);
     z-index: 5;
-    -webkit-transition: all 0.7s ease-in-out;
-    -moz-transition: all 0.7s ease-in-out;
-    transition: all 0.7s ease-in-out;
 }
 
-.slick-slider .slick-prev::before {
+#company-banner .slick-slider .slick-prev::before {
     content: '\f053';
     left: 0;
 }
 
-.slick-slider .slick-next::before {
+#company-banner .slick-slider .slick-next::before {
     content: '\f054';
     right: 0;
 }
 
-.slick-prev:hover .slick-slider .slick-prev:before,
-.slick-next:hover .slick-slider .slick-next:before  {
+#company-banner .slick-prev:hover .slick-slider .slick-prev:before,
+#company-banner .slick-next:hover .slick-slider .slick-next:before  {
      color: black; 
 }
 
@@ -1084,6 +1157,566 @@ button.delete-post-btn {
 #xiro:hover::after,
 #udi:hover::after {
      transform: scale(1.1); 
+}
+
+/*========================================/
+/* Drone MODELS Banner (Base / Mobile)
+/*=======================================*/
+
+.drone-models-slider {
+    padding-top: 70px;
+    position: relative;
+}
+
+.slider-wrap {
+    position: relative;
+}
+
+.drones-container .slick-list {
+    /* background: radial-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1), transparent); */
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(207, 216, 220, 1)), to(transparent));
+    background-image: -webkit-linear-gradient(90deg, rgba(207, 216, 220, 1), transparent);
+    background-image: -moz-linear-gradient(90deg, rgba(207, 216, 220, 1), transparent);
+    background-image: linear-gradient(to bottom, rgba(207, 216, 220, 1), transparent);
+    width: 100%;
+    overflow: hidden;
+}
+
+.drones-container .slick-track {
+    height: 50vh;
+}
+
+.drones-container .slick-next {
+    right: 0;
+}
+
+.drones-container .slick-prev {
+    left: 0;
+}
+
+.drones-container .slick-next,
+.drones-container .slick-prev {
+    top: 120%;
+    width: 30px;
+    height: 80px;
+    z-index: 1000;
+}
+
+
+.drones-container .slick-next:before,
+.drones-container .slick-prev:before  {
+    font-family: FontAwesome;
+    color: grey;
+    font-size: 80px;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+.drones-container .slick-next:hover:before,
+.drones-container .slick-prev:hover:before {
+    color: #29b6f6;
+}
+
+.drones-container .slick-next:before {
+    content: '\f105';
+}
+
+.drones-container .slick-prev:before {
+    content: '\f104';
+}
+
+.slick-dots li button:before {
+    font-size: 12px;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+.slick-dots li.slick-active button:before {
+    color: #29b6f6;
+}
+
+.drone-model.slick-slide {
+    position: relative;
+    display: inline-block;
+    /* background: white; */
+    width: 100%;
+    height: 100%;
+}
+
+.drone-model label {
+    position: absolute;
+    font-size: 36px;
+    bottom: 20px;
+    left: 30px;
+}
+
+/* DJI */
+#spark,
+#p4,
+#p4-pro,
+#p4-pro-plus,
+#p3s,
+#p3-pro,
+#p3-adv,
+#p3-4k,
+#mavic,
+#inspire-1-s,
+#inspire-1-pro,
+#inspire-1-raw,
+#inspire-2-x4s,
+#inspire-2-x5s,
+/* Other */
+#karma,
+#bebop,
+#bebop-2,
+#ar,
+#ar-gps,
+#q500,
+#typhoon-h,
+#breeze,
+#mambo,
+#x8sc,
+#x5c,
+#xplorer,
+#u818a,
+#h107c 
+{
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+
+/* * * * DJI * * * */
+#spark {
+    background-image: url("https://www1.djicdn.com/uploads/nav_link/cover/176/size_1000_540_4e86d4c92a775b12721af22634386422.png");
+}
+
+#p4 {
+    background-image: url("http://asset1.djicdn.com/images/360/phantom-4/draggable_360_v2/0_0.png");
+}
+
+#p4-pro {
+    background-image: url("../assets/drones/phantom-4-pro-compressor.png");
+}
+
+#p4-pro-plus {
+    background-image: url("http://www3.djicdn.com/assets/uploads/c55ee03076f684c1dccdd705818ba1e3.png");
+}
+
+#p3s {
+    background-image: url("http://www.quadhangar.com/wp-content/uploads/dji-phantom3-standard.png");
+}
+
+#p3-pro {
+    background-image: url("https://product1.djicdn.com/uploads/sku/covers/194/phantom-3-professional-4k_3x.png");
+    background-size: cover;
+}
+
+#p3-adv {
+    background-image: url("https://1131492342.rsc.cdn77.org/sites/default/files/dji-phantom-3-quadcopter.png");
+}
+
+#p3-4k {
+    background-image: url("https://www2.djicdn.com/assets/images/products/phantom3-4k/features/operation-drone-a225115b797aa372dd2cff896defa067.png");
+}
+
+#mavic {
+    background-image: url("https://www4.djicdn.com/uploads/nav_link/cover/3/size_1000_540_96bb8fe32603795af73fe20907cd70fe.png");
+}
+
+#inspire-1-s {
+    background-image: url("http://www5.djicdn.com/assets/images/products/inspire-1/banner-product-333577d35493a3213ead13b4f8056e42.png");
+}
+
+#inspire-1-pro {
+    background-image: url("https://flyhighusa.com/wp-content/uploads/1605/11/Inspire_1_Pro_Black_Edition__side_in_air_2_.0.0.png");
+}
+
+#inspire-1-raw {
+    background-image: url("https://www.heliguy.com/downloads/1463397964inspire-1-RAW.png");
+    background-size: contain;
+}
+
+#inspire-2-x4s {
+    background-image: url("http://www3.djicdn.com/assets/images/products/zenmuse-x4s/s2-p1-b436bf9a803fd9a48b86f115bf6398a5.png");
+}
+
+#inspire-2-x5s {
+    background-image: url("https://cdn.shopify.com/s/files/1/0895/6448/products/VR_white_00087_1024x1024.png?v=1479933525");
+    background-size: cover;
+}
+
+
+
+/* * * * GoPro * * * */
+#karma {
+    background-image: url("https://shop.gopro.com/on/demandware.static/-/Library-Sites-sharedGoProLibrary/default/dw9dbd822e/images/karma2016/karma-drone-main.png");
+}
+
+/* * * * Hubsan * * * */
+#h107c {
+    background-image: url("https://dronepedia.xyz/wp-content/uploads/2015/11/H107C-0402.408-1024x662.png");        
+    background-size: 60%;
+    background-position-y: 50%;
+}
+
+/* * * * Parrot * * * */
+#bebop {
+    background-image: url("https://www.parrot.com/fr/sites/default/files/bebopdrone_red.png");
+}
+#bebop-2 {
+    background-image: url("http://assets.store.hp.com/hpusstore/images/3pp_573X430/1y6290.png");
+    background-size: 70%;
+}
+#ar {
+    background-image: url("https://www.parrot.com/uk/sites/default/files/styles/product_teaser_hightlight/public/power_edition_orange.png");
+}
+#ar-gps {
+    background-image: url("https://www.parrot.com/us/sites/default/files/parrot_ar_drone_gps_edition.png");
+}
+#mambo{
+    background-image: url("https://www.parrot.com/global/sites/default/files/styles/product_teaser_hightlight/public/mambo_packshot.png");
+}
+
+/* * * * Yuneec * * * */
+#q500 {
+    background-image: url("https://cdn-reichelt.de/bilder/web/xxl_ws/E910/YUNEEC_YUNQ4KEU_13.png");
+}
+#typhoon-h{
+    background-image: url("https://www.cliftoncameras.co.uk/uploads/products/TyphoonHProfessionalMK56.png");
+}
+#breeze {
+    background-image: url("http://dronereview.com/wp-content/uploads/2016/10/Yuneec-Breeze.png");
+}
+
+/* * * * Syma * * * */
+#x8sc {
+    background-image: url("https://sc02.alicdn.com/kf/HTB1slTCPFXXXXXRXFXX760XFXXXY/SYMA-X8SC-2-4GHZ-Remote-Radio-Control.png");
+}
+#x5c {
+    background-image: url("https://droneflyers.files.wordpress.com/2014/08/syma-x5c-1.png");
+}
+
+/* * * * Xiro * * * */
+#xplorer {
+    background-image: url("http://www.funaster.com/wp-content/uploads/2015/06/xiro_v_features1.png");
+}
+
+/* * * * UDI * * * */
+#u818a {
+    background-image: url("../assets/discovery-2-compressor.png");
+}
+
+
+
+
+.model-specs {
+    /* height: 100vh; */
+    /* width: 90%;
+    margin: 20px auto; */
+}
+
+.model-specs .inner-container {
+}
+
+.specs-inner-wrap {
+    box-shadow: 0 5px 25px rgba(0,0,0,0.4);
+    border-radius: 5px;
+}
+
+.model-header {
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.detail-lists {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.model-header h3,
+.model-header h5 {
+    margin: 0;
+}
+
+.amazon-link a {
+    color: #29b6f6;
+}
+
+.amazon-link a:hover {
+    color: #85d5fa;
+}
+
+.amazon-link::before {
+    font-family: FontAwesome;
+    content: '\f178';
+    margin: 0 5px;
+}
+
+.detail-lists {
+    padding: 0;
+}
+
+
+.detail-lists li {
+    list-style: none;
+}
+
+.detail-lists dt {
+    text-align: center;
+    border-bottom: 2px solid black;
+}
+
+.detail-lists dl dd:last-of-type {
+    border-bottom: 1px solid grey;
+}
+
+/*========================================/
+/* Detail Page Videos (Base / Mobile)
+/*=======================================*/
+
+.videos-container {
+    padding-top: 50px;
+}
+
+.main-video,
+.g-video,
+.frame-wrap  {
+    position: relative;
+    padding-bottom: 56.25%;
+    vertical-align: top;
+    height: 0;
+    overflow: hidden;
+}
+
+.g-video.mobile-vid {
+    height: auto;
+    width: 100%;
+}
+
+.g-video{
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+
+.g-video img {
+    width: 100%;
+    height: auto;
+}
+
+/* .vid-wrap::after {
+    position: absolute;
+    background-image: url('../assets/icons/YouTube-icon-dark.png');
+    background-repeat: no-repeat;
+    background-size: 50px;
+    background-position-y: 50%;
+    background-position-x: 50%;
+    content: '';
+    font-size: 36px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: rgba(0,0,0,0.7);
+    pointer-events: none;
+    -webkit-transition: background-image 0.2s ease-in-out;
+    -moz-transition: background-image 0.2s ease-in-out;
+    transition: background-image 0.2s ease-in-out;
+} */
+
+.g-video.mobile-vid::after,
+.vid-wrap.mobile-vid::after {
+    display: none;
+}
+
+.vid-wrap:hover::after {
+    background-image: url('../assets/icons/YouTube-icon-full_color.png');
+}
+
+
+.vid-wrap {
+    position: relative;
+    max-height: 180px;
+    max-width: 380px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+
+.showcase-wrap {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.videos-container iframe,
+.frame-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+iframe.mobile-vid {
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+}
+
+.video-modal {
+    position: relative;
+}
+
+.v-modal-close.fa {
+    position: absolute;
+    color: white;
+    top: 0;
+    right: -10px;
+}
+
+.video-gallery {
+    text-align: center;
+}
+
+.more-btn {
+    position: relative;
+    font-size: 16px;
+    color: #7699A8;
+    background: transparent;
+    width: 175px;
+    margin-top: 20px;
+    padding: 5px 30px;
+    border-radius: 4px;
+    border: 2px solid #cfd8dc;
+    cursor: pointer;
+    -webkit-transition: all 0.1s ease;
+    -moz-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+}
+
+.more-btn::after {
+    position: absolute;
+    font-family: FontAwesome;
+    content: "\f103";
+    font-size: 22px;
+    top: 3px;
+    right: 8px;
+    -webkit-transition: all 0.1s ease;
+    -moz-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+}
+
+.more-btn.open::after {
+    transform: rotateX(180deg);
+}
+
+
+.more-icon.fa {
+    font-size: 36px;
+    color: #7699A8;
+    cursor: pointer;
+    -webkit-transition: all 0.1s ease;
+    -moz-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+}
+
+.more-btn:hover,
+.more-icon.fa:hover  {
+    color: #62757f;
+    border-color: #62757f;
+}
+
+.more-content-container {
+    max-height: 0;
+    margin-top: 50px;
+    overflow: auto;
+    text-align: center;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.more-content-container.slide {
+    max-height: 2000px;
+    overflow: auto;
+}
+
+.more-content {
+    margin-top: 50px;
+    overflow: auto;
+}
+
+.enlarge {
+    display: none;
+}
+
+/*========================================/
+/* Drone Aside NAV (Base/ Mobile)
+/*=======================================*/
+
+#aside-nav {
+    position: relative;
+    /* width: 20%; */
+    /* max-width: 250px; */
+    /* min-height: 560px; */
+    /* float: left; */
+    margin-top: 20px;
+}  
+
+#aside-nav nav {
+    position: relative;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+#aside-nav ul {
+    list-style: none;
+    /* padding-left: 40px; */
+}
+
+#aside-nav li {
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    margin-right: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    /* cursor: pointer; */
+}
+
+#aside-nav li,
+#aside-nav li a {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#aside-nav li:hover {
+    border-bottom-color: rgba(0,0,0,0.2);
+}
+
+#aside-nav li a {
+    display: block;
+    color: black;
+    /* width: 100%; */
+}
+
+
+#aside-nav a:hover {
+    color: #29b6f6;
+}
+
+#aside-nav .current-page {
+    color: #29b6f6;
+}
+
+#aside-nav li.current-page {
+    border-bottom-color: rgba(0,0,0,0.3);
 }
 
 /*========================================/
@@ -1391,11 +2024,22 @@ section.review-page-container {
 .specs dd {
     margin-left: 0;
     padding: 5px 5px;
+    overflow: auto;
     border-bottom: 1px solid grey;
+    -webkit-transition: all 0.1s ease-in-out,
+                        padding 0.7s ease;
+    -moz-transition: all 0.1s ease-in-out,
+                     padding 0.7s ease;
+    transition: all 0.1s ease-in-out,
+                padding 0.7s ease;
 }
 
 .specs dd:last-of-type {
     border-bottom: none;
+}
+
+.specs dd:hover {
+    background: rgba(0,0,0,0.1);
 }
 
 .specs span {
@@ -1680,6 +2324,7 @@ section.review-page-container {
 	height: 12px;
 	border: 0;
 	box-shadow: inset 0 12px 12px -12px rgba(90, 118, 132, 0.9);
+	box-shadow: inset 0 12px 12px -12px rgba(118, 153, 168, 0.9)
 }
 
 .thin-hr {
@@ -1691,6 +2336,7 @@ section.review-page-container {
     height: 1px;
     border: 0px;
     box-shadow: inset 1px -2px 20px -4px rgba(0,0,0,0.3);
+    box-shadow: inset 1px -2px 20px -4px rgba(118, 153, 168, 0.5)
 }
 
 /*========================================/
@@ -1698,29 +2344,60 @@ section.review-page-container {
 /*=======================================*/
 
 .main-footer {
-    position: absolute;
+    position: relative;
     background: #cfd8dc;
     width: 100%;
-    left: 0;
-    bottom: 0;
+    min-height: 280px;
+    clear: both;
     padding: 20px 10px 10px;
+    box-shadow: 0 -3px 20px rgba(0,0,0,0.1);
 }
 
 .footer-links {
-    width: 40%;
+    padding: 0;
+}
+
+.foot-menu {
+    display: block;
+    width: 80%;
     margin: 0 auto;
 }
 
-.footer-links ul {
+.foot-drone-list {
+    padding: 0;
+    width: 80%;
+    margin: 25px auto 0;
+}
+
+.foot-drone-list > li {
     display: inline-block;
+    list-style: none;
     vertical-align: top;
+    width: 20%;
+    min-width: 70px;
 }
 
 .footer-links li {
     list-style: none;
 }
 
-.footer-links li a {
+.footer-links > li:first-of-type {
+    display: block;
+}
+
+.foot-menu li, 
+.foot-drone-list li {
+    padding-bottom: 2px;
+}
+
+
+.foot-menu li,
+.drone-list-col li {
+    list-style: none;
+}
+
+.foot-menu li a,
+.drone-list-col li a {
     color: black;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -1728,12 +2405,31 @@ section.review-page-container {
 }
 
 
-.footer-links li:hover a {
-    color: gray;
+.foot-menu li a:hover,
+.drone-list-col li a:hover {
+    color: #29b6f6;
 }
 
 
+.to-top.fa {
+    float: right;
+    font-size: 26px;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+.to-top.fa:hover {
+    color: #29b6f6;
+}
+
 .my-info {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 240px;
+    transform: translate(-50%, 0);
     text-align: center;
     color: black;
     font-size: 12px;
@@ -1744,6 +2440,10 @@ section.review-page-container {
     font-size: 22px;
     color: #333;
     margin-left: 15px;
+}
+
+.fa.fa-github:hover {
+    color: #29b6f6;
 }
 
 @media only screen and (max-width: 350px) {
@@ -1759,6 +2459,10 @@ section.review-page-container {
 @media only screen and (min-width: 375px) {
     .filter-radio-groups {
         font-size: 17px;
+    }
+
+    .specs dd {
+        padding: 5px 5%;
     }
 }
 
@@ -1816,17 +2520,10 @@ section.review-page-container {
     }
 
     .login-signup-container {
-        position: absolute;
-        top: -100%;   
-        left: 50%;
-        transform: translate(-50%, 0); 
         width: 400px;
         height: unset;
         min-height: 400px; 
         padding-bottom: 10px;
-        -webkit-transition: all 0.5s ease-in-out;
-        -moz-transition: all 0.5s ease-in-out;
-        transition: all 0.5s ease-in-out;
     }
 
     .login-signup-container.slide {
@@ -1835,9 +2532,7 @@ section.review-page-container {
 
     .signup-screen-btn,
     .login-screen-btn  {
-        display: inline-block;
-        width: 40%;
-        height: 50px;
+        /* display: inline-block; */
     }
 
     .login-screen-btn {
@@ -1853,8 +2548,8 @@ section.review-page-container {
         height: 20vh;
     }
 
-    .slick-list,
-    .slick-track {
+    #company-banner .slick-list,
+    #company-banner .slick-track {
         overflow: hidden;
         height: 20vh;
     }
@@ -1880,17 +2575,36 @@ section.review-page-container {
     /* Write Review Form (Landscape & Desktop)
     /*=======================================*/
 
+    #review-form-screen,
+    #edit-review-form-screen {
+        background: transparent;
+        -webkit-transition: all 0.7s ease-in;
+        -moz-transition: all 0.7s ease-in;
+        transition: all 0.7s ease-in;
+    }
+    
+    #review-form-screen.fade-in,
+    #edit-review-form-screen.fade-in {
+        background: rgba(0,0,0,0.6);
+    }
+
     .review-form-modal,
     .post-preview-modal {
         position: absolute;
-        top: 20px;
+        /* top: 20px; */
         left: 50%;
         transform: translate(-50%, 0);
         width: 600px;
         height: auto;
-         /* max-height: 770px;   */
-        /* overflow: auto; */
     }
+
+    /* .review-form-modal {
+        top: -110%;
+    }*/
+
+    .review-form-modal.slide {
+        top: 20px;
+    } 
 
     .post-preview-modal {
         top: 20px;
@@ -1981,7 +2695,108 @@ section.review-page-container {
         margin: 0 auto;
     }
 
+    /*========================================/
+    /* Detail Page (Landscape & Desktop)
+    /*=======================================*/
 
+    .video-backdrop {
+        position: fixed;
+        background: rgba(0,0,0,0.9);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1120;
+        overflow: auto;
+    }
+
+    .video-modal {
+        width: 80vw;
+        margin: 5vh auto 0;
+    }
+
+    .v-modal-close.fa {
+        font-size: 24px;
+        right: -25px;
+        cursor: pointer;
+        -webkit-transition: all 0.1s ease;
+        -moz-transition: all 0.1s ease;
+        transition: all 0.1s ease;
+    }
+
+    .v-modal-close.fa:hover {
+        color: #29b6f6;
+    }
+
+    .video-btns {
+        width: 100%;
+        max-width: 800px;
+        padding: 30px;
+        margin: 0 auto;
+    }
+
+    .prev-vid-btn.fa,
+    .next-vid-btn.fa {
+        color: grey;
+        font-size: 26px;
+        cursor: pointer;
+    }
+
+    .prev-vid-btn.fa {
+        float: left;
+    }
+
+    .next-vid-btn.fa {
+        float: right;
+    }
+
+    .prev-vid-btn.fa:hover,
+    .next-vid-btn.fa:hover {
+        color: #29b6f6;
+    }
+
+    /*========================================/
+    /* Footer (Landscape & Desktop)
+    /*=======================================*/
+    .footer-links {
+        position: absolute;
+        left: 50%;
+        width: 100%;
+        transform: translate(-50%, 0);
+        text-align: center;
+    }
+
+    .footer-links > li,
+    .footer-links > li:first-of-type  {
+        display: inline-block;
+        vertical-align: top;
+    }
+    
+    .f-menu-li {
+        width: 35%;
+        text-align: center;
+    }
+
+    .f-drone-li {
+        width: 60%;
+        text-align: center;
+    }
+
+    .foot-menu,
+    .foot-drone-list {
+        text-align: left;
+        width: unset;
+    }
+    .foot-menu {
+        display: inline-block;
+    }
+    
+    .foot-drone-list {
+        margin: 0;
+        width: unset;
+    }
+
+    
 }
 
 @media only screen and (max-width: 469px) {
@@ -2004,9 +2819,9 @@ section.review-page-container {
         right: 10%;
     }
 
-    /* .mobile-menu .mobile-sign-in {
-        display: none;
-    }*/
+    .specs dd {
+        padding: 5px 10%;
+    }
 } 
 
 @media only screen and (min-width: 515px) {
@@ -2014,6 +2829,10 @@ section.review-page-container {
         font-size: 28px;
         width: 450px;
     } 
+
+    .mission-container {
+        font-size: 24px;
+    }
     
     #title-input,
     #edit-title-input {
@@ -2081,6 +2900,18 @@ section.review-page-container {
     .landing-greeting {
         font-size: 36px;
         width: 600px;
+    }
+    
+    .footer-links {
+        width: 80%;
+    }
+    
+    .foot-drone-list > li {
+        /* width: 20%; */
+    }
+
+    .specs dd {
+        padding: 5px 20%;
     }
 }
 
@@ -2208,6 +3039,10 @@ section.review-page-container {
         margin: 15px 0;
     }
 
+    /*========================================/
+    /* Drone Aside NAV (MOBILE / LANDSCAPE)
+    /*=======================================*/
+
 
 
     /*========================================/
@@ -2243,6 +3078,42 @@ section.review-page-container {
     .down-vote-arrow.fa {
         margin-left: 25px;
     }
+
+    
+
+    .main-video,
+    .g-video  {
+        margin-bottom: 10px;
+    }
+
+    .video-gallery .vid-wrap {
+        max-width: 160px;
+    }
+
+    .vid-wrap {
+        margin-bottom: 10px;
+    }
+
+    .vid-wrap::after {
+        position: absolute;
+        background-image: url('../assets/icons/YouTube-icon-dark.png');
+        background-repeat: no-repeat;
+        background-size: 50px;
+        background-position-y: 50%;
+        background-position-x: 50%;
+        content: '';
+        font-size: 36px;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        color: rgba(0,0,0,0.7);
+        pointer-events: none;
+        -webkit-transition: background-image 0.2s ease-in-out;
+        -moz-transition: background-image 0.2s ease-in-out;
+        transition: background-image 0.2s ease-in-out;
+    }
+
 }
 
 
@@ -2276,12 +3147,12 @@ section.review-page-container {
         height: 20vh;
     }
 
-    .slick-slider {
+    #company-banner .slick-slider {
         height: 20vh;
     }
 
-    .slick-slider .slick-prev.slick-arrow,
-    .slick-slider .slick-next.slick-arrow {
+    #company-banner .slick-slider .slick-prev.slick-arrow,
+    #company-banner .slick-slider .slick-next.slick-arrow {
         height: 20vh;
     }
 
@@ -2440,6 +3311,30 @@ section.review-page-container {
         margin-right: 10px;
     }
 
+    .specs dd {
+        width: 50%;
+        min-width: 300px;
+    }
+
+    .detail-lists {
+        text-align: center;
+        max-width: 1100px;
+    }
+
+    .detail-lists li {
+        display: inline-block;
+        vertical-align: top;
+        width: 48%;
+        margin: 0 auto;
+        text-align: left;
+    }
+
+    .detail-lists dt, 
+    .detail-lists dd {
+        width: 30%;
+        min-width: 270px;
+    }
+
     .content {
         margin-right: 30px;
     }
@@ -2513,6 +3408,322 @@ section.review-page-container {
         overflow: hidden; 
         width: 100%; 
     }
+
+    /*========================================/
+    /* Drone Detail Page (DESKTOP / TABLET)
+    /*=======================================*/
+
+
+    .drones-container .slick-next,
+    .drones-container .slick-prev {
+        top: 50%;
+    }
+
+    
+
+    .drone-model label {
+        margin-left: 5%;
+    }
+
+    .model-specs .inner-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        /* overflow: hidden; */
+    }
+
+    .specs-inner-wrap {
+        margin: 0 10px;
+        border-top: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .specs dd {
+        padding: 5px 5px;
+    }
+
+    /*========================================/
+    /* Drone Aside NAV (DESKTOP / TABLET)
+    /*=======================================*/
+
+    #aside-nav {
+        position: relative;
+        width: 20%;
+        max-width: 250px;
+        min-height: 560px;
+        float: left;
+        margin-top: 20px;
+    }  
+
+    #aside-nav nav {
+        position: relative;
+        height: 100%;
+    }
+
+    /* #aside-nav ul {
+        list-style: none;
+    } */
+
+    #aside-nav li {
+        display: block;
+        height: 40px;
+        line-height: 40px;
+        margin-right: unset;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    /* #aside-nav li,
+    #aside-nav li a {
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
+
+    #aside-nav li:hover {
+        border-bottom-color: rgba(0,0,0,0.2);
+    } */
+
+    /* #aside-nav li a {
+        display: block;
+        color: black;
+    } */
+
+    /* #aside-nav a:hover {
+        color: #29b6f6;
+    }
+
+    #aside-nav .current-page {
+        color: #29b6f6;
+    } */
+
+    /* #aside-nav li.current-page {
+        border-bottom-color: rgba(0,0,0,0.3);
+    } */
+
+    .nav-list {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+
+
+    /*========================================/
+    /* Detail Page Videos (DESKTOP / TABLET)
+    /*=======================================*/
+
+    .drones-inner-container {
+        /* width: 90%; */
+        min-height: 500px;
+        margin: 20px auto;
+        overflow: hidden;
+        /* border: 1px solid black; */
+    }
+
+    .videos-container {
+        padding: 30px;
+        overflow: auto;
+        max-width: 1200px;
+        margin: 0 auto;
+        /* border: 1px solid black; */
+    }
+
+    .videos-container header {
+        position: relative;
+        margin: 30px;
+    }
+
+    .videos-container header h3,
+    .videos-container header h4 {
+        margin: 0;
+    }
+
+    .gallery-title {
+        position: absolute;
+        right: 50px;
+        bottom: 0;
+    }
+
+    .video-inner-container {
+    }
+
+    .showcase-wrap {
+        /* float: left; */
+    }
+
+    .main-video-wrap {
+        position: relative;
+        width: 40vw;
+        max-width: 550px;
+        max-height: 305px;
+    } 
+
+    /* .video-modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 80vw;
+        transform: translate(-50%, -50%);
+        z-index: 2110;
+    }
+
+    .video-backdrop {
+        position: fixed;
+        background: rgba(0,0,0,0.9);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    } */
+
+    .enlarge {
+        display: unset;
+        position: absolute;
+        color: grey;
+        font-size: 12px;
+        right: 90px;
+        bottom: -20px;
+        height: 16px;
+        line-height: 16px;
+        margin-right: 10px;
+        -webkit-transition: all 0.4s ease;
+        -moz-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+    }
+
+    .main-video-wrap .fa.fa-expand {
+        position: absolute;
+        font-size: 16px;
+        right: -20px;
+        top: 0;
+        cursor: pointer;
+        -webkit-transition: all 0.1s ease;
+        -moz-transition: all 0.1s ease;
+        transition: all 0.1s ease;
+    }
+
+    .main-video-wrap .fa.fa-expand:hover {
+        color: #29b6f6;
+        font-size: 17px;
+    }
+
+    .main-video iframe {
+        max-height: 304px;
+        padding-right: 10px;
+    }
+
+    .video-gallery {
+        float: right;
+        font-size: 0;
+    }
+
+    .g-row {
+        overflow: auto;
+    }
+
+    .vid-wrap {
+        display: inline-block;
+        width: 20vw;
+        max-width: 270px;
+        height: auto;
+    }
+
+    .more-content-container {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        /* overflow: auto; */
+    }
+
+    .more-content .vid-wrap {
+        margin-left: 4px;
+        margin-right: 4px;
+        /* float: left; */
+    }
+
+    .g-video::after {
+        /* top: 50%; */
+    }
+
+    /* .g-video:hover::after {
+        color: #cc181e;
+    } */
+
+    .g-video img {
+        width: 100%;
+        height: auto;
+    }
+
+
+    .g-top-left {
+        border-bottom: 2px solid white;
+        border-right: 2px solid white;
+    }
+
+    .g-top-right {
+        border-bottom: 2px solid white;
+        border-left: 2px solid white;
+    }
+
+    .g-bottom-left {
+        border-top: 2px solid white;
+        border-right: 2px solid white;
+    }
+
+    .g-bottom-right {
+        border-top: 2px solid white;
+        border-left: 2px solid white;
+    }
+
+    .g-video::after {
+        position: absolute;
+        background-image: url('../assets/icons/YouTube-icon-dark.png');
+        background-repeat: no-repeat;
+        background-size: 50px;
+        background-position-y: 50%;
+        background-position-x: 50%;
+        content: '';
+        font-size: 36px;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        color: rgba(0,0,0,0.7);
+        pointer-events: none;
+        -webkit-transition: background-image 0.2s ease-in-out;
+        -moz-transition: background-image 0.2s ease-in-out;
+        transition: background-image 0.2s ease-in-out;
+    }
+
+    .g-video:hover::after {
+        background-image: url('../assets/icons/YouTube-icon-full_color.png');
+    }
+
+    /* .video-backdrop {
+        position: fixed;
+        background: rgba(0,0,0,0.9);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1120;
+    }
+
+    .video-modal {
+        width: 80vw;
+        margin:  10vh auto;
+    }
+
+    .v-modal-close.fa {
+        font-size: 24px;
+        right: -25px;
+        cursor: pointer;
+        -webkit-transition: all 0.1s ease;
+        -moz-transition: all 0.1s ease;
+        transition: all 0.1s ease;
+    }
+
+    .v-modal-close.fa:hover {
+        color: #29b6f6;
+    } */
+
 } 
 
 @media only screen and (max-width: 790px) {
@@ -2587,11 +3798,58 @@ section.review-page-container {
       ul.mobile-menu.open {
         display: none;
     }
+
+    .foot-drone-list > li {
+        /* min-width: 120px; */
+    }
 }
+
+
+@media only screen and (min-width: 820px) {
+    #p3-pro {
+        background-size: 70%;
+    }
+
+    #inspire-1-s {
+        background-position-y: -20px;
+    }
+
+}
+
+/*========================================/
+/* Drone Model Slider (Large Viewports)
+/*=======================================*/
+@media only screen and (min-width: 910px) {
+    
+    /* .detail-lists {
+        text-align: center;
+    } */
+    
+    .detail-lists li {
+        width: 40%;
+    }
+    
+    .detail-lists dl dd:last-of-type {
+        border-bottom: none;
+    }
+
+    .detail-lists dt, 
+    .detail-lists dd {
+        width: 35%;
+        min-width: 280px;
+    }
+}
+
 
 @media only screen and (min-width: 976px) {
     #parrot::after {
         background-size: cover; 
+    }
+
+    .detail-lists dt, 
+    .detail-lists dd {
+        width: 40%;
+        min-width: 300px;
     }
 }
 
@@ -2601,7 +3859,29 @@ section.review-page-container {
     }
 }
 
-.hidden {
+@media only screen and (min-width: 1350px) {
+   .enlarge {
+       right: 70px;
+       bottom: -20px;
+   }
+}
+
+@media only screen and (min-width: 1390px) {
+   .enlarge {
+       right: 45px;
+       bottom: -20px;
+   }
+}
+
+@media only screen and (min-width: 1400px) {
+   .enlarge {
+       right: 30px;
+       bottom: -20px;
+   }
+}
+
+.hidden,
+.fa.hidden {
     display: none;
 }
 

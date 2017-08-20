@@ -2,11 +2,26 @@
 
 
 exports.getIndex = (req, res) => {
-    // if (req.cookies.loggedIn !== '') {
-    //     console.log('COOKIE WORKED', req.cookies.loggedIn);
-    // }
-    // console.log("cookies", req.cookies);
+    let {loggedIn, username} = checkSessionCookie(req);
 
+    res.status(200).render('index', {
+        loggedIn: loggedIn,
+        username: JSON.stringify(username)
+    });
+};
+
+
+exports.getMission = (req, res) => {
+    let {loggedIn, username} = checkSessionCookie(req);
+    res.status(200).render('pages/mission', {
+        loggedIn: loggedIn,
+        username: JSON.stringify(username)
+    });
+}
+
+
+// To check if session cookie exists
+const checkSessionCookie = req => {
     let loggedIn = false;
     let username = req.cookies.loggedIn;
 
@@ -16,8 +31,5 @@ exports.getIndex = (req, res) => {
         loggedIn = true;
     }
 
-    res.status(200).render('index', {
-        loggedIn: loggedIn,
-        username: JSON.stringify(username)
-    });
-};
+    return {loggedIn, username};
+}

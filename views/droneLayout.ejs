@@ -1,0 +1,133 @@
+<% layout('layout') %>
+
+<% include ./partials/signup-login %>
+<% include ./partials/review-form %>
+<% include ./partials/preview-review %>
+
+
+<section class="drones-container">
+
+    <div class="drone-models-slider">
+        <%- body -%>
+    </div>
+
+    <% include ./partials/aside-nav %>
+
+
+    <div class="drones-inner-container">
+        
+        <!-- SPECS -->
+        <div class="model-specs">
+            <div class="inner-container">
+                
+                <div class="specs-inner-wrap">
+                    <header class="model-header">
+                        <div class="model-make">
+                            <h3><span class="detail-model">Inspire 1 Pro</span></h3>
+                            <h5><span class="detail-make"><b>DJI</b></span></h5>
+                        </div>
+                        <div class="amazon-link-container">
+                            <p>Grab one <span class="amazon-link"></span></p>
+                        </div>
+                    </header>
+            
+            
+                    <ul class="specs detail-lists">
+                        <!-- drone model specs content -->
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- YOUTUBE VIDEOS -->
+        <div class="videos-container">
+           
+            <header>
+                <h3>See it in action!</h3>
+                <!-- <h4 class="gallery-title">Some more videos</h4> -->
+            </header>
+
+            <div class="video-inner-container">
+
+                <!-- video gallery -->
+                <div class="video-gallery">
+
+                    <div class="g-row">
+                        <div class="vid-wrap">
+                            <div class="g-video g-top-left">
+                                <!-- <iframe src="https://www.youtube.com/embed/4xGAAjJkxxE"></iframe> -->
+                                <img src="" alt="">
+                            </div>
+                        </div>
+                        <div class="vid-wrap">
+                            <div class="g-video g-top-right">
+                                <!-- <iframe src="https://www.youtube.com/embed/4xGAAjJkxxE"></iframe> -->
+                                <img src="" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="g-row">
+                        <div class="vid-wrap">
+                            <div class="g-video g-bottom-left">
+                                <!-- <iframe src="https://www.youtube.com/embed/4xGAAjJkxxE"></iframe> -->
+                                <img src="" alt="">
+                            </div>
+                        </div>
+                        <div class="vid-wrap">
+                            <div class="g-video g-bottom-right">
+                                <!-- <iframe src="https://www.youtube.com/embed/4xGAAjJkxxE"></iframe> -->
+                                <img src="" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="more-btn" type="button">Checkout More</button>
+                    <!-- <i class="more-icon fa fa-plus-square-o" aria-hidden="true"></i> -->
+                    <!-- <i class="more-icon fa fa-plus-circle" aria-hidden="true"></i> -->
+                </div> 
+
+                <!-- showcase video -->
+                <div class="showcase-wrap">
+                    <div class="main-video-wrap">
+                        
+                        <div class="main-video">
+                            <!-- <div id="main-iframe"></div> -->
+                            <iframe id="main-iframe" type="text/html" src="https://www.youtube.com/embed/4xGAAjJkxxE" enablejsapi="1"></iframe>
+                        </div>
+                        <label class="enlarge">Enlarge video
+                            <i class="fa fa-expand" aria-hidden="true"></i>
+                        </label>
+                    </div>
+                </div>
+                <div class="video-backdrop hidden">
+                    <div class="video-modal">
+                        <i class="v-modal-close fa fa-times" aria-hidden="true"></i>
+
+                        <div class="frame-wrap">
+                            <iframe id="modal-iframe" src=""></iframe>
+                        </div>
+
+                        <div class="video-btns">
+                            <i class="prev-vid-btn fa fa-chevron-circle-left" aria-hidden="true"></i>
+                            <i class="next-vid-btn fa fa-chevron-circle-right" aria-hidden="true"></i>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="more-content-container">
+                    <div class="more-content">
+                        
+                    </div>
+                    <i class="more-icon fa fa-plus-square-o" aria-hidden="true"></i>
+                </div>
+
+
+            </div>
+
+        </div> <!-- youtube videos -->
+
+    </div>
+
+</section>

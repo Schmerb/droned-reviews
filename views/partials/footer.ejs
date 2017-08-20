@@ -1,35 +1,52 @@
 <div class="footer-container">
 
+    <i class="to-top fa fa-chevron-up" aria-hidden="true"></i>
+
     <ul class="footer-links">
 
-        <ul class="foot-menu":>
-            <% if ( loggedIn ) { %>
-                <li class="write-review"><a href="#">Write a Review</a></li>
-            <% } %>
-            <li class="reviews"><a href="#">Reviews</a></li>
-            <li class="news"><a href="#">News</a></li>
-            <li class="mission"><a href="#">Mission</a></li>
-        </ul>
+        <!-- site navigation -->
+        <li class="f-menu-li">
+            <ul class="foot-menu":>
+                <% if ( loggedIn ) { %>
+                    <li><a class="write-review" href="#">Write a Review</a></li>
+                <% } %>
+                <li><a class="reviews" href="#">Reviews</a></li>
+                <li><a class="news" href="#">News</a></li>
+                <li><a class="mission" href="/mission">Mission</a></li>
+            </ul>
+        </li>
 
-        <ul class="foot-drone-list">
-            <ul class="drone-list-col">
-                <li class=""><a href="">DJI</a></li>
-                <li class=""><a href="">Parrot</a></li>
-                <li class=""><a href="">GoPro</a></li>
-                <li class=""><a href="">Lily Robotics</a></li>
+        <!-- drone makes -->
+        <li class="f-drone-li">
+            <ul class="foot-drone-list">
+                <li>
+                    <ul class="drone-list-col">
+                        <li><a href="/drones/dji">DJI</a></li>
+                        <li><a href="/drones/parrot">Parrot</a></li>
+                        <li><a href="/drones/gopro">GoPro</a></li>
+                    </ul>
+                </li>
+    
+                <li>
+                    <ul class="drone-list-col">
+                        <li><a href="/drones/yuneec">Yuneec</a></li>
+                        <li><a href="/drones/syma">Syma</a></li>
+                        <li><a href="/drones/hubsan">Hubsan</a></li>
+                    </ul>
+                </li>
+    
+                <li>
+                    <ul class="drone-list-col">
+                        <li><a href="/drones/xiro">Xiro</a></li>
+                        <li><a href="/drones/udi">UDI</a></li>
+                    </ul> 
+                </li>
             </ul>
-            <ul class="drone-list-col">
-                <li class=""><a href="">3D Robotics</a></li>
-                <li class=""><a href="">Yuneec</a></li>
-                <li class=""><a href="">Syma</a></li>
-                <li class=""><a href="">Hubsan</a></li>
-            </ul>
-            <ul class="drone-list-col">
-                <li class=""><a href="">Xiro</a></li>
-            </ul>            
-        </ul>
+        </li>
 
     </ul>
+
+    
 
     <div class="my-info">
         <span class="copy">copyright <span class="copy-symbol">&copy;</span> 2017 &nbsp;&nbsp;Mike Schmerbeck</span>

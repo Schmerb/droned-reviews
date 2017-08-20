@@ -16,6 +16,8 @@ const router                 = require('./routes');
 const { DATABASE_URL, PORT } = require('./config/database');
 
 
+// youtube api key: AIzaSyCSyc7hnCXopqsh5Z9HlklFAK3gvteRMAY
+
 // Use ES6 promises
 mongoose.Promise = global.Promise;
 
