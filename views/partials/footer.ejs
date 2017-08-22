@@ -2,57 +2,87 @@
 
     <i class="to-top fa fa-chevron-up" aria-hidden="true"></i>
 
-    <ul class="footer-links">
+    <div class="foot-title">
+        <h2>Droned</h2>
+        <img class="drone-icon" src="../assets/icons/drone.svg" alt="">
+        <h3>Reviews</h3>
+    </div>
+
+    
+
+    <nav class="footer-links">
 
         <!-- site navigation -->
-        <li class="f-menu-li">
-            <ul class="foot-menu":>
-                <% if ( loggedIn ) { %>
-                    <li><a class="write-review" href="#">Write a Review</a></li>
-                <% } %>
-                <li><a class="reviews" href="#">Reviews</a></li>
-                <li><a class="news" href="#">News</a></li>
-                <li><a class="mission" href="/mission">Mission</a></li>
-            </ul>
-        </li>
+        <ul class="foot-menu":>
+            <% if ( loggedIn ) { %>
+                <li><a class="write-review" href="#">Write a Review</a></li>
+            <% } %>
+            <li><a class="reviews" href="#">Reviews</a></li>
+            <li><a class="news" href="#">News</a></li>
+            <li><a class="mission" href="/mission">Mission</a></li>
+        </ul>
 
         <!-- drone makes -->
-        <li class="f-drone-li">
-            <ul class="foot-drone-list">
-                <li>
-                    <ul class="drone-list-col">
-                        <li><a href="/drones/dji">DJI</a></li>
-                        <li><a href="/drones/parrot">Parrot</a></li>
-                        <li><a href="/drones/gopro">GoPro</a></li>
-                    </ul>
-                </li>
-    
-                <li>
-                    <ul class="drone-list-col">
-                        <li><a href="/drones/yuneec">Yuneec</a></li>
-                        <li><a href="/drones/syma">Syma</a></li>
-                        <li><a href="/drones/hubsan">Hubsan</a></li>
-                    </ul>
-                </li>
-    
-                <li>
-                    <ul class="drone-list-col">
-                        <li><a href="/drones/xiro">Xiro</a></li>
-                        <li><a href="/drones/udi">UDI</a></li>
-                    </ul> 
-                </li>
-            </ul>
-        </li>
+        <ul class="foot-drone-list" id="drone-make-list">
+            <label for="drone-make-list">Drone Manufacturers</label>
+            <li>
+                <ul class="drone-list-col col-1">
+                    <li><a href="/drones/dji">DJI</a></li>
+                    <li><a href="/drones/parrot">Parrot</a></li>
+                    <li><a href="/drones/gopro">GoPro</a></li>
+                </ul>
+            </li>
 
-    </ul>
+            <li>
+                <ul class="drone-list-col col-2">
+                    <li><a href="/drones/yuneec">Yuneec</a></li>
+                    <li><a href="/drones/syma">Syma</a></li>
+                    <li><a href="/drones/hubsan">Hubsan</a></li>
+                </ul>
+            </li>
 
+            <li>
+                <ul class="drone-list-col">
+                    <li><a href="/drones/xiro">Xiro</a></li>
+                    <li><a href="/drones/udi">UDI</a></li>
+                </ul> 
+            </li>
+        </ul>
+
+    </nav>
+
+    
     
 
     <div class="my-info">
-        <span class="copy">copyright <span class="copy-symbol">&copy;</span> 2017 &nbsp;&nbsp;Mike Schmerbeck</span>
-        <span class="github-icon">
-            <a href="https://github.com/Schmerb" target="__blank"><i class="fa fa-github" aria-hidden="true"></i></a>
-        </span>
+        <hr class="f-hr">
+         <!-- social accounts -->
+         <ul class="social-links">
+            <li><a href="https://github.com/Schmerb" target="__blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+            <li><a class="fb-link" href="https://facebook.com" target="__blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+            <li><a href="https://linkedin.com" target="__blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+        </ul>
+        <div class="f-bottom">
+            <div class="copy">
+                copyright <span class="copy-symbol">&copy;</span>
+                <span class="year">2017</span>
+            </div>
+
+            <div class="built-by">
+                <p>Built by <span class="dev-name">Schmerb</span></p>
+            </div>
+
+            <div class="email">
+                <a class="mail-link" href="mailto:mikeschmerbeck@gmail.com?subject=Droned%20Reviews">
+                    <span>contact me</span>
+                    <i class="mail-icon fa fa-envelope-o" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+        <p class="icon-cc">Icon made by <a href="https://www.flaticon.com/authors/freepik">Freepik</a> from www.flaticon.com</p>
+        
+    </div>
+    <div>
     </div>
 
 </div>

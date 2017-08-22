@@ -5,13 +5,13 @@ let state = {
     user: '',
     isMobile: false,
     player: null,
-    modal: null,
     expanded: false,
     video: {
         query: '',
         nextPageToken: ''
     }
 };
+
 
 // Banner Nav
 const BANNER_WRAP      = '.banner-wrap';
@@ -2011,6 +2011,7 @@ function checkEndpoint() {
     } else if (endpoint.indexOf('mission') >= 0) {
         show('.mission-container');
         hide('.greeting');
+        
     }
 }
 
@@ -2604,10 +2605,11 @@ function detailPageClicks() {
 }
 
 function init() {
+    getPostsFromDb(); // populates posts from database
     displayDroneSlider(); // inits drone slider and conceals FOUC
     displayDroneModelsSlider();
     droneModelSlideChange();
-    displayDetailSpecs(0);
+    displayDetailSpecs(0); // fetches specs for each review post drone model
 }
 
 function utils() {
@@ -2634,7 +2636,5 @@ $(function () {
     // getAndDisplayReviews();
 
     // openLoginSignupModal('signup');
-
-    getPostsFromDb();
     init();
 });

@@ -29,7 +29,7 @@ a {
 }
 
 .banner {
-    background: url('../assets/phantom-3-aaron-burden-compressor.jpg') center;
+    background: url('../assets/drones/phantom-3-aaron-burden-compressor.jpg') center;
     background-size: cover;
     background-position-x: 10%;
     /* color: #b0bec5; */
@@ -117,10 +117,21 @@ h6.motto {
     margin-left: 3px;
 }
 
-
-.drone-header {
-    
+.title-end {
+    margin-left: -10px;
 }
+
+img.logo-drone {
+    position: relative;
+    width: 26px;
+    height: auto;
+    right: 4px;
+    top: 1px;
+}
+
+.greeting {
+    text-align: center;
+} 
 
 /*========================================/
 /* burger menu icon
@@ -291,7 +302,7 @@ h6.motto {
 }
 
  .mobile-menu {
-    background: url('../assets/phantom-below-matthew-brodeur-compressor.jpg') center;
+    background: url('../assets/drones/phantom-below-matthew-brodeur-compressor.jpg') center;
     background-size: cover;
     position: fixed;
     right: -100%;
@@ -1066,56 +1077,56 @@ button.delete-post-btn {
 
 
  #dji::after {
-    background: url('../assets/DJI-inspire-compressor.jpg') center;
+    background: url('../assets/drones/DJI-inspire-compressor.jpg') center;
     background-size: 130%;
     background-repeat: no-repeat;
 }
 
 #parrot::after {
-    background: url('../assets/parrot-square-compressor.jpg') center;
+    background: url('../assets/drones/parrot-square-compressor.jpg') center;
     background-size: 90%;
     background-repeat: no-repeat;
 }
 
 #gopro::after {
-    background: url('../assets/gopro-karma-compressor.jpg') center;
+    background: url('../assets/drones/gopro-karma-compressor.jpg') center;
     background-size: 100%;
     background-repeat: no-repeat;
 }
 
 #lily::after {
-    background: url('../assets/lily-robotics-compressor.jpg') center;
+    background: url('../assets/drones/lily-robotics-compressor.jpg') center;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position-y: -10%;
 }
 
 #yuneec::after {
-    background: url('../assets/typhoonh-compressor.png') center;
+    background: url('../assets/drones/typhoonh-compressor.png') center;
     background-size: contain;
     background-repeat: no-repeat;
 }
 
 #syma::after {
-    background: url('../assets/SYMA-X8SC-compressor.png') center;
+    background: url('../assets/drones/SYMA-X8SC-compressor.png') center;
     background-size: 100%;
     background-repeat: no-repeat;
 }
 
 #hubsan::after {
-    background: url('../assets/hubsan-h107-compressor.png') center;
+    background: url('../assets/drones/hubsan-h107-compressor.png') center;
     background-size: 100%;
     background-repeat: no-repeat;
 }
 
 #xiro::after {
-    background: url('../assets/xiro_v_features1-compressor.png') center;
+    background: url('../assets/drones/xiro_v_features1-compressor.png') center;
     background-size: contain;
     background-repeat: no-repeat;
 }
 
 #udi::after {
-    background: url('../assets/discovery-2-compressor.png') center;
+    background: url('../assets/drones/discovery-2-compressor.png') center;
     background-size: contain;
     background-repeat: no-repeat;
     background-position-y: 20px;
@@ -1407,7 +1418,7 @@ button.delete-post-btn {
 
 /* * * * UDI * * * */
 #u818a {
-    background-image: url("../assets/discovery-2-compressor.png");
+    background-image: url("../assets/drones/discovery-2-compressor.png");
 }
 
 
@@ -1780,7 +1791,7 @@ section.review-page-container {
 
 .wide-banner {
     position: relative;
-    background: url('../assets/phantom-gimbal-william-stitt-compressor.jpg') center;
+    background: url('../assets/drones/phantom-gimbal-william-stitt-compressor.jpg') center;
     background-size: cover;
     width: 100%;
     height: 40vh;
@@ -2126,6 +2137,10 @@ section.review-page-container {
     background: #FFFFFF;
 }
 
+.comment-form {
+    padding-bottom: 20px;
+}
+
 .comment-content {
     margin: 0;
 }
@@ -2339,6 +2354,12 @@ section.review-page-container {
     box-shadow: inset 1px -2px 20px -4px rgba(118, 153, 168, 0.5)
 }
 
+.comment-input,
+.reply-comment-input {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 /*========================================/
 /* Footer (Base / Mobile)
 /*=======================================*/
@@ -2346,14 +2367,263 @@ section.review-page-container {
 .main-footer {
     position: relative;
     background: #cfd8dc;
+    font-size: 18px;
     width: 100%;
     min-height: 280px;
     clear: both;
-    padding: 20px 10px 10px;
+    padding: 20px 10px 200px;
     box-shadow: 0 -3px 20px rgba(0,0,0,0.1);
 }
 
-.footer-links {
+
+.foot-title {
+    position: relative;
+    text-align: center;
+}
+
+.foot-title h2,
+.foot-title h3 {
+    margin: 0;
+}
+
+.drone-icon {
+    /* position: absolute; */
+    width: 50px;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    /* transform: translate(-50%, -50%); */
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links > ul {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0;
+    width: 100%;
+}
+
+.footer-links a {
+    color: black;
+}
+
+.footer-links a:hover {
+    color: #29b6f6;
+}
+
+.to-top.fa {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    margin-right: 20px;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.to-top.fa:hover {
+    color: #29b6f6;
+}
+
+/* site navigation  BASE */
+
+.foot-menu {
+    text-align: center;
+}
+
+.foot-menu li {
+    margin-bottom: 3px;
+}
+
+ /* social links  BASE */
+
+
+.social-links, 
+.social-links li {
+    padding-left: 0;
+    display: inline-block;
+}
+
+.social-links a { 
+    color: black;
+    position: relative;
+    background: transparent;
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    margin-right: 20px;
+    border-radius: 50%;
+    border: 3px solid white;
+    /* transform-style: preserve-3d; */
+}
+
+.social-links a:hover {
+    background-color: white;
+    color: #29b6f6;
+    border-color: #29b6f6;
+    transform: scale(1.2);
+}
+
+
+.social-links .fa {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+     /* backface-visibility: hidden;
+    transform-style: preserve-3d; */
+}
+
+.social-links a:hover .social-links .fa {
+    /* transform: scale(1.2); */
+}
+/* drone makes BASE */
+
+
+label[for="drone-make-list"] {
+    color: grey;
+    display: block;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.foot-drone-list {
+    text-align: center;
+}
+
+
+.foot-drone-list > li {
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    margin-left: 20px;
+    -webkit-transition: all 0.7s ease-in-out;
+    -moz-transition: all 0.7s ease-in-out;
+    transition: all 0.7s ease-in-out;
+}
+
+
+.drone-list-col.col-1 {
+    padding-left: 0;
+}  
+
+.drone-list-col li {
+    margin-bottom: 5px;
+}
+
+/* list item link transitions */
+.foot-menu li a,
+.drone-list-col li a {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+/* social links transitions */
+.social-links li a {
+    -webkit-transition: all 0.3s ease, transform 0.7s ease-in-out;
+    -moz-transition: all 0.3s ease, transform 0.7s ease-in-out;
+    transition: all 0.3s ease, transform 0.7s ease-in-out;
+}
+
+/* my info  BASE*/
+
+.my-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    min-height: 200px;
+    padding: 20px 20px 10px;
+    text-align: center;
+}
+
+.f-hr {
+    height: 5px;
+	border: 0;
+	box-shadow: inset 0 12px 12px -14px rgba(118, 153, 168, 0.9)
+}
+
+.f-bottom {
+    font-size: 13px;
+}
+
+.copy {
+    color: grey;
+    margin-bottom: 15px;
+}
+
+
+.built-by {
+    float: left;
+    font-size: 12px;
+}
+
+.built-by p {
+    margin: 0;
+}
+
+.dev-name {
+    font-size: 13px;
+}
+
+.email {
+    float: right;
+}
+
+.built-by,
+.email {
+    height: 25px;
+    line-height: 25px;
+}
+
+.mail-link {
+    color: black;
+}
+
+.mail-icon.fa {
+    color: black;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+.mail-link:hover .mail-icon.fa {
+    color: #29b6f6;
+}
+
+
+.icon-cc {
+    font-size: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+
+@keyframes spin {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}
+
+.spin a:hover {
+	width: 35px;
+	height: 35px;
+	
+	background-image: -moz-radial-gradient(45px 45px 45deg, circle cover, #29b6f6 0%, white 100%, grey 95%);
+	background-image: -webkit-radial-gradient(45px 45px, circle cover, #29b6f6, white);
+	background-image: radial-gradient(45px 45px 45deg, circle cover, #29b6f6 0%, white 100%, grey 95%);
+	
+	animation-name: spin; 
+	animation-duration: 3s; /* 3 seconds */
+	animation-iteration-count: infinite; 
+	animation-timing-function: linear;
+}
+
+/* .footer-links {
     padding: 0;
 }
 
@@ -2377,13 +2647,11 @@ section.review-page-container {
     min-width: 70px;
 }
 
-.footer-links li {
+nav.footer-links li {
     list-style: none;
 }
 
-.footer-links > li:first-of-type {
-    display: block;
-}
+
 
 .foot-menu li, 
 .foot-drone-list li {
@@ -2391,10 +2659,7 @@ section.review-page-container {
 }
 
 
-.foot-menu li,
-.drone-list-col li {
-    list-style: none;
-}
+
 
 .foot-menu li a,
 .drone-list-col li a {
@@ -2436,15 +2701,33 @@ section.review-page-container {
     margin: 20px 0 10px;
 }
 
+.my-info i {
+    font-size: 24px;
+}
+
 .fa.fa-github {
     font-size: 22px;
     color: #333;
     margin-left: 15px;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .fa.fa-github:hover {
     color: #29b6f6;
-}
+} */
+
+@media only screen and (max-width: 330px) {
+    .drone-list-col {
+        padding-left: 0;
+    }
+
+    .foot-drone-list li:first-of-type {
+        margin-left: 0;
+    }
+} 
+
 
 @media only screen and (max-width: 350px) {
     .burger-icon-wrap.open {
@@ -2490,7 +2773,7 @@ section.review-page-container {
 /*===========================================================*/
 @media screen and (min-width: 416px) {
     .banner {
-        background: url('../assets/phantom-3-aaron-burden-compressor.jpg') center;
+        background: url('../assets/drones/phantom-3-aaron-burden-compressor.jpg') center;
         background-attachment: fixed;
         background-size: cover;
         background-position-x: unset;
@@ -2758,7 +3041,7 @@ section.review-page-container {
     /*========================================/
     /* Footer (Landscape & Desktop)
     /*=======================================*/
-    .footer-links {
+    /* .footer-links {
         position: absolute;
         left: 50%;
         width: 100%;
@@ -2794,7 +3077,7 @@ section.review-page-container {
     .foot-drone-list {
         margin: 0;
         width: unset;
-    }
+    } */
 
     
 }
@@ -2821,6 +3104,12 @@ section.review-page-container {
 
     .specs dd {
         padding: 5px 10%;
+    }
+
+    /* FOOTER */
+    .foot-drone-list > li {
+        float: left;
+        margin-left: 15%;
     }
 } 
 
@@ -2902,13 +3191,6 @@ section.review-page-container {
         width: 600px;
     }
     
-    .footer-links {
-        width: 80%;
-    }
-    
-    .foot-drone-list > li {
-        /* width: 20%; */
-    }
 
     .specs dd {
         padding: 5px 20%;
@@ -2934,6 +3216,7 @@ section.review-page-container {
         /* margin-left: 60px; */
     }
 }
+
 
 /*============================================================/
 /* PORTRAIT & LANDSCAPE ONLY
@@ -2966,6 +3249,7 @@ section.review-page-container {
         height: 40px;
         line-height: 40px;
         font-size: 16px;
+        padding-left: 10px;
         border: 1px solid #90a4ae;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
@@ -2993,6 +3277,7 @@ section.review-page-container {
 
     #radio-filter-form label {
         display: block;
+        cursor: pointer;
     }
 
     #radio-filter-form label:first-of-type {
@@ -3015,7 +3300,6 @@ section.review-page-container {
     .drone-search-btn,
     .aside-btns {
         height: 40px;
-        border: 1px solid #90a4ae;
         border-radius: 6px;
     }
 
@@ -3054,7 +3338,7 @@ section.review-page-container {
 
     .reviews-title {
         position: absolute;
-        top: 0;
+        top: -20px;
         left: 50%;
         transform: translateX(-50%);
     }
@@ -3696,33 +3980,125 @@ section.review-page-container {
         background-image: url('../assets/icons/YouTube-icon-full_color.png');
     }
 
-    /* .video-backdrop {
-        position: fixed;
-        background: rgba(0,0,0,0.9);
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1120;
+    /*========================================/
+    /* BIG FOOTER (DESKTOP / TABLET)
+    /*=======================================*/
+
+    .main-footer {
+        padding-bottom: 20px;
+        height: 350px;
+    }
+    
+    .foot-title {
+        position: absolute;
+        left: 50%;
+        top: 10px;
+        transform: translate(-50%, 0);
     }
 
-    .video-modal {
-        width: 80vw;
-        margin:  10vh auto;
+    .foot-title::before,
+    .foot-title::after {
+        position: absolute;
+        top: 55px;
+        content: '';
+        width: 30px;
+        background: rgba(0,0,0,0.1);
+        height: 1px;
     }
 
-    .v-modal-close.fa {
-        font-size: 24px;
-        right: -25px;
-        cursor: pointer;
-        -webkit-transition: all 0.1s ease;
-        -moz-transition: all 0.1s ease;
-        transition: all 0.1s ease;
+    .foot-title::before {
+        right: -30px 
     }
 
-    .v-modal-close.fa:hover {
-        color: #29b6f6;
-    } */
+    .foot-title::after {
+        left: -30px;
+    }
+
+    nav.footer-links {
+        position: relative;
+        max-width: 1000px;
+        min-height: 200px;
+        margin: 0 auto;
+        overflow: auto;
+    }
+
+    /* social links   BIG*/
+    
+    .social-links {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);
+        top: -80px;
+    }
+
+    .social-links a {
+        margin-right: unset;
+    }
+
+    a.fb-link {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+
+    .social-links::before {
+        position: absolute;
+        top: -110%;
+        left: 50%;
+        content: '';
+        width: 1px;
+        background: rgba(0,0,0,0.1);
+        height: 30px;
+        transform: translate(-50%, 0);
+    }
+
+    .foot-title::before,
+    .foot-title::after,
+    .social-links::before {
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+    }
+
+    /* site navigation   BIG*/
+
+    ul.foot-menu {
+        position: absolute;
+        left: 5%;
+        top: 9px;
+        font-size: 20px;
+        width: unset;
+        text-align: left;
+        margin-top: 40px;
+    }
+  
+
+    /* drone makes   BIG*/
+
+    ul.foot-drone-list {
+        position: absolute;
+        right: 0;
+        width: unset;
+        margin-top: 40px;
+    }
+
+    .foot-drone-list > li {
+        margin-left: unset;
+    }
+
+
+    label[for="drone-make-list"] {
+        text-align: left;
+    }
+
+    /* my info   BIG*/
+
+    .my-info {
+        min-height: unset;
+        max-width: 1100px;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+    
 
 } 
 
@@ -3774,7 +4150,7 @@ section.review-page-container {
      /* .mobile-menu.open::after {
         content: '';
         background: rgba(0,0,0,0.7);
-        background: url('../assets/phantom-below-matthew-brodeur-compressor.jpg') center;
+        background: url('../assets/drones/phantom-below-matthew-brodeur-compressor.jpg') center;
         background-size: cover;
         position: fixed;  
         top: 0;
@@ -3799,9 +4175,6 @@ section.review-page-container {
         display: none;
     }
 
-    .foot-drone-list > li {
-        /* min-width: 120px; */
-    }
 }
 
 
@@ -3837,6 +4210,19 @@ section.review-page-container {
     .detail-lists dd {
         width: 35%;
         min-width: 280px;
+    }
+
+    .foot-title::before,
+    .foot-title::after {
+        width: 100px;
+    }
+
+    .foot-title::before {
+        right: -100px 
+    }
+
+    .foot-title::after {
+        left: -100px;
     }
 }
 
