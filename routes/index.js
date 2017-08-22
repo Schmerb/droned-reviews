@@ -1,27 +1,37 @@
 'use strict';
 
-const express    = require('express'),
-      bodyParser = require('body-parser');
+const express                     = require('express'),
+      bodyParser                  = require('body-parser'),
+      {checkSessionCookieVisited} = require('../services/cookieCheck');
+
 const router     = express.Router();
+
+
 
 // router.use(bodyParser());
 router.use(bodyParser.urlencoded({ extended: true }));
+// router.use(checkSessionCookieVisited());
 
+// controllers
+const mainController       = require('../controllers/mainController'),
+      feedUpdateController = require('../controllers/feedUpdateController');
 
-const mainController       = require('../controllers/mainController');
-const feedUpdateController = require('../controllers/feedUpdateController');
+// routers
+const postsRouter    = require('./postsRouter'),
+      commentsRouter = require('./commentsRouter'),
+      usersRouter    = require('./usersRouter'),
+      fileRouter     = require('./fileRouter'),
+      dronesRouter   = require('./dronesRouter');
 
-
-const postsRouter    = require('./postsRouter');
-const commentsRouter = require('./commentsRouter');
-const usersRouter    = require('./usersRouter');
-const fileRouter     = require('./fileRouter');
-const dronesRouter   = require('./dronesRouter');
 
 // routes for app
 
+// Landing Page * CAPSTONE PROJECT ONLY *
+router.get('/welcome', mainController.getLanding);
+
+
 // main page
-router.get('/', mainController.getIndex);
+router.get('/', checkSessionCookieVisited, mainController.getIndex);
 
 // mission page
 router.get('/mission', mainController.getMission);
@@ -52,3 +62,6 @@ router.use('/drones', dronesRouter);
 
 
 module.exports = router;
+
+
+  

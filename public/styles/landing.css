@@ -1,0 +1,163 @@
+/* 
+    Landing Page Styles
+    Only for Capstone Project
+*/
+.landing-body {
+    position: relative;
+    background-color: #073e58;
+    background-color: #0a5476;
+    background-image: url('../assets/drones/phone-DJI-samuel-schwendener-compressor.jpg');
+    background-size: cover;
+    background-position-x: 29%;
+    background-position-y: 100%;
+    background-repeat: no-repeat;
+    -webkit-transition: all 0.8s ease;
+    -moz-transition: all 0.8s ease;
+    transition: all 0.8s ease;
+}
+
+.landing-body::before {
+    content: '';
+    background: linear-gradient(180deg, rgba(0,0,0,0.35), transparent);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    color: white;
+    /* background: linear-gradient(-6deg, transparent, transparent, rgba(255,255,255,0.3)); */
+    position: relative;
+    width: 80%;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
+    z-index: 100;
+    /* border-radius: 55%; */
+    /* border: 1px solid white; */
+}
+
+.spin {
+    background: linear-gradient(0deg, transparent, transparent, rgba(255,255,255,0.3));
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+a.thinkful {
+    color: white;
+}
+
+a.thinkful:hover {
+    color: rgba(255,255,255,0.7);
+}
+
+.landing-title {
+    color: white;
+}
+
+.demo-creds-list {
+    color: lightgrey;
+    list-style: none;
+    padding-left: 0;
+}
+
+.creds {
+    color: white;
+}
+
+.home-btn {
+    color: white;
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    border-radius: 2px;
+    border: 1px solid rgba(255,255,255,0.1)
+}
+
+.home-btn:hover {
+    background: rgba(128,128,128,0.4);
+    background: rgba(255,255,255,0.4);
+}
+/* 
+@keyframes spin {
+	from { 
+        background-image: -moz-linear-gradient(-6deg, transparent, transparent, rgba(255,255,255,0.3));
+        background-image: -webkit-linear-gradient(-6deg, transparent, transparent, rgba(255,255,255,0.3));
+        background-image: linear-gradient(-6deg, transparent, transparent, rgba(255,255,255,0.3));
+     }
+	to { 
+        background-image: -moz-linear-gradient(90deg, transparent, transparent, rgba(255,255,255,0.3));
+        background-image: -webkit-linear-gradient(90deg, transparent, transparent, rgba(255,255,255,0.3));
+        background-image: linear-gradient(90deg, transparent, transparent, rgba(255,255,255,0.3));
+     }
+}
+
+#animate {
+	
+	
+	background-image: -moz-linear-gradient(-6deg, transparent, transparent, rgba(255,255,255,0.3));
+	background-image: -webkit-linear-gradient(-6deg, transparent, transparent, rgba(255,255,255,0.3));
+	background-image: linear-gradient(-6deg, transparent, transparent, rgba(255,255,255,0.3));
+    
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+
+	animation-name: spin; 
+	animation-duration: 3s; 
+	animation-iteration-count: infinite; 
+	animation-timing-function: linear;
+} */
+
+/*========================================/
+/* Mobile Portrait
+/*=======================================*/
+@media only screen and (max-width: 415px) {
+
+}
+
+
+/*========================================/
+/* Landscape & Desktop / Tablets
+/*=======================================*/
+@media only screen and (min-width: 416px) {
+
+    .home-btn {
+        width: 200px;
+        height: 60px;
+        line-height: 60px;
+    }
+}
+
+/*========================================/
+/* Desktop / Tablets
+/*=======================================*/
+@media only screen and (min-width: 737px) {
+
+    .landing-body {
+        background-position-x: 0;
+    }
+
+    .container {
+        width: 60%;
+        margin-top: 100px;
+    }
+}
+
+
+@media only screen and (min-width: 1100px) {
+    
+}

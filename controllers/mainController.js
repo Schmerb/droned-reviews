@@ -1,8 +1,19 @@
 'use strict';
 
+const {checkSessionCookieLoggedIn} = require('../services/cookieCheck');
+
+exports.getLanding = (req, res) => {
+    let {loggedIn, username} = checkSessionCookieLoggedIn(req);
+
+    res.status(200).render('pages/landing', {
+        loggedIn: loggedIn,
+        username: JSON.stringify(username)
+    });
+};
+
 
 exports.getIndex = (req, res) => {
-    let {loggedIn, username} = checkSessionCookie(req);
+    let {loggedIn, username} = checkSessionCookieLoggedIn(req);
 
     res.status(200).render('index', {
         loggedIn: loggedIn,
@@ -12,24 +23,10 @@ exports.getIndex = (req, res) => {
 
 
 exports.getMission = (req, res) => {
-    let {loggedIn, username} = checkSessionCookie(req);
+    let {loggedIn, username} = checkSessionCookieLoggedIn(req);
     res.status(200).render('pages/mission', {
         loggedIn: loggedIn,
         username: JSON.stringify(username)
     });
 }
 
-
-// To check if session cookie exists
-const checkSessionCookie = req => {
-    let loggedIn = false;
-    let username = req.cookies.loggedIn;
-
-    console.log(req.cookies);
-
-    if (username !== '') {
-        loggedIn = true;
-    }
-
-    return {loggedIn, username};
-}
