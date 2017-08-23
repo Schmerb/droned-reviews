@@ -127,77 +127,6 @@ const TOP_TOP_ARROW = '.to-top';
 
 
 
-let MOCK_REVIEW_DATA = [
-    {
-        author: { username: "Mike Schmerbeck" },
-        drone: {
-            make: "DJI",
-            model: drones.dji.phantom_4.model
-        },
-        img: drones.dji.phantom_4.img,
-        specs: drones.dji.phantom_4,
-        title: "Title of this post!!",
-        content: "The Phantom 4 has the perfect mix of professional grade equipment and easy to use in-flight controls. The camera itself is worthy of its own review. The P4 comes with a 4K camera mounted on a gimbal for extremely stable shots. Shoots 1080p video @120f/s which makes for the smoothest slow-motion playback. The intelligent flight modes allow for custom movement using gps for precision accuracy and with return-to-home mode, you never have to worry about not making it back to the take-off area since a series of warnings and auto-flight controls are triggered if battery power drops below a certain threshold. This is the ultimate quad-copter currently on the market and for the price, you get what you pay for!"
-    },
-    {
-        author: { username: "Max McClaskie" },
-        drone: {
-            make: "DJI",
-            model: drones.dji.phantom_4_pro.model
-        },
-        img: drones.dji.phantom_4_pro.img,
-        specs: drones.dji.phantom_4_pro,
-        title: "Title of this post!!",
-        content: "Vestibulum pulvinar quam odio, convallis ultrices dui volutpat id. Fusce eget sapien eget est maximus faucibus eget quis orci. Aliquam ultrices, diam sit amet sollicitudin vulputate, tortor velit posuere massa, id commodo tellus nunc sit amet metus. Nunc nisl erat, semper pellentesque augue nec, fermentum ultrices eros. Donec ac sem enim. Aenean porta eros eu felis molestie semper. Mauris consectetur ante a pharetra varius. Ut tincidunt enim eleifend ligula tempus, nec eleifend dui imperdiet. Proin ac auctor sapien. Vivamus aliquet efficitur consequat. Ut gravida arcu ac malesuada laoreet. Quisque ut dapibus leo. Sed molestie, risus vitae sollicitudin ultricies, velit ligula sodales mauris, vitae bibendum diam orci et libero. Sed suscipit eros eu sapien sodales, eget placerat lorem pulvinar. Etiam et sagittis nisl, eget mollis mi. Phasellus tristique odio et massa facilisis, dictum efficitur eros pellentesque."
-    },
-    {
-        author: { username: "John Digweed" },
-        drone: {
-            make: "DJI",
-            model: drones.dji.phantom_3_standard.model
-        },
-        img: drones.dji.phantom_3_standard.img,
-        specs: drones.dji.phantom_3_standard,
-        title: "Title of this post!!",
-        content: "Morbi consequat erat a mi sollicitudin posuere. Praesent quis hendrerit risus, id euismod justo. Nunc vel malesuada nisi. Suspendisse suscipit urna in luctus facilisis. Integer condimentum dui nunc, ac semper ex varius nec. Vestibulum scelerisque metus eu sem sollicitudin cursus. Curabitur non sapien nisl. Mauris a ultrices est, in accumsan elit. Sed pellentesque nisi consequat urna maximus finibus. Pellentesque interdum urna eu mollis rutrum. Cras vitae urna consequat, dapibus metus ac, sagittis elit. Cras tempus, lectus a dictum venenatis, massa libero eleifend felis, nec malesuada purus tellus et felis."
-    },
-    {
-        author: { username: "Claude VonStroke" },
-        drone: {
-            make: "DJI",
-            model: drones.dji.mavic_pro.model
-        },
-        img: drones.dji.mavic_pro.img,
-        specs: drones.dji.mavic_pro,
-        title: "Title of this post!!",
-        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a tortor sed erat maximus condimentum nec sed risus. Maecenas ut justo sapien. Nulla in condimentum dolor. Fusce pretium nibh magna, vel scelerisque erat rutrum vel. Quisque porttitor ultricies ex. In ac nisl vestibulum, luctus justo hendrerit, ultricies libero. Proin ut cursus enim, nec tempor libero. Nunc venenatis consequat erat id luctus. Vestibulum a urna semper libero molestie malesuada."
-    },
-    {
-        author: { username: "Bommer" },
-        drone: {
-            make: "DJI",
-            model: drones.dji.inspire_2_X4S.model
-        },
-        img: drones.dji.inspire_2_X4S.img,
-        specs: drones.dji.inspire_2_X4S,
-        title: "Title of this post!!",
-        content: "Proin ut nunc at sapien sodales faucibus vitae sit amet magna. Donec vulputate diam id purus aliquet sodales. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis sodales tincidunt nisl, at elementum risus aliquet id. Donec iaculis, nibh et tincidunt eleifend, lorem metus efficitur turpis, sit amet luctus orci lectus vel sapien. Donec id est ullamcorper, consequat turpis non, eleifend nisi. Phasellus accumsan nulla et laoreet fringilla. Integer consectetur commodo augue sit amet consequat."
-    },
-];
-
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// Get and Display mock data
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-function getAndDisplayReviews() {
-    let reviews = MOCK_REVIEW_DATA.map((review) => {
-        return formReviewPost(review);
-    });
-    $(REVIEWS_CONTENT).append(reviews.join(''));
-}
-
-
-
-
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // returns populated review post template
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -209,6 +138,8 @@ function formReviewPost(postData, byThisUser = false, userVoted) {
         make    = $this.specs.brand,
         model   = $this.specs.model,
         url     = $this.specs.url,
+        modelId = $this.drone.model,
+        makeId  = $this.drone.make,
         title   = $this.title,
         content = $this.content,
         specs   = $this.specs,
@@ -234,10 +165,9 @@ function formReviewPost(postData, byThisUser = false, userVoted) {
         posNeg = '&#45;';
     else if (votes > 0)
         posNeg = '+';
-    // console.log({userVoted});
-    // console.log(`postData: ${postData}`);
+
     let review = `<div class="review">
-                        <div class="post" data-post-id="${id}">
+                        <div class="post" data-post-id="${id}" data-drone-model="${modelId}">
                             <div class="img-container">
                                 <img class="post-img" src="${img_src}">
                                 <h3>Model: <span class="model">${model}</span></h3>
@@ -383,7 +313,7 @@ function getCommentTemplate(comment, byThisUser, didUserLike) {
                         <div class="reply-comments-content" data-comment-id="${id}">
                             
                         </div>`;
-    // <hr class="shadow-hr">`;
+    
     if (state.loggedIn) { // Logged in, reply comment form displayed
         commentTemp += `<form class="reply-comment-form comment-form expand" method="POST" action="/posts/comments">
                             <textarea class="reply-comment-input comment-input" rows="" cols="" placeholder="Type your reply here . . ." required></textarea>
@@ -486,7 +416,7 @@ function displayDetailSpecs(currentSlide) {
     let model = $currentSlide.attr('data-model'),
         make  = $currentSlide.attr('data-make');
     // grab model data object from drones object
-    debugger;
+
     let data     = getDroneData(make, model),
         specHtml = getDetailPageSpecsTemplate(data);
 
@@ -714,7 +644,7 @@ function displayComment(comment) {
         let $numComments = $commentsContent.parent(COMMENTS_CONTAINER)
                                            .find(NUM_COMMENTS);
         let count = parseInt($numComments.text());
-        console.log('count', count);
+        
         count++;
         $numComments.text(count);
 
@@ -800,7 +730,7 @@ function displaySignupError(location, message) {
                       .val('')
                       .focus();
     } else if (location === 'username') {
-        $(USERNAME_INPUT).addClass('error')
+        $(`.signup-form ${USERNAME_INPUT}`).addClass('error')
                          .val('')
                          .focus();
     } else if (location === 'password') {
@@ -871,8 +801,8 @@ function slideUpReviewForm() {
 function displayEditPostForm($post) {
     let content   = $post.find('.content').html(),
         postTitle = $post.find('.post-title').text(),
-        model     = $post.find('.model').text(),
         id        = $post.attr('data-post-id'),
+        model     = $post.attr('data-drone-model'),
         rating    = $post.find('.post-rating').attr('data-rating');
 
     // Removes <p> tags and adds '\n\n' chars to end of each paragraph
@@ -884,7 +814,7 @@ function displayEditPostForm($post) {
                      .join('')
                      .trim();
     
-    // show(EDIT_REVIEW_FORM_SCREEN);
+    
     slideInReviewForm($(EDIT_REVIEW_FORM_SCREEN), EDIT_REVIEW_FORM_SCREEN);
 
     $('#edit-title-input').val(postTitle);
@@ -895,7 +825,7 @@ function displayEditPostForm($post) {
     $stars.each((index, el) => {
         // order of indicies is reverse
         if(index > 5 - rating - 1) {
-            console.log(index); $(el).addClass('filled-star')
+            $(el).addClass('filled-star');
         }
     })
 }
@@ -1032,6 +962,7 @@ function signupFormHandler($form) {
         username   = $form.find('.username-input').val(),
         password   = $form.find(PASS_INPUT).val(),
         rePassword = $form.find('.re-pass-input').val();
+    resetLoginForm();
     if (password !== rePassword) {
         alert('passwords did not match.');
         $('.signup-form ' + PASS_INPUT).addClass('error');
@@ -1039,8 +970,19 @@ function signupFormHandler($form) {
         $('.signup-form ' + PASS_INPUT).removeClass('error');
         closeLoginSignupModal();
         let data = { email, username, password };
-        createNewUser(data); // makes call to api
+        setTimeout(function () {
+            createNewUser(data); // makes call to api
+        }, 1000);
     }
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Resets signup form and removes any error messages
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function resetSignupForm() {
+    $(`${SIGNUP_FORM} ${USERNAME_INPUT}`).removeClass('error')
+    hide(SIGNUP_ERROR);
+    $(SIGNUP_FORM)[0].reset();
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -1052,10 +994,20 @@ function loginFormHandler($form) {
         password = $form.find(PASS_INPUT).val();
     let data = { username, password };
 
+    resetSignupForm();
     closeLoginSignupModal();
     setTimeout(function () {
         logUserIn(data); // makes call to api
     }, 1000);
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Resets login form and removes any error messages
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function resetLoginForm() {
+    hide(LOGIN_ERROR);
+    $(`${LOGIN_FORM} ${PASS_INPUT}`).removeClass('error');
+    $(LOGIN_FORM)[0].reset();
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -1481,6 +1433,7 @@ function nextSearchPageHandler() {
 
 // USERS 
 
+// sign-up
 function createNewUser(userData) {
     $.ajax({
         url: '/users',
@@ -1490,19 +1443,23 @@ function createNewUser(userData) {
         success: (res) => {
             // Successfully signed user up, now log them in
             // location.reload();
-            $(SIGNUP_FORM)[0].reset();
+            console.log('SUCCESS');
+            resetSignupForm();
             openLoginSignupModal('login');
             displayWelcomeMessage(res.username);
         },
-        error: (jqXHR, textStatus, err) => {
+        error: (err) => {
+            console.log('SIGNUP ERR');
             let message = err.responseJSON.message;
             let location = err.responseJSON.location;
-            displaySignupError(location, message);
             console.log(`${location}: ${message}`);
+            show(LOGIN_SIGNUP_PAGE);
+            displaySignupError(location, message);
         }
     });
 }
 
+// Log In
 function logUserIn(loginData) {
     // console.log(loginData);
     $.ajax({
@@ -1527,6 +1484,7 @@ function logUserIn(loginData) {
     });
 }
 
+// Log Out
 function logUserOut() {
     $.ajax({
         url: '/users/logout',
