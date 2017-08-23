@@ -11,17 +11,27 @@ Node Backend Capstone Project from [Thinkful's](https://www.thinkful.com/) Fulls
 * Polish: Your polished client should have compelling design and be responsive and follow accessibility best practices.
 
 ## Screenshots
-![Landing Page](./working-screenshots/home-page-alien-search.png?raw=true "Landing Page")
+![Landing Page](./working-screenshots/landing.png?raw=true "Landing Page")
 
-![Home Page](./working-screenshots/alien-query.png?raw=true "Home Page")
+![Home Page](./working-screenshots/home-page.png?raw=true "Home Page")
 
-![Reviews](./working-screenshots/alien-detail-page-with-similar-carousel.png?raw=true "Reviews")
+![Signin Home Page](./working-screenshots/mission-loggedin-page.png?raw=true "Signin Home Page")
 
-![Comments](./working-screenshots/silicon-valley-detail-page.png?raw=true "Comments")
+![Reviews](./working-screenshots/reviews-page-top.png?raw=true "Reviews")
 
-![Specs](./working-screenshots/popular-movies.png?raw=true "Specs")
+![Review Comments](./working-screenshots/post-comments-page.png?raw=true "Review Comments")
 
-![Drone Models](./working-screenshots/discover-content.png?raw=true "Drone Models")
+![Specs](./working-screenshots/post-specs-page.png?raw=true "Specs")
+
+![Drone Models](./working-screenshots/drone-model-page.png?raw=true "Drone Models")
+
+Mobile Menu
+
+![Mobile Menu](./working-screenshots/mobile-menu.png?raw=true "Mobile Menu") 
+
+Mobile Review Page
+
+![Mobile Review](./working-screenshots/mobile-review.png?raw=true "Mobile Review")
 
 ## Live [DEMO](http://www.droned.reviews/)
 

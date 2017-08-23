@@ -80,6 +80,7 @@ a {
     background: rgba(0,0,0,0.9);
     position: fixed;
     width: 100vw; 
+    min-width: 300px;
     padding-left: 30px;
     padding-right: 30px;
     left: 0;
@@ -237,8 +238,8 @@ img.logo-drone {
 
 .site-menu,
 .user-nav {
-     position: absolute;
-     display: inline-block; 
+    position: absolute;
+    display: inline-block; 
     margin: 0;
     top: 50%;
     transform: translate(0, -50%);
@@ -2039,7 +2040,6 @@ section.review-page-container {
     clear: both;
     width: 100%;
     margin: 0 auto;
-    text-align: center; 
 }
 
 .details.expand {
@@ -3291,6 +3291,11 @@ label[for="drone-make-list"] {
         padding: 10px 30px;
     }
 
+    .g-row {
+        display: inline-block;
+        width: 45%;
+    }
+
     
 
     .main-video,
@@ -3299,7 +3304,8 @@ label[for="drone-make-list"] {
     }
 
     .video-gallery .vid-wrap {
-        max-width: 160px;
+        width: 100%;
+        margin-bottom: 5px;
     }
 
     .vid-wrap {
