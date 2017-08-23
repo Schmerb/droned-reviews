@@ -208,11 +208,13 @@ function formReviewPost(postData, byThisUser = false, userVoted) {
         author  = $this.author.username || state.user, // If username isnt attached to post, this is new post & attach current session user
         make    = $this.specs.brand,
         model   = $this.specs.model,
+        url     = $this.specs.url,
         title   = $this.title,
         content = $this.content,
         specs   = $this.specs,
         img_src = specs.img,
         votes   = $this.votes || 0,
+        rating  = $this.rating,
         created = getElapsedTime(new Date($this.created));
     
     // Amazon product link
@@ -222,8 +224,10 @@ function formReviewPost(postData, byThisUser = false, userVoted) {
         return `<p class="paragraph">${paragraph}</p>`;
     });
 
-    // console.log(content);
-    // console.log(content.join(''));
+    let stars = '';
+    for (let i = 0; i < rating; i++ ) {
+        stars += '<span class="star filled-star">&#9734;</span>'
+    }
 
     let posNeg  = '';
     if (votes < 0)
@@ -237,7 +241,11 @@ function formReviewPost(postData, byThisUser = false, userVoted) {
                             <div class="img-container">
                                 <img class="post-img" src="${img_src}">
                                 <h3>Model: <span class="model">${model}</span></h3>
-                                <h5>Manufacturer: <b><span class="maker">${make}</span></b></h5>
+                                <h5>Manufacturer: <b><span class="maker"><a href="/drones/${url}">${make}</a></span></b></h5>
+                                <div class="post-rating" data-rating="${rating}">
+                                    <label>User rating: </label>
+                                    <div class="post-stars">${stars}</div>
+                                </div>
                             </div>
                             <h2 class="post-title">${title}</h2>
                             <hr class="shadow-hr">
@@ -255,6 +263,7 @@ function formReviewPost(postData, byThisUser = false, userVoted) {
                             <div class="post-attr">
                                 
                                 <div class="c-date-edit-wrap">
+                                    
                                     <span class="date-posted">submitted  ${created} ${/\d/.test(created) ? 'ago' : ''} by</span> <label class="author-label" for=""><span class="author">${author}</span></label>
                                     ${byThisUser ? '<i id="edit-post-icon" class="fa fa-pencil-square-o" aria-hidden="true"></i>' : ''} 
                                 </div>
@@ -277,27 +286,35 @@ function formReviewPost(postData, byThisUser = false, userVoted) {
                             </div>
                         </div>
                         <div class="details">
-                            <h3>Model: <span class="model">${model}</span></h3>
-                            <h5>Manufacturer: <span class="maker"><b>${make}</b></span></h5>
-                            <div>
-                                <h4>Get it: ${amazonLink}</h4>
+                            <div class="detail-header">
+                                <h3>Model: <span class="model">${model}</span></h3>
+                                <h5>Manufacturer: <span class="maker"><b><a href="/drones/${url}">${make}</a></b></span></h5>
+                                <div class="amazon-link-wrap">
+                                    <h4>Grab one: <span class="amazon-link">${amazonLink}</span></h4>
+                                </div>
                             </div>
-                            <dl class="specs">
-                                <dt>Specs</dt>
-                                <dd>Ave. Price: <span>$${specs.price}</span></dd>
-                                <dd>Camera: <span>${specs.camera}</span></dd>
-                                <dd>Max Flight Time: <span class="max-flight">${specs.max_flight_time}</span></dd>
-                                <dd>Max Range: <span>${specs.max_range}</span></dd>
-                                <dd>Max Speed: <span>${specs.max_speed}</span></dd>
-                                <dd>GPS?: <span>${specs.gps}</span></dd>
-                                <dd>3-axis gimbal: <span>${specs.gimbal}</span></dd>
-                                <dd>Intelligent Flight: <span>${specs.intelligent_flight}</span></dd>
-                                <dd>Avoidance: <span>${specs.avoidance || 'NO'}</span></dd>
-                                <dd>Return Home: <span>${specs.return_home || 'NO'}</span></dd>
-                                <dd>Follow-Me Mode: <span>${specs.follow_me_mode || 'NO'}</span></dd>
-                                <dd>Tracking Mode: <span>${specs.tracking_mode || 'NO'}</span></dd>
-                                <dd>Flips: <span>${specs.flips || 'NO'}</span></dd>
-                            </dl>
+                            <div class="specs">
+                                <dl class="main-specs">
+                                    <dt>Specs</dt>
+                                    <dd>Avg. Price: <span>$${specs.price}</span></dd>
+                                    <dd>Camera: <span>${specs.camera}</span></dd>
+                                    <dd>Max Flight Time: <span class="max-flight">${specs.max_flight_time}</span></dd>
+                                    <dd>Max Range: <span>${specs.max_range}</span></dd>
+                                    <dd>Max Speed: <span>${specs.max_speed}</span></dd>
+                                    <dd>GPS?: <span>${specs.gps}</span></dd>
+                                    <dd>3-axis gimbal: <span>${specs.gimbal}</span></dd>
+                                    <dd>Flips: <span>${specs.flips || 'NO'}</span></dd>
+                                </dl>
+
+                                <dl class="mode-specs">
+                                    <dt>Modes</dt>
+                                    <dd>Intelligent Flight: <span>${specs.intelligent_flight}</span></dd>
+                                    <dd>Avoidance: <span>${specs.avoidance || 'NO'}</span></dd>
+                                    <dd>Return Home: <span>${specs.return_home || 'NO'}</span></dd>
+                                    <dd>Follow-Me Mode: <span>${specs.follow_me_mode || 'NO'}</span></dd>
+                                    <dd>Tracking Mode: <span>${specs.tracking_mode || 'NO'}</span></dd>
+                                </dl>
+                            </div>
                         </div>
                         <div class="comments-container">
                             <header class="comments-header">
@@ -416,7 +433,7 @@ function getDetailPageSpecsTemplate(data) {
     return `<li>
                 <dl class="main-specs">
                     <dt>Specs</dt>
-                    <dd>Ave. Price: <span>$${data.price}</span></dd>
+                    <dd>Avg. Price: <span>$${data.price}</span></dd>
                     <dd>Camera: <span>${data.camera}</span></dd>
                     <dd>Max Flight Time: <span class="">${data.max_flight_time}</span></dd>
                     <dd>Max Range: <span>${data.max_range}</span></dd>
@@ -804,6 +821,7 @@ function displayLoginError(message) {
     $(`${LOGIN_ERROR} .error-message`).text(message);
 }
 
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Slides review form in from top of screen, fades in 
 // background
@@ -850,10 +868,11 @@ function slideUpReviewForm() {
 // Displays EDIT review post modal
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function displayEditPostForm($post) {
-    let content = $post.find('.content').html(),
+    let content   = $post.find('.content').html(),
         postTitle = $post.find('.post-title').text(),
-        model = $post.find('.model').text(),
-        id = $post.attr('data-post-id');
+        model     = $post.find('.model').text(),
+        id        = $post.attr('data-post-id'),
+        rating    = $post.find('.post-rating').attr('data-rating');
 
     // Removes <p> tags and adds '\n\n' chars to end of each paragraph
     // to display text in form the same way it is displayed on screen
@@ -871,6 +890,13 @@ function displayEditPostForm($post) {
     $('#edit-post-content').val(content);
     $(`.dropdown-options option[value="${model}"]`).prop('selected', true);
     $(EDIT_REVIEW_FORM).attr('data-post-id', id);
+    let $stars = $(EDIT_REVIEW_FORM).find('.star');
+    $stars.each((index, el) => {
+        // order of indicies is reverse
+        if(index > 5 - rating - 1) {
+            console.log(index); $(el).addClass('filled-star')
+        }
+    })
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -1036,21 +1062,20 @@ function loginFormHandler($form) {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function reviewFormHandler($form, editForm = false) {
     let $selectedOpt = $($form).find('.dropdown-options')
-                               .find(":selected"),
-        make         = $selectedOpt.parent()
+                               .find(":selected");
+    let make    = $selectedOpt.parent()
                                    .attr('label')
                                    .toLowerCase(),
-        model        = $selectedOpt[0].value,
-        title        = $('#title-input').val(),
-        content      = $('#post-content').val(),
-        rating       = $('input[name=star]:checked').val();
+        model   = $selectedOpt[0].value,
+        title   = $('#title-input').val(),
+        content = $('#post-content').val(),
+        rating  = $form.find('.filled-star').length;
 
     let $fileInput = $form.find('.img-file-input');
     let file = $fileInput.val() !== undefined ? $fileInput[0].files[0] : null;
-    console.log(file);
+    
 
     content = content.split('\n\n');
-    console.log({content});
 
     let post = {
         drone: { make, model },
@@ -1059,17 +1084,21 @@ function reviewFormHandler($form, editForm = false) {
         rating
     };
 
-    if (editForm) {
-        post.content = $('#edit-post-content').val();
-        post.content = post.content.split('\n\n'); // Create array of strings, one per paragraph
-        post.id = $form.attr('data-post-id');
-        post.title = $('#edit-title-input').val();
-
-        // ajax PUT request to db
-        updatePost(post, file);
+    if(rating === undefined || rating === 0) {
+        show('.rating-alert');
     } else {
-        // ajax POST request to db
-        createPost(post, file);
+        if (editForm) {
+            post.content = $('#edit-post-content').val();
+            post.content = post.content.split('\n\n'); // Create array of strings, one per paragraph
+            post.id = $form.attr('data-post-id');
+            post.title = $('#edit-title-input').val();
+    
+            // ajax PUT request to db
+            updatePost(post, file);
+        } else {
+            // ajax POST request to db
+            createPost(post, file);
+        }
     }
 }
 
@@ -1078,7 +1107,8 @@ function reviewFormHandler($form, editForm = false) {
 // Formulates review post for preview before actually 
 // submitting
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-function previewReviewHandler(form) {
+function previewReviewHandler($form) {
+    let form = $form.is(REVIEW_FORM) ? REVIEW_FORM : EDIT_REVIEW_FORM;
     let elements     = $(form)[0].elements,
         $selectedOpt = $(elements["make"]).find(":selected"),
         droneMake    = $selectedOpt.parent().attr('label'),
@@ -1104,6 +1134,7 @@ function previewReviewHandler(form) {
             model: droneData.model
         },
         specs: droneData,
+        created: Date.now()
     };
 
     let postHtml = formReviewPost(postData);
@@ -1798,15 +1829,8 @@ function initDroneSlider() {
             {
                 breakpoint: 860,
                 settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3
-                }
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2
+                    slidesToShow: 4,
+                    slidesToScroll: 4
                 }
             },
             {
@@ -2042,21 +2066,32 @@ function onYouTubeIframeAPIReady() {
 //   Nav item clicks
 // * * * * * * * * * * * * * 
 function burgerMenuClick() {
-    $(BURGER_ANCHOR).on('click', (e) => {
+    $(BURGER_ANCHOR).on('click', e => {
         e.preventDefault();
         toggleMobileMenu();
     });
 }
 
+function burgerIconTouchend() {
+    $(BURGER_ANCHOR).on('touchstart', e => {
+        $(BURGER_ICON).addClass('touchstart');
+        $(BURGER_ICON).removeClass('touchend');
+    });
+    $(BURGER_ANCHOR).on('touchend', e => {
+        $(BURGER_ICON).removeClass('touchstart');
+        $(BURGER_ICON).addClass('touchend');
+    });
+}
+
 function mobileMenuItemClick() {
-    $(MOBILE_MENU_ITEM).on('click', (e) => {
+    $(MOBILE_MENU_ITEM).on('click', e => {
         e.preventDefault();
         closeMobileMenu();
     });
 }
 
 function reviewsNavItemClick() {
-    $(REVIEWS_NAV_ITEM).on('click', (e) => {
+    $(REVIEWS_NAV_ITEM).on('click', e => {
         e.preventDefault();
         if (location.pathname !== '/') {
             window.location = '/#reviews';
@@ -2066,7 +2101,7 @@ function reviewsNavItemClick() {
 }
 
 function welcomeClick() {
-    $('.news').on('click', e => {
+    $('.welcome').on('click', e => {
         e.preventDefault();
         location.href = '/welcome';
     });
@@ -2096,13 +2131,13 @@ function droneModelSlideChange() {
 // * * * * * * * * * * * * * 
 function loginBtnsClick() {
     // main nav login-btn
-    $(LOGIN_BTN).on('click', (e) => {
+    $(LOGIN_BTN).on('click', e => {
         e.preventDefault();
         openLoginSignupModal('login');
         closeMobileMenu();
     });
     // comments login-btn
-    $(REVIEWS).on('click', SUB_LOGIN_BTN, (e) => {
+    $(REVIEWS).on('click', SUB_LOGIN_BTN, e => {
         e.preventDefault();
         openLoginSignupModal('login');
         closeMobileMenu();
@@ -2137,13 +2172,13 @@ function logOutBtnClick() {
 // * * * * * * * * * * * * * 
 function signupBtnsClick() {
     // main nav signup-btn
-    $(SIGNUP_BTN).on('click', (e) => {
+    $(SIGNUP_BTN).on('click', e => {
         e.preventDefault();
         openLoginSignupModal('signup');
         closeMobileMenu();
     });
     // comments signup-btn
-    $(REVIEWS).on('click', SUB_SIGNUP_BTN, (e) => {
+    $(REVIEWS).on('click', SUB_SIGNUP_BTN, e => {
         e.preventDefault();
         openLoginSignupModal('signup');
         closeMobileMenu();
@@ -2178,7 +2213,7 @@ function loginScreenClick() {
 }
 
 function signupLoginCloseClick() {
-    $(window).on('click', (e) => {
+    $(window).on('click', e => {
         if (e.target === $(LOGIN_SIGNUP_PAGE)[0] || e.target === $(LOGIN_SIGNUP_X)[0]) {
             closeLoginSignupModal();
         }
@@ -2190,7 +2225,7 @@ function signupLoginCloseClick() {
 // Aside Filter
 // * * * * * * * * * * * * * 
 function asideFilterBtnHover() {
-    $(ASIDE_BTN).mouseenter((e) => {
+    $(ASIDE_BTN).mouseenter(e => {
         e.preventDefault();
         $(ASIDE_CONTAINER).addClass('slide');
         $('.aside-chevron').addClass('flip');
@@ -2219,7 +2254,7 @@ function searchFilterFormSubmit() {
 // Clear filters -- show all reviews
 //
 function clearAsideFiltersClick() {
-    $('.clear-btn').on('click', (e) => {
+    $('.clear-btn').on('click', e => {
         e.preventDefault();
         console.log('click');
         hide(FILTER_ALERT, 
@@ -2259,12 +2294,29 @@ function writeReviewNavClick() {
 
 
 function closeReviewFormClick() {
-    $(CLOSE_BTN).on('click', (e) => {
+    $(CLOSE_BTN).on('click', e => {
         e.preventDefault();
         slideUpReviewForm();
     });
 }
 
+function videoUploadClick() {
+    $('.video-file-input').on('click', e => {
+        e.preventDefault();
+        alert('Video uploads coming soon!');
+    });
+}
+
+
+function starClick() {
+    $('.star').on('click', function(e) {
+        e.preventDefault();
+        $('.star').removeClass('filled-star');
+        $(this).add($(this)
+               .nextAll())
+               .addClass('filled-star');
+    });
+}
 
 
 // * * * * * * * * * * * * * 
@@ -2273,14 +2325,13 @@ function closeReviewFormClick() {
 function previewBtnClick() {
     $(PREVIEW_BTN).on('click', function (e) {
         e.preventDefault();
-        let isReviewForm = $(this).closest('form')
-            .is(REVIEW_FORM);
-        previewReviewHandler(isReviewForm ? REVIEW_FORM : EDIT_REVIEW_FORM);
+        let $form = $(this).closest('form');
+        previewReviewHandler($form);
     });
 }
 
 function previewCloseBtnClick() {
-    $(PREIVEW_CLOSE_BTN).on('click', (e) => {
+    $(PREIVEW_CLOSE_BTN).on('click', e => {
         e.preventDefault();
         hide(PREVIEW_SCREEN);
     });
@@ -2310,7 +2361,6 @@ function reviewFormSubmit() {
     });
 }
 
-
 // * * * * * * * * * * * * * 
 // EDIT Review form SUBMIT
 // * * * * * * * * * * * * * 
@@ -2330,7 +2380,7 @@ function commentBtnClick() {
 }
 
 function deletePostModalBtnClick() {
-    $(DELETE_POST_MODAL_BTN).on('click', (e) => {
+    $(DELETE_POST_MODAL_BTN).on('click', e => {
         e.preventDefault();
         console.log('clicked');
         show(DELETE_POST_MODAL);
@@ -2347,7 +2397,7 @@ function deletePostBtnClick() {
 }
 
 function goBackBtnClick() {
-    $(GO_BACK_BTN).on('click', (e) => {
+    $(GO_BACK_BTN).on('click', e => {
         e.preventDefault();
         $(EDIT_REVIEW_FORM_SCREEN + ' .review-form-modal').removeClass('faded');
         hide(DELETE_POST_MODAL);
@@ -2546,18 +2596,28 @@ function toTopClick() {
     });
 }
 
+function newsClick() {
+    $('.coming-soon').on('click', e => {
+        e.preventDefault();
+        alert('RSS news feed coming soon');
+    });
+}
+
 //================================================================================
 // Event Listener Groups
 //================================================================================
 function navMenuEvents() {
     burgerMenuClick();
+    burgerIconTouchend();
     mobileMenuItemClick();
     reviewsNavItemClick();
     loginBtnsClick();
     signupBtnsClick();
     logOutBtnClick();
     droneBannerClicks();
+    // footer
     toTopClick();
+    newsClick();
 }
 
 function signupLoginFormEvents() {
@@ -2573,12 +2633,13 @@ function writeReviewFormEvents() {
     previewBtnClick();
     previewCloseBtnClick();
     closeReviewFormClick();
+    starClick();
     reviewFormSubmit();
     editReviewFormSubmit();
     deletePostModalBtnClick();
     deletePostBtnClick();
     goBackBtnClick();
-    // getTabFromTextarea();
+    videoUploadClick();
 }
 
 function asideEvents() {

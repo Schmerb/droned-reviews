@@ -45,8 +45,9 @@ Droned Reviews is a user sourced drone review website that provides a platform f
     * [MongoDB](https://www.mongodb.com/?_ga=2.47578087.1554352097.1503448576-1150300201.1500135506)
         * database for storing user information, posts, comments, and images
     * [Mongoose.js](http://mongoosejs.com/)
-        * A MongoDB object modeling tool designed to work in an asynchronous environment.   * [GridFS](https://docs.mongodb.com/manual/core/gridfs/)
-        * MongoDB specification for storing and serving large files. In this case specifically, user uploaded images
+        * A MongoDB object modeling tool designed to work in an asynchronous environment.   
+        * [GridFS](https://docs.mongodb.com/manual/core/gridfs/)
+            * MongoDB specification for storing and serving large files. In this case specifically, user uploaded images
     * [connect-mongo](https://www.npmjs.com/package/connect-mongo)
         * MongoDB session store for Express to allow persistant user sessions
     * [Passport.js](http://passportjs.org/docs)

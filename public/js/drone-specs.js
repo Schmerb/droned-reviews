@@ -2,6 +2,7 @@ let drones = {
     dji: {
         spark: {
             brand: "DJI",
+            url: "dji",
             model: "Spark",
             img: "https://www1.djicdn.com/uploads/nav_link/cover/176/size_1000_540_4e86d4c92a775b12721af22634386422.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B072JTFV6B/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B072JTFV6B&linkCode=as2&tag=schmerb0a-20&linkId=3bdc0a58be30479599875af93288cbae">DJI Spark Mini Quadcopter Drone</a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B072JTFV6B" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -21,6 +22,7 @@ let drones = {
         },
         phantom_4: {
             brand: "DJI",
+            url: "dji",
             model: "Phantom 4",
             img: "http://asset1.djicdn.com/images/360/phantom-4/draggable_360_v2/0_0.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B01F2O1SPY/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01F2O1SPY&linkCode=as2&tag=schmerb0a-20&linkId=50e01e2dda6b5603d9f19faf26c1aabb">DJI Phantom 4 Quadcopter Aircraft </a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B01F2O1SPY" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -40,6 +42,7 @@ let drones = {
         },
         phantom_4_pro: {
             brand: "DJI",
+            url: "dji",
             model: "Phantom 4 Pro",
             // img: "http://www4.djicdn.com/assets/images/products/phantom-4-pro/s1/e-1-c55885e9b95910920cb5caba54e042ca.png",
             img: "../assets/drones/phantom-4-pro-compressor.png",
@@ -60,6 +63,7 @@ let drones = {
         },
         phantom_4_pro_screen: {
             brand: "DJI",
+            url: "dji",
             model: "Phantom 4 Pro w/ Screen",
             img: "http://www3.djicdn.com/assets/uploads/c55ee03076f684c1dccdd705818ba1e3.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B01NBJS0Y5/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01NBJS0Y5&linkCode=as2&tag=schmerb0a-20&linkId=86300a0f36d22652419d8d0a6420b727">DJI Phantom 4 Pro+ (Pro Plus) Quadcopter</a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B01NBJS0Y5" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -79,6 +83,7 @@ let drones = {
         },
         phantom_3_standard: {
             brand: "DJI",
+            url: "dji",
             model: "Phantom 3 Standard",
             img: "http://www.quadhangar.com/wp-content/uploads/dji-phantom3-standard.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B013U0F6EQ/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B013U0F6EQ&linkCode=as2&tag=schmerb0a-20&linkId=25bf8b4c77df5327e1957cde1e9848a3">DJI Phantom P3-Standard Quadcopter Drone </a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B013U0F6EQ" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -98,6 +103,7 @@ let drones = {
         },
         phantom_3_pro: {
             brand: "DJI",
+            url: "dji",
             model: "Phantom 3 Pro",
             img: "https://product1.djicdn.com/uploads/sku/covers/194/phantom-3-professional-4k_3x.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B00VSITBJO/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00VSITBJO&linkCode=as2&tag=schmerb0a-20&linkId=569fdcaede76a5820d859c9c9fb51d5d">DJI Phantom 3 Professional Quadcopter </a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B00VSITBJO" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -117,6 +123,7 @@ let drones = {
         },
         phantom_3_advanced: {
             brand: "DJI",
+            url: "dji",
             model: "Phantom 3 Advanced",
             img: "https://1131492342.rsc.cdn77.org/sites/default/files/dji-phantom-3-quadcopter.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B00VSIT5UE/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00VSIT5UE&linkCode=as2&tag=schmerb0a-20&linkId=c19e469864ce2f0b510e1ed11048dad5">DJI Phantom 3 Advanced Quadcopter Drone with 2.7K HD Video Camera</a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B00VSIT5UE" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -136,6 +143,7 @@ let drones = {
         },
         phantom_3_4K: {
             brand: "DJI",
+            url: "dji",
             model: "Phantom 3 4K",
             img: "https://www2.djicdn.com/assets/images/products/phantom3-4k/features/operation-drone-a225115b797aa372dd2cff896defa067.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B01ANOGSYO/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01ANOGSYO&linkCode=as2&tag=schmerb0a-20&linkId=9e2853e452e4d36dd5940a891bfb1261">DJI Phantom 3 4K</a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B01ANOGSYO" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -155,6 +163,7 @@ let drones = {
         },
         mavic_pro: {
             brand: "DJI",
+            url: "dji",
             model: "Mavic Pro",
             // img: "http://www3.djicdn.com/assets/images/products/mavic/s2-img-v2-2927020e340017561b7f4906b79865d3.png",
             img: "https://www4.djicdn.com/uploads/nav_link/cover/3/size_1000_540_96bb8fe32603795af73fe20907cd70fe.png",
@@ -175,6 +184,7 @@ let drones = {
         },
         inspire_1_pro: {
             brand: "DJI",
+            url: "dji",
             model: "Inspire 1 Pro",
             img: "https://flyhighusa.com/wp-content/uploads/1605/11/Inspire_1_Pro_Black_Edition__side_in_air_2_.0.0.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B0159CSTWE/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B0159CSTWE&linkCode=as2&tag=schmerb0a-20&linkId=3772b5df515d6fda64c77a9f11233202">DJI Inspire 1 Pro Drone</a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B0159CSTWE" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -194,6 +204,7 @@ let drones = {
         },
         inspire_1_raw: {
             brand: "DJI",
+            url: "dji",
             model: "Inspire 1 RAW",
             img: "https://www.heliguy.com/downloads/1463397964inspire-1-RAW.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B01E9GLWZW/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01E9GLWZW&linkCode=as2&tag=schmerb0a-20&linkId=c81c86a56ff24ab07029a9ab9ddb1a1f">DJI INSPIRE 1 RAW with Zenmuse X5R 4K Cam &amp; 3-Axis Gimbal</a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B01E9GLWZW" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -213,6 +224,7 @@ let drones = {
         },
         inspire_1_standard: {
             brand: "DJI",
+            url: "dji",
             model: "Inspire 1 Standard",
             img: "http://www5.djicdn.com/assets/images/products/inspire-1/banner-product-333577d35493a3213ead13b4f8056e42.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B017TAXXWK/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B017TAXXWK&linkCode=as2&tag=schmerb0a-20&linkId=cab2ae160323d783a08687ba7fbc246e">DJI Inspire 1 V2.0</a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B017TAXXWK" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -232,6 +244,7 @@ let drones = {
         },
         inspire_2_X4S: {
             brand: "DJI",
+            url: "dji",
             model: "Inspire 2 X4S",
             img: "http://www3.djicdn.com/assets/images/products/zenmuse-x4s/s2-p1-b436bf9a803fd9a48b86f115bf6398a5.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B01N5CUQOD/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01N5CUQOD&linkCode=as2&tag=schmerb0a-20&linkId=4d3c2d43d3748b3e0863eeff07b28f76">DJI Inspire 2 Quadcopter + Zenmuse X4S Starters Bundle</a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B01N5CUQOD" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -251,6 +264,7 @@ let drones = {
         },
         inspire_2_X5S: {
             brand: "DJI",
+            url: "dji",
             model: "Inspire 2 X5S",
             img: "https://cdn.shopify.com/s/files/1/0895/6448/products/VR_white_00087_1024x1024.png?v=1479933525",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B01N1PSNU8/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01N1PSNU8&linkCode=as2&tag=schmerb0a-20&linkId=577b6a5ea178bc9bfe89fe5914dab8d0">DJI Inspire 2 Quadcopter + Zenmuse X5S</a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B01N1PSNU8" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -272,6 +286,7 @@ let drones = {
     gopro: {
         karma: {
             brand: "GoPro",
+            url: "gopro",
             model: "Karma",
             img: "https://shop.gopro.com/on/demandware.static/-/Library-Sites-sharedGoProLibrary/default/dw9dbd822e/images/karma2016/karma-drone-main.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B01N5V4HKQ/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01N5V4HKQ&linkCode=as2&tag=schmerb0a-20&linkId=a2a0432115dc865cddb41617da4ccaa8">GoPro Karma with HERO5 Black</a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B01N5V4HKQ" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -293,6 +308,7 @@ let drones = {
     parrot: {
         bebop_1: {
             brand: "Parrot",
+            url: "parrot",
             model: "Bebop",
             img: "https://www.parrot.com/fr/sites/default/files/bebopdrone_red.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B00OOR9060/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00OOR9060&linkCode=as2&tag=schmerb0a-20&linkId=04c5b3743d223f05020b827c5a6499d2">Parrot Bebop Quadcopter Drone</a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B00OOR9060" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -312,6 +328,7 @@ let drones = {
         },
         bebop_2: {
             brand: "Parrot",
+            url: "parrot",
             model: "Bebop 2",
             img: "http://assets.store.hp.com/hpusstore/images/3pp_573X430/1y6290.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B0179JFAW2/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B0179JFAW2&linkCode=as2&tag=schmerb0a-20&linkId=b77b0d0bf51014340966a622a9b12f32">Parrot Bebop 2 Drone</a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B0179JFAW2" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -331,6 +348,7 @@ let drones = {
         },
         ar: {
             brand: "Parrot",
+            url: "parrot",
             model: "AR Drone 2.0",
             img: "https://www.parrot.com/uk/sites/default/files/styles/product_teaser_hightlight/public/power_edition_orange.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B00FS7SU7K/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00FS7SU7K&linkCode=as2&tag=schmerb0a-20&linkId=b6d7040c7e6fffd886167888d0dfe1a1">Parrot AR.Drone 2.0 Quadcopter</a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B00FS7SU7K" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -350,6 +368,7 @@ let drones = {
         },
         ar_gps: {
             brand: "Parrot",
+            url: "parrot",
             model: "AR Drone 2.0 GPS Edition",
             img: "https://www.parrot.com/us/sites/default/files/parrot_ar_drone_gps_edition.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B01L4H336K/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01L4H336K&linkCode=as2&tag=schmerb0a-20&linkId=e3d00aa96bacc53fde27ccca7f194936">AR.Drone Parrot 2.0 Elite Edition with GPS</a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B01L4H336K" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -369,6 +388,7 @@ let drones = {
         },
         mambo: {
             brand: "Parrot",
+            url: "parrot",
             model: "Mambo",
             img: "https://www.parrot.com/global/sites/default/files/styles/product_teaser_hightlight/public/mambo_packshot.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B071NRZ5LX/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B071NRZ5LX&linkCode=as2&tag=schmerb0a-20&linkId=abff6183ff5b0522c41c3da9d5de8e1f">Parrot Minidrone Mambo </a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B071NRZ5LX" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -391,6 +411,7 @@ let drones = {
     yuneec: {
         q500: {
             brand: "Yuneec",
+            url: "yuneec",
             model: "Typhoon Q500 4K",
             img: "https://cdn-reichelt.de/bilder/web/xxl_ws/E910/YUNEEC_YUNQ4KEU_13.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B00ZH45ZXG/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00ZH45ZXG&linkCode=as2&tag=schmerb0a-20&linkId=af32e01ea876f343b422b8e0c4b9e917">Yuneec Q500 4K Typhoon Quadcopter Drone </a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B00ZH45ZXG" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -410,6 +431,7 @@ let drones = {
         },
         typhoon_h: {
             brand: "Yuneec",
+            url: "yuneec",
             model: "Typhoon H",
             img: "https://www.cliftoncameras.co.uk/uploads/products/TyphoonHProfessionalMK56.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B01I2A1IFK/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01I2A1IFK&linkCode=as2&tag=schmerb0a-20&linkId=7e34210478ee2765a9cb852d7539991d">Yuneec Typhoon H  Hexacopter Drone</a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B01I2A1IFK" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -429,6 +451,7 @@ let drones = {
         },
         breeze: {
             brand: "Yuneec",
+            url: "yuneec",
             model: "Breeze",
             img: "http://dronereview.com/wp-content/uploads/2016/10/Yuneec-Breeze.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B07145SSM2/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B07145SSM2&linkCode=as2&tag=schmerb0a-20&linkId=dfde91da9f0f4638062748afdfee5f50">Yuneec Breeze 4K Compact Quadcopter Drone</a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B07145SSM2" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -450,8 +473,10 @@ let drones = {
     syma: {
         x8sc: {
             brand: "Syma",
+            url: "syma",
             model: "X8SC",
-            img: "https://sc02.alicdn.com/kf/HTB1slTCPFXXXXXRXFXX760XFXXXY/SYMA-X8SC-2-4GHZ-Remote-Radio-Control.png",
+            // img: "https://sc02.alicdn.com/kf/HTB1slTCPFXXXXXRXFXX760XFXXXY/SYMA-X8SC-2-4GHZ-Remote-Radio-Control.png",
+            img: "https://www.halfchrome.com/wp-content/uploads/2016/12/syma-x8sw.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/offer-listing/B00VQVO6W0/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00VQVO6W0&linkCode=as2&tag=schmerb0a-20&linkId=0395ce92966352a36b34c80920c526c1">Syma X8C Venture Quadcopter</a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B00VQVO6W0" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
             price: 120,
             camera: "1MP",
@@ -466,6 +491,7 @@ let drones = {
         },
         x5c: {
             brand: "Syma",
+            url: "syma",
             model: "X5C",
             img: "https://droneflyers.files.wordpress.com/2014/08/syma-x5c-1.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B01DXPW1WI/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DXPW1WI&linkCode=as2&tag=schmerb0a-20&linkId=0d120d76135300cc33936bbce4151098">SYMA X5C-1 Explorers Quadcopter </a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B01DXPW1WI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -484,6 +510,7 @@ let drones = {
     hubsan: {
         h107c: {
             brand: "Hubsan",
+            url: "hubsan",
             model: "H107C+ HD",
             img: "https://dronepedia.xyz/wp-content/uploads/2015/11/H107C-0402.408-1024x662.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/offer-listing/B016NLVCMY/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B016NLVCMY&linkCode=am2&tag=schmerb0a-20&linkId=791de7b3331425d7685571de3d22c5ad">Hubsan X4 Plus H107C+ </a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B016NLVCMY" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -502,6 +529,7 @@ let drones = {
     xiro: {
         xplorer_v: {
             brand: "Xiro",
+            url: "xiro",
             model: "Xplorer V",
             img: "http://www.funaster.com/wp-content/uploads/2015/06/xiro_v_features1.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B015PE0744/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B015PE0744&linkCode=am2&tag=schmerb0a-20&linkId=a9897efeb018e774dd983e6049b1d6d9">XIRO Xplorer V Aerial UAV Drone Quadcopter</a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B015PE0744" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
@@ -523,8 +551,9 @@ let drones = {
     udi: {
         u818a: {
             brand: "UDI",
+            url: "udi",
             model: "Discovery 2 U818A",
-            img: "../assets/discovery-2-compressor.png",
+            img: "../assets/drones/discovery-2-compressor.png",
             link: '<a target="_blank" href="https://www.amazon.com/gp/product/B01IMR6BLO/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01IMR6BLO&linkCode=as2&tag=schmerb0a-20&linkId=75321e1215cfe2b492645b91d18cbf01">UDI Discovery 2 U818A Drone Quadcopter</a><img src="//ir-na.amazon-adsystem.com/e/ir?t=schmerb0a-20&l=am2&o=1&a=B01IMR6BLO" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />',
             price: "50-70",
             camera: "720@30/1MP",

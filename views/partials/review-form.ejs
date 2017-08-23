@@ -14,27 +14,7 @@
             <div class="select-drone-container">
                     <!--  dropdown options -->
                 <label for="dropdown-options">Select a drone make and model
-                    <select class="dropdown-options" name="make" required>
-                        <!-- <optgroup label="DJI">
-                            <option value="phantom_4">Phantom 4</option>
-                            <option value="phantom_4_pro">Phantom 4 Pro</option>
-                            <option value="phantom_4_pro_screen">Phantom 4 Pro w/ Screen</option>
-                            <option value="phantom_3_standard">Phantom 3 Standard</option>
-                            <option value="phantom_3_pro">Phantom 3 Pro</option>
-                            <option value="phantom_3_advanced">Phantom 3 Advanced</option>
-                            <option value="phantom_3_4K">Phantom 3 4K</option>
-                            <option value="mavic_pro">Mavic Pro</option> 
-                        </optgroup>
-                        <optgroup label="Parrot">
-                            <option value=""></option>
-                        </optgroup>
-                        <optgroup label="Yuneec">
-                            <option value=""></option>
-                        </optgroup>
-                        <optgroup label="Syma">
-                            <option value=""></option>
-                        </optgroup> -->
-                    </select>
+                    <select class="dropdown-options" name="make" required></select>
                 </label>
             </div>
 
@@ -55,12 +35,13 @@
 
                 <!--  star ratings -->
                 <div class="star-rating-container">
-                    <span>Rate It: </span>
-                    <label class="star-box" for=""><input class="star-input" type="radio" name="star" value="1" required></label>
-                    <label class="star-box" for=""><input class="star-input" type="radio" name="star" value="2"></label>
-                    <label class="star-box" for=""><input class="star-input" type="radio" name="star" value="3"></label>
-                    <label class="star-box" for=""><input class="star-input" type="radio" name="star" value="4"></label>
-                    <label class="star-box" for=""><input class="star-input" type="radio" name="star" value="5"></label>
+                    <label>Rate It: </label>
+                    <div class="rating">
+                        <span class="star">&#9734;</span><span class="star">&#9734;</span><span class="star">&#9734;</span><span class="star">&#9734;</span><span class="star">&#9734;</span>
+                    </div>
+                    <div class="rating-alert hidden">
+                        <p>Rating required before submitting post</p>
+                    </div>
                 </div>
 
                 <!--  image / video upload -->
@@ -71,7 +52,7 @@
                     </label>
                     <label for="file-video">
                         <i id="file-video" class="fa fa-file-video-o" aria-hidden="true">Upload a video</i>
-                        <input type="file" name="video" value="">
+                        <input class="video-file-input" type="file" name="video" value="">
                     </label>
                 </div>
 

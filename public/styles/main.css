@@ -194,11 +194,6 @@ img.logo-drone {
     bottom: -8px;
 }
 
-.burger-icon-wrap:hover #burger-icon,
-.burger-icon-wrap:hover #burger-icon::before,
-.burger-icon-wrap:hover #burger-icon::after {
-    background: #29b6f6;
-}
 
 .burger-icon-wrap:hover #burger-icon.open {
     background: transparent;
@@ -206,7 +201,7 @@ img.logo-drone {
 
 .burger-icon-wrap:hover #burger-icon.open::before,
 .burger-icon-wrap:hover #burger-icon.open::after {
-    background: lightgrey;
+    background: grey;
 }
 
 #burger-icon.open::before {
@@ -217,13 +212,6 @@ img.logo-drone {
 #burger-icon.open::after {
     transform: rotate(-45deg);
     top: 0;
-}
-
-.banner-wrap.fixed-nav #burger-icon,
-.banner-wrap.fixed-nav #burger-icon::before,
-.banner-wrap.fixed-nav #burger-icon::after {
-    /* background: #8EBBD1;
-    background: #DEF2F1; */
 }
 
 #burger-icon.open {
@@ -272,9 +260,6 @@ img.logo-drone {
 }
 
 .user-nav a {
-    color: #116466;
-    color: #f44336;
-    color: #4fc3f7;
     color: #29b6f6;
 }
 
@@ -293,9 +278,6 @@ img.logo-drone {
 }
 
 .site-menu a:hover {
-    border-bottom-color: #116466;
-    border-bottom-color: #f44336;
-    border-bottom-color: #4fc3f7;
     border-bottom-color: #29b6f6;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -364,13 +346,7 @@ a.logout {
 
 .signup:hover,
 .logout:hover {
-    background: #116466;
-    background: #f44336;
-    background: #4fc3f7;
     background: #29b6f6;
-    border-color: #116466;
-    border-color: #f44336;
-    border-color: #4fc3f7;
     border-color: #29b6f6;
     border-radius: 3px;
     color: white; 
@@ -471,7 +447,6 @@ a.logout {
 
  #login-signup.slide {
     background: rgba(0,0,0,0.8);   
-    /* top: 0; */
 } 
 
 .login-signup-container {
@@ -653,7 +628,6 @@ p.welcome-message {
 #review-form-screen,
 #edit-review-form-screen,
 #review-post-preview {
-    /* background: rgba(0,0,0,0.6); */
     position: fixed;
     top: 0;
     left: 0;
@@ -677,7 +651,6 @@ p.welcome-message {
     min-width: 320px;
     height: 100%;
     margin: 0 auto;
-    overflow: scroll;
     border: 1px solid white;
     box-shadow: 0 0 20px 2px rgba(0,0,0,0.3);
     -webkit-transition: all 0.4s ease-in;
@@ -692,9 +665,6 @@ p.welcome-message {
     height: 500px;
 }
 
-/* .review-form-modal {
-    top: -110%;
-} */
 
 .review-form-modal.slide {
     top: 0;
@@ -762,7 +732,6 @@ p.welcome-message {
     margin: 0 auto;
     padding-top: 20px;
     text-align: center;
-    /* border: 1px solid black; */
 }
 
 label[for="dropdown-options"] {
@@ -807,7 +776,6 @@ label[for="drone-search"] {
     width: 100%;
     max-width: 500px;
     padding: 20px; 
-    /* border: 1px solid black; */
 }
 
 .review-label p {
@@ -825,6 +793,7 @@ label[for="drone-search"] {
     width: 100%;
     max-width: 412px;
     margin-top: 10px;
+    padding-left: 5px;
     border: none;
     border-radius: 2px;
 }
@@ -842,29 +811,48 @@ label[for="drone-search"] {
 #edit-post-content {
     width: 100%;
     max-width: 412px;
+    padding-left: 5px;
     border: none;
     border-radius: 2px;
 }
 
-.star-rating-container {
-    
+.rating  {
+    display: inline-block;
+    unicode-bidi: bidi-override;
+    direction: rtl;
 }
 
-.star-box {
+.star {
     display: inline-block;
-    background: url('../assets/icons/star.png');
-    background-color: transparent;
-    background-size:  100%;
-    background-repeat: no-repeat;
-    padding: 0;
-    height: 20px;
-    width: 20px;
+    position: relative;
+    width: 1.1em;
+    cursor: pointer;
 }
+
+.star:hover:before,
+.star:hover ~ span:before,
+.filled-star:before {
+    color: gold; 
+    content: "\2605";
+    position: absolute;
+}
+
+.rating-alert {
+    color: red;
+    background: white;
+    display: inline-block;
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    height: 80px;
+    border-radius: 5px;
+    text-align: center;
+}
+
 
 .media-assets {
     margin-top: 20px;
     text-align: center; 
-    /* border: 1px solid black; */
 }
 
 label[for="file-img"],
@@ -980,27 +968,28 @@ button.delete-post-btn {
 /*=======================================*/
 #company-banner {
     overflow: hidden;
-    height: 200px;
 }
 
-/* .drone-makers {
-    padding: 0;
-    margin: 0;
-    list-style: none; 
-} */
+.drone-carousel-container {
+    height: 100%;
+}
 
 #company-banner .slick-slider {
     position: relative;
     width: 100%;
     height: 200px;
-    /* margin: auto; */
 }
 
 
 #company-banner .slick-list,
 #company-banner .slick-track {
     overflow: hidden;
-    height: 200px;
+    height: 100%;
+}
+
+#company-banner .slick-track {
+    border-top: 1px solid rgba(23, 64, 84, 0.40);
+    border-bottom: 1px solid rgba(23, 64, 84, 0.4);
 }
 
 #company-banner .slick-slider .slick-prev.slick-arrow,
@@ -1016,18 +1005,11 @@ button.delete-post-btn {
 #company-banner .slick-prev {
     left: 0;
     background: linear-gradient(-90deg, transparent, rgba(0,0,0,0.5));
-    opacity: 0;
 }
 
 #company-banner .slick-next {
     right: 0;
     background: linear-gradient(90deg, transparent, rgba(0,0,0,0.5));
-    opacity: 0;
-}
-
-#company-banner .slick-prev:hover,
-#company-banner .slick-next:hover {
-    opacity: 1;
 }
 
 
@@ -1061,35 +1043,29 @@ button.delete-post-btn {
 .drone-make {
     display: inline-block;
     position: relative;
-    /* background: blue; */
-    /* float: left; */
     width: 100vw;
-    height: 200px;
+    height: 100%;
     min-height: 145px;
     cursor: pointer;
     overflow: hidden;
 }
 
-.drone-make:not(:first-of-type) {
-    border-top: 1px solid #5A7684;
-}
-
 
 
  #dji::after {
-    background: url('../assets/drones/DJI-inspire-compressor.jpg') center;
+    background: url('https://www.heliguy.com/downloads/1463143528Inspire_1_PRO_(1).png') center;
     background-size: 130%;
     background-repeat: no-repeat;
 }
 
 #parrot::after {
-    background: url('../assets/drones/parrot-square-compressor.jpg') center;
+    background: url('https://www.parrot.com/global/sites/default/files/styles/product_teaser_hightlight/public/mambo_packshot.png') center;
     background-size: 90%;
     background-repeat: no-repeat;
 }
 
 #gopro::after {
-    background: url('../assets/drones/gopro-karma-compressor.jpg') center;
+    background: url('https://shop.gopro.com/on/demandware.static/-/Library-Sites-sharedGoProLibrary/default/dw9dbd822e/images/karma2016/karma-drone-main.png') center;
     background-size: 100%;
     background-repeat: no-repeat;
 }
@@ -1108,14 +1084,14 @@ button.delete-post-btn {
 }
 
 #syma::after {
-    background: url('../assets/drones/SYMA-X8SC-compressor.png') center;
+    background: url('https://sc02.alicdn.com/kf/HTB1slTCPFXXXXXRXFXX760XFXXXY/SYMA-X8SC-2-4GHZ-Remote-Radio-Control.png') center;
     background-size: 100%;
     background-repeat: no-repeat;
 }
 
 #hubsan::after {
     background: url('../assets/drones/hubsan-h107-compressor.png') center;
-    background-size: 100%;
+    background-size: 140%;
     background-repeat: no-repeat;
 }
 
@@ -1129,7 +1105,7 @@ button.delete-post-btn {
     background: url('../assets/drones/discovery-2-compressor.png') center;
     background-size: contain;
     background-repeat: no-repeat;
-    background-position-y: 20px;
+    background-position-y: 70%;
 }
 
 .drone-make::after {
@@ -1405,10 +1381,11 @@ button.delete-post-btn {
 
 /* * * * Syma * * * */
 #x8sc {
-    background-image: url("https://sc02.alicdn.com/kf/HTB1slTCPFXXXXXRXFXX760XFXXXY/SYMA-X8SC-2-4GHZ-Remote-Radio-Control.png");
+    background-image: url("https://www.halfchrome.com/wp-content/uploads/2016/12/syma-x8sw.png");
+    background-size: 60%;
 }
 #x5c {
-    background-image: url("https://droneflyers.files.wordpress.com/2014/08/syma-x5c-1.png");
+    background-image: url("https://images.todoconsolas.com//original/49042-drone_quadcopter_syma_x5c.png");
 }
 
 /* * * * Xiro * * * */
@@ -1421,17 +1398,6 @@ button.delete-post-btn {
     background-image: url("../assets/drones/discovery-2-compressor.png");
 }
 
-
-
-
-.model-specs {
-    /* height: 100vh; */
-    /* width: 90%;
-    margin: 20px auto; */
-}
-
-.model-specs .inner-container {
-}
 
 .specs-inner-wrap {
     box-shadow: 0 5px 25px rgba(0,0,0,0.4);
@@ -1735,7 +1701,8 @@ iframe.mobile-vid {
 /*=======================================*/
 
 .filter-radio-groups {
-    font-size: 14px;
+    font-size: 13px;
+    padding: 0;
 }
 
 .drone-search-btn,
@@ -1795,6 +1762,7 @@ section.review-page-container {
     background-size: cover;
     width: 100%;
     height: 40vh;
+    min-height: 250px;
     /* box-shadow: 0 0 20px 1px rgba(0,0,0,0.3); */
 }
 
@@ -1837,6 +1805,10 @@ section.review-page-container {
 .c-date-edit-wrap {
 }
 
+.img-container {
+    min-width: 190px;
+}
+
 .img-container h3,
 .img-container h5,
 .details h3,
@@ -1847,6 +1819,34 @@ section.review-page-container {
 .img-container h3,
 .img-container h5 {
     padding: 5px;
+}
+
+.img-container a {
+    color: black;
+}
+
+.maker {
+    margin-left: 4px;
+}
+
+.maker a {
+    color: black;
+}
+
+.post-rating {
+    padding: 5px;
+}
+
+.post-stars {
+    display: inline-block;
+}
+
+.post-rating .star {
+    cursor: unset;
+}
+
+.post-rating .star:first-of-type {
+    margin-left: 5px;
 }
 
 .post {
@@ -2017,6 +2017,13 @@ section.review-page-container {
     transition: all 0.3s ease-in-out; 
 }
 
+.amazon-link-wrap a {
+    color: #29b6f6;
+}
+
+.amazon-link-wrap a:hover {
+    color: #85d5fa;
+}
 
 .specs {
     background: #e2f1fc;
@@ -2024,12 +2031,17 @@ section.review-page-container {
     background: #eceff1;
     clear: both;
     width: 100%;
-    margin: 0 auto; 
+    margin: 0 auto;
+    text-align: center; 
 }
 
 .details.expand {
     max-height: 700px;
     border-color: rgba(0,0,0,0.1);
+}
+
+.specs > dl {
+    text-align: left;
 }
 
 .specs dd {
@@ -2045,6 +2057,11 @@ section.review-page-container {
                 padding 0.7s ease;
 }
 
+.main-specs dd:first-of-type,
+.mode-specs dd:first-of-type {
+    border-top: 1px solid grey;
+}
+
 .specs dd:last-of-type {
     border-bottom: none;
 }
@@ -2058,6 +2075,13 @@ section.review-page-container {
     font-weight: bold;
     float: right;
 }
+
+
+.specs dt {
+    text-align: center;
+    padding-bottom: 4px;
+}
+
 
 .date-posted {
     color: #888;
@@ -2125,7 +2149,8 @@ section.review-page-container {
     background: rgba(17, 100, 102, 0.2);
     background: unset;
     /* margin-bottom: 20px; */
-    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     padding-bottom: 20px;
     /* border: 1px solid blue; */
 }
@@ -2258,6 +2283,7 @@ section.review-page-container {
 }
 
 .reply-comments-container {
+    width: 100%;
     max-height: 0;
     padding-left: 20px;
     overflow: hidden;
@@ -2292,6 +2318,7 @@ section.review-page-container {
 
 .reply-comments-content {
     box-shadow: 0 0 20px rgb(196, 206, 212);
+    margin-bottom: 20px;
 }
 
 .reply-comment-content.gen-comment {
@@ -2604,120 +2631,6 @@ label[for="drone-make-list"] {
 }
 
 
-@keyframes spin {
-	from { transform: rotate(0deg); }
-	to { transform: rotate(360deg); }
-}
-
-.spin a:hover {
-	width: 35px;
-	height: 35px;
-	
-	background-image: -moz-radial-gradient(45px 45px 45deg, circle cover, #29b6f6 0%, white 100%, grey 95%);
-	background-image: -webkit-radial-gradient(45px 45px, circle cover, #29b6f6, white);
-	background-image: radial-gradient(45px 45px 45deg, circle cover, #29b6f6 0%, white 100%, grey 95%);
-	
-	animation-name: spin; 
-	animation-duration: 3s; /* 3 seconds */
-	animation-iteration-count: infinite; 
-	animation-timing-function: linear;
-}
-
-/* .footer-links {
-    padding: 0;
-}
-
-.foot-menu {
-    display: block;
-    width: 80%;
-    margin: 0 auto;
-}
-
-.foot-drone-list {
-    padding: 0;
-    width: 80%;
-    margin: 25px auto 0;
-}
-
-.foot-drone-list > li {
-    display: inline-block;
-    list-style: none;
-    vertical-align: top;
-    width: 20%;
-    min-width: 70px;
-}
-
-nav.footer-links li {
-    list-style: none;
-}
-
-
-
-.foot-menu li, 
-.foot-drone-list li {
-    padding-bottom: 2px;
-}
-
-
-
-
-.foot-menu li a,
-.drone-list-col li a {
-    color: black;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
-
-
-.foot-menu li a:hover,
-.drone-list-col li a:hover {
-    color: #29b6f6;
-}
-
-
-.to-top.fa {
-    float: right;
-    font-size: 26px;
-    cursor: pointer;
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    transition: all 0.2s ease;
-}
-
-.to-top.fa:hover {
-    color: #29b6f6;
-}
-
-.my-info {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    width: 240px;
-    transform: translate(-50%, 0);
-    text-align: center;
-    color: black;
-    font-size: 12px;
-    margin: 20px 0 10px;
-}
-
-.my-info i {
-    font-size: 24px;
-}
-
-.fa.fa-github {
-    font-size: 22px;
-    color: #333;
-    margin-left: 15px;
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    transition: all 0.2s ease;
-}
-
-.fa.fa-github:hover {
-    color: #29b6f6;
-} */
-
 @media only screen and (max-width: 330px) {
     .drone-list-col {
         padding-left: 0;
@@ -2727,6 +2640,12 @@ nav.footer-links li {
         margin-left: 0;
     }
 } 
+
+@media only screen and (min-width: 331px) {
+    .filter-radio-groups {
+        font-size: 14px;
+    }
+}
 
 
 @media only screen and (max-width: 350px) {
@@ -2741,11 +2660,18 @@ nav.footer-links li {
 /*===========================================================*/
 @media only screen and (min-width: 375px) {
     .filter-radio-groups {
-        font-size: 17px;
+        padding-left: 7%;
+        font-size: 15px;
     }
 
+    
+    
     .specs dd {
         padding: 5px 5%;
+    }
+
+    .comment {
+        padding-left: 30px;
     }
 }
 
@@ -2760,7 +2686,7 @@ nav.footer-links li {
     }
 
     .drone-search-btn {
-        transform: translateY(1px);
+        /* transform: translateY(1px); */
     }
 }
 
@@ -2774,10 +2700,8 @@ nav.footer-links li {
 @media screen and (min-width: 416px) {
     .banner {
         background: url('../assets/drones/phantom-3-aaron-burden-compressor.jpg') center;
-        background-attachment: fixed;
         background-size: cover;
         background-position-x: unset;
-        height: 80vh;
     }
 
     .banner-nav {
@@ -2791,6 +2715,10 @@ nav.footer-links li {
 
     .landing-greeting {
         font-size: 20px;
+    }
+
+    .filter-radio-groups {
+        /* padding: 5px; */
     }
 
     /*========================================/
@@ -2828,21 +2756,21 @@ nav.footer-links li {
     .drone-make {
         /* width: 200px; */
         width: 25vw;
-        height: 20vh;
+        /* height: 20vh; */
     }
 
     #company-banner .slick-list,
     #company-banner .slick-track {
         overflow: hidden;
-        height: 20vh;
+        /* height: 20vh; */
     }
      
     .drone-make:not(:last-of-type) {
-        border-right: 1px solid #5A7684;
+        border-right: 1px solid rgba(90, 118, 132, 0.4);
     }
 
     #company-banner .drone-make {
-        border-top: none;
+        /* border-top: none; */
     } 
 
     #parrot::after {
@@ -2893,8 +2821,7 @@ nav.footer-links li {
     }
 
     #review-form {
-        /* width: 500px; */
-        /* margin: 0 auto; */
+        padding-left: 20px;
     }
 
     .select-drone-container {
@@ -2960,6 +2887,10 @@ nav.footer-links li {
         border: 1px solid rgba(0,0,0,0.1); 
     }
 
+    .comment {
+        padding-right: 30px;
+    }
+
     .comment-input {
         width: 80%;
         margin-left: auto;
@@ -2978,7 +2909,7 @@ nav.footer-links li {
 
     .video-backdrop {
         position: fixed;
-        background: rgba(0,0,0,0.9);
+        background: rgba(0,0,0,0.95);
         top: 0;
         left: 0;
         width: 100%;
@@ -3155,6 +3086,10 @@ nav.footer-links li {
 }
 
 @media only screen and (min-width: 585px) {
+    .banner {
+        height: 80vh;
+    }
+    
     .review-form-modal {
         height: auto;
     }
@@ -3192,7 +3127,6 @@ nav.footer-links li {
     .review-form-modal {
         width: 100%;
         margin: 0 auto;
-        overflow: scroll;
     }
     
     #review-form {
@@ -3231,7 +3165,7 @@ nav.footer-links li {
     .search-filter {
         width: 80%;
         height: 40px;
-        line-height: 40px;
+        /* line-height: 40px; */
         font-size: 16px;
         padding-left: 10px;
         border-radius: 0;
@@ -3257,7 +3191,6 @@ nav.footer-links li {
     }
 
     .filter-radio-groups {
-        padding: 0;
         border: 1px solid #90a4ae;
     }
 
@@ -3308,7 +3241,7 @@ nav.footer-links li {
     }
 
     /*========================================/
-    /* Drone Aside NAV (MOBILE / LANDSCAPE)
+    /* Drone Co. Banner (MOBILE / LANDSCAPE)
     /*=======================================*/
 
 
@@ -3345,6 +3278,10 @@ nav.footer-links li {
     }
     .down-vote-arrow.fa {
         margin-left: 25px;
+    }
+
+    .detail-header {
+        padding: 10px 30px;
     }
 
     
@@ -3391,6 +3328,17 @@ nav.footer-links li {
 
 @media only screen and (min-width: 737px) {
 
+
+    .banner {
+        background-attachment: fixed;
+        height: 80vh;
+    }
+
+    .burger-icon-wrap:hover #burger-icon,
+    .burger-icon-wrap:hover #burger-icon::before,
+    .burger-icon-wrap:hover #burger-icon::after {
+        background: #29b6f6;
+    }
     /*========================================/
     /* Write Review Form (DESKTOP / TABLET)
     /*=======================================*/
@@ -3411,10 +3359,31 @@ nav.footer-links li {
         height: 20vh;
     }
 
-    #company-banner .slick-slider .slick-prev.slick-arrow,
-    #company-banner .slick-slider .slick-next.slick-arrow {
+    #company-banner .slick-prev.slick-arrow,
+    #company-banner .slick-next.slick-arrow {
         height: 20vh;
+        opacity: 0;
     }
+    
+    #company-banner .slick-prev.slick-arrow {
+        background: linear-gradient(-90deg, transparent, rgba(0,0,0,0.5));
+    }
+    
+    #company-banner .slick-next.slick-arrow {
+        background: linear-gradient(90deg, transparent, rgba(0,0,0,0.5));
+    }
+    
+    
+    #company-banner .slick-prev.slick-arrow:hover,
+    #company-banner .slick-next.slick-arrow:hover {
+        opacity: 1;
+    }
+
+    #udi::after {
+        background-position-y: 20px;
+    }
+
+    
 
 
     /*========================================/
@@ -3565,6 +3534,11 @@ nav.footer-links li {
         min-width: 300px;
     }
 
+    .specs > dl {
+        display: inline-block;
+        vertical-align: top;
+    }
+
     .detail-lists {
         text-align: center;
         max-width: 1100px;
@@ -3591,6 +3565,7 @@ nav.footer-links li {
     .date-posted {
         margin-left: 15px;
     }
+
 
     .vote-aside {
         position: absolute;
@@ -3957,7 +3932,7 @@ nav.footer-links li {
         font-size: 20px;
         width: unset;
         text-align: left;
-        margin-top: 40px;
+        margin-top: 35px;
     }
   
 
@@ -4050,7 +4025,6 @@ nav.footer-links li {
       ul.mobile-menu.open {
         display: none;
     }
-
 }
 
 
@@ -4070,7 +4044,8 @@ nav.footer-links li {
 /*=======================================*/
 @media only screen and (min-width: 910px) {
     
-    
+
+
     .detail-lists li {
         width: 40%;
     }
@@ -4112,31 +4087,50 @@ nav.footer-links li {
     }
 }
 
+@media only screen and (min-width: 100px) {
+    .comment {
+        /* max-width: 800px; */
+        /* margin-left: 30px; */
+    }
+}
+
 @media only screen and (min-width: 1280px) {
     #lily::after {
         background-size: cover; 
     }
+
+    #dji::after {
+        background-size: 120%; 
+    }
+
+    #hubsan::after {
+        background-size: 120%; 
+    }
 }
 
 @media only screen and (min-width: 1350px) {
-   .enlarge {
-       right: 70px;
-       bottom: -20px;
-   }
+    .enlarge {
+        right: 70px;
+        bottom: -20px;
+    }
 }
 
 @media only screen and (min-width: 1390px) {
-   .enlarge {
-       right: 45px;
-       bottom: -20px;
-   }
+    .enlarge {
+        right: 45px;
+        bottom: -20px;
+    }
 }
 
 @media only screen and (min-width: 1400px) {
-   .enlarge {
-       right: 30px;
-       bottom: -20px;
-   }
+    .enlarge {
+        right: 30px;
+        bottom: -20px;
+    }
+
+    #dji::after {
+        background-size: 110%; 
+    }
 }
 
 .hidden,

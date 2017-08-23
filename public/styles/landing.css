@@ -12,7 +12,7 @@
     background-position-y: 100%;
     background-repeat: no-repeat;
 
-    overflow: hidden;
+    min-height: 110vh;
 
     -webkit-transition: all 0.8s ease;
     -moz-transition: all 0.8s ease;
@@ -29,13 +29,22 @@
     height: 100%;
 }
 
+.landing-body main {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
 .container {
     color: white;
-    /* background: linear-gradient(-6deg, transparent, transparent, rgba(255,255,255,0.3)); */
     position: relative;
     width: 100%;
-    margin: 40px auto;
+    margin-right: auto;
+    margin-left: auto;
     padding: 20px;
+    padding-bottom: 0;
     text-align: center;
     z-index: 100;
     border-top-left-radius: 50%;
@@ -109,7 +118,7 @@ a.thinkful:hover {
 }
 
 .landing-footer {
-    position: fixed;
+    position: absolute;
     background: linear-gradient(0, rgba(0,0,0,0.5), transparent);
     left: 0;
     bottom: 0;
@@ -139,7 +148,7 @@ a.thinkful:hover {
 
 .landing-footer .g-hub-icon {
     color: white;
-    position: fixed;
+    position: absolute;
     font-size: 24px;
     bottom: 10px;
     right: 20px;
