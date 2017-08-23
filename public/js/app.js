@@ -409,7 +409,7 @@ function getGalleryTemplate(video) {
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-//
+// 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function displayDetailSpecs(currentSlide) {
     let $currentSlide = $(`.drone-model[data-slick-index="${currentSlide}"]`);
@@ -827,7 +827,7 @@ function displayEditPostForm($post) {
         if(index > 5 - rating - 1) {
             $(el).addClass('filled-star');
         }
-    })
+    });
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -1991,7 +1991,7 @@ function checkEndpoint() {
         hide('.landing-greeting');
         $(`.drone-list a[href="${endpoint}"]`).addClass('current-page');
         $(`.drone-list a[href="${endpoint}"]`).parent().addClass('current-page');
-        displayDetailSpecs(0); // fetches specs for each review post drone model
+        // displayDetailSpecs(0); // fetches specs for each review post drone model
     } else if (endpoint.indexOf('mission') >= 0) {
         show('.mission-container');
         hide('.greeting');
@@ -2086,6 +2086,7 @@ function droneBannerClicks() {
 function droneModelSlideChange() {
     $(DRONE_MODELS_SLIDER).on('afterChange', function(e, slick, currentSlide) {
         e.preventDefault();
+        $('.more-content').empty();
         displayDetailSpecs(currentSlide);
     });
 }
@@ -2644,6 +2645,9 @@ function init() {
     displayDroneModelsSlider();
     droneModelSlideChange();
     displayCurrentUser();
+    if(location.href.indexOf('drones') >= 0) {
+        displayDetailSpecs(0); // fetches specs for each review post drone model        
+    }    
 }
 
 function utils() {
