@@ -2100,14 +2100,14 @@ function loginBtnsClick() {
     // main nav login-btn
     $(LOGIN_BTN).on('click', e => {
         e.preventDefault();
-        openLoginSignupModal('login');
         closeMobileMenu();
+        openLoginSignupModal('login');
     });
     // comments login-btn
     $(REVIEWS).on('click', SUB_LOGIN_BTN, e => {
         e.preventDefault();
-        openLoginSignupModal('login');
         closeMobileMenu();
+        openLoginSignupModal('login');
     });
 }
 
@@ -2141,14 +2141,14 @@ function signupBtnsClick() {
     // main nav signup-btn
     $(SIGNUP_BTN).on('click', e => {
         e.preventDefault();
-        openLoginSignupModal('signup');
         closeMobileMenu();
+        openLoginSignupModal('signup');
     });
     // comments signup-btn
     $(REVIEWS).on('click', SUB_SIGNUP_BTN, e => {
         e.preventDefault();
-        openLoginSignupModal('signup');
         closeMobileMenu();
+        openLoginSignupModal('signup');
     });
 }
 

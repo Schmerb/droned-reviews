@@ -8,15 +8,13 @@ const express          = require('express'),
       bodyParser       = require('body-parser'),
       cookieParser     = require('cookie-parser'),
       path             = require('path'),
-      flash            = require('connect-flash'),
+      flash            = require('connect-flash'), // not currently used
       engine           = require('ejs-mate'),
       busboyBodyParser = require('busboy-body-parser');
 
 const router                 = require('./routes');
 const { DATABASE_URL, PORT } = require('./config/database');
 
-
-// youtube api key: AIzaSyCSyc7hnCXopqsh5Z9HlklFAK3gvteRMAY
 
 // Use ES6 promises
 mongoose.Promise = global.Promise;
@@ -34,7 +32,7 @@ app.set('views', path.join(__dirname, '/views'));
 
 // MIDDLEWARE
 
-// CORS
+// C.O.R.S.
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
@@ -59,7 +57,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
-app.use(flash());
+// app.use(flash());
 
 
 // ROUTES
