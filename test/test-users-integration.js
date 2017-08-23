@@ -12,7 +12,12 @@ const {TEST_DATABASE_URL} = require('../config/database');
 
 chai.use(chaiHttp);
 
-
+// tears down db after each test completes
+function tearDownDb() {
+    console.warn('Deleting database');
+    return mongoose.connection.dropDatabase();
+  }
+  
 
 describe('Droned /Comments API resource', function() {
     
@@ -25,7 +30,7 @@ describe('Droned /Comments API resource', function() {
         // Runs before each and every test to seed database
         // with fresh data
         beforeEach(function() {
-          return seedCommentData()
+          return seedUserData()
         });
     
         // Runs after each and every test to clear database
@@ -43,5 +48,5 @@ describe('Droned /Comments API resource', function() {
         describe('GET endpoints', function() {
 
         });
-        
+
 });
