@@ -486,6 +486,7 @@ function displayDetailSpecs(currentSlide) {
     let model = $currentSlide.attr('data-model'),
         make  = $currentSlide.attr('data-make');
     // grab model data object from drones object
+    debugger;
     let data     = getDroneData(make, model),
         specHtml = getDetailPageSpecsTemplate(data);
 
@@ -2032,10 +2033,17 @@ function checkEndpoint() {
         hide('.landing-greeting');
         $(`.drone-list a[href="${endpoint}"]`).addClass('current-page');
         $(`.drone-list a[href="${endpoint}"]`).parent().addClass('current-page');
+        displayDetailSpecs(0); // fetches specs for each review post drone model
     } else if (endpoint.indexOf('mission') >= 0) {
         show('.mission-container');
         hide('.greeting');
         
+    }
+}
+
+function displayCurrentUser() {
+    if(state.user !== '') {
+        $('.user-loggedin').text(state.user);
     }
 }
 
@@ -2677,7 +2685,7 @@ function init() {
     displayDroneSlider(); // inits drone slider and conceals FOUC
     displayDroneModelsSlider();
     droneModelSlideChange();
-    displayDetailSpecs(0); // fetches specs for each review post drone model
+    displayCurrentUser();
 }
 
 function utils() {
@@ -2708,3 +2716,5 @@ $(function () {
     // openLoginSignupModal('signup');
     init();
 });
+
+

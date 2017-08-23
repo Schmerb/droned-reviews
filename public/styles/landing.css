@@ -12,8 +12,6 @@
     background-position-y: 100%;
     background-repeat: no-repeat;
 
-    min-height: 110vh;
-
     -webkit-transition: all 0.8s ease;
     -moz-transition: all 0.8s ease;
     transition: all 0.8s ease;
