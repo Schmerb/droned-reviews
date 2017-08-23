@@ -117,6 +117,7 @@ a.thinkful:hover {
 
 .landing-footer {
     position: absolute;
+    color: white;
     background: linear-gradient(0, rgba(0,0,0,0.5), transparent);
     left: 0;
     bottom: 0;
