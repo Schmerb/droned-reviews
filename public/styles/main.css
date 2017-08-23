@@ -2874,16 +2874,11 @@ nav.footer-links li {
     .review-form-modal,
     .post-preview-modal {
         position: absolute;
-        /* top: 20px; */
         left: 50%;
         transform: translate(-50%, 0);
         width: 600px;
         height: auto;
     }
-
-    /* .review-form-modal {
-        top: -110%;
-    }*/
 
     .review-form-modal.slide {
         top: 20px;
@@ -2924,7 +2919,6 @@ nav.footer-links li {
     .post-content-container {
         width: 440px;
         padding: 10px;
-        /* padding-top: 30px; */
         margin: 0 auto;
     }
 
@@ -3143,9 +3137,6 @@ nav.footer-links li {
         width: unset;
     }
 
-    /* .post {
-         min-height: 428px; 
-    } */
 
     .review-form-modal,
     .post-preview-modal {
@@ -3210,13 +3201,6 @@ nav.footer-links li {
     }
 }
 
-@media only screen and (min-width: 650px) {
-    .burger-icon-wrap {
-        /* left: unset; */
-        /* margin-left: 60px; */
-    }
-}
-
 
 /*============================================================/
 /* PORTRAIT & LANDSCAPE ONLY
@@ -3250,9 +3234,11 @@ nav.footer-links li {
         line-height: 40px;
         font-size: 16px;
         padding-left: 10px;
-        border: 1px solid #90a4ae;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
+        border-radius: 0;
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+        border: 2px solid #cfd8dc;
+        border-right: none;
     }
 
     .filter-status-container {
@@ -3288,7 +3274,6 @@ nav.footer-links li {
         float: left;
         width: 25%;
         padding: 5px;
-        /* border: 1px solid black; */
     }
 
 
@@ -3308,7 +3293,6 @@ nav.footer-links li {
         width: 20%;
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
-        /* transform: translateY(1px); */
     }
 
     .aside-btns {
@@ -3411,14 +3395,6 @@ nav.footer-links li {
     /* Write Review Form (DESKTOP / TABLET)
     /*=======================================*/
 
-    /* .review-form-modal {
-        position: absolute;
-        top: 20%;
-        left: 50%;
-        transform: translate(-50%, 0);
-        width: 600px;
-         height: auto; 
-    } */
     label[for="file-img"] {
         margin-left: 45px; 
         margin-bottom: 0;
@@ -3465,7 +3441,6 @@ nav.footer-links li {
         background: linear-gradient(90deg, #cfd8dc, #cfd8dc);;
         right: -30px;
         top: 20%;
-        /* bottom: -1px; */
         width: 30px;
         height: 150px;
         border-top-left-radius: 4px;
@@ -3498,15 +3473,9 @@ nav.footer-links li {
 
     .aside-container {
         position: absolute;
-        /* background: #cfd8dc; */
         width: 100%;
         height: 100%;
-        /* left: -100%; */
         padding: 10px;
-        /* border: 1px solid #546e7a;   */
-        /* border-right: none; */
-        /* border-top-left-radius: 6px; */
-        /* border-bottom-left-radius: 6px;   */
         border-right: 1px solid rgba(0,0,0,0.1);
         border-bottom: 1px solid rgba(0,0,0,0.1);
         -webkit-transition: all 0.3s ease-in-out;
@@ -3535,7 +3504,6 @@ nav.footer-links li {
 
     
     #radio-filter-form {
-        /* margin-top: 30px; */
     }
 
     .filter-radio-groups {
@@ -3566,9 +3534,6 @@ nav.footer-links li {
         border-color: #62757f;
     }
 
-    /* .filter-alert {
-        color: red;
-    } */
 
     .mobile-only {
         display: none;
@@ -3668,12 +3633,6 @@ nav.footer-links li {
         display: none;
     }
 
-   
-    .interactions {
-        /* border-top: 1px solid #263238; */
-        /* border-left: 1px solid #263238; */
-    }
-
     .votes {
         margin-right: 100px;
     }
@@ -3712,7 +3671,6 @@ nav.footer-links li {
     .model-specs .inner-container {
         max-width: 1100px;
         margin: 0 auto;
-        /* overflow: hidden; */
     }
 
     .specs-inner-wrap {
@@ -3742,9 +3700,6 @@ nav.footer-links li {
         height: 100%;
     }
 
-    /* #aside-nav ul {
-        list-style: none;
-    } */
 
     #aside-nav li {
         display: block;
@@ -3753,34 +3708,6 @@ nav.footer-links li {
         margin-right: unset;
         border-bottom: 1px solid rgba(0,0,0,0.1);
     }
-
-    /* #aside-nav li,
-    #aside-nav li a {
-        -webkit-transition: all 0.3s ease;
-        -moz-transition: all 0.3s ease;
-        transition: all 0.3s ease;
-    }
-
-    #aside-nav li:hover {
-        border-bottom-color: rgba(0,0,0,0.2);
-    } */
-
-    /* #aside-nav li a {
-        display: block;
-        color: black;
-    } */
-
-    /* #aside-nav a:hover {
-        color: #29b6f6;
-    }
-
-    #aside-nav .current-page {
-        color: #29b6f6;
-    } */
-
-    /* #aside-nav li.current-page {
-        border-bottom-color: rgba(0,0,0,0.3);
-    } */
 
     .nav-list {
         position: absolute;
@@ -3794,11 +3721,9 @@ nav.footer-links li {
     /*=======================================*/
 
     .drones-inner-container {
-        /* width: 90%; */
         min-height: 500px;
         margin: 20px auto;
         overflow: hidden;
-        /* border: 1px solid black; */
     }
 
     .videos-container {
@@ -3806,7 +3731,6 @@ nav.footer-links li {
         overflow: auto;
         max-width: 1200px;
         margin: 0 auto;
-        /* border: 1px solid black; */
     }
 
     .videos-container header {
@@ -3825,37 +3749,12 @@ nav.footer-links li {
         bottom: 0;
     }
 
-    .video-inner-container {
-    }
-
-    .showcase-wrap {
-        /* float: left; */
-    }
-
     .main-video-wrap {
         position: relative;
         width: 40vw;
         max-width: 550px;
         max-height: 305px;
     } 
-
-    /* .video-modal {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        width: 80vw;
-        transform: translate(-50%, -50%);
-        z-index: 2110;
-    }
-
-    .video-backdrop {
-        position: fixed;
-        background: rgba(0,0,0,0.9);
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    } */
 
     .enlarge {
         display: unset;
@@ -3913,22 +3812,12 @@ nav.footer-links li {
         width: 100%;
         margin-left: auto;
         margin-right: auto;
-        /* overflow: auto; */
     }
 
     .more-content .vid-wrap {
         margin-left: 4px;
         margin-right: 4px;
-        /* float: left; */
     }
-
-    .g-video::after {
-        /* top: 50%; */
-    }
-
-    /* .g-video:hover::after {
-        color: #cc181e;
-    } */
 
     .g-video img {
         width: 100%;
@@ -4109,7 +3998,6 @@ nav.footer-links li {
         right: 0;
         left: 0;
         min-width: 300px; 
-         /* overflow: scroll;  */
     }
 
     .mobile-menu li {
@@ -4147,18 +4035,6 @@ nav.footer-links li {
         border: none;
     }
     
-     /* .mobile-menu.open::after {
-        content: '';
-        background: rgba(0,0,0,0.7);
-        background: url('../assets/drones/phantom-below-matthew-brodeur-compressor.jpg') center;
-        background-size: cover;
-        position: fixed;  
-        top: 0;
-        left: 0;
-        height: 100vh;
-        width: 100vw;
-        z-index: -1;
-    }   */
    
 }
 
@@ -4194,9 +4070,6 @@ nav.footer-links li {
 /*=======================================*/
 @media only screen and (min-width: 910px) {
     
-    /* .detail-lists {
-        text-align: center;
-    } */
     
     .detail-lists li {
         width: 40%;
