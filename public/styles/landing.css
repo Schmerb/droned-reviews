@@ -11,6 +11,9 @@
     background-position-x: 29%;
     background-position-y: 100%;
     background-repeat: no-repeat;
+
+    overflow: hidden;
+
     -webkit-transition: all 0.8s ease;
     -moz-transition: all 0.8s ease;
     transition: all 0.8s ease;
@@ -30,13 +33,21 @@
     color: white;
     /* background: linear-gradient(-6deg, transparent, transparent, rgba(255,255,255,0.3)); */
     position: relative;
-    width: 80%;
+    width: 100%;
     margin: 40px auto;
     padding: 20px;
     text-align: center;
     z-index: 100;
-    /* border-radius: 55%; */
-    /* border: 1px solid white; */
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.container p {
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .spin {
@@ -62,6 +73,11 @@ a.thinkful:hover {
     color: white;
 }
 
+.overview {
+    /* width: 300px; */
+    margin: 0 auto;
+}
+
 .demo-creds-list {
     color: lightgrey;
     list-style: none;
@@ -84,49 +100,68 @@ a.thinkful:hover {
     transition: all 0.2s ease-in-out;
     cursor: pointer;
     border-radius: 2px;
-    border: 1px solid rgba(255,255,255,0.1)
+    border: 2px solid rgba(255,255,255,0.1)
 }
 
 .home-btn:hover {
     background: rgba(128,128,128,0.4);
     background: rgba(255,255,255,0.4);
 }
-/* 
-@keyframes spin {
-	from { 
-        background-image: -moz-linear-gradient(-6deg, transparent, transparent, rgba(255,255,255,0.3));
-        background-image: -webkit-linear-gradient(-6deg, transparent, transparent, rgba(255,255,255,0.3));
-        background-image: linear-gradient(-6deg, transparent, transparent, rgba(255,255,255,0.3));
-     }
-	to { 
-        background-image: -moz-linear-gradient(90deg, transparent, transparent, rgba(255,255,255,0.3));
-        background-image: -webkit-linear-gradient(90deg, transparent, transparent, rgba(255,255,255,0.3));
-        background-image: linear-gradient(90deg, transparent, transparent, rgba(255,255,255,0.3));
-     }
+
+.landing-footer {
+    position: fixed;
+    background: linear-gradient(0, rgba(0,0,0,0.5), transparent);
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
 }
 
-#animate {
-	
-	
-	background-image: -moz-linear-gradient(-6deg, transparent, transparent, rgba(255,255,255,0.3));
-	background-image: -webkit-linear-gradient(-6deg, transparent, transparent, rgba(255,255,255,0.3));
-	background-image: linear-gradient(-6deg, transparent, transparent, rgba(255,255,255,0.3));
-    
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+.landing-footer h3 {
+    position: absolute;
+    margin: 0;
+    bottom: 10px;
+    left: 10px;
+}
 
-	animation-name: spin; 
-	animation-duration: 3s; 
-	animation-iteration-count: infinite; 
-	animation-timing-function: linear;
-} */
+.landing-built-by {
+    color: rgba(255,255,255,0.6);
+}
+
+.landing-body .logo-drone {
+    width: 23px;
+    top: 3px;
+}
+
+.landing-body .title-end {
+    margin-left: -8px;
+}
+
+.landing-footer .g-hub-icon {
+    color: white;
+    position: fixed;
+    font-size: 24px;
+    bottom: 10px;
+    right: 20px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+/* 
+.landing-footer .g-hub-icon:hover {
+    color: rgba(255,255,255,0.6);
+    transform: scale(1.2);
+}  */
+
 
 /*========================================/
 /* Mobile Portrait
 /*=======================================*/
 @media only screen and (max-width: 415px) {
-
+    .title-reviews {
+        /* display: block; */
+    }
 }
 
 
@@ -140,7 +175,26 @@ a.thinkful:hover {
         height: 60px;
         line-height: 60px;
     }
+
+    .container p {
+        max-width: 450px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
+
+@media only screen and (max-width: 440px) {
+    .title-reviews {
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 736px) {
+    .container  {
+        max-width: 730px;
+    }
+}
+
 
 /*========================================/
 /* Desktop / Tablets
@@ -153,11 +207,62 @@ a.thinkful:hover {
 
     .container {
         width: 60%;
+        min-width: 730px;
         margin-top: 100px;
+    }
+
+    .container p {
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .home-btn {
+        border-width: 1px;
     }
 }
 
 
-@media only screen and (min-width: 1100px) {
+@media only screen and (min-width: 1000px) {
+    .container p {
+        max-width: 550px;
+    }
+
+    p.overview {
+        max-width: 500px;
+    }
+}
+
+/*========================================/
+/* Custom Animations
+/*=======================================*/
+
+/* spin Animation for github icon on hover */
+
+@keyframes spin {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}
+
+#animate:hover {
     
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+
+	animation-name: spin; 
+	animation-duration: 3s; 
+	animation-iteration-count: infinite; 
+	animation-timing-function: linear;
+}
+
+#animate .fa-github {
+    -webkit-transition: transform 0.7s ease, color 0.3s ease;
+    -moz-transition: transform 0.7s ease, color 0.3s ease;
+    transition: transform 0.7s ease, color 0.3s ease;
+}
+
+#animate .fa-github:hover {
+    color: rgba(255,255,255,0.6);
+    transform: scale(1.3);
 }

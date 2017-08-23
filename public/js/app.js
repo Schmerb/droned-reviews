@@ -2065,6 +2065,13 @@ function reviewsNavItemClick() {
     });
 }
 
+function welcomeClick() {
+    $('.news').on('click', e => {
+        e.preventDefault();
+        location.href = '/welcome';
+    });
+}
+
 // * * * * * * * * * * * * * 
 //   Drone banner clicks
 // * * * * * * * * * * * * * 
@@ -2634,6 +2641,8 @@ $(function () {
     reviewEvents();
     detailPageClicks();
     // getAndDisplayReviews();
+
+    welcomeClick();
 
     // openLoginSignupModal('signup');
     init();
