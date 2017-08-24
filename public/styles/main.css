@@ -267,6 +267,12 @@ img.logo-drone {
 }
 
 .site-menu li,
+.user-nav  li {
+    height: 30px;
+    line-height: 30px;
+}
+
+.site-menu li,
 .user-nav li {
     display: inline-block;
     list-style: none;
@@ -296,7 +302,7 @@ img.logo-drone {
 }
 
 .site-menu a:hover {
-    border-bottom-color: #29b6f6;
+    border-bottom-color: #29b6f6; 
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
@@ -330,22 +336,56 @@ img.logo-drone {
     background: rgba(0,0,0,0.5);
 }
 
+.news {
+    position: relative;
+    margin-right: 0;
+}
+
 /* RSS icon */
-.news::after {
+.news::after,
+.news::before {
+    position: relative;
     font-family: FontAwesome;
     content: '\f09e';
-    background: transparent;
+    /* color: #29b6f6; */
+    right: 0;
+    top: 0;
+    background: -webkit-linear-gradient(-120deg, #eee, #eee);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin-left: 5px;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out; 
 }
 
-.news:hover::after {
-    color: #29b6f6;
+.news::before {
+    position: absolute;
+    top: -4px;
+}
+
+footer .news::before {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease; 
+}
+
+footer .news::before {
+    top: 2px;
+}
+
+
+.news::after {
+    opacity: 0;
     background: -webkit-linear-gradient(-120deg, #eee, #29b6f6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+
+.news:hover::after {
+    color: #29b6f6;
+    opacity: 1;
 }
 
 .home,
@@ -368,25 +408,48 @@ img.logo-drone {
     border-bottom-right-radius: 4px;
 }
 
-.home::before {
+.home {
+    position: relative;
+}
+
+.home::before,
+.home::after {
     font-family: FontAwesome;
     content: "\f015";
+    background: -webkit-linear-gradient(90deg, #28B6F6, #29b6f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin-right: 2px;
-    background: transparent;
+    /* background: transparent; */
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
+}
+
+.home::before {
+    position: relative;
+    left: 0;
+    top: 0;
+}
+
+.home::after {
+    position: absolute;
+    background: -webkit-linear-gradient(90deg, #eee, #29b6f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    left: 5px;
+    top: 1px;
+    z-index: 2;
+    opacity: 0;
 }
 
 .mobile-menu .home::before {
     color: black;
 }
 
-.home:hover::before {
+.home:hover::after {
     color: white;
-    background: -webkit-linear-gradient(#eee, #29b6f6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    opacity: 1;
 }
 
 
