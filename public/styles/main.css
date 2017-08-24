@@ -102,10 +102,14 @@ a {
 a.logo {
     color: whitesmoke;
     position: relative;
-    font-size: 24px;
+    font-size: 30px;
     cursor: pointer;
     float: left; 
     /* z-index: 5; */
+}
+
+.fixed-nav a.logo {
+    font-size: 24px;
 }
 
 .logo h2,
@@ -145,17 +149,22 @@ img.logo-drone {
     display: inline-block;
     position: absolute;
     top: 50%; 
-    right: 15px;
+    right: 10%;
+    left: 90%;
     width: 35px;
     height: 30px;
-    transform: translate(0, -50%); 
+    transform: translate(-100%, -50%); 
     z-index: 5;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .burger-icon-wrap.open {
      /* position: fixed;  */
     top: 6px;
-    /* right: 30px; */
+    right: 15%;
+    left: 85%;
     transform: translate(0, 50%);
 }
 
@@ -224,6 +233,12 @@ img.logo-drone {
     background: #37474f;
 }
 
+.burger-icon-wrap:hover #burger-icon,
+.burger-icon-wrap:hover #burger-icon::before,
+.burger-icon-wrap:hover #burger-icon::after {
+    background: #29b6f6;
+}
+
 
 /*========================================/
 /* banner nav
@@ -247,6 +262,8 @@ img.logo-drone {
 
 .site-menu {
     display: none;
+    /* font-size: 18px; */
+    padding-left: 3%;
 }
 
 .site-menu li,
@@ -317,18 +334,31 @@ img.logo-drone {
 .news::after {
     font-family: FontAwesome;
     content: '\f09e';
+    background: transparent;
     margin-left: 5px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out; 
 }
 
+.news:hover::after {
+    color: #29b6f6;
+    background: -webkit-linear-gradient(-120deg, #eee, #29b6f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.home,
 .login,
 .logout,
 .me,
 .signup {
-    -webkit-transition: all 0.1s ease-in-out;
-    -moz-transition: all 0.1s ease-in-out;
-    transition: all 0.1s ease-in-out; 
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out; 
 }
 
+.home,
 .login,
 .me {
     padding: 5px;
@@ -338,6 +368,29 @@ img.logo-drone {
     border-bottom-right-radius: 4px;
 }
 
+.home::before {
+    font-family: FontAwesome;
+    content: "\f015";
+    margin-right: 2px;
+    background: transparent;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.mobile-menu .home::before {
+    color: black;
+}
+
+.home:hover::before {
+    color: white;
+    background: -webkit-linear-gradient(#eee, #29b6f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.home:hover,
 .login:hover,
 .me:hover {
     /* color: white;  */
@@ -363,12 +416,14 @@ a.logout {
     border-color: black;
 }
 
+.mobile-menu a.home:hover,
 .mobile-menu .me:hover,
 .mobile-menu .login:hover,
 .mobile-menu .logout:hover {
     border-bottom-color: black;
 }
 
+.mobile-menu .home,
 .mobile-menu .me,
 .mobile-menu .logout, 
 .mobile-menu .login {
@@ -1480,6 +1535,7 @@ button.delete-post-btn {
 
 .g-video.mobile-vid {
     height: auto;
+    max-height: 100px;
     width: 100%;
 }
 
@@ -1540,12 +1596,18 @@ button.delete-post-btn {
 
 .videos-container iframe,
 .frame-wrap iframe {
-    position: absolute;
+    /* position: absolute;
     top: 0;
-    left: 0;
+    left: 0; */
     width: 100%;
     height: 100%;
     border: none;
+}
+
+.main-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 iframe.mobile-vid {
@@ -2711,21 +2773,15 @@ label[for="drone-make-list"] {
         background-position-x: unset;
     }
 
-    .banner-nav {
-        /* overflow: hidden;  */
-    }
 
-
-    .burger-icon-wrap {
-
-    } 
+    /* .burger-icon-wrap:hover #burger-icon,
+    .burger-icon-wrap:hover #burger-icon::before,
+    .burger-icon-wrap:hover #burger-icon::after {
+        background: #29b6f6;
+    } */
 
     .landing-greeting {
         font-size: 20px;
-    }
-
-    .filter-radio-groups {
-        /* padding: 5px; */
     }
 
     /*========================================/
@@ -2748,37 +2804,23 @@ label[for="drone-make-list"] {
         top: 5%;
     }
 
-    .signup-screen-btn,
-    .login-screen-btn  {
-        /* display: inline-block; */
-    }
-
-    .login-screen-btn {
-    }
-
     /*========================================/
     /* Drone Banner (Landscape & Desktop)
     /*=======================================*/
 
     .drone-make {
-        /* width: 200px; */
         width: 25vw;
-        /* height: 20vh; */
     }
 
     #company-banner .slick-list,
     #company-banner .slick-track {
         overflow: hidden;
-        /* height: 20vh; */
     }
      
     .drone-make:not(:last-of-type) {
         border-right: 1px solid rgba(90, 118, 132, 0.4);
     }
 
-    #company-banner .drone-make {
-        /* border-top: none; */
-    } 
 
     #parrot::after {
         background-size: contain;
@@ -3014,14 +3056,10 @@ label[for="drone-make-list"] {
     
 }
 
-@media only screen and (max-width: 469px) {
-    .user-nav {
-        display: none;
-    }
-}
+
 
 @media only screen and (min-width: 470px) {
-    .burger-icon-wrap {
+    /* .burger-icon-wrap {
         right: 55%; 
         left: 45%;
         -webkit-transition: all 0.3s ease-in-out;
@@ -3032,7 +3070,7 @@ label[for="drone-make-list"] {
     .burger-icon-wrap.open {
         left: 90%; 
         right: 10%;
-    }
+    } */
 
     .specs dd {
         padding: 5px 10%;
@@ -3092,9 +3130,28 @@ label[for="drone-make-list"] {
     }
 }
 
+@media only screen and (max-width: 584px) {
+    .user-nav {
+        display: none;
+    }
+}
+
 @media only screen and (min-width: 585px) {
     .banner {
         height: 80vh;
+    }
+
+    .burger-icon-wrap {
+        right: 55%; 
+        left: 45%;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .burger-icon-wrap.open {
+        left: 90%; 
+        right: 10%;
     }
     
     .review-form-modal {
@@ -3347,11 +3404,11 @@ label[for="drone-make-list"] {
         height: 80vh;
     }
 
-    .burger-icon-wrap:hover #burger-icon,
+    /* .burger-icon-wrap:hover #burger-icon,
     .burger-icon-wrap:hover #burger-icon::before,
     .burger-icon-wrap:hover #burger-icon::after {
         background: #29b6f6;
-    }
+    } */
     /*========================================/
     /* Write Review Form (DESKTOP / TABLET)
     /*=======================================*/
@@ -3979,7 +4036,7 @@ label[for="drone-make-list"] {
 
 } 
 
-@media only screen and (max-width: 790px) {
+@media only screen and (max-width: 849px) {
     
 
     .mobile-menu.open {
@@ -3997,11 +4054,14 @@ label[for="drone-make-list"] {
     }
 
     .mobile-menu li:first-of-type {
-        margin-top: 50px;
+        margin-top: 65px;
     }
 
     .mobile-menu li a {
         color: black;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
     }
 
     .mobile-menu li:hover a {
@@ -4026,7 +4086,7 @@ label[for="drone-make-list"] {
    
 }
 
-@media only screen and (min-width: 791px) {
+@media only screen and (min-width: 850px) {
     .burger-icon-wrap {
             display: none;
     }
@@ -4100,11 +4160,12 @@ label[for="drone-make-list"] {
     }
 }
 
-@media only screen and (min-width: 100px) {
-    .comment {
-        /* max-width: 800px; */
-        /* margin-left: 30px; */
+@media only screen and (min-width: 1000px) {
+    .site-menu,
+    .user-nav {
+        font-size: 18px;
     }
+    
 }
 
 @media only screen and (min-width: 1280px) {

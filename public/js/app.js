@@ -2066,6 +2066,13 @@ function reviewsNavItemClick() {
     });
 }
 
+function homeClick() {
+    $('.home').on('click', e => {
+        e.preventDefault();
+        window.location = '/';
+    });
+}
+
 function welcomeClick() {
     $('.welcome').on('click', e => {
         e.preventDefault();
@@ -2255,7 +2262,11 @@ function filterBtnClick() {
 function writeReviewNavClick() {
     $(WRITE_REVIEW_NAV).on('click', function(e) {
         e.preventDefault();
-        slideInReviewForm($(this), REVIEW_FORM_SCREEN);
+        if(state.loggedIn) {
+            slideInReviewForm($(this), REVIEW_FORM_SCREEN);
+        } else {
+            alert('Must be logged in!');
+        }
     });
 }
 
@@ -2578,6 +2589,7 @@ function navMenuEvents() {
     burgerIconTouchend();
     mobileMenuItemClick();
     reviewsNavItemClick();
+    homeClick();
     loginBtnsClick();
     signupBtnsClick();
     logOutBtnClick();

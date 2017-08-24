@@ -14,14 +14,16 @@
             </a>
             <ul class="site-menu">
                 <% if ( loggedIn ) { %>
-                    <li class="write-review"><a href="#">Write a Review</a></li>
+                    <!-- <li class="write-review"><a href="#">Write a Review</a></li> -->
                 <% } %>
+                <li class="write-review"><a href="#">Write a Review</a></li>
                 <li class="reviews"><a href="#">Reviews</a></li>
                 <li><a class="news coming-soon" href="#!">News</a></li>
                 <li class="mission"><a href="/mission">Mission</a></li>
                 <!-- <li class="welcome"><a href="/welcome">Capstone Info.</a></li> -->
             </ul>
             <ul class="user-nav">
+                <li><a class="home" href="/">Home</a></li>
                 <% if ( loggedIn ) { %>
                     <li><a href="#!" class="me">Hey, <span class="user-loggedin"></span></a></li>
                     <!-- <li><a href="/users/me" class="me">Me</a></li> -->
@@ -33,11 +35,13 @@
             </ul>
             <ul class="mobile-menu">
                 <% if ( loggedIn ) { %>
-                    <li class="write-review mobile-write"><a href="#">Write a Review</a></li>
+                    <!-- <li class="write-review mobile-write"><a href="#">Write a Review</a></li> -->
                 <% } %>
+                <li class="write-review mobile-write"><a href="#">Write a Review</a></li>
                 <li class="reviews"><a href="#" >Reviews</a></li>
                 <li class="mission"><a href="/mission">Mission</a></li>
                 <li class="welcome"><a href="/welcome">Capstone Info.</a></li>
+                <li class="home"><a href="/">Home</a></li>
                 <% if ( loggedIn ) { %>
                     <li class="me"><a href="/users/me">Me</a></li>
                     <li class="logout"><a href="#">Log Out</a></li>

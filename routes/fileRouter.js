@@ -96,7 +96,7 @@ conn.once('open', () => {
         });
 
         writeStream.on('close', (file) => {
-            console.log(file);
+            // console.log(file);
             return res.status(200).send({
                 message: 'Success',
                 file: file
