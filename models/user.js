@@ -25,6 +25,7 @@ const UserSchema = mongoose.Schema({
 // API response format
 UserSchema.methods.apiRepr = function() {
     return {
+        id: this._id,
         username: this.username,
         password: this.password,
         email: this.email
