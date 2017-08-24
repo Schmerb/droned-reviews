@@ -443,8 +443,19 @@ footer .news::before {
     opacity: 0;
 }
 
+.mobile-menu .home::after {
+    display: none;
+}
+
 .mobile-menu .home::before {
     color: black;
+    background: transparent;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+}
+
+.mobile-menu .home:hover::before {
+    color: #DEF2F1;
 }
 
 .home:hover::after {
