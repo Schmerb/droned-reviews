@@ -625,7 +625,7 @@ function displayPosts(_posts) {
 
 
     // Need to append when fetching batch at a time
-    let postsStr = posts.join('');
+    let postsStr = posts.reverse().join('');
     $(REVIEWS_CONTENT).html(postsStr);
 }
 
