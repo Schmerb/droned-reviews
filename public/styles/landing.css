@@ -13,6 +13,7 @@
     background-repeat: no-repeat;
 
     min-width: 300px;
+    min-height: 540px;
 
     -webkit-transition: all 0.8s ease;
     -moz-transition: all 0.8s ease;
@@ -203,7 +204,7 @@ a.thinkful:hover {
     .container {
         width: 60%;
         min-width: 730px;
-        margin-top: 100px;
+        /* margin-top: 100px; */
     }
 
     .container p {
