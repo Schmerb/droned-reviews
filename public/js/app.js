@@ -1877,11 +1877,13 @@ function checkSizeHandler() {
 // the main video player and gallery depending on size
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function checkSize() {
-    (parseInt($("body").css('width')) <= '414') ? state.isMobile = true : state.isMobile = false;
+    (parseInt($("body").css('width')) <= 414) ? state.isMobile = true : state.isMobile = false;
+
+    navUserMsgHandler();
 
     if (window.location.href.indexOf('drones') >= 0) {
 
-        if(parseInt($("body").css('width')) <= '400') {
+        if(parseInt($("body").css('width')) <= 400) {
             hide('.more-content img');
             show('.more-content iframe');
             $('.more-content .vid-wrap').addClass('mobile-vid');
@@ -1891,7 +1893,7 @@ function checkSize() {
             $('.more-content .vid-wrap').removeClass('mobile-vid');
         }
 
-        if(parseInt($("body").css('width')) <= '720') {
+        if(parseInt($("body").css('width')) <= 720) {
             if(! $(GALLERY).prev().is(SHOWCASE)) {
                 $(SHOWCASE).detach().insertBefore(GALLERY);
             }
@@ -1900,6 +1902,38 @@ function checkSize() {
                 $(SHOWCASE).detach().insertAfter(GALLERY);
             }
         }
+    }
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Shows / hides mobile user message so mobile users can
+// confirm they are logged in and limits the username
+// to fit within alotted space
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function navUserMsgHandler() {
+    if((parseInt($("body").css('width')) < 585) ) {
+        show('.mobile-msg');
+    } else {
+        hide('.mobile-msg');
+    }
+
+    if((parseInt($("body").css('width')) > 700) ) {
+        limitNavUserMessage();
+    } else {
+        limitNavUserMessage(6);
+    }
+
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// limits the username in message to provided limit, 10
+// char is the default max-length
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function limitNavUserMessage(limit = 10) {
+    let username = state.user;
+    if(username.length > limit) {
+        username = username.slice(0, limit - 1);
+        $('.user-nav .user-loggedin').text(username + '..');
     }
 }
 
@@ -2123,7 +2157,10 @@ function loginFormSubmit() {
 function logOutBtnClick() {
     $(LOGOUT_BTN).on('click', (e) => {
         e.preventDefault();
-        logUserOut();
+        let delay = parseInt($('body').css('width')) < 585 ? 650 : 0;
+        setTimeout(function() {
+            logUserOut();
+        }, delay);
     });
 }
 
@@ -2644,6 +2681,7 @@ function init() {
     droneModelSlideChange();
     displayCurrentUser();
     checkIfUserLoggedIn();
+    limitNavUserMessage();
     if(location.href.indexOf('drones') >= 0) { // only fires when user is on page slider element exists
         displayDetailSpecs(0); // fetches specs for each review post drone model        
     }    

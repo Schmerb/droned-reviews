@@ -3978,8 +3978,8 @@ label[for="drone-make-list"] {
         box-shadow: 0 0 30px 6px rgba(255,255,255,0.2);
     }
 
-    .mobile-menu li:first-of-type {
-        margin-top: 65px;
+    .mobile-menu  {
+        padding-top: 65px;
     }
 
     .mobile-menu li a {
@@ -4159,6 +4159,7 @@ label[for="drone-make-list"] {
 }
 
 .hidden,
+.mobile-menu .hidden,
 .fa.hidden {
     display: none;
 }

@@ -3,7 +3,6 @@
     <div class="banner-top-wrap">
         <nav class="banner-nav" role="navigation">
                 <a href="/" class="logo">
-                    <!-- <img class="logo-drone" src="../assets/icons/drone-top.svg"> -->
                     <h2 class="logo-title">Dr <img class="logo-drone" src="../assets/icons/drone-top.svg"> <span class="title-end">ned</span></h2>
                     <h6 class="motto">The place for everything drones</h6> 
                 </a>
@@ -17,14 +16,12 @@
                 <li class="reviews"><a href="#">Reviews</a></li>
                 <li><a class="news coming-soon" href="#!">News</a></li>
                 <li class="mission"><a href="/mission">Mission</a></li>
-                <!-- <li class="welcome"><a href="/welcome">Capstone Info.</a></li> -->
             </ul>
             <ul class="user-nav">
                 <% if ( loggedIn ) { %>
-                    <li class="logged-in"><a href="#!" class="me">Hey, <span class="user-loggedin"></span></a></li>
+                    <li class="user-msg logged-in"><a href="#!" class="me">Hey, <span class="user-loggedin"></span></a></li>
                 <% } %>
                     <li><a class="home" href="/">Home</a></li>
-                    <!-- <li><a href="/users/me" class="me">Me</a></li> -->
                 <% if ( loggedIn ) { %>
                     <li class="logged-in"><a href="#" class="logout">Log Out</a></li>
                 <% } else { %>
@@ -34,7 +31,7 @@
             </ul>
             <ul class="mobile-menu">
                 <% if ( loggedIn ) { %>
-                    <!-- <li class="write-review mobile-write"><a href="#">Write a Review</a></li> -->
+                    <li class="logged-in mobile-msg hidden"><a href="#!" class="me">Hey, <span class="user-loggedin"></span></a></li>    
                 <% } %>
                 <li class="write-review mobile-write"><a href="#">Write a Review</a></li>
                 <li class="reviews"><a href="#" >Reviews</a></li>
@@ -42,7 +39,6 @@
                 <li class="mission"><a href="/mission">Mission</a></li>
                 <li class="home"><a href="/">Home</a></li>
                 <% if ( loggedIn ) { %>
-                    <li class="logged-in"><a href="#!" class="me">Hey, <span class="user-loggedin"></span></a></li>
                     <li class="logout logged-in"><a href="#">Log Out</a></li>
                 <% } else { %>
                     <li class="mobile-sign-in login"><a href="#">LogIn</a></li>
