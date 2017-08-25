@@ -23,10 +23,12 @@
                 <!-- <li class="welcome"><a href="/welcome">Capstone Info.</a></li> -->
             </ul>
             <ul class="user-nav">
-                <li><a class="home" href="/">Home</a></li>
                 <% if ( loggedIn ) { %>
                     <li><a href="#!" class="me">Hey, <span class="user-loggedin"></span></a></li>
+                <% } %>
+                    <li><a class="home" href="/">Home</a></li>
                     <!-- <li><a href="/users/me" class="me">Me</a></li> -->
+                <% if ( loggedIn ) { %>
                     <li><a href="#" class="logout">Log Out</a></li>
                 <% } else { %>
                     <li><a href="#" class="login">LogIn</a></li>
