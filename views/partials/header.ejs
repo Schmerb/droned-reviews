@@ -13,9 +13,6 @@
                 </div>
             </a>
             <ul class="site-menu">
-                <% if ( loggedIn ) { %>
-                    <!-- <li class="write-review"><a href="#">Write a Review</a></li> -->
-                <% } %>
                 <li class="write-review"><a href="#">Write a Review</a></li>
                 <li class="reviews"><a href="#">Reviews</a></li>
                 <li><a class="news coming-soon" href="#!">News</a></li>
@@ -24,12 +21,12 @@
             </ul>
             <ul class="user-nav">
                 <% if ( loggedIn ) { %>
-                    <li><a href="#!" class="me">Hey, <span class="user-loggedin"></span></a></li>
+                    <li class="logged-in"><a href="#!" class="me">Hey, <span class="user-loggedin"></span></a></li>
                 <% } %>
                     <li><a class="home" href="/">Home</a></li>
                     <!-- <li><a href="/users/me" class="me">Me</a></li> -->
                 <% if ( loggedIn ) { %>
-                    <li><a href="#" class="logout">Log Out</a></li>
+                    <li class="logged-in"><a href="#" class="logout">Log Out</a></li>
                 <% } else { %>
                     <li><a href="#" class="login">LogIn</a></li>
                     <li><a href="#" class="signup">Sign Up</a></li>
@@ -44,8 +41,8 @@
                 <li class="mission"><a href="/mission">Mission</a></li>
                 <li class="home"><a href="/">Home</a></li>
                 <% if ( loggedIn ) { %>
-                    <li class="me"><a href="/users/me">Me</a></li>
-                    <li class="logout"><a href="#">Log Out</a></li>
+                    <li class="logged-in"><a href="#!" class="me">Hey, <span class="user-loggedin"></span></a></li>
+                    <li class="logout logged-in"><a href="#">Log Out</a></li>
                 <% } else { %>
                     <li class="mobile-sign-in login"><a href="#">LogIn</a></li>
                     <li class="mobile-sign-in signup"><a href="#">Sign Up</a></li>

@@ -19,9 +19,11 @@ const checkSessionCookieLoggedIn = req => {
 
     let username = req.cookies.loggedIn;
 
-    // console.log('cookies LOGGED IN', req.cookies);
+    console.log('username: ', username);
 
-    if (username !== '') {
+    console.log('cookies LOGGED IN', req.cookies);
+
+    if (username !== undefined && username !== '') {
         loggedIn = true;
     }
 

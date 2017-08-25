@@ -1973,6 +1973,12 @@ function checkEndpoint() {
     }
 }
 
+function checkIfUserLoggedIn() {
+    if(!state.loggedIn) {
+        hide('.logged-in');
+    }
+}
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // If a user is logged in, display their username in nav
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -2633,6 +2639,7 @@ function init() {
     displayDroneModelsSlider();
     droneModelSlideChange();
     displayCurrentUser();
+    checkIfUserLoggedIn();
     if(location.href.indexOf('drones') >= 0) { // only fires when user is on page slider element exists
         displayDetailSpecs(0); // fetches specs for each review post drone model        
     }    

@@ -15,6 +15,8 @@ exports.getLanding = (req, res) => {
 exports.getIndex = (req, res) => {
     let {loggedIn, username} = checkSessionCookieLoggedIn(req);
 
+    console.log({loggedIn, username});
+
     res.status(200).render('index', {
         loggedIn: loggedIn,
         username: JSON.stringify(username)
