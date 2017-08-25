@@ -2031,9 +2031,15 @@ function burgerIconTouchend() {
 }
 
 function mobileMenuItemClick() {
-    $(MOBILE_MENU_ITEM).on('click', e => {
+    $(MOBILE_MENU_ITEM).on('click', function(e) {
         e.preventDefault();
-        closeMobileMenu();
+        if($(this).hasClass('coming-soon')) {
+            return
+        } else if ($(this).hasClass('write-review') && state.loggedIn === false) {
+            return
+        } else {
+            closeMobileMenu();
+        }
     });
 }
 
@@ -2303,7 +2309,6 @@ function previewCloseBtnClick() {
 function editPostIconClick() {
     $(REVIEWS).on('click', EDIT_POST_ICON, function (e) {
         e.preventDefault();
-        console.log('Edit clicked');
         let $post = $(this).closest('.post');
         displayEditPostForm($post);
     });
@@ -2341,7 +2346,6 @@ function commentBtnClick() {
 function deletePostModalBtnClick() {
     $(DELETE_POST_MODAL_BTN).on('click', e => {
         e.preventDefault();
-        console.log('clicked');
         show(DELETE_POST_MODAL);
         $(EDIT_REVIEW_FORM_SCREEN + ' .review-form-modal').addClass('faded');
     });
