@@ -8,7 +8,6 @@ const { User } = require('../models/user');
 // Strategy for validating user password
 const basicStrategy = new BasicStrategy((username, password, done) => {
     let user;
-    console.log("INSIDE BSTRAT");
     User
         .findOne({ username: username })
         .exec()
@@ -20,7 +19,6 @@ const basicStrategy = new BasicStrategy((username, password, done) => {
             return user.validatePassword(password);
         })
         .then(isValid => {
-            console.log("BSTRAT, VALID PASS");
             if (!isValid) {
                 return done(null, false);
             }
