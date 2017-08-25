@@ -2311,6 +2311,7 @@ section.review-page-container {
 
 .comment-content {
     margin: 0;
+    padding-top: 10px;
 }
 
 .comment-metadata {
