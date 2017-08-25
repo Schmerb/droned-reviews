@@ -35,7 +35,7 @@ conn.once('open', () => {
                     message: 'File not found'
                 });
             }
-            console.log('FILES:', files);
+            
             let data = [];
             let readstream = gfs.createReadStream({
                 filename: files[0].filename
@@ -73,9 +73,7 @@ conn.once('open', () => {
         let objId = {
             _id: ObjectID(req.params.imgId)
         };
-        // gfs.remove(
-        //     objId
-        // );
+
         gfs.remove(objId, function (err) {
             if (err) return handleError(err);
             console.log('success');
@@ -88,7 +86,6 @@ conn.once('open', () => {
     // POST '/img'
     router.post('/img', (req, res) => {
         let part = req.files.file;
-        console.log(part);
         let writeStream = gfs.createWriteStream({
             filename: 'img_' + part.name,
             mode: 'w',
@@ -96,7 +93,6 @@ conn.once('open', () => {
         });
 
         writeStream.on('close', (file) => {
-            // console.log(file);
             return res.status(200).send({
                 message: 'Success',
                 file: file

@@ -11,19 +11,38 @@ Node Backend Capstone Project from [Thinkful's](https://www.thinkful.com/) Fulls
 * Polish: Your polished client should have compelling design and be responsive and follow accessibility best practices.
 
 ## Screenshots
+
+Project Landing Page
+
 ![Landing Page](./working-screenshots/landing.png?raw=true "Landing Page")
 
-![Home Page](./working-screenshots/home-page.png?raw=true "Home Page")
+Homepage
 
-![Signin Home Page](./working-screenshots/mission-loggedin-page.png?raw=true "Signin Home Page")
+![Home Page](./working-screenshots/homepage.png?raw=true "Home Page")
 
-![Reviews](./working-screenshots/reviews-page-top.png?raw=true "Reviews")
+Mission Page w/ user signed in
 
-![Review Comments](./working-screenshots/post-comments-page.png?raw=true "Review Comments")
+![Signin Home Page](./working-screenshots/mission-user.png?raw=true "Signin Home Page")
 
-![Specs](./working-screenshots/post-specs-page.png?raw=true "Specs")
+Write Review Form
 
-![Drone Models](./working-screenshots/drone-model-page.png?raw=true "Drone Models")
+![Review Form](./working-screenshots/write-review.png?raw=true "Review Form")
+
+Review Page
+
+![Reviews](./working-screenshots/reviews.png?raw=true "Reviews")
+
+Comments
+
+![Review Comments](./working-screenshots/comments.png?raw=true "Review Comments")
+
+Drone Model Specs
+
+![Specs](./working-screenshots/specs.png?raw=true "Specs")
+
+Drone Make/Model Page
+
+![Drone Models](./working-screenshots/drone-model.png?raw=true "Drone Models")
 
 Mobile Menu
 

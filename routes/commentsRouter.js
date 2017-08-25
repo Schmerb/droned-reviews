@@ -16,23 +16,23 @@ router.use(bodyParser.json());
 //   COMMENTS routes
 // ==================================================
 
-// tested
+
 router.put('/posts/comments/:id', commentsController.updateComment);
 
 
 
-router.get('/posts/comments/:id/comments', commentsController.getReplyCommentsByCommentId); // Need tests
+router.get('/posts/comments/:id/comments', commentsController.getReplyCommentsByCommentId); 
 
 
-router.get('/posts/comments/:id', commentsController.getCommentById); // Need tests
+router.get('/posts/comments/:id', commentsController.getCommentById); 
 
 
-router.get('/posts/:id/comments', commentsController.getCommentByPostId); // Need tests
+router.get('/posts/:id/comments', commentsController.getCommentByPostId); 
 
-// tested
+
 router.get('/posts/comments', commentsController.getComments);
 
-// tested
+
 router.post('/posts/comments', commentsController.createComment);
 
 module.exports = router;

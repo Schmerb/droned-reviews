@@ -8,9 +8,9 @@ const router     = express.Router();
 
 
 
-// router.use(bodyParser());
+
 router.use(bodyParser.urlencoded({ extended: true }));
-// router.use(checkSessionCookieVisited());
+
 
 // controllers
 const mainController       = require('../controllers/mainController'),

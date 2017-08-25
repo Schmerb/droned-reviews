@@ -2,7 +2,7 @@
 const checkSessionCookieVisited = (req, res, next) => {
     let visited  = req.cookies.visited;
 
-    console.log('cookies VISITED', req.cookies);
+    // console.log('cookies VISITED', req.cookies);
 
 
     if(!visited || visited !== 'true') {
@@ -19,7 +19,7 @@ const checkSessionCookieLoggedIn = req => {
 
     let username = req.cookies.loggedIn;
 
-    console.log('cookies LOGGED IN', req.cookies);
+    // console.log('cookies LOGGED IN', req.cookies);
 
     if (username !== '') {
         loggedIn = true;

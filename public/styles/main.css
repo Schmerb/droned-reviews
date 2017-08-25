@@ -15,8 +15,6 @@ body {
     margin: 0;
     width: 100%;
     min-width: 300px;
-    /* height: 100%;
-    min-height: 200vh; */
     overflow-x: hidden;
 }
 
@@ -32,12 +30,10 @@ a {
     background: url('../assets/drones/phantom-3-aaron-burden-compressor.jpg') center;
     background-size: cover;
     background-position-x: 10%;
-    /* color: #b0bec5; */
     color: #e2f1fc;
     position: relative;
     height: 100vh;
     min-height: 500px;
-    /* border: 1px solid black; */
 }
 
 .banner::before {
@@ -92,7 +88,6 @@ a {
 }
 
 .banner-top-wrap {
-    /* background: rgba(255,255,255,0.3); */
     width: 90%;
     min-width: 230px;
     margin: 0 auto;
@@ -105,7 +100,6 @@ a.logo {
     font-size: 30px;
     cursor: pointer;
     float: left; 
-    /* z-index: 5; */
 }
 
 .fixed-nav a.logo {
@@ -141,9 +135,6 @@ img.logo-drone {
 /*========================================/
 /* burger menu icon
 /*=======================================*/
-.burger-anchor {
-    /* z-index: 5; */
-}
 
 .burger-icon-wrap {
     display: inline-block;
@@ -161,7 +152,6 @@ img.logo-drone {
 }
 
 .burger-icon-wrap.open {
-     /* position: fixed;  */
     top: 6px;
     right: 15%;
     left: 85%;
@@ -245,10 +235,8 @@ img.logo-drone {
 /*=======================================*/
 
 .banner-nav {
-    /* position: relative;  */
     height: 70px;
     z-index: 1;
-    /* overflow: hidden; */
 }
 
 .site-menu,
@@ -262,7 +250,6 @@ img.logo-drone {
 
 .site-menu {
     display: none;
-    /* font-size: 18px; */
     padding-left: 3%;
 }
 
@@ -280,7 +267,6 @@ img.logo-drone {
 
 .user-nav {
     right: 40px;
-    /* display: inline-block; */
 }
 
 .user-nav a {
@@ -347,7 +333,6 @@ img.logo-drone {
     position: relative;
     font-family: FontAwesome;
     content: '\f09e';
-    /* color: #29b6f6; */
     right: 0;
     top: 0;
     background: -webkit-linear-gradient(-120deg, #eee, #eee);
@@ -362,6 +347,7 @@ img.logo-drone {
 .news::before {
     position: absolute;
     top: -4px;
+    -webkit-text-fill-color: unset;
 }
 
 footer .news::before {
@@ -420,7 +406,6 @@ footer .news::before {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-right: 2px;
-    /* background: transparent; */
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
@@ -467,14 +452,11 @@ footer .news::before {
 .home:hover,
 .login:hover,
 .me:hover {
-    /* color: white;  */
     border-bottom-color: white;
 }
 
 a.signup,
 a.logout {
-    /* color: #455a64; */
-    /* background: white; */
     padding: 5px 10px;
     border: 3px solid white;
 }
@@ -508,7 +490,6 @@ a.logout {
 .landing-greeting {
     color: white;
     font-family: 'Raleway', sans-serif;
-    /* font-family: 'Comfortaa', cursive; */
     position: absolute;
     top: 35%; 
     left: 50%;
@@ -521,10 +502,6 @@ a.logout {
 
 .login-message-container {
     text-align: center;
-}
-
-.mission-container {
-    /* font-family: 'Raleway', sans-serif; */
 }
 
 .login-message {
@@ -547,17 +524,11 @@ a.logout {
     color: black;
 }
 
-.comment-nav li:hover {
-
-}
 
 .sub-login {
     margin-right: 10px;
 }
 
-.sub-signup {
-
-}
 
 
 
@@ -997,7 +968,6 @@ label[for="edit-file-img"],
 label[for="file-video"],
 label[for="edit-file-video"] {
     display: inline-block;
-    /* cursor: pointer; */
     padding: 5px; 
     border: 1px solid rgba(255,255,255,0.5);
 }
@@ -1364,7 +1334,6 @@ button.delete-post-btn {
 .drone-model.slick-slide {
     position: relative;
     display: inline-block;
-    /* background: white; */
     width: 100%;
     height: 100%;
 }
@@ -1624,26 +1593,6 @@ button.delete-post-btn {
     height: auto;
 }
 
-/* .vid-wrap::after {
-    position: absolute;
-    background-image: url('../assets/icons/YouTube-icon-dark.png');
-    background-repeat: no-repeat;
-    background-size: 50px;
-    background-position-y: 50%;
-    background-position-x: 50%;
-    content: '';
-    font-size: 36px;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    color: rgba(0,0,0,0.7);
-    pointer-events: none;
-    -webkit-transition: background-image 0.2s ease-in-out;
-    -moz-transition: background-image 0.2s ease-in-out;
-    transition: background-image 0.2s ease-in-out;
-} */
-
 .g-video.mobile-vid::after,
 .vid-wrap.mobile-vid::after {
     display: none;
@@ -1670,9 +1619,6 @@ button.delete-post-btn {
 
 .videos-container iframe,
 .frame-wrap iframe {
-    /* position: absolute;
-    top: 0;
-    left: 0; */
     width: 100%;
     height: 100%;
     border: none;
@@ -1783,10 +1729,6 @@ iframe.mobile-vid {
 
 #aside-nav {
     position: relative;
-    /* width: 20%; */
-    /* max-width: 250px; */
-    /* min-height: 560px; */
-    /* float: left; */
     margin-top: 20px;
 }  
 
@@ -1798,7 +1740,6 @@ iframe.mobile-vid {
 
 #aside-nav ul {
     list-style: none;
-    /* padding-left: 40px; */
 }
 
 #aside-nav li {
@@ -1807,7 +1748,6 @@ iframe.mobile-vid {
     line-height: 40px;
     margin-right: 10px;
     border-bottom: 1px solid rgba(0,0,0,0.1);
-    /* cursor: pointer; */
 }
 
 #aside-nav li,
@@ -1824,7 +1764,6 @@ iframe.mobile-vid {
 #aside-nav li a {
     display: block;
     color: black;
-    /* width: 100%; */
 }
 
 
@@ -1907,7 +1846,6 @@ section.review-page-container {
     width: 100%;
     height: 40vh;
     min-height: 250px;
-    /* box-shadow: 0 0 20px 1px rgba(0,0,0,0.3); */
 }
 
 .reviews-title {
@@ -1916,9 +1854,7 @@ section.review-page-container {
     text-align: center;
     font-size: 26px;
     margin: 0;
-    /* transform: translate(-50%, 50%); */
     text-shadow: 0 0 2px rgba(0,0,0,0.3);
-    /* text-shadow: 3px 2px 4px rgba(0,0,0,0.3); */
 }
 
 .post-title {
@@ -1932,17 +1868,9 @@ section.review-page-container {
     position: relative;
     max-width: 1000px;
     margin: 100px 0;
-    /* overflow: auto; */
-    /* border: 1px solid black; */
-     /* box-shadow: 0 0 86px rgba(0,0,0,0.1);  */
-}
-
-.review:first-of-type {
-    /* margin-right: 30px; */
 }
 
 .author-label{
-    /* margin-left: 30px; */
     margin-top: 10px;
 }
 
@@ -1995,7 +1923,6 @@ section.review-page-container {
 
 .post {
     position: relative; 
-    /* height: 428px; */
     overflow: hidden;
     border: 1px solid rgba(0,0,0,0.1);
     border-bottom: none;
@@ -2031,16 +1958,14 @@ section.review-page-container {
 .img-container {
     float: left;
     width: 100%;
-    /* margin-right: 10px; */
-    /* border: 1px solid rgba(0,0,0,0.1);  */
 }
 
 .post-img {
     background: rgba(13,70,149,0.1);
+    background: -moz-linear-gradient(130deg, rgba(13,70,149,0.1), transparent);
+    background: -o-linear-gradient(130deg, rgba(13,70,149,0.1), transparent);
+    background: -webkit-linear-gradient(130deg, rgba(13, 69, 149, 0.10), transparent);
     background: linear-gradient(130deg, rgba(13,70,149,0.1), transparent);
-                /* -moz-linear-gradient(90deg, rgba(13,70,149,0.1), transparent),
-                -o-linear-gradient(90deg, rgba(13,70,149,0.1), transparent),
-                -webkit-linear-gradient(90deg, rgba(13, 69, 149, 0.10), transparent); */
     width: 100%;
     height: auto;
     border-bottom: 1px solid rgba(0,0,0,0.1);
@@ -2056,10 +1981,6 @@ section.review-page-container {
 
 .mobile-vote-aside {
     text-align: center;
-}
-
-.mobile-vote-aside .fa.fa-arrow-up {
-    /* margin-right: 15px; */
 }
 
 .up-vote-arrow {
@@ -2089,12 +2010,9 @@ section.review-page-container {
 
 .interactions {
     clear: both;
-    /* position: absolute;  */
-    /* bottom: 0;  */
     font-size: 0;
     width: 100%;
      height: 40px; 
-    /* padding: 10px 0; */
     margin-top: 10px;
     text-align: center;
     border-top: 1px solid rgba(0,0,0,0.1);
@@ -2151,7 +2069,6 @@ section.review-page-container {
     background: #eceff1;
     display: block;
     width: 100%;
-    /* height: 0; */
     max-height: 0;
     overflow: hidden;
     border: 1px solid transparent;
@@ -2248,7 +2165,6 @@ section.review-page-container {
 
 .comments-container.expand {
     max-height: unset; 
-    /* padding: 20px; */
     border: 1px solid rgba(0,0,0,0.1);
     border-top: none;
 }
@@ -2291,11 +2207,9 @@ section.review-page-container {
 .comment {
     background: rgba(17, 100, 102, 0.2);
     background: unset;
-    /* margin-bottom: 20px; */
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 20px;
-    /* border: 1px solid blue; */
 }
 
 .comment:nth-of-type(2n) {
@@ -2448,7 +2362,6 @@ section.review-page-container {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    /* border: 1px solid black; */
 }
 
 .reply-comment-form.expand {
@@ -2558,12 +2471,10 @@ section.review-page-container {
 }
 
 .drone-icon {
-    /* position: absolute; */
     width: 50px;
     height: auto;
     top: 50%;
     left: 50%;
-    /* transform: translate(-50%, -50%); */
 }
 
 .footer-links ul {
@@ -2628,7 +2539,6 @@ section.review-page-container {
     margin-right: 20px;
     border-radius: 50%;
     border: 3px solid white;
-    /* transform-style: preserve-3d; */
 }
 
 .social-links a:hover {
@@ -2644,13 +2554,8 @@ section.review-page-container {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-     /* backface-visibility: hidden;
-    transform-style: preserve-3d; */
 }
 
-.social-links a:hover .social-links .fa {
-    /* transform: scale(1.2); */
-}
 /* drone makes BASE */
 
 
@@ -2829,9 +2734,6 @@ label[for="drone-make-list"] {
         display: none;
     }
 
-    .drone-search-btn {
-        /* transform: translateY(1px); */
-    }
 }
 
 
@@ -2847,13 +2749,6 @@ label[for="drone-make-list"] {
         background-size: cover;
         background-position-x: unset;
     }
-
-
-    /* .burger-icon-wrap:hover #burger-icon,
-    .burger-icon-wrap:hover #burger-icon::before,
-    .burger-icon-wrap:hover #burger-icon::after {
-        background: #29b6f6;
-    } */
 
     .landing-greeting {
         font-size: 20px;
@@ -2948,10 +2843,6 @@ label[for="drone-make-list"] {
         padding-left: 20px;
     }
 
-    .select-drone-container {
-        /* width: 500px; */
-    }
-
     label[for="dropdown-options"],
     label[for="drone-search"]  {
         display: block;
@@ -2975,10 +2866,6 @@ label[for="drone-make-list"] {
 
     .review-label p {
         vertical-align: top;
-    }
-
-    .media-assets {
-
     }
 
     .bottom-btns {
@@ -3086,67 +2973,12 @@ label[for="drone-make-list"] {
     .next-vid-btn.fa:hover {
         color: #29b6f6;
     }
-
-    /*========================================/
-    /* Footer (Landscape & Desktop)
-    /*=======================================*/
-    /* .footer-links {
-        position: absolute;
-        left: 50%;
-        width: 100%;
-        transform: translate(-50%, 0);
-        text-align: center;
-    }
-
-    .footer-links > li,
-    .footer-links > li:first-of-type  {
-        display: inline-block;
-        vertical-align: top;
-    }
-    
-    .f-menu-li {
-        width: 35%;
-        text-align: center;
-    }
-
-    .f-drone-li {
-        width: 60%;
-        text-align: center;
-    }
-
-    .foot-menu,
-    .foot-drone-list {
-        text-align: left;
-        width: unset;
-    }
-    .foot-menu {
-        display: inline-block;
-    }
-    
-    .foot-drone-list {
-        margin: 0;
-        width: unset;
-    } */
-
     
 }
 
 
 
 @media only screen and (min-width: 470px) {
-    /* .burger-icon-wrap {
-        right: 55%; 
-        left: 45%;
-        -webkit-transition: all 0.3s ease-in-out;
-        -moz-transition: all 0.3s ease-in-out;
-        transition: all 0.3s ease-in-out;
-    }
-
-    .burger-icon-wrap.open {
-        left: 90%; 
-        right: 10%;
-    } */
-
     .specs dd {
         padding: 5px 10%;
     }
@@ -3282,8 +3114,6 @@ label[for="drone-make-list"] {
 @media only screen and (max-width: 736px) {
     .no-scroll {
         overflow: hidden; 
-        /* position: fixed;
-        width: 100%;  */
     }
     /*========================================/
     /* Drone Filter ASIDE (MOBILE / LANDSCAPE)
@@ -3304,7 +3134,6 @@ label[for="drone-make-list"] {
     .search-filter {
         width: 80%;
         height: 40px;
-        /* line-height: 40px; */
         font-size: 16px;
         padding-left: 10px;
         border-radius: 0;
@@ -3379,9 +3208,6 @@ label[for="drone-make-list"] {
         margin: 15px 0;
     }
 
-    /*========================================/
-    /* Drone Co. Banner (MOBILE / LANDSCAPE)
-    /*=======================================*/
 
 
 
@@ -3479,11 +3305,6 @@ label[for="drone-make-list"] {
         height: 80vh;
     }
 
-    /* .burger-icon-wrap:hover #burger-icon,
-    .burger-icon-wrap:hover #burger-icon::before,
-    .burger-icon-wrap:hover #burger-icon::after {
-        background: #29b6f6;
-    } */
     /*========================================/
     /* Write Review Form (DESKTOP / TABLET)
     /*=======================================*/
@@ -3616,10 +3437,6 @@ label[for="drone-make-list"] {
         width: 100%;
     }
 
-    
-    #radio-filter-form {
-    }
-
     .filter-radio-groups {
         border: none;
     }
@@ -3647,7 +3464,6 @@ label[for="drone-make-list"] {
         color: #62757f;
         border-color: #62757f;
     }
-
 
     .mobile-only {
         display: none;
@@ -3711,7 +3527,6 @@ label[for="drone-make-list"] {
         margin-left: 15px;
     }
 
-
     .vote-aside {
         position: absolute;
         display: unset;
@@ -3766,7 +3581,6 @@ label[for="drone-make-list"] {
         max-height: 1200px; 
     }
 
-
     .no-scroll {
         overflow: hidden; 
         width: 100%; 
@@ -3776,13 +3590,10 @@ label[for="drone-make-list"] {
     /* Drone Detail Page (DESKTOP / TABLET)
     /*=======================================*/
 
-
     .drones-container .slick-next,
     .drones-container .slick-prev {
         top: 50%;
     }
-
-    
 
     .drone-model label {
         margin-left: 5%;
@@ -3819,7 +3630,6 @@ label[for="drone-make-list"] {
         position: relative;
         height: 100%;
     }
-
 
     #aside-nav li {
         display: block;

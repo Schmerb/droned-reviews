@@ -454,7 +454,6 @@ function updateDetailVideos($currentSlide) {
             g_vid_3 = vids[3],
             g_vid_4 = vids[4];
 
-        // state.player = new YT.Player('main-iframe');
         $(MAIN_VID).attr('src', `${EMBED_URL}/${mainVid.id.videoId}?enablejsapi=1&html5=1`)
                    .attr('data-thumbnail', mainVid.snippet.thumbnails.medium.url)
                    .attr('data-alt', mainVid.snippet.description);
@@ -609,9 +608,6 @@ function displayPosts(_posts) {
         let didUserVote = usersVoted.find((user) => {
             return user === state.user
         });
-        if (didUserVote !== undefined) {
-            // console.log(`"${didUserVote}" voted on this post, ${post.id}!`);
-        }
 
         // Check if post is by the current session user
         let byThisUser = false;
@@ -620,9 +616,6 @@ function displayPosts(_posts) {
         }
         return formReviewPost(post, byThisUser, didUserVote);
     });
-
-    // console.log(posts[4]);
-
 
     // Need to append when fetching batch at a time
     let postsStr = posts.reverse().join('');
@@ -1017,8 +1010,8 @@ function reviewFormHandler($form, editForm = false) {
     let $selectedOpt = $($form).find('.dropdown-options')
                                .find(":selected");
     let make    = $selectedOpt.parent()
-                                   .attr('label')
-                                   .toLowerCase(),
+                              .attr('label')
+                              .toLowerCase(),
         model   = $selectedOpt[0].value,
         title   = $('#title-input').val(),
         content = $('#post-content').val(),
@@ -1027,7 +1020,6 @@ function reviewFormHandler($form, editForm = false) {
     let $fileInput = $form.find('.img-file-input');
     let file = $fileInput.val() !== undefined ? $fileInput[0].files[0] : null;
     
-
     content = content.split('\n\n');
 
     let post = {
@@ -1113,9 +1105,6 @@ function commentFormHandler($form) {
         created,
     }
 
-    console.log('Should Be DIFF: ', comment.created);
-    console.log('Should Be DIFF: ', new Date(comment.created));
-
     if ($form.hasClass('reply-comment-form')) {
         comment['commentId'] = $form.closest('.comment').attr('data-this-id');
     } else if (postId !== undefined) {
@@ -1142,7 +1131,6 @@ function getDroneData(make, model) {
 function filterReviewHandler() {
     // Get checked radio
     let target = $('input[name="filter"]:checked', FILTER_FORM).val();
-    // console.log(`make: ${make}`);
     // loop through DOM and check if any matches
     // if yes, loop through DOM and remove reviews that dont match
     let isMatch = false;
@@ -1201,10 +1189,10 @@ function searchFilterHandler() {
     $(REVIEWS_CONTENT)
         .find(REVIEW)
         .each(function(index, review) {
-            let make = $(this).find('.maker')
-                              .first()
-                              .text()
-                              .toLowerCase();
+            let make  = $(this).find('.maker')
+                               .first()
+                               .text()
+                               .toLowerCase();
             let model = $(this).find('.model')
                                .first()
                                .text()
@@ -1294,11 +1282,6 @@ function checkIfFromCurrentUser(comment) {
         byThisUser = true;
     }
 
-    // console.log({ didUserLike });
-
-    if (didUserLike !== undefined) {
-        // console.log(`"${didUserLike}" voted on this comment, ${comment.id}!`);
-    }
     return { byThisUser, didUserLike };
 }
 
@@ -1320,7 +1303,6 @@ function postsHandler(posts) {
     displayPosts(posts);
     // Make call to api to get comments for each post
     posts.forEach((post) => {
-        // console.log(post);
         if (post.imgId !== '') {
             getFile(post.imgId, post.id);
         }
@@ -1408,7 +1390,6 @@ function likeDislikeComment($btn, like = true) {
 // via its post ID with a reference to the uploaded file 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function fileUploadHandler(file, postId) {
-    // console.log({ file, postId });
     let updateData = {
         id: postId,
         imgId: file.file._id
@@ -1442,14 +1423,11 @@ function createNewUser(userData) {
         data: userData,
         success: (res) => {
             // Successfully signed user up, now log them in
-            // location.reload();
-            console.log('SUCCESS');
             resetSignupForm();
             openLoginSignupModal('login');
             displayWelcomeMessage(res.username);
         },
         error: (err) => {
-            console.log('SIGNUP ERR');
             let message = err.responseJSON.message;
             let location = err.responseJSON.location;
             console.log(`${location}: ${message}`);
@@ -1471,7 +1449,6 @@ function logUserIn(loginData) {
             xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(unescape(encodeURIComponent(loginData.username + ':' + loginData.password))));
         },
         success: (res) => {
-            console.log(res);
             if (res.status) {
                 location.reload();
             } else {
@@ -1534,8 +1511,6 @@ function createPost(postData, file) {
         dataType: 'json',
         data: postData,
         success: res => {
-            console.log('Success');
-            console.log(res);
             if (file) {
                 uploadFile(file, res.id);
             } else {
@@ -1556,14 +1531,12 @@ function updatePost(updateData, file) {
         dataType: 'json',
         data: updateData,
         success: res => {
-            console.log(res);
             if (file) {
                 if (res.imgId !== "") {
                     deleteFile(res.imgId);
                 }
                 uploadFile(file, res.id);
             } else {
-                console.log("RES:", res);
                 if (res.hasOwnProperty('title') && !(updateData.hasOwnProperty('votes')))
                     location.reload();
             }
@@ -1628,8 +1601,7 @@ function deleteFile(id) {
         url: `/file/img/${id}`,
         type: "DELETE",
         success: res => {
-            consle.log({ res });
-            console.log(`successfully deleted img(${id})`);
+            // console.log(`successfully deleted img(${id})`);
         },
         error: (jqXHR, textStatus, err) => {
             console.log(err);
@@ -1652,7 +1624,7 @@ function getCommentsFromDb(id, mainComments = true) {
         dataType: 'json',
         success: function (res) {
             if (res.comments.length > 0) {
-                //  Main comment                //  Reply comment
+                                  //  Main comment                //  Reply comment
                 mainComments ? commentsFromDbHandler(res.comments) : commentsFromDbHandler(res.comments, false, id)
             }
         },
@@ -1689,7 +1661,6 @@ function postComment(commentObj) {
 
 function updateComment(updateData) {
     let id = updateData.id;
-    console.log({ updateData });
     $.ajax({
         url: `/posts/comments/${id}`,
         type: 'PUT',
@@ -1780,9 +1751,7 @@ function initDroneSlider() {
                 breakpoint: 1024,
                 settings: {
                     slidesToShow: 4,
-                    slidesToScroll: 4,
-                    // infinite: false,
-                    // dots: false
+                    slidesToScroll: 4
                 }
             },
             {
@@ -1795,15 +1764,10 @@ function initDroneSlider() {
             {
                 breakpoint: 415,
                 settings: {
-                    // autoplay: true,
-                    // autoplaySpeed: 5000,
                     speed: 2000,
                     slidesToShow: 1,
                     slidesToScroll: 1,
                     cssEase: 'ease-in-out'
-                    // centerMode: true,
-                    // focusOnSelect: true
-
                 }
             }
             // You can unslick at a given breakpoint now by adding:
@@ -1906,6 +1870,12 @@ function checkSizeHandler() {
     });
 }
 
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Called by checkSizeHandler to set state if mobile view
+// or not and hide/show thumbnail image or iframe of video
+// depending on mobile state. Also, swaps the position of
+// the main video player and gallery depending on size
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function checkSize() {
     (parseInt($("body").css('width')) <= '414') ? state.isMobile = true : state.isMobile = false;
 
@@ -1939,7 +1909,6 @@ function checkSize() {
 function fixBannerNav() {
     $(window).scroll((e) => {
         let scroll = $(window).scrollTop();
-        // console.log("Scroll Pos: ", scroll);
         if (scroll >= $('main').offset().top) {
             $(BANNER_WRAP).addClass('fixed-nav');
         } else {
@@ -1976,13 +1945,19 @@ function getElapsedTime(prevDate) {
     }
 }
 
-
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// If endpoint has #reviews, smooth scrool to reviews section
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function hashUrlHandler() {
     if(location.hash === '#reviews') {
         smoothScroll(REVIEWS);
     }
 }
 
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Checks current endpoint on page load to display correct
+// elements and styling for given page
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function checkEndpoint() {
     let endpoint = window.location.pathname;
     if (endpoint.indexOf('drones') >= 0) {
@@ -1991,7 +1966,6 @@ function checkEndpoint() {
         hide('.landing-greeting');
         $(`.drone-list a[href="${endpoint}"]`).addClass('current-page');
         $(`.drone-list a[href="${endpoint}"]`).parent().addClass('current-page');
-        // displayDetailSpecs(0); // fetches specs for each review post drone model
     } else if (endpoint.indexOf('mission') >= 0) {
         show('.mission-container');
         hide('.greeting');
@@ -1999,6 +1973,9 @@ function checkEndpoint() {
     }
 }
 
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// If a user is logged in, display their username in nav
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function displayCurrentUser() {
     if(state.user !== '') {
         $('.user-loggedin').text(state.user);
@@ -2016,12 +1993,10 @@ function onYouTubeIframeAPIReady() {
             },
             'onStateChange': () => {
                 console.log("Main Player state changed");
-                // console.log('TIME', this.getCurrentTime());
             }
         }
     });
 }
-
 
 
 //================================================================================
@@ -2597,6 +2572,7 @@ function navMenuEvents() {
     // footer
     toTopClick();
     newsClick();
+    welcomeClick();
 }
 
 function signupLoginFormEvents() {
@@ -2657,7 +2633,7 @@ function init() {
     displayDroneModelsSlider();
     droneModelSlideChange();
     displayCurrentUser();
-    if(location.href.indexOf('drones') >= 0) {
+    if(location.href.indexOf('drones') >= 0) { // only fires when user is on page slider element exists
         displayDetailSpecs(0); // fetches specs for each review post drone model        
     }    
 }
@@ -2683,11 +2659,7 @@ $(function () {
     asideEvents();
     reviewEvents();
     detailPageClicks();
-    // getAndDisplayReviews();
 
-    welcomeClick();
-
-    // openLoginSignupModal('signup');
     init();
 });
 

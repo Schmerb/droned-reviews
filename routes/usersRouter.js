@@ -1,12 +1,12 @@
 'use strict';
 
-const express = require('express');
-const bodyParser = require('body-parser');
+const express    = require('express'),
+      bodyParser = require('body-parser');
 
 const { passport,
-	isLoggedIn,
-	basicStrategy } = require('../services/authenticate');
-const usersController = require('../controllers/usersController');
+	    isLoggedIn,
+	    basicStrategy } = require('../services/authenticate');
+const usersController   = require('../controllers/usersController');
 
 
 const router = express.Router();
@@ -53,9 +53,6 @@ router.post('/login', function (req, res, next) {
 				return next(err); 
 			}
 
-			console.log('cookie', req.cookies);
-
-			
 			// Sets 'loggedIn' to name of user currently logged in session
 			res.cookie('loggedIn', req.user.username);
 			

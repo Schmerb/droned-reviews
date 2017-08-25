@@ -84,7 +84,6 @@ a.thinkful:hover {
 }
 
 .overview {
-    /* width: 300px; */
     margin: 0 auto;
 }
 
@@ -159,21 +158,6 @@ a.thinkful:hover {
     transition: all 0.3s ease-in-out;
 }
 
-/* 
-.landing-footer .g-hub-icon:hover {
-    color: rgba(255,255,255,0.6);
-    transform: scale(1.2);
-}  */
-
-
-/*========================================/
-/* Mobile Portrait
-/*=======================================*/
-@media only screen and (max-width: 415px) {
-    .title-reviews {
-        /* display: block; */
-    }
-}
 
 
 /*========================================/

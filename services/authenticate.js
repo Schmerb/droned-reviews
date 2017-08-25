@@ -10,8 +10,6 @@ const { User } = require('../models/user');
 // Strategy for validating user password
 const basicStrategy = new BasicStrategy((username, password, done) => {
     let user;
-    console.log("username", username);
-    console.log("password", password);
     User
         .findOne({ username: username })
         .exec()

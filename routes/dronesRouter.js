@@ -1,14 +1,16 @@
 'use strict';
 
-const express    = require('express');
-const bodyParser = require('body-parser');
+const express       = require('express'),
+      bodyParser    = require('body-parser');
 
-const router     = express.Router();
+const {checkSessionCookieLoggedIn} = require('../services/cookieCheck');
+
+const router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
 
 // DJI
 router.get('/dji', (req, res) => {
-    let {loggedIn, username} = checkSessionCookie(req);
+    let {loggedIn, username} = checkSessionCookieLoggedIn(req);
 
     res.render('pages/drones/dji', {
         loggedIn: loggedIn,
@@ -18,7 +20,7 @@ router.get('/dji', (req, res) => {
 
 // GoPro
 router.get('/gopro', (req, res) => {
-    let {loggedIn, username} = checkSessionCookie(req);
+    let {loggedIn, username} = checkSessionCookieLoggedIn(req);
 
     res.render('pages/drones/gopro', {
         loggedIn: loggedIn,
@@ -28,7 +30,7 @@ router.get('/gopro', (req, res) => {
 
 // Parrot
 router.get('/parrot', (req, res) => {
-    let {loggedIn, username} = checkSessionCookie(req);
+    let {loggedIn, username} = checkSessionCookieLoggedIn(req);
 
     res.render('pages/drones/parrot', {
         loggedIn: loggedIn,
@@ -38,7 +40,7 @@ router.get('/parrot', (req, res) => {
 
 // Yuneec
 router.get('/yuneec', (req, res) => {
-    let {loggedIn, username} = checkSessionCookie(req);
+    let {loggedIn, username} = checkSessionCookieLoggedIn(req);
 
     res.render('pages/drones/yuneec', {
         loggedIn: loggedIn,
@@ -48,7 +50,7 @@ router.get('/yuneec', (req, res) => {
 
 // Syma
 router.get('/syma', (req, res) => {
-    let {loggedIn, username} = checkSessionCookie(req);
+    let {loggedIn, username} = checkSessionCookieLoggedIn(req);
 
     res.render('pages/drones/syma', {
         loggedIn: loggedIn,
@@ -58,7 +60,7 @@ router.get('/syma', (req, res) => {
 
 // Hubsan
 router.get('/hubsan', (req, res) => {
-    let {loggedIn, username} = checkSessionCookie(req);
+    let {loggedIn, username} = checkSessionCookieLoggedIn(req);
 
     res.render('pages/drones/hubsan', {
         loggedIn: loggedIn,
@@ -68,7 +70,7 @@ router.get('/hubsan', (req, res) => {
 
 // Xiro
 router.get('/xiro', (req, res) => {
-    let {loggedIn, username} = checkSessionCookie(req);
+    let {loggedIn, username} = checkSessionCookieLoggedIn(req);
 
     res.render('pages/drones/xiro', {
         loggedIn: loggedIn,
@@ -78,28 +80,13 @@ router.get('/xiro', (req, res) => {
 
 // UDI
 router.get('/udi', (req, res) => {
-    let {loggedIn, username} = checkSessionCookie(req);
+    let {loggedIn, username} = checkSessionCookieLoggedIn(req);
 
     res.render('pages/drones/udi', {
         loggedIn: loggedIn,
         username: JSON.stringify(username)
     });
 });
-
-
-// To check if session cookie exists
-const checkSessionCookie = req => {
-    let loggedIn = false;
-    let username = req.cookies.loggedIn;
-
-    console.log(req.cookies);
-
-    if (username !== '') {
-        loggedIn = true;
-    }
-
-    return {loggedIn, username};
-}
 
 
 

@@ -130,11 +130,9 @@ exports.createUser = (req, res) => {
                 });
             }
             // if no existing user, hash password
-            console.log('first then');
             return User.hashPassword(password);
         })
         .then(hash => {
-            console.log('second then');
             return User
                 .create({
                     username: username,
@@ -144,8 +142,6 @@ exports.createUser = (req, res) => {
         })
         .then(user => {
             // Successfully created user
-            // log them in
-            // res.cookie('loggedIn', user.username);
             return res.status(201).json(user.apiRepr());
         })
         .catch(err => {
