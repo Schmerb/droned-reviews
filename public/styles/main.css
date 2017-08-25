@@ -4243,6 +4243,32 @@ label[for="drone-make-list"] {
     
 }
 
+@media only screen and (min-width: 1020px) {
+    dl.mode-specs {
+        margin-left: 20px;
+    }
+}
+
+@media only screen and (min-width: 1040px) {
+    dl.mode-specs {
+        margin-left: 5%;
+    }
+}
+
+@media only screen and (min-width: 1093px) {
+    dl.mode-specs {
+        margin-left: 10%;
+    }
+}
+
+@media only screen and (min-width: 1190px) {
+    dl.mode-specs {
+        margin-left: 17%;
+    }
+}
+
+
+
 @media only screen and (min-width: 1280px) {
     #lily::after {
         background-size: cover; 
