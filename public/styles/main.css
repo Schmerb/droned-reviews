@@ -1683,6 +1683,10 @@ iframe.mobile-vid {
     position: relative;
 }
 
+#modal-iframe {
+    position: absolute;
+}
+
 .v-modal-close.fa {
     position: absolute;
     color: white;
