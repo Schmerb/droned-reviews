@@ -2328,9 +2328,11 @@ function videoUploadClick() {
 function starClick() {
     $('.star').on('click', function(e) {
         e.preventDefault();
-        $('.star').removeClass('filled-star');
-        $(this).add($(this)
-               .nextAll())
+        $(this).siblings('.star')
+               .addBack()
+               .removeClass('filled-star');
+        $(this).nextAll()
+               .addBack()
                .addClass('filled-star');
     });
 }
