@@ -792,8 +792,8 @@ p.welcome-message {
 .post-preview-modal {
     position: absolute;
     top: -110%;
-    color: #DEF2F1;
-    background-color: #4D7284;
+    color: black;
+    background-color: #b0bec5;
     width: 100%;
     min-width: 320px;
     height: 100%;
@@ -1033,8 +1033,8 @@ input[type="file"] {
 
 .bottom-btns {
     position: relative;
-    margin-top: 20px;
-    margin-bottom: 40px;
+    padding-top: 20px;
+    padding-bottom: 40px;
     text-align: center;
 }
 
@@ -1901,6 +1901,7 @@ section.review-page-container {
     text-align: center;
     font-size: 26px;
     margin: 0;
+    margin-top: 30px;
     text-shadow: 0 0 2px rgba(0,0,0,0.3);
 }
 
@@ -1914,7 +1915,7 @@ section.review-page-container {
 .review {
     position: relative;
     max-width: 1000px;
-    margin: 100px 0;
+    margin: 50px 0;
 }
 
 .author-label{
@@ -2178,7 +2179,7 @@ section.review-page-container {
 }
 
 .specs span {
-    color: #f44336;
+    color: #29B6F6;
     font-weight: bold;
     float: right;
 }
@@ -2326,7 +2327,9 @@ section.review-page-container {
 
 .comment-btn {
     width: 50%;
-    height: 60px;
+    min-width: 160px;
+    max-width: 200px;
+    height: 50px;
 }
 
 /* reply comment */
@@ -2469,8 +2472,7 @@ section.review-page-container {
 .shadow-hr {
 	height: 12px;
 	border: 0;
-	box-shadow: inset 0 12px 12px -12px rgba(90, 118, 132, 0.9);
-	box-shadow: inset 0 12px 12px -12px rgba(118, 153, 168, 0.9)
+	box-shadow: inset 0 12px 12px -14px rgba(118, 153, 168, 0.9)
 }
 
 .thin-hr {
@@ -3277,6 +3279,7 @@ label[for="drone-make-list"] {
         position: absolute;
         top: -20px;
         left: 50%;
+        margin-top: 15px;
         transform: translateX(-50%);
     }
 
@@ -3480,6 +3483,7 @@ label[for="drone-make-list"] {
     label[for="search-filter-form"] {
         display: block;
         font-size: 13px;
+        margin-bottom: 10px;
     }
 
     label[for="radio-filter-form"] {
@@ -3533,8 +3537,16 @@ label[for="drone-make-list"] {
         margin-right: 10px;
     }
 
+    .reviews-title {
+        margin-top: 50px;
+    }
+
     .review {
         padding-bottom: 0;
+    }
+
+    .review:first-of-type {
+        /* margin-top: 80px; */
     }
 
     .details {
@@ -3553,6 +3565,7 @@ label[for="drone-make-list"] {
     .specs > dl {
         display: inline-block;
         vertical-align: top;
+        max-width: 300px;
     }
 
     .detail-lists {

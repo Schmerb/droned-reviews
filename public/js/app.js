@@ -357,7 +357,7 @@ function getReplyCommentTemplate(comment, byThisUser, didUserLike) {
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-//
+// Template for model detail page specs
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function getDetailPageSpecsTemplate(data) {
     return `<li>
@@ -386,7 +386,7 @@ function getDetailPageSpecsTemplate(data) {
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-//
+// Template for each gallery video
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function getGalleryTemplate(video) {
     const EMBED_URL = "https://www.youtube.com/embed";
@@ -409,7 +409,7 @@ function getGalleryTemplate(video) {
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// 
+// Updates the model detail specs depending on current slide
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function displayDetailSpecs(currentSlide) {
     let $currentSlide = $(`.drone-model[data-slick-index="${currentSlide}"]`);
@@ -479,7 +479,8 @@ function updateDetailVideos($currentSlide) {
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-//
+// Handles swapping videos between right side gallery
+// and the main video on left.
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function videoGalleryHandler($img) {
     let vidUrl   = $img.attr('data-vid-url'),
@@ -487,7 +488,7 @@ function videoGalleryHandler($img) {
         alt      = $img.attr('alt');
     let mainVidUrl      = $(MAIN_VID).attr('src'),
         mainVidThumbUrl = $(MAIN_VID).attr('data-thumbnail'),
-        mainVidAlt         = $(MAIN_VID).attr('data-alt');
+        mainVidAlt      = $(MAIN_VID).attr('data-alt');
     // swap videos
     $(MAIN_VID).attr('src', vidUrl);
     $(MAIN_VID).attr('data-alt', alt);
@@ -620,6 +621,13 @@ function displayPosts(_posts) {
     // Need to append when fetching batch at a time
     let postsStr = posts.reverse().join('');
     $(REVIEWS_CONTENT).html(postsStr);
+
+    let $specs = $('.main-specs span').add('.mode-specs span');
+    $specs.each(function(index) {
+        if($(this).text() === 'NO') {
+            $(this).css({color: 'black'});
+        }
+    });
 }
 
 
