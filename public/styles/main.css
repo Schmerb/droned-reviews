@@ -1757,7 +1757,7 @@ iframe.mobile-vid {
 }
 
 .more-content-container.slide {
-    max-height: 2000px;
+    max-height: 20000px;
     overflow: auto;
 }
 
@@ -3865,6 +3865,10 @@ label[for="drone-make-list"] {
 
     .g-video:hover::after {
         background-image: url('../assets/icons/YouTube-icon-full_color.png');
+    }
+
+    .more-content-container.slide {
+        max-height: 2000px;
     }
 
     /*========================================/
