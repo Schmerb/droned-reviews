@@ -152,15 +152,8 @@ img.logo-drone {
     height: 30px;
     transform: translate(-100%, -50%); 
     z-index: 5;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    transition: all 0.3s ease;
 }
 
-.burger-icon-wrap.open {
-    /* top: 6px; */
-    /* transform: translate(-100%, 50%); */
-}
 
 #burger-icon {
     position: absolute;
@@ -196,6 +189,10 @@ img.logo-drone {
 
 #burger-icon::after {
     bottom: -8px;
+}
+
+#burger-icon.open {
+    transition: background 0.5s ease;
 }
 
 
