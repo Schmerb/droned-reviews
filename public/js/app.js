@@ -9,7 +9,9 @@ let state = {
     video: {
         query: '',
         nextPageToken: ''
-    }
+    },
+    prevScrollPos: 0,
+    downScrollPos: 0
 };
 
 
@@ -1955,16 +1957,49 @@ function limitNavUserMessage(limit = 10) {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Fixes banner nav to top of screen on scroll
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// function fixBannerNav() {
+//     $(window).scroll((e) => {
+//         let scroll = $(window).scrollTop();
+//         console.log(scroll);
+//         if (scroll >= $('main').offset().top) {
+//             $(BANNER_WRAP).addClass('fixed-nav');
+//         } else {
+//             $(BANNER_WRAP).removeClass('fixed-nav');
+//         }
+//     });
+// }
+
+
+
 function fixBannerNav() {
     $(window).scroll((e) => {
-        let scroll = $(window).scrollTop();
-        if (scroll >= $('main').offset().top) {
-            $(BANNER_WRAP).addClass('fixed-nav');
+        let scroll = $(window).scrollTop(),
+            offset = $('main').offset().top;
+
+        if (scroll >= offset) { // past header
+
+            if(state.isMobile) {
+                scroll > state.prevScrollPos ? state.downScrollPos = scroll : null; // save position when upward scroll begins
+                
+                if((state.downScrollPos - scroll) >= 50) {
+                    $(BANNER_WRAP).addClass('fixed-nav'); // fix the nav on upward scroll
+                    $(BANNER_WRAP).fadeIn(); // fades nav in if previously faded out
+                } else {
+                    $(BANNER_WRAP).fadeOut(300); // fades nav out on downward scroll
+                }
+
+            } else {
+                $(BANNER_WRAP).addClass('fixed-nav'); // not mobile, fix nav
+            }
         } else {
             $(BANNER_WRAP).removeClass('fixed-nav');
+            $(BANNER_WRAP).show(); // show in case it is faded out
         }
+        state.prevScrollPos = scroll; // set scroll pos to compare on next scroll
     });
 }
+
+
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Calculates time elapsed since date given and returns
