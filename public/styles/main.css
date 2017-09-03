@@ -158,8 +158,8 @@ img.logo-drone {
 }
 
 .burger-icon-wrap.open {
-    top: 6px;
-    transform: translate(-100%, 50%);
+    /* top: 6px; */
+    /* transform: translate(-100%, 50%); */
 }
 
 #burger-icon {
