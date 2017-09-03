@@ -159,9 +159,7 @@ img.logo-drone {
 
 .burger-icon-wrap.open {
     top: 6px;
-    right: 20%;
-    left: 80%;
-    transform: translate(0, 50%);
+    transform: translate(-100%, 50%);
 }
 
 #burger-icon {
