@@ -6,6 +6,7 @@ const gulp        = require('gulp'),
 	  reload      = browserSync.reload,
 	  nodemon     = require('gulp-nodemon'),
 	  rename      = require('gulp-rename'),
+	  minify      = require('gulp-minify'),
 	  babel       = require('gulp-babel');
 
 
@@ -53,7 +54,8 @@ gulp.task('build_es6', () => {
 	gulp.watch(['public/js/build/*.js'], () => {
 		return gulp.src('public/js/build/*.js')
 			.pipe(babel({
-				presets: ['env']
+				presets: ['env'],
+				plugins: ["transform-object-assign"]
 			}))
 			.pipe(minify({
 				min: '.js'

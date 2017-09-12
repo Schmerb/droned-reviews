@@ -1,5 +1,7 @@
 'use strict';
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var state = {
     loggedIn: false,
     user: '',
@@ -418,7 +420,7 @@ function modalVideoNavController(nextVideo) {
 function displayPosts(_posts) {
     var posts = _posts.map(function (post) {
         var specs = getDroneData(post.drone.make, post.drone.model);
-        Object.assign(post, { specs: specs });
+        _extends(post, { specs: specs });
 
         // check if current session user voted on this post
         var usersVoted = post.usersVoted;
