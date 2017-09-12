@@ -1,5 +1,5 @@
 {
-  "name": "testflight",
+  "name": "droned-reviews",
   "version": "1.0.0",
   "description": "A user powered drone review website",
   "main": "server.js",
@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "browser-sync": "^2.18.13",
     "chai": "^4.1.0",
