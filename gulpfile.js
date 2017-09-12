@@ -5,11 +5,8 @@ const gulp        = require('gulp'),
 	  browserSync = require('browser-sync'),
 	  reload      = browserSync.reload,
 	  nodemon     = require('gulp-nodemon'),
-	  minify      = require('gulp-minify'),
-	  minifyCSS   = require('gulp-clean-css'),
 	  rename      = require('gulp-rename'),
 	  babel       = require('gulp-babel');
-// const cp = require('child_process');
 
 
 /////////////////////
