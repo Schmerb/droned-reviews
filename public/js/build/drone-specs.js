@@ -1,6 +1,4 @@
-"use strict";
-
-var drones = {
+let drones = {
     dji: {
         spark: {
             brand: "DJI",
@@ -574,10 +572,11 @@ var drones = {
     }
 };
 
+
 //
 // For quick reference to drone brands correct casing
 //
-var droneBrands = {
+let droneBrands = {
     dji: 'DJI',
     gopro: 'GoPro',
     parrot: 'Parrot',

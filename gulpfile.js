@@ -1,13 +1,20 @@
 'use strict';
 
 // Module dependencies
-const gulp = require('gulp');
-const browserSync = require('browser-sync');
-const reload = browserSync.reload;
-const nodemon = require('gulp-nodemon');
-const minify = require('gulp-minify');
+const gulp        = require('gulp'),
+	  browserSync = require('browser-sync'),
+	  reload      = browserSync.reload,
+	  nodemon     = require('gulp-nodemon'),
+	  minify      = require('gulp-minify'),
+	  minifyCSS   = require('gulp-clean-css'),
+	  rename      = require('gulp-rename'),
+	  babel       = require('gulp-babel');
 // const cp = require('child_process');
 
+
+/////////////////////
+// - Browser-sync
+/////////////////////
 gulp.task('browser-sync', ['nodemon'], () =>  {
 	browserSync.init(null, {
 		proxy: "http://localhost:8080",
@@ -17,7 +24,9 @@ gulp.task('browser-sync', ['nodemon'], () =>  {
 	});
 });
 
-// Restart server
+/////////////////////
+// - Restart server
+/////////////////////
 gulp.task('nodemon', (cb) => {
 	
 	var started = false;
@@ -39,22 +48,26 @@ gulp.task('nodemon', (cb) => {
     })
 });
 
-// Reload browser on file save
-gulp.task('default', ['browser-sync'], () => {
-	gulp.watch(["**/*.html", "**/*.css", "**/*.js", "**/**/*.ejs", "*.json", "*.md"], () => {
-		reload();
+////////////////////
+// - BABEL / Minify
+////////////////////
+ 
+gulp.task('build_es6', () => {
+	gulp.watch(['public/js/build/*.js'], () => {
+		return gulp.src('public/js/build/*.js')
+			.pipe(babel({
+				presets: ['env']
+			}))
+			.pipe(minify({
+				min: '.js'
+			}))
+			.pipe(gulp.dest('public/js/'))
 	});
 });
 
-// Minify .js files
-gulp.task('compress', function() {
-  gulp.src('public/js/*.js')
-    .pipe(minify({
-        ext:{
-            src:'-debug.js',
-            min:'.js'
-        },
-        ignoreFiles: ['-min.js']
-    }))
-    .pipe(gulp.dest('public/js'))
+// Reload browser on file save
+gulp.task('default', ['browser-sync', 'build_es6'], () => {
+	gulp.watch(["**/*.html", "**/*.css", "**/*.js", "**/**/*.ejs", "*.json", "*.md"], () => {
+		reload();
+	});
 });

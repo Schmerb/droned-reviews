@@ -15,7 +15,7 @@ body {
     margin: 0;
     width: 100%;
     min-width: 320px;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 
 /*============================================================/
@@ -2739,6 +2739,13 @@ label[for="drone-make-list"] {
     .foot-drone-list li:first-of-type {
         margin-left: 0;
     }
+
+    .drones-container .slick-prev {
+        left: 10px;
+    }
+    .drones-container .slick-next {
+        right: 10px;
+    }
 } 
 
 @media only screen and (min-width: 331px) {
@@ -3026,6 +3033,8 @@ label[for="drone-make-list"] {
     }
     
 }
+
+
 
 
 
