@@ -7,7 +7,7 @@ html {
 *, *::before, *::after {
     box-sizing: inherit;
 }
-
+  
 body {
     font-family: 'Trirong', serif;
     font-family: 'Rubik', sans-serif;

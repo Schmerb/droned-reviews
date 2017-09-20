@@ -6,6 +6,7 @@ const gulp        = require('gulp'),
 	  reload      = browserSync.reload,
 	  nodemon     = require('gulp-nodemon'),
 	  rename      = require('gulp-rename'),
+	  minifyCSS   = require('gulp-clean-css'),
 	  minify      = require('gulp-minify'),
 	  concat      = require('gulp-concat'),
 	  browserify  = require('gulp-browserify'),
@@ -51,11 +52,13 @@ gulp.task('nodemon', (cb) => {
 ////////////////////
 // - BABEL / Minify
 ////////////////////
+const JS_SRC  = 'build/js/*.js';
+const JS_DEST = 'public/js/';
  
 gulp.task('build_es6', () => {
-	gulp.watch(['public/js/base/*.js'], () => {
-		return gulp.src('public/js/base/*.js')
-		    .pipe(concat('all.js'))
+	gulp.watch([JS_SRC], () => {
+		return gulp.src(JS_SRC)
+		    .pipe(concat('bundle.js'))
 			.pipe(babel({
 				presets: ['env'],
 				plugins: [
@@ -72,14 +75,34 @@ gulp.task('build_es6', () => {
 				insertGlobals: true
 			}))
 			.pipe(minify({
-				min: '.js'
+				ext: {
+					src: '.min.js',
+					min: '.js'
+				}
 			}))
-			.pipe(gulp.dest('public/js/build'))
+			.pipe(gulp.dest(JS_DEST))
 	});
 });
 
+////////////////////
+// - Minify CSS
+////////////////////
+const CSS_SRC  = 'build/css/*.css';
+const CSS_DEST = 'public/css/';
+
+gulp.task('minify-css', () => {
+	gulp.watch([CSS_SRC], () => {
+		return gulp.src(CSS_SRC)
+			.pipe(concat('screen.css'))
+			.pipe(minifyCSS())
+			.pipe(rename({suffix: '.min'}))
+			.pipe(gulp.dest(CSS_DEST))
+	});
+});
+ 
+
 // Reload browser on file save
-gulp.task('default', ['browser-sync', 'build_es6'], () => {
+gulp.task('default', ['browser-sync', 'build_es6', 'minify-css'], () => {
 	gulp.watch(["**/*.html", "**/*.css", "**/*.js", "**/**/*.ejs", "*.json", "*.md"], () => {
 		reload();
 	});

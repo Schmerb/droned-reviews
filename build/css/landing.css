@@ -9,7 +9,7 @@
     background-image: url('../assets/drones/phone-DJI-samuel-schwendener-compressor.jpg');
     background-size: cover;
     background-position-x: 29%;
-    background-position-y: 100%;
+    background-position-y: 100%; 
     background-repeat: no-repeat;
 
     min-width: 300px;
@@ -18,7 +18,7 @@
     -webkit-transition: all 0.8s ease;
     -moz-transition: all 0.8s ease;
     transition: all 0.8s ease;
-}
+} 
 
 .landing-body::before {
     content: '';

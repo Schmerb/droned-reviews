@@ -14,7 +14,7 @@ let state = {
     downScrollPos: 0
 };
 
-
+ 
 // Banner Nav
 const BANNER_WRAP      = '.banner-wrap';
 const BURGER_ANCHOR    = '.burger-anchor';
@@ -612,7 +612,7 @@ function displayPosts(_posts) {
         //     return user === state.user
         // });
 
-        console.log('HERE: ', didUserVote);
+       
 
         let didUserVote = undefined;
         for(let i=0; i < usersVoted.length; i++) {
