@@ -7,6 +7,8 @@ const gulp        = require('gulp'),
 	  nodemon     = require('gulp-nodemon'),
 	  rename      = require('gulp-rename'),
 	  minify      = require('gulp-minify'),
+	  concat      = require('gulp-concat'),
+	  browserify  = require('gulp-browserify'),
 	  babel       = require('gulp-babel');
 
 
@@ -51,16 +53,28 @@ gulp.task('nodemon', (cb) => {
 ////////////////////
  
 gulp.task('build_es6', () => {
-	gulp.watch(['public/js/build/*.js'], () => {
-		return gulp.src('public/js/build/*.js')
+	gulp.watch(['public/js/base/*.js'], () => {
+		return gulp.src('public/js/base/*.js')
+		    .pipe(concat('all.js'))
 			.pipe(babel({
 				presets: ['env'],
-				plugins: ["transform-object-assign"]
+				plugins: [
+					'transform-object-assign',
+					['transform-runtime', {
+						"helpers": false,
+						"polyfill": true,
+						"regenerator": true,
+						"moduleName": "babel-runtime"
+					}]
+				]
+			}))
+			.pipe(browserify({
+				insertGlobals: true
 			}))
 			.pipe(minify({
 				min: '.js'
 			}))
-			.pipe(gulp.dest('public/js/'))
+			.pipe(gulp.dest('public/js/build'))
 	});
 });
 

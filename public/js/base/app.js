@@ -1,8 +1,6 @@
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var state = {
+let state = {
     loggedIn: false,
     user: '',
     isMobile: false,
@@ -16,168 +14,267 @@ var state = {
     downScrollPos: 0
 };
 
+
 // Banner Nav
-var BANNER_WRAP = '.banner-wrap';
-var BURGER_ANCHOR = '.burger-anchor';
-var BURGER_WRAP = '.burger-icon-wrap';
-var BURGER_ICON = '#burger-icon';
-var MOBILE_MENU = '.mobile-menu';
-var MOBILE_MENU_ITEM = '.mobile-menu li';
-var REVIEWS_NAV_ITEM = '.reviews';
-var LOGIN_BTN = '.login';
-var SIGNUP_BTN = '.signup';
-var LOGOUT_BTN = '.logout';
+const BANNER_WRAP      = '.banner-wrap';
+const BURGER_ANCHOR    = '.burger-anchor';
+const BURGER_WRAP      = '.burger-icon-wrap';
+const BURGER_ICON      = '#burger-icon';
+const MOBILE_MENU      = '.mobile-menu';
+const MOBILE_MENU_ITEM = '.mobile-menu li';
+const REVIEWS_NAV_ITEM = '.reviews';
+const LOGIN_BTN        = '.login';
+const SIGNUP_BTN       = '.signup';
+const LOGOUT_BTN       = '.logout';
 // Login / Signup Modal
-var LOGIN_SIGNUP_PAGE = '#login-signup';
-var LOGIN_SIGNUP_MODAL = '.login-signup-container';
-var SIGNUP_FORM = '.signup-form';
-var LOGIN_FORM = '.login-form';
-var SIGNUP_SCREEN_BTN = '.signup-screen-btn';
-var LOGIN_SCREEN_BTN = '.login-screen-btn';
-var LOGIN_SIGNUP_X = '#login-signup-x';
-var PASS_INPUT = '.pass-input';
-var EMAIL_INPUT = '.email-input';
-var USERNAME_INPUT = '.username-input';
-var SIGNUP_ERROR = '.signup-error';
-var LOGIN_ERROR = '.login-error';
+const LOGIN_SIGNUP_PAGE  = '#login-signup';
+const LOGIN_SIGNUP_MODAL = '.login-signup-container';
+const SIGNUP_FORM        = '.signup-form';
+const LOGIN_FORM         = '.login-form';
+const SIGNUP_SCREEN_BTN  = '.signup-screen-btn';
+const LOGIN_SCREEN_BTN   = '.login-screen-btn';
+const LOGIN_SIGNUP_X     = '#login-signup-x';
+const PASS_INPUT         = '.pass-input';
+const EMAIL_INPUT        = '.email-input';
+const USERNAME_INPUT     = '.username-input';
+const SIGNUP_ERROR       = '.signup-error';
+const LOGIN_ERROR        = '.login-error';
 // Write Review Form
-var REVIEW_FORM_SCREEN = '#review-form-screen';
-var EDIT_REVIEW_FORM_SCREEN = '#edit-review-form-screen';
-var REVIEW_FORM = '#review-form';
-var EDIT_REVIEW_FORM = '#edit-review-form';
-var CLOSE_BTN = '.close-btn';
-var WRITE_REVIEW_NAV = '.write-review';
-var DELETE_POST_MODAL_BTN = '.delete-post-modal-btn';
-var DELETE_POST_MODAL = '.delete-confirm-modal';
-var DELETE_POST_BTN = '.delete-post-btn';
-var GO_BACK_BTN = '.go-back-btn';
+const REVIEW_FORM_SCREEN      = '#review-form-screen';
+const EDIT_REVIEW_FORM_SCREEN = '#edit-review-form-screen';
+const REVIEW_FORM             = '#review-form';
+const EDIT_REVIEW_FORM        = '#edit-review-form';
+const CLOSE_BTN               = '.close-btn';
+const WRITE_REVIEW_NAV        = '.write-review';
+const DELETE_POST_MODAL_BTN   = '.delete-post-modal-btn';
+const DELETE_POST_MODAL       = '.delete-confirm-modal';
+const DELETE_POST_BTN         = '.delete-post-btn';
+const GO_BACK_BTN             = '.go-back-btn';
 // Review Preview Screen
-var PREVIEW_SCREEN = '#review-post-preview';
-var PREVIEW_CONTENT = '.preview-content';
-var PREVIEW_BTN = '.preview-btn';
-var PREIVEW_CLOSE_BTN = '.preview-close-btn';
-var INTERACTIONS = '.interactions';
+const PREVIEW_SCREEN    = '#review-post-preview';
+const PREVIEW_CONTENT   = '.preview-content';
+const PREVIEW_BTN       = '.preview-btn';
+const PREIVEW_CLOSE_BTN = '.preview-close-btn';
+const INTERACTIONS      = '.interactions';
 // Drone carousel
-var DRONE_SLIDER = '.drone-slider';
-var DRONE_MODELS_SLIDER = '.drone-models-slider';
+const DRONE_SLIDER        = '.drone-slider';
+const DRONE_MODELS_SLIDER = '.drone-models-slider';
 // Drone detail page
-var DETAIL_MAKE = '.detail-make';
-var DETAIL_MODEL = '.detail-model';
-var DETAIL_LISTS = '.detail-lists';
-var AMAZON_LINK = '.amazon-link';
-var MAIN_VID = '.main-video iframe';
-var G_VID_1 = '.g-top-left img';
-var G_VID_2 = '.g-top-right img';
-var G_VID_3 = '.g-bottom-left img';
-var G_VID_4 = '.g-bottom-right img';
-var G_IMG = '.g-video img';
-var EXPAND_ARROW = '.main-video-wrap .fa.fa-expand';
-var V_CLOSE_ICON = '.v-modal-close.fa.fa-times';
-var VIDEO_BACKDROP = '.video-backdrop';
-var MODAL_IFRAME = '.frame-wrap iframe';
-var MORE_ICON = '.more-icon.fa';
-var SHOWCASE = '.showcase-wrap';
-var GALLERY = '.video-gallery';
+const DETAIL_MAKE    = '.detail-make';
+const DETAIL_MODEL   = '.detail-model';
+const DETAIL_LISTS   = '.detail-lists';
+const AMAZON_LINK    = '.amazon-link';
+const MAIN_VID       = '.main-video iframe';
+const G_VID_1        = '.g-top-left img';
+const G_VID_2        = '.g-top-right img';
+const G_VID_3        = '.g-bottom-left img';
+const G_VID_4        = '.g-bottom-right img';
+const G_IMG          = '.g-video img';
+const EXPAND_ARROW   = '.main-video-wrap .fa.fa-expand';
+const V_CLOSE_ICON   = '.v-modal-close.fa.fa-times';
+const VIDEO_BACKDROP = '.video-backdrop';
+const MODAL_IFRAME   = '.frame-wrap iframe';
+const MORE_ICON      = '.more-icon.fa';
+const SHOWCASE       = '.showcase-wrap';
+const GALLERY        = '.video-gallery';
 // Aside Filter
-var ASIDE_BTN = '.aside-slide-btn';
-var ASIDE_CONTAINER = '.aside-container';
-var SEARCH_FILTER_FORM = '#search-filter-form';
-var SEARCH_FILTER = '.search-filter';
-var QUERY_TEXT = '.query-text';
-var USER_QUERY = '.js-user-query';
-var QUERY_ERROR_MESSAGE = '.query-error-message';
-var FILTER_FORM = '#radio-filter-form';
-var USER_FILTER = '.js-user-filter';
-var FILTER_STATUS = '.filter-status';
-var FILTER_ALERT = '.filter-alert';
-var FILTER_BTN = '.filter-btn';
-var CLEAR_BTN = '.clear-btn';
+const ASIDE_BTN            = '.aside-slide-btn';
+const ASIDE_CONTAINER      = '.aside-container';
+const SEARCH_FILTER_FORM   = '#search-filter-form';
+const SEARCH_FILTER        = '.search-filter';
+const QUERY_TEXT           = '.query-text';
+const USER_QUERY           = '.js-user-query';
+const QUERY_ERROR_MESSAGE  = '.query-error-message';
+const FILTER_FORM          = '#radio-filter-form';
+const USER_FILTER          = '.js-user-filter';
+const FILTER_STATUS        = '.filter-status';
+const FILTER_ALERT         = '.filter-alert';
+const FILTER_BTN           = '.filter-btn';
+const CLEAR_BTN            = '.clear-btn';
 // Review 
-var REVIEWS = '#reviews';
-var REVIEWS_CONTAINER = '#reviews-container';
-var REVIEWS_CONTENT = '#reviews-content';
-var REVIEW = '.review';
-var DETAILS = '.details';
-var SPECS_BTN = '.specs-btn';
-var EXPAND = '.expand';
+const REVIEWS           = '#reviews';
+const REVIEWS_CONTAINER = '#reviews-container';
+const REVIEWS_CONTENT   = '#reviews-content';
+const REVIEW            = '.review';
+const DETAILS           = '.details';
+const SPECS_BTN         = '.specs-btn';
+const EXPAND            = '.expand';
 // review/comment Interactions
-var UPVOTE_ARROW = '.up-vote-arrow';
-var DOWNVOTE_ARROW = '.down-vote-arrow';
-var VOTES = '.js-votes';
-var LIKE = '.like';
-var DISLIKE = '.dislike';
-var LIKES = '.like-dislikes';
-var POSNEG = '.posNeg';
-var EDIT_POST_ICON = '#edit-post-icon';
+const UPVOTE_ARROW   = '.up-vote-arrow';
+const DOWNVOTE_ARROW = '.down-vote-arrow';
+const VOTES          = '.js-votes';
+const LIKE           = '.like';
+const DISLIKE        = '.dislike';
+const LIKES          = '.like-dislikes';
+const POSNEG         = '.posNeg';
+const EDIT_POST_ICON = '#edit-post-icon';
 // Comments
-var COMMENTS_BTN = '.comments-btn';
-var COMMENTS_CONTAINER = '.comments-container';
-var COMMENT_BTN = '.comment-btn';
-var COMMENTS_CONTENT = '.comments-content';
-var COMMENT_FORM = '.comment-form';
-var COMMENT_INPUT = '.comment-input';
-var NUM_COMMENTS = '.js-comments-num';
+const COMMENTS_BTN       = '.comments-btn';
+const COMMENTS_CONTAINER = '.comments-container';
+const COMMENT_BTN        = '.comment-btn';
+const COMMENTS_CONTENT   = '.comments-content';
+const COMMENT_FORM       = '.comment-form';
+const COMMENT_INPUT      = '.comment-input';
+const NUM_COMMENTS       = '.js-comments-num';
 // reply comments
-var REPLY_COMMENT_FORM = '.reply-comment-form';
-var REPLY_COMMENT_INPUT = '.reply-comment-input';
-var REPLY_COMMENT_CONTENT = '.reply-comments-content';
-var SHOW_REPLY_COMMENTS_TXT = '.show-reply-comments-txt';
-var CLOSE_REPLY_COMMENTS_TXT = '.close-reply-comments-txt';
-var SUB_SIGNUP_BTN = '.sub-signup';
-var SUB_LOGIN_BTN = '.sub-login';
+const REPLY_COMMENT_FORM       = '.reply-comment-form';
+const REPLY_COMMENT_INPUT      = '.reply-comment-input';
+const REPLY_COMMENT_CONTENT    = '.reply-comments-content';
+const SHOW_REPLY_COMMENTS_TXT  = '.show-reply-comments-txt';
+const CLOSE_REPLY_COMMENTS_TXT = '.close-reply-comments-txt';
+const SUB_SIGNUP_BTN           = '.sub-signup';
+const SUB_LOGIN_BTN            = '.sub-login';
 // Footer
-var TOP_TOP_ARROW = '.to-top';
+const TOP_TOP_ARROW = '.to-top';
+
+
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // returns populated review post template
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-function formReviewPost(postData) {
-    var byThisUser = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-    var userVoted = arguments[2];
+function formReviewPost(postData, byThisUser = false, userVoted) {
+    let $this = postData;
 
-    var $this = postData;
-
-    var id = $this.id,
-        author = $this.author.username || state.user,
-        // If username isnt attached to post, this is new post & attach current session user
-    make = $this.specs.brand,
-        model = $this.specs.model,
-        url = $this.specs.url,
+    let id      = $this.id,
+        author  = $this.author.username || state.user, // If username isnt attached to post, this is new post & attach current session user
+        make    = $this.specs.brand,
+        model   = $this.specs.model,
+        url     = $this.specs.url,
         modelId = $this.drone.model,
-        makeId = $this.drone.make,
-        title = $this.title,
+        makeId  = $this.drone.make,
+        title   = $this.title,
         content = $this.content,
-        specs = $this.specs,
+        specs   = $this.specs,
         img_src = specs.img,
-        votes = $this.votes || 0,
-        rating = $this.rating,
+        votes   = $this.votes || 0,
+        rating  = $this.rating,
         created = getElapsedTime(new Date($this.created));
-
+    
     // Amazon product link
-    var amazonLink = $this.specs.link;
-
-    content = content.map(function (paragraph) {
-        return '<p class="paragraph">' + paragraph + '</p>';
+    let amazonLink = $this.specs.link;
+    
+    content = content.map((paragraph) => {
+        return `<p class="paragraph">${paragraph}</p>`;
     });
 
-    var stars = '';
-    for (var i = 0; i < rating; i++) {
-        stars += '<span class="star filled-star">&#9734;</span>';
+    let stars = '';
+    for (let i = 0; i < rating; i++ ) {
+        stars += '<span class="star filled-star">&#9734;</span>'
     }
 
-    var posNeg = '';
-    if (votes < 0) posNeg = '&#45;';else if (votes > 0) posNeg = '+';
+    let posNeg  = '';
+    if (votes < 0)
+        posNeg = '&#45;';
+    else if (votes > 0)
+        posNeg = '+';
 
-    var review = '<div class="review">\n                        <div class="post" data-post-id="' + id + '" data-drone-model="' + modelId + '">\n                            <div class="img-container">\n                                <img class="post-img" src="' + img_src + '">\n                                <h3>Model: <span class="model">' + model + '</span></h3>\n                                <h5>Manufacturer: <b><span class="maker"><a href="/drones/' + url + '">' + make + '</a></span></b></h5>\n                                <div class="post-rating" data-rating="' + rating + '">\n                                    <label>User rating: </label>\n                                    <div class="post-stars">' + stars + '</div>\n                                </div>\n                            </div>\n                            <h2 class="post-title">' + title + '</h2>\n                            <hr class="shadow-hr">\n                            <div class="vote-aside">\n                                <div class="arrow-wrap">\n                                    <i class="up-vote-arrow fa fa-arrow-up" aria-hidden="true" data-user-voted="' + userVoted + '"></i>\n                                    <span class="posNeg">' + posNeg + '</span><span class="js-votes">' + votes + '</span>\n                                    <i class="down-vote-arrow fa fa-arrow-down" aria-hidden="true" data-user-voted="' + userVoted + '"></i>\n                                </div>\n                            </div>\n                            <div class="content">\n                                ' + content.join('') + '\n                            </div>\n                            <hr class="mobile-only post-hr">\n                            <div class="post-attr">\n                                \n                                <div class="c-date-edit-wrap">\n                                    \n                                    <span class="date-posted">submitted  ' + created + ' ' + (/\d/.test(created) ? 'ago' : '') + ' by</span> <label class="author-label" for=""><span class="author">' + author + '</span></label>\n                                    ' + (byThisUser ? '<i id="edit-post-icon" class="fa fa-pencil-square-o" aria-hidden="true"></i>' : '') + ' \n                                </div>\n                            </div>\n\n                            <div class="mobile-vote-aside">\n                                <i class="up-vote-arrow fa fa-arrow-up" data-user-voted="' + userVoted + '" aria-hidden="true"></i>\n                                <span class="posNeg">' + posNeg + '</span><span class="votes js-votes">' + votes + '</span>\n                                <i class="down-vote-arrow fa fa-arrow-down" data-user-voted="' + userVoted + '" aria-hidden="true"></i>\n                            </div>\n                            <div class="interactions">\n                                <button class="specs-btn" type="button">\n                                    Specs\n                                    <i class="fa fa-plus" aria-hidden="true"></i>\n                                </button>\n                                <button class="comments-btn" type="button">\n                                    Comments\n                                    <i class="fa fa-comment-o" aria-hidden="true"></i>\n                                </button>\n                            </div>\n                        </div>\n                        <div class="details">\n                            <div class="detail-header">\n                                <h3>Model: <span class="model">' + model + '</span></h3>\n                                <h5>Manufacturer: <span class="maker"><b><a href="/drones/' + url + '">' + make + '</a></b></span></h5>\n                                <div class="amazon-link-wrap">\n                                    <h4>Grab one: <span class="amazon-link">' + amazonLink + '</span></h4>\n                                </div>\n                            </div>\n                            <div class="specs">\n                                <dl class="main-specs">\n                                    <dt>Specs</dt>\n                                    <dd>Avg. Price: <span>$' + specs.price + '</span></dd>\n                                    <dd>Camera: <span>' + specs.camera + '</span></dd>\n                                    <dd>Max Flight Time: <span class="max-flight">' + specs.max_flight_time + '</span></dd>\n                                    <dd>Max Range: <span>' + specs.max_range + '</span></dd>\n                                    <dd>Max Speed: <span>' + specs.max_speed + '</span></dd>\n                                    <dd>GPS?: <span>' + specs.gps + '</span></dd>\n                                    <dd>3-axis gimbal: <span>' + specs.gimbal + '</span></dd>\n                                    <dd>Flips: <span>' + (specs.flips || 'NO') + '</span></dd>\n                                </dl>\n\n                                <dl class="mode-specs">\n                                    <dt>Modes</dt>\n                                    <dd>Intelligent Flight: <span>' + specs.intelligent_flight + '</span></dd>\n                                    <dd>Avoidance: <span>' + (specs.avoidance || 'NO') + '</span></dd>\n                                    <dd>Return Home: <span>' + (specs.return_home || 'NO') + '</span></dd>\n                                    <dd>Follow-Me Mode: <span>' + (specs.follow_me_mode || 'NO') + '</span></dd>\n                                    <dd>Tracking Mode: <span>' + (specs.tracking_mode || 'NO') + '</span></dd>\n                                </dl>\n                            </div>\n                        </div>\n                        <div class="comments-container">\n                            <header class="comments-header">\n                                <span class="js-comments-num">0</span> Comments\n                                <i class="fa fa-comment-o" aria-hidden="true"></i>\n                            </header>\n                            <div class="comments-content" data-post-id="' + id + '">\n\n                            </div>\n                            <hr class="shadow-hr">';
-    if (state.loggedIn) {
-        // Logged in, comment form displayed
-        review += '<form class="comment-form" method="post" action="/posts/comments">\n                                <textarea class="comment-input" rows="" cols="" placeholder="Write comment here . . ." required></textarea>\n                                <button class="comment-btn" type="submit">Comment</button>\n                            </form>';
-    } else {
-        // Not logged in, message to log in to write comment
-        review += '<div class="login-message-container">\n                                <p class="login-message">Must be logged in to write a comment.</p>\n                                <ul class="comment-nav">\n                                    <li><a href="#" class="sub-login">LogIn</a></li>\n                                    <li><a href="#" class="sub-signup">Sign Up</a></li>\n                                </ul>\n                            </div>';
+    let review = `<div class="review">
+                        <div class="post" data-post-id="${id}" data-drone-model="${modelId}">
+                            <div class="img-container">
+                                <img class="post-img" src="${img_src}">
+                                <h3>Model: <span class="model">${model}</span></h3>
+                                <h5>Manufacturer: <b><span class="maker"><a href="/drones/${url}">${make}</a></span></b></h5>
+                                <div class="post-rating" data-rating="${rating}">
+                                    <label>User rating: </label>
+                                    <div class="post-stars">${stars}</div>
+                                </div>
+                            </div>
+                            <h2 class="post-title">${title}</h2>
+                            <hr class="shadow-hr">
+                            <div class="vote-aside">
+                                <div class="arrow-wrap">
+                                    <i class="up-vote-arrow fa fa-arrow-up" aria-hidden="true" data-user-voted="${userVoted}"></i>
+                                    <span class="posNeg">${posNeg}</span><span class="js-votes">${votes}</span>
+                                    <i class="down-vote-arrow fa fa-arrow-down" aria-hidden="true" data-user-voted="${userVoted}"></i>
+                                </div>
+                            </div>
+                            <div class="content">
+                                ${content.join('')}
+                            </div>
+                            <hr class="mobile-only post-hr">
+                            <div class="post-attr">
+                                
+                                <div class="c-date-edit-wrap">
+                                    
+                                    <span class="date-posted">submitted  ${created} ${/\d/.test(created) ? 'ago' : ''} by</span> <label class="author-label" for=""><span class="author">${author}</span></label>
+                                    ${byThisUser ? '<i id="edit-post-icon" class="fa fa-pencil-square-o" aria-hidden="true"></i>' : ''} 
+                                </div>
+                            </div>
+
+                            <div class="mobile-vote-aside">
+                                <i class="up-vote-arrow fa fa-arrow-up" data-user-voted="${userVoted}" aria-hidden="true"></i>
+                                <span class="posNeg">${posNeg}</span><span class="votes js-votes">${votes}</span>
+                                <i class="down-vote-arrow fa fa-arrow-down" data-user-voted="${userVoted}" aria-hidden="true"></i>
+                            </div>
+                            <div class="interactions">
+                                <button class="specs-btn" type="button">
+                                    Specs
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </button>
+                                <button class="comments-btn" type="button">
+                                    Comments
+                                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="details">
+                            <div class="detail-header">
+                                <h3>Model: <span class="model">${model}</span></h3>
+                                <h5>Manufacturer: <span class="maker"><b><a href="/drones/${url}">${make}</a></b></span></h5>
+                                <div class="amazon-link-wrap">
+                                    <h4>Grab one: <span class="amazon-link">${amazonLink}</span></h4>
+                                </div>
+                            </div>
+                            <div class="specs">
+                                <dl class="main-specs">
+                                    <dt>Specs</dt>
+                                    <dd>Avg. Price: <span>$${specs.price}</span></dd>
+                                    <dd>Camera: <span>${specs.camera}</span></dd>
+                                    <dd>Max Flight Time: <span class="max-flight">${specs.max_flight_time}</span></dd>
+                                    <dd>Max Range: <span>${specs.max_range}</span></dd>
+                                    <dd>Max Speed: <span>${specs.max_speed}</span></dd>
+                                    <dd>GPS?: <span>${specs.gps}</span></dd>
+                                    <dd>3-axis gimbal: <span>${specs.gimbal}</span></dd>
+                                    <dd>Flips: <span>${specs.flips || 'NO'}</span></dd>
+                                </dl>
+
+                                <dl class="mode-specs">
+                                    <dt>Modes</dt>
+                                    <dd>Intelligent Flight: <span>${specs.intelligent_flight}</span></dd>
+                                    <dd>Avoidance: <span>${specs.avoidance || 'NO'}</span></dd>
+                                    <dd>Return Home: <span>${specs.return_home || 'NO'}</span></dd>
+                                    <dd>Follow-Me Mode: <span>${specs.follow_me_mode || 'NO'}</span></dd>
+                                    <dd>Tracking Mode: <span>${specs.tracking_mode || 'NO'}</span></dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="comments-container">
+                            <header class="comments-header">
+                                <span class="js-comments-num">0</span> Comments
+                                <i class="fa fa-comment-o" aria-hidden="true"></i>
+                            </header>
+                            <div class="comments-content" data-post-id="${id}">
+
+                            </div>
+                            <hr class="shadow-hr">`;
+    if (state.loggedIn) { // Logged in, comment form displayed
+        review +=           `<form class="comment-form" method="post" action="/posts/comments">
+                                <textarea class="comment-input" rows="" cols="" placeholder="Write comment here . . ." required></textarea>
+                                <button class="comment-btn" type="submit">Comment</button>
+                            </form>`;
+    } else { // Not logged in, message to log in to write comment
+        review +=           `<div class="login-message-container">
+                                <p class="login-message">Must be logged in to write a comment.</p>
+                                <ul class="comment-nav">
+                                    <li><a href="#" class="sub-login">LogIn</a></li>
+                                    <li><a href="#" class="sub-signup">Sign Up</a></li>
+                                </ul>
+                            </div>`;
     }
     // close review <div>'s            
-    review += '</div>\n                    </div>\n                    <hr class="post-hr">';
+    review +=           `</div>
+                    </div>
+                    <hr class="post-hr">`;
     return review;
 }
 
@@ -185,23 +282,49 @@ function formReviewPost(postData) {
 // returns populated comment template
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function getCommentTemplate(comment, byThisUser, didUserLike) {
-    var content = comment.content,
+    let content  = comment.content,
         username = comment.author.username,
-        created = getElapsedTime(new Date(comment.created)),
-        likes = comment.likes,
-        postId = comment.postId,
-        id = comment.id;
-    var posNeg = '';
-    if (likes < 0) posNeg = '&#45;';else if (likes > 0) posNeg = '+';
+        created  = getElapsedTime(new Date(comment.created)),
+        likes    = comment.likes,
+        postId   = comment.postId,
+        id       = comment.id;
+    let posNeg = '';
+    if (likes < 0)
+        posNeg = '&#45;';
+    else if (likes > 0)
+        posNeg = '+';
 
-    var commentTemp = '<div class="comment gen-comment" id="_' + id + '" data-post-id="' + postId + '" data-this-id="' + id + '">\n                    <p class="comment-content">' + content + '</p>\n                    <div class="comment-metadata">\n                        <span class="comment-user">- @' + username + '</span>\n                        <span class="date-posted">' + created + ' ' + (/\d/.test(created) ? 'ago' : '') + '</span>\n                        <div class="thumbs">\n                            <i class="like fa fa-thumbs-up" aria-hidden="true" data-user-liked="' + didUserLike + '"></i>\n                            <i class="dislike fa fa-thumbs-down" aria-hidden="true" data-user-liked="' + didUserLike + '"></i>\n                            <span class="posNeg">' + posNeg + '</span><span class="like-dislikes">' + likes + '</span>\n                        </div>\n                        <label class="reply-c-btn-label" for="">\n                            <span class="show-reply-comments-txt">comments</span><span class="close-reply-comments-txt hidden">hide</span>\n                            <button class="expand-reply-comments-btn" type="button"></button>\n                        </label>\n                    </div>\n                    <div class="reply-comments-container">\n                        \n                        <div class="reply-comments-content" data-comment-id="' + id + '">\n                            \n                        </div>';
-
-    if (state.loggedIn) {
-        // Logged in, reply comment form displayed
-        commentTemp += '<form class="reply-comment-form comment-form expand" method="POST" action="/posts/comments">\n                            <textarea class="reply-comment-input comment-input" rows="" cols="" placeholder="Type your reply here . . ." required></textarea>\n                            <button class="reply-comment-btn" type="submit">Reply</button>\n                        </form>';
+    let commentTemp =
+        `<div class="comment gen-comment" id="_${id}" data-post-id="${postId}" data-this-id="${id}">
+                    <p class="comment-content">${content}</p>
+                    <div class="comment-metadata">
+                        <span class="comment-user">- @${username}</span>
+                        <span class="date-posted">${created} ${/\d/.test(created) ? 'ago' : ''}</span>
+                        <div class="thumbs">
+                            <i class="like fa fa-thumbs-up" aria-hidden="true" data-user-liked="${didUserLike}"></i>
+                            <i class="dislike fa fa-thumbs-down" aria-hidden="true" data-user-liked="${didUserLike}"></i>
+                            <span class="posNeg">${posNeg}</span><span class="like-dislikes">${likes}</span>
+                        </div>
+                        <label class="reply-c-btn-label" for="">
+                            <span class="show-reply-comments-txt">comments</span><span class="close-reply-comments-txt hidden">hide</span>
+                            <button class="expand-reply-comments-btn" type="button"></button>
+                        </label>
+                    </div>
+                    <div class="reply-comments-container">
+                        
+                        <div class="reply-comments-content" data-comment-id="${id}">
+                            
+                        </div>`;
+    
+    if (state.loggedIn) { // Logged in, reply comment form displayed
+        commentTemp += `<form class="reply-comment-form comment-form expand" method="POST" action="/posts/comments">
+                            <textarea class="reply-comment-input comment-input" rows="" cols="" placeholder="Type your reply here . . ." required></textarea>
+                            <button class="reply-comment-btn" type="submit">Reply</button>
+                        </form>`;
     }
     // close comment <div>'s  
-    commentTemp += '</div>\n                 </div>';
+    commentTemp += `</div>
+                 </div>`;
     return commentTemp;
 }
 
@@ -209,46 +332,94 @@ function getCommentTemplate(comment, byThisUser, didUserLike) {
 // returns populated reply comment template
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function getReplyCommentTemplate(comment, byThisUser, didUserLike) {
-    var content = comment.content,
-        username = comment.author.username,
-        created = getElapsedTime(new Date(comment.created)),
-        likes = comment.likes,
+    let content   = comment.content,
+        username  = comment.author.username,
+        created   = getElapsedTime(new Date(comment.created)),
+        likes     = comment.likes,
         commentId = comment.commentId,
-        id = comment._id;
-    var posNeg = '';
-    if (likes < 0) posNeg = '&#45;';else if (likes > 0) posNeg = '+';
-    return '<hr class="thin-hr">\n            <div class="reply-comment" data-this-id="' + id + '">\n                <p class="reply-comment-content gen-comment">' + content + '</p>\n                <div class="reply-comment-metadata">\n                    <span class="comment-user">- @' + username + '</span>\n                    <span class="date-posted">' + created + ' ' + (/\d/.test(created) ? 'ago' : '') + '</span>\n                    <div class="thumbs">\n                        <i class="like fa fa-thumbs-up" aria-hidden="true" data-user-liked="' + didUserLike + '"></i>\n                        <i class="dislike fa fa-thumbs-down" aria-hidden="true" data-user-liked="' + didUserLike + '"></i>\n                        <span class="posNeg">' + posNeg + '</span><span class="like-dislikes">' + likes + '</span>\n                    </div>\n                </div>\n            </div>';
+        id        = comment._id;
+    let posNeg = '';
+    if (likes < 0)
+        posNeg = '&#45;';
+    else if (likes > 0)
+        posNeg = '+';
+    return `<hr class="thin-hr">
+            <div class="reply-comment" data-this-id="${id}">
+                <p class="reply-comment-content gen-comment">${content}</p>
+                <div class="reply-comment-metadata">
+                    <span class="comment-user">- @${username}</span>
+                    <span class="date-posted">${created} ${/\d/.test(created) ? 'ago' : ''}</span>
+                    <div class="thumbs">
+                        <i class="like fa fa-thumbs-up" aria-hidden="true" data-user-liked="${didUserLike}"></i>
+                        <i class="dislike fa fa-thumbs-down" aria-hidden="true" data-user-liked="${didUserLike}"></i>
+                        <span class="posNeg">${posNeg}</span><span class="like-dislikes">${likes}</span>
+                    </div>
+                </div>
+            </div>`;
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Template for model detail page specs
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function getDetailPageSpecsTemplate(data) {
-    return '<li>\n                <dl class="main-specs">\n                    <dt>Specs</dt>\n                    <dd>Avg. Price: <span>$' + data.price + '</span></dd>\n                    <dd>Camera: <span>' + data.camera + '</span></dd>\n                    <dd>Max Flight Time: <span class="">' + data.max_flight_time + '</span></dd>\n                    <dd>Max Range: <span>' + data.max_range + '</span></dd>\n                    <dd>Max Speed: <span>' + data.max_speed + '</span></dd>\n                    <dd>GPS?: <span>' + data.gps + '</span></dd>\n                    <dd>3-axis gimbal: <span>' + data.gimbal + '</span></dd>\n                    <dd>Flips: <span>' + (data.flips || 'NO') + '</span></dd>\n                </dl>\n            </li>\n            <li>\n                <dl class="mode-specs">\n                    <dt>Modes</dt>\n                    <dd>Intelligent Flight: <span>' + data.intelligent_flight + '</span></dd>\n                    <dd>Avoidance: <span>' + (data.avoidance || 'NO') + '</span></dd>\n                    <dd>Return Home: <span>' + (data.return_home || 'NO') + '</span></dd>\n                    <dd>Follow-Me Mode: <span>' + (data.follow_me_mode || 'NO') + '</span></dd>\n                    <dd>Tracking Mode: <span>' + (data.tracking_mode || 'NO') + '</span></dd>\n                </dl>\n            </li>';
+    return `<li>
+                <dl class="main-specs">
+                    <dt>Specs</dt>
+                    <dd>Avg. Price: <span>$${data.price}</span></dd>
+                    <dd>Camera: <span>${data.camera}</span></dd>
+                    <dd>Max Flight Time: <span class="">${data.max_flight_time}</span></dd>
+                    <dd>Max Range: <span>${data.max_range}</span></dd>
+                    <dd>Max Speed: <span>${data.max_speed}</span></dd>
+                    <dd>GPS?: <span>${data.gps}</span></dd>
+                    <dd>3-axis gimbal: <span>${data.gimbal}</span></dd>
+                    <dd>Flips: <span>${data.flips || 'NO'}</span></dd>
+                </dl>
+            </li>
+            <li>
+                <dl class="mode-specs">
+                    <dt>Modes</dt>
+                    <dd>Intelligent Flight: <span>${data.intelligent_flight}</span></dd>
+                    <dd>Avoidance: <span>${data.avoidance || 'NO'}</span></dd>
+                    <dd>Return Home: <span>${data.return_home || 'NO'}</span></dd>
+                    <dd>Follow-Me Mode: <span>${data.follow_me_mode || 'NO'}</span></dd>
+                    <dd>Tracking Mode: <span>${data.tracking_mode || 'NO'}</span></dd>
+                </dl>
+            </li>`;
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Template for each gallery video
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function getGalleryTemplate(video) {
-    var EMBED_URL = "https://www.youtube.com/embed";
-    var imgUrl = video.snippet.thumbnails.medium.url,
-        videoId = video.id.videoId,
+    const EMBED_URL = "https://www.youtube.com/embed";
+    let imgUrl      = video.snippet.thumbnails.medium.url,
+        videoId     = video.id.videoId,
         description = video.snippet.description;
-
-    return '<div class="vid-wrap ' + (state.isMobile ? 'mobile-vid' : '') + '">\n                <div class="g-video ' + (state.isMobile ? 'mobile-vid' : '') + '">\n                    <img class="' + (state.isMobile ? 'hidden' : '') + '" \n                        src="' + imgUrl + '" \n                        alt="' + description + '" \n                        data-vid-url="' + EMBED_URL + '/' + videoId + '?enablejsapi=1">\n                    <iframe class="mobile-vid ' + (state.isMobile ? '' : 'hidden') + '"\n                        src="' + EMBED_URL + '/' + videoId + '?enablejsapi=1" \n                        data-alt="' + description + '" \n                        data-vid-url="' + EMBED_URL + '/' + videoId + '?enablejsapi=1"></iframe>\n                </div>\n            </div>';
+        
+    return `<div class="vid-wrap ${state.isMobile ? 'mobile-vid' : ''}">
+                <div class="g-video ${state.isMobile ? 'mobile-vid' : ''}">
+                    <img class="${state.isMobile ? 'hidden' : ''}" 
+                        src="${imgUrl}" 
+                        alt="${description}" 
+                        data-vid-url="${EMBED_URL}/${videoId}?enablejsapi=1">
+                    <iframe class="mobile-vid ${state.isMobile ? '' : 'hidden'}"
+                        src="${EMBED_URL}/${videoId}?enablejsapi=1" 
+                        data-alt="${description}" 
+                        data-vid-url="${EMBED_URL}/${videoId}?enablejsapi=1"></iframe>
+                </div>
+            </div>`;
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Updates the model detail specs depending on current slide
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function displayDetailSpecs(currentSlide) {
-    var $currentSlide = $('.drone-model[data-slick-index="' + currentSlide + '"]');
-    var model = $currentSlide.attr('data-model'),
-        make = $currentSlide.attr('data-make');
+    let $currentSlide = $(`.drone-model[data-slick-index="${currentSlide}"]`);
+    let model = $currentSlide.attr('data-model'),
+        make  = $currentSlide.attr('data-make');
     // grab model data object from drones object
 
-    var data = getDroneData(make, model),
+    let data     = getDroneData(make, model),
         specHtml = getDetailPageSpecsTemplate(data);
 
     $(DETAIL_MODEL).text(data.model);
@@ -256,10 +427,10 @@ function displayDetailSpecs(currentSlide) {
     $(DETAIL_LISTS).html(specHtml);
     $(AMAZON_LINK).html(data.link);
     updateDetailVideos($currentSlide);
-    var $specs = $('.main-specs span').add('.mode-specs span');
-    $specs.each(function (index) {
-        if ($(this).text() === 'NO') {
-            $(this).css({ color: 'black' });
+    let $specs = $('.main-specs span').add('.mode-specs span');
+    $specs.each(function(index) {
+        if($(this).text() === 'NO') {
+            $(this).css({color: 'black'});
         }
     });
 }
@@ -269,32 +440,42 @@ function displayDetailSpecs(currentSlide) {
 // page video gallery
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function updateDetailVideos($currentSlide) {
-    var EMBED_URL = "https://www.youtube.com/embed";
-    var make = $currentSlide.attr('data-cased-make'),
-        model = $currentSlide.find('label').text();
-    var query = make + ' ' + model;
-    searchYoutubeVideos(query, function (res) {
+    const EMBED_URL = "https://www.youtube.com/embed";
+    let make  = $currentSlide.attr('data-cased-make'),
+        model = $currentSlide.find('label').text(); 
+    let query = `${make} ${model}`;
+    searchYoutubeVideos(query, res => {
         // Save reference to current query and next page of search results
-        state.video.query = query;
+        state.video.query         = query;
         state.video.nextPageToken = res.nextPageToken;
 
-        var vids = res.items;
-        var mainVid = vids[0],
+        let vids = res.items;
+        let mainVid = vids[0],
             g_vid_1 = vids[1],
             g_vid_2 = vids[2],
             g_vid_3 = vids[3],
             g_vid_4 = vids[4];
 
-        $(MAIN_VID).attr('src', EMBED_URL + '/' + mainVid.id.videoId + '?enablejsapi=1&html5=1').attr('data-thumbnail', mainVid.snippet.thumbnails.medium.url).attr('data-alt', mainVid.snippet.description);
+        $(MAIN_VID).attr('src', `${EMBED_URL}/${mainVid.id.videoId}?enablejsapi=1&html5=1`)
+                   .attr('data-thumbnail', mainVid.snippet.thumbnails.medium.url)
+                   .attr('data-alt', mainVid.snippet.description);
 
-        $(G_VID_1).attr('src', '' + g_vid_1.snippet.thumbnails.medium.url).attr('data-vid-url', EMBED_URL + '/' + g_vid_1.id.videoId + '?enablejsapi=1').attr('alt', g_vid_1.snippet.description);
+        $(G_VID_1).attr('src', `${g_vid_1.snippet.thumbnails.medium.url}`)
+                  .attr('data-vid-url', `${EMBED_URL}/${g_vid_1.id.videoId}?enablejsapi=1`)
+                  .attr('alt', g_vid_1.snippet.description);
 
-        $(G_VID_2).attr('src', '' + g_vid_2.snippet.thumbnails.medium.url).attr('data-vid-url', EMBED_URL + '/' + g_vid_2.id.videoId + '?enablejsapi=1').attr('alt', g_vid_2.snippet.description);
+        $(G_VID_2).attr('src', `${g_vid_2.snippet.thumbnails.medium.url}`)
+                  .attr('data-vid-url', `${EMBED_URL}/${g_vid_2.id.videoId}?enablejsapi=1`)
+                  .attr('alt', g_vid_2.snippet.description);
 
-        $(G_VID_3).attr('src', '' + g_vid_3.snippet.thumbnails.medium.url).attr('data-vid-url', EMBED_URL + '/' + g_vid_3.id.videoId + '?enablejsapi=1').attr('alt', g_vid_3.snippet.description);
+        $(G_VID_3).attr('src', `${g_vid_3.snippet.thumbnails.medium.url}`)
+                  .attr('data-vid-url', `${EMBED_URL}/${g_vid_3.id.videoId}?enablejsapi=1`)
+                  .attr('alt', g_vid_3.snippet.description);
 
-        $(G_VID_4).attr('src', '' + g_vid_4.snippet.thumbnails.medium.url).attr('data-vid-url', EMBED_URL + '/' + g_vid_4.id.videoId + '?enablejsapi=1').attr('alt', g_vid_4.snippet.description);
-
+        $(G_VID_4).attr('src', `${g_vid_4.snippet.thumbnails.medium.url}`)
+                  .attr('data-vid-url', `${EMBED_URL}/${g_vid_4.id.videoId}?enablejsapi=1`)
+                  .attr('alt', g_vid_4.snippet.description);
+    
         nextSearchPageHandler(); // Load videos in 'checkout more' section
     }, 5);
 }
@@ -304,16 +485,16 @@ function updateDetailVideos($currentSlide) {
 // and the main video on left.
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function videoGalleryHandler($img) {
-    var vidUrl = $img.attr('data-vid-url'),
+    let vidUrl   = $img.attr('data-vid-url'),
         thumbUrl = $img.attr('src'),
-        alt = $img.attr('alt');
-    var mainVidUrl = $(MAIN_VID).attr('src'),
+        alt      = $img.attr('alt');
+    let mainVidUrl      = $(MAIN_VID).attr('src'),
         mainVidThumbUrl = $(MAIN_VID).attr('data-thumbnail'),
-        mainVidAlt = $(MAIN_VID).attr('data-alt');
+        mainVidAlt      = $(MAIN_VID).attr('data-alt');
     // swap videos
     $(MAIN_VID).attr('src', vidUrl);
     $(MAIN_VID).attr('data-alt', alt);
-    $(MAIN_VID).attr('data-thumbnail', thumbUrl);
+    $(MAIN_VID).attr('data-thumbnail', thumbUrl); 
 
     $img.attr('src', mainVidThumbUrl);
     $img.attr('alt', mainVidAlt);
@@ -325,7 +506,7 @@ function videoGalleryHandler($img) {
 // gallery-content area
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function displayMoreVideos(videos) {
-    var frames = videos.map(function (video) {
+    let frames = videos.map(video => {
         return getGalleryTemplate(video);
     });
     $('.more-content').append(frames.join(''));
@@ -334,13 +515,10 @@ function displayMoreVideos(videos) {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Opens video modal and plays video from current time
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-function openVideoModal(url) {
-    var time = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    var index = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
-
+function openVideoModal(url, time = 0, index = '') {
     show(VIDEO_BACKDROP);
     $('body').addClass('no-scroll');
-    $(MODAL_IFRAME).attr('src', url + '&start=' + time + '&autoplay=1');
+    $(MODAL_IFRAME).attr('src', `${url}&start=${time}&autoplay=1`);
     $(MAIN_VID).attr('src', url);
     $(MODAL_IFRAME).attr('data-index', index);
 }
@@ -361,39 +539,41 @@ function closeVideoModal() {
 // for 5 possible choices for video navigation
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function mainModalNavController(nextVideo) {
-    var imgs = [$('.g-top-left img'), $('.g-top-right img'), $('.g-bottom-left img'), $('.g-bottom-right img')];
-    var currentIndex = parseInt($(MODAL_IFRAME).attr('data-index')),
-        nextUrl = void 0,
-        nextIndex = void 0;
+    let imgs = [
+        $('.g-top-left img'),
+        $('.g-top-right img'),
+        $('.g-bottom-left img'),
+        $('.g-bottom-right img')
+    ];
+    let currentIndex = parseInt($(MODAL_IFRAME).attr('data-index')),
+        nextUrl,
+        nextIndex;
     if (nextVideo === 'next') {
-        if (currentIndex === 3) {
-            // end of videos met
+        if(currentIndex === 3) { // end of videos met
             alert('Go back to checkout more videos!');
             return; // do nothing
         }
-        if (currentIndex === -1) {
-            // current modal video is from main iframe, get first gallery img url
-            nextUrl = imgs[0].attr('data-vid-url');
+        if(currentIndex === -1) { // current modal video is from main iframe, get first gallery img url
+            nextUrl   = imgs[0].attr('data-vid-url');
             nextIndex = 0;
         } else {
             nextIndex = currentIndex + 1;
-            nextUrl = imgs[nextIndex].attr('data-vid-url');
+            nextUrl   = imgs[nextIndex].attr('data-vid-url');
         }
     } else {
-        if (currentIndex === -1) {
-            // beginning of videos met
+        if(currentIndex === -1) { // beginning of videos met
             alert('Go back to checkout more videos!');
             return; // do nothing
         }
-        if (currentIndex === 0) {
-            nextUrl = $(MAIN_VID).attr('src'); // current modal video is first gallery img url, get main iframe url
+        if(currentIndex === 0) { 
+            nextUrl   = $(MAIN_VID).attr('src'); // current modal video is first gallery img url, get main iframe url
             nextIndex = -1;
-        } else {
+        }else {
             nextIndex = currentIndex - 1;
-            nextUrl = imgs[nextIndex].attr('data-vid-url');
+            nextUrl   = imgs[nextIndex].attr('data-vid-url');
         }
     }
-    $(MODAL_IFRAME).attr('src', nextUrl + '&autoplay=1');
+    $(MODAL_IFRAME).attr('src', `${nextUrl}&autoplay=1`);
     $(MODAL_IFRAME).attr('data-index', nextIndex);
 }
 
@@ -401,35 +581,49 @@ function mainModalNavController(nextVideo) {
 // Modal Video navigation controller for SUB gallery
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function modalVideoNavController(nextVideo) {
-    var currentIndex = parseInt($(MODAL_IFRAME).attr('data-index'));
+    let currentIndex = parseInt($(MODAL_IFRAME).attr('data-index'));
 
-    var next = nextVideo === 'next' ? currentIndex + 1 : currentIndex - 1;
-    var url = $('.more-content .vid-wrap:nth-of-type(' + (next + 1) + ')').find('img').attr('data-vid-url');
+    let next = nextVideo === 'next' ? currentIndex + 1 : currentIndex - 1;
+    let url = $(`.more-content .vid-wrap:nth-of-type(${next + 1})`)
+                    .find('img')
+                    .attr('data-vid-url');
 
     if (next > $('.more-content img').length - 1 || next < 0) {
-        next < 0 ? alert('Click next arrow for more') : alert('Click prev arrow for more');
+        next < 0 ? alert('Click next arrow for more') 
+                 : alert('Click prev arrow for more'); 
     } else {
-        $(MODAL_IFRAME).attr('src', url + '&autoplay=1');
+        $(MODAL_IFRAME).attr('src', `${url}&autoplay=1`);
         $(MODAL_IFRAME).attr('data-index', next);
     }
 }
+
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Displays current posts in db to screen
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function displayPosts(_posts) {
-    var posts = _posts.map(function (post) {
-        var specs = getDroneData(post.drone.make, post.drone.model);
-        _extends(post, { specs: specs });
+    let posts = _posts.map((post) => {
+        let specs = getDroneData(post.drone.make, post.drone.model);
+        Object.assign(post, { specs });
 
         // check if current session user voted on this post
-        var usersVoted = post.usersVoted;
-        var didUserVote = usersVoted.find(function (user) {
-            return user === state.user;
-        });
+        let usersVoted = post.usersVoted;
+        // let didUserVote = usersVoted.find((user) => {
+        //     return user === state.user
+        // });
+
+        console.log('HERE: ', didUserVote);
+
+        let didUserVote = undefined;
+        for(let i=0; i < usersVoted.length; i++) {
+            if(usersVoted[i] === state.user) {
+                didUserVote = state.user;
+            }
+        }
+
 
         // Check if post is by the current session user
-        var byThisUser = false;
+        let byThisUser = false;
         if (post.author.username === state.user) {
             byThisUser = true;
         }
@@ -437,16 +631,17 @@ function displayPosts(_posts) {
     });
 
     // Need to append when fetching batch at a time
-    var postsStr = posts.reverse().join('');
+    let postsStr = posts.reverse().join('');
     $(REVIEWS_CONTENT).html(postsStr);
 
-    var $specs = $('.main-specs span').add('.mode-specs span');
-    $specs.each(function (index) {
-        if ($(this).text() === 'NO') {
-            $(this).css({ color: 'black' });
+    let $specs = $('.main-specs span').add('.mode-specs span');
+    $specs.each(function(index) {
+        if($(this).text() === 'NO') {
+            $(this).css({color: 'black'});
         }
     });
 }
+
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Updates DOM with current comment without requiring
@@ -455,22 +650,23 @@ function displayPosts(_posts) {
 function displayComment(comment) {
     if ('postId' in comment) {
         // Main comments
-        var postId = comment.postId;
-        var commentHtml = getCommentTemplate(comment);
-        var $commentsContent = $(COMMENTS_CONTENT + '[data-post-id="' + postId + '"]');
+        let postId = comment.postId;
+        let commentHtml = getCommentTemplate(comment);
+        let $commentsContent = $(`${COMMENTS_CONTENT}[data-post-id="${postId}"]`);
 
-        var $numComments = $commentsContent.parent(COMMENTS_CONTAINER).find(NUM_COMMENTS);
-        var count = parseInt($numComments.text());
-
+        let $numComments = $commentsContent.parent(COMMENTS_CONTAINER)
+                                           .find(NUM_COMMENTS);
+        let count = parseInt($numComments.text());
+        
         count++;
         $numComments.text(count);
 
         $commentsContent.append(commentHtml);
     } else {
         // Reply comments
-        var commentId = comment.commentId;
-        var _commentHtml = getReplyCommentTemplate(comment);
-        $('.reply-comments-content[data-comment-id=' + commentId + ']').append(_commentHtml);
+        let commentId = comment.commentId;
+        let commentHtml = getReplyCommentTemplate(comment);
+        $(`.reply-comments-content[data-comment-id=${commentId}]`).append(commentHtml);
     }
 }
 
@@ -479,7 +675,7 @@ function displayComment(comment) {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function openLoginSignupModal(screen) {
     show(LOGIN_SIGNUP_PAGE);
-    setTimeout(function () {
+    setTimeout(function() {
         $(LOGIN_SIGNUP_PAGE).addClass('slide');
         $(LOGIN_SIGNUP_MODAL).addClass('slide');
     }, 200);
@@ -492,11 +688,11 @@ function openLoginSignupModal(screen) {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function closeLoginSignupModal() {
     $(LOGIN_SIGNUP_MODAL).removeClass('slide');
-    setTimeout(function () {
+    setTimeout(function() {
         $(LOGIN_SIGNUP_PAGE).removeClass('slide');
     }, 200);
 
-    setTimeout(function () {
+    setTimeout(function() {
         hide(LOGIN_SIGNUP_PAGE);
     }, 800);
 
@@ -540,20 +736,24 @@ function displayWelcomeMessage(user) {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function displaySignupError(location, message) {
     openLoginSignupModal('signup');
-    var err = message;
+    let err = message;
     show(SIGNUP_ERROR);
     if (location === 'email') {
-        $(EMAIL_INPUT).addClass('error').val('').focus();
+        $(EMAIL_INPUT).addClass('error')
+                      .val('')
+                      .focus();
     } else if (location === 'username') {
-        $('.signup-form ' + USERNAME_INPUT).addClass('error').val('').focus();
+        $(`.signup-form ${USERNAME_INPUT}`).addClass('error')
+                         .val('')
+                         .focus();
     } else if (location === 'password') {
         location = location[0].toUpperCase() + location.slice(1);
-        err = location + ': ' + message;
+        err = `${location}: ${message}`;
         $(PASS_INPUT).addClass('error');
         $(PASS_INPUT)[0].focus();
     }
     $(PASS_INPUT).val('');
-    $(SIGNUP_ERROR + ' .error-message').text(err);
+    $(`${SIGNUP_ERROR} .error-message`).text(err);
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -562,26 +762,27 @@ function displaySignupError(location, message) {
 function displayLoginError(message) {
     openLoginSignupModal('login');
     show(LOGIN_ERROR);
-    $(LOGIN_ERROR + ' .error-message').text(message);
+    $(`${LOGIN_ERROR} .error-message`).text(message);
 }
+
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Slides review form in from top of screen, fades in 
 // background
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function slideInReviewForm($nav, SCREEN) {
-    var delay = $nav.hasClass('mobile-write') ? 500 : 0; // if click comes from mobile menu, delay so menu closes before form opens
-    var modalDelay = state.isMobile ? 100 : 400,
-        screenDelay = state.isMobile ? 0 : 100;
-
-    setTimeout(function () {
+    let delay = $nav.hasClass('mobile-write') ? 500 : 0; // if click comes from mobile menu, delay so menu closes before form opens
+    let modalDelay  = state.isMobile ? 100 : 400,
+        screenDelay = state.isMobile ?   0 : 100;
+    
+    setTimeout(function() {
         show(SCREEN);
 
-        setTimeout(function () {
+        setTimeout(function() {
             $(SCREEN).addClass('fade-in');
         }, screenDelay);
 
-        setTimeout(function () {
+        setTimeout(function() {
             $('.review-form-modal').addClass('slide');
         }, modalDelay);
 
@@ -598,8 +799,8 @@ function slideUpReviewForm() {
     $(REVIEW_FORM_SCREEN).removeClass('fade-in');
     $(EDIT_REVIEW_FORM_SCREEN).removeClass('fade-in');
 
-    var screenDelay = state.isMobile ? 400 : 800;
-    setTimeout(function () {
+    let screenDelay = state.isMobile ? 400 : 800;
+    setTimeout(function() {
         hide(REVIEW_FORM_SCREEN);
         hide(EDIT_REVIEW_FORM_SCREEN);
     }, screenDelay);
@@ -611,28 +812,32 @@ function slideUpReviewForm() {
 // Displays EDIT review post modal
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function displayEditPostForm($post) {
-    var content = $post.find('.content').html(),
+    let content   = $post.find('.content').html(),
         postTitle = $post.find('.post-title').text(),
-        id = $post.attr('data-post-id'),
-        model = $post.attr('data-drone-model'),
-        rating = $post.find('.post-rating').attr('data-rating');
+        id        = $post.attr('data-post-id'),
+        model     = $post.attr('data-drone-model'),
+        rating    = $post.find('.post-rating').attr('data-rating');
 
     // Removes <p> tags and adds '\n\n' chars to end of each paragraph
     // to display text in form the same way it is displayed on screen
-    content = content.split('<p class="paragraph">').join('').split('</p>').map(function (para) {
-        return para += '\n\n';
-    }).join('').trim();
-
+    content = content.split('<p class="paragraph">')
+                     .join('')
+                     .split('</p>')
+                     .map(para => para += '\n\n')
+                     .join('')
+                     .trim();
+    
+    
     slideInReviewForm($(EDIT_REVIEW_FORM_SCREEN), EDIT_REVIEW_FORM_SCREEN);
 
     $('#edit-title-input').val(postTitle);
     $('#edit-post-content').val(content);
-    $('.dropdown-options option[value="' + model + '"]').prop('selected', true);
+    $(`.dropdown-options option[value="${model}"]`).prop('selected', true);
     $(EDIT_REVIEW_FORM).attr('data-post-id', id);
-    var $stars = $(EDIT_REVIEW_FORM).find('.star');
-    $stars.each(function (index, el) {
+    let $stars = $(EDIT_REVIEW_FORM).find('.star');
+    $stars.each((index, el) => {
         // order of indicies is reverse
-        if (index > 5 - rating - 1) {
+        if(index > 5 - rating - 1) {
             $(el).addClass('filled-star');
         }
     });
@@ -645,16 +850,18 @@ function displayEditPostForm($post) {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function fillDroneOptGroups() {
     $('.dropdown-options').empty();
-    for (var make in drones) {
-        var models = [];
-        var displayMake = void 0;
-        for (var model in drones[make]) {
-            var specs = drones[make][model];
+    for (let make in drones) {
+        let models = [];
+        let displayMake;
+        for (let model in drones[make]) {
+            let specs = drones[make][model];
             displayMake === undefined ? displayMake = specs.brand : null;
-            var option = '<option value="' + model + '">' + specs.model + '</option>';
+            let option = `<option value="${model}">${specs.model}</option>`;
             models.push(option);
         }
-        var optGroup = '<optgroup label="' + displayMake + '">\n                            ' + models.join('') + '\n                        </optgroup>';
+        let optGroup = `<optgroup label="${displayMake}">
+                            ${models.join('')}
+                        </optgroup>`;
         $('.dropdown-options').append(optGroup);
     }
 }
@@ -664,21 +871,22 @@ function fillDroneOptGroups() {
 // and hides Specs if open
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function toggleComments(commentsBtn) {
-    var $review = $(commentsBtn).parents(REVIEW),
+    let $review         = $(commentsBtn).parents(REVIEW),
         $commentSection = $review.find(COMMENTS_CONTAINER),
-        $details = $review.find(DETAILS),
-        $specs_btn = $review.find(SPECS_BTN);
+        $details        = $review.find(DETAILS),
+        $specs_btn      = $review.find(SPECS_BTN);
 
-    var delay = 0;
-    if ($details.hasClass('expand')) {
+    let delay = 0;
+    if($details.hasClass('expand')) {
         delay = 100;
     }
     $details.removeClass('expand');
     $specs_btn.removeClass('btn-active');
-    setTimeout(function () {
+    setTimeout(function() {
         $commentSection.toggleClass('expand');
         $(commentsBtn).toggleClass('btn-active');
     }, delay);
+
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -686,17 +894,17 @@ function toggleComments(commentsBtn) {
 // and hides comments if open
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function toggleSpecs(specBtn) {
-    var $review = $(specBtn).parents(REVIEW),
-        $details = $review.find(DETAILS),
+    let $review         = $(specBtn).parents(REVIEW),
+        $details        = $review.find(DETAILS),
         $commentSection = $review.find(COMMENTS_CONTAINER),
-        $commentS_btn = $review.find(COMMENTS_BTN);
-    var delay = 0;
-    if ($commentSection.hasClass('expand')) {
+        $commentS_btn   = $review.find(COMMENTS_BTN);
+    let delay = 0;
+    if($commentSection.hasClass('expand')) {
         delay = 100;
-    }
+        }
     $commentSection.removeClass('expand');
     $commentS_btn.removeClass('btn-active');
-    setTimeout(function () {
+    setTimeout(function() {
         $details.toggleClass('expand');
         $(specBtn).toggleClass('btn-active');
     }, delay);
@@ -722,11 +930,13 @@ function closeMobileMenu() {
     $('body').removeClass('no-scroll');
 }
 
+
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Adds hidden class to all classes passed in as args
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function hide() {
-    Object.values(arguments).forEach(function (target) {
+    Object.values(arguments).forEach((target) => {
         $(target).addClass('hidden');
     });
 }
@@ -735,10 +945,12 @@ function hide() {
 // Removes hidden class from all classes passed in as args
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function show() {
-    Object.values(arguments).forEach(function (target) {
+    Object.values(arguments).forEach((target) => {
         $(target).removeClass('hidden');
     });
 }
+
+
 
 //================================================================================
 // API handlers / Display handlers
@@ -749,8 +961,8 @@ function show() {
 // to corresponding drone brand endpoint
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function droneBannerHandler($droneMake) {
-    var brand = $droneMake.attr('id');
-    var url = '/drones/' + brand;
+    let brand = $droneMake.attr('id');
+    let url = `/drones/${brand}`;
     location.href = url;
 }
 
@@ -759,9 +971,9 @@ function droneBannerHandler($droneMake) {
 // to create a new user
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function signupFormHandler($form) {
-    var email = $form.find('.email-input').val(),
-        username = $form.find('.username-input').val(),
-        password = $form.find(PASS_INPUT).val(),
+    let email      = $form.find('.email-input').val(),
+        username   = $form.find('.username-input').val(),
+        password   = $form.find(PASS_INPUT).val(),
         rePassword = $form.find('.re-pass-input').val();
     resetLoginForm();
     if (password !== rePassword) {
@@ -770,7 +982,7 @@ function signupFormHandler($form) {
     } else {
         $('.signup-form ' + PASS_INPUT).removeClass('error');
         closeLoginSignupModal();
-        var data = { email: email, username: username, password: password };
+        let data = { email, username, password };
         setTimeout(function () {
             createNewUser(data); // makes call to api
         }, 1000);
@@ -781,7 +993,7 @@ function signupFormHandler($form) {
 // Resets signup form and removes any error messages
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function resetSignupForm() {
-    $(SIGNUP_FORM + ' ' + USERNAME_INPUT).removeClass('error');
+    $(`${SIGNUP_FORM} ${USERNAME_INPUT}`).removeClass('error')
     hide(SIGNUP_ERROR);
     $(SIGNUP_FORM)[0].reset();
 }
@@ -791,9 +1003,9 @@ function resetSignupForm() {
 // calls ajax function to attempt to log user in to session
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function loginFormHandler($form) {
-    var username = $form.find('.username-input').val(),
+    let username = $form.find('.username-input').val(),
         password = $form.find(PASS_INPUT).val();
-    var data = { username: username, password: password };
+    let data = { username, password };
 
     resetSignupForm();
     closeLoginSignupModal();
@@ -807,36 +1019,37 @@ function loginFormHandler($form) {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function resetLoginForm() {
     hide(LOGIN_ERROR);
-    $(LOGIN_FORM + ' ' + PASS_INPUT).removeClass('error');
+    $(`${LOGIN_FORM} ${PASS_INPUT}`).removeClass('error');
     $(LOGIN_FORM)[0].reset();
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Collects data from form and submits data to API
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-function reviewFormHandler($form) {
-    var editForm = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
-    var $selectedOpt = $($form).find('.dropdown-options').find(":selected");
-    var make = $selectedOpt.parent().attr('label').toLowerCase(),
-        model = $selectedOpt[0].value,
-        title = $('#title-input').val(),
+function reviewFormHandler($form, editForm = false) {
+    let $selectedOpt = $($form).find('.dropdown-options')
+                               .find(":selected");
+    let make    = $selectedOpt.parent()
+                              .attr('label')
+                              .toLowerCase(),
+        model   = $selectedOpt[0].value,
+        title   = $('#title-input').val(),
         content = $('#post-content').val(),
-        rating = $form.find('.filled-star').length;
+        rating  = $form.find('.filled-star').length;
 
-    var $fileInput = $form.find('.img-file-input');
-    var file = $fileInput.val() !== undefined ? $fileInput[0].files[0] : null;
-
+    let $fileInput = $form.find('.img-file-input');
+    let file = $fileInput.val() !== undefined ? $fileInput[0].files[0] : null;
+    
     content = content.split('\n\n');
 
-    var post = {
-        drone: { make: make, model: model },
-        title: title,
-        content: content,
-        rating: rating
+    let post = {
+        drone: { make, model },
+        title,
+        content,
+        rating
     };
 
-    if (rating === undefined || rating === 0) {
+    if(rating === undefined || rating === 0) {
         show('.rating-alert');
     } else {
         if (editForm) {
@@ -844,7 +1057,7 @@ function reviewFormHandler($form) {
             post.content = post.content.split('\n\n'); // Create array of strings, one per paragraph
             post.id = $form.attr('data-post-id');
             post.title = $('#edit-title-input').val();
-
+    
             // ajax PUT request to db
             updatePost(post, file);
         } else {
@@ -854,30 +1067,31 @@ function reviewFormHandler($form) {
     }
 }
 
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Formulates review post for preview before actually 
 // submitting
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function previewReviewHandler($form) {
-    var form = $form.is(REVIEW_FORM) ? REVIEW_FORM : EDIT_REVIEW_FORM;
-    var elements = $(form)[0].elements,
+    let form = $form.is(REVIEW_FORM) ? REVIEW_FORM : EDIT_REVIEW_FORM;
+    let elements     = $(form)[0].elements,
         $selectedOpt = $(elements["make"]).find(":selected"),
-        droneMake = $selectedOpt.parent().attr('label'),
-        droneModel = $selectedOpt[0].value,
-        droneData = getDroneData(droneMake, droneModel),
-        title = elements['title'].value,
-        content = elements['content'].value,
-        user = state.user,
-        post = { user: user, droneData: droneData, title: title, content: content };
+        droneMake    = $selectedOpt.parent().attr('label'),
+        droneModel   = $selectedOpt[0].value,
+        droneData    = getDroneData(droneMake, droneModel),
+        title        = elements['title'].value,
+        content      = elements['content'].value,
+        user         = state.user,
+        post         = { user, droneData, title, content };
 
     content = content.split('\n\n'); // Create array of strings, one per paragraph
 
 
     // MAKE sure text going into edit review mode doesnt have <p> already 
 
-    var postData = {
-        title: title,
-        content: content,
+    let postData = {
+        title,
+        content,
         author: user,
         img: droneData.img,
         drone: {
@@ -888,27 +1102,28 @@ function previewReviewHandler($form) {
         created: Date.now()
     };
 
-    var postHtml = formReviewPost(postData);
+    let postHtml = formReviewPost(postData);
     show(PREVIEW_SCREEN);
     $(PREVIEW_CONTENT).html(postHtml);
     $(PREVIEW_CONTENT).find(INTERACTIONS).remove();
 }
 
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Collects data from comment form and submits data to API
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function commentFormHandler($form) {
-    var url = $form.attr('action'),
-        content = $form.find('.comment-input').val(),
-        postId = $form.siblings(COMMENTS_CONTENT).attr('data-post-id'),
+    let url      = $form.attr('action'),
+        content  = $form.find('.comment-input').val(),
+        postId   = $form.siblings(COMMENTS_CONTENT).attr('data-post-id'),
         username = state.user;
-    var created = Date.now();
-    var comment = {
-        url: url,
-        content: content,
-        author: { username: username },
-        created: created
-    };
+    let created = Date.now();
+    let comment = {
+        url,
+        content,
+        author: { username },
+        created,
+    }
 
     if ($form.hasClass('reply-comment-form')) {
         comment['commentId'] = $form.closest('.comment').attr('data-this-id');
@@ -918,8 +1133,9 @@ function commentFormHandler($form) {
     // call to ajax POST method
     postComment(comment);
     // reset form after submit
-    $form[0].reset();
+    $form[0].reset()
 }
+
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Looks up and returns data object on given drone
@@ -934,28 +1150,40 @@ function getDroneData(make, model) {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function filterReviewHandler() {
     // Get checked radio
-    var target = $('input[name="filter"]:checked', FILTER_FORM).val();
+    let target = $('input[name="filter"]:checked', FILTER_FORM).val();
     // loop through DOM and check if any matches
     // if yes, loop through DOM and remove reviews that dont match
-    var isMatch = false;
-    $(REVIEWS_CONTENT).find(REVIEW).each(function (index, review) {
-        var make = $(this).find('.maker').first().text().toLowerCase();
-        if (make.indexOf(target) >= 0) {
-            isMatch = true;
-            return;
-        }
-    });
-    if (isMatch) {
-        $(REVIEWS_CONTENT).find(REVIEW).each(function (index, review) {
-            var make = $(this).find('.maker').first().text().toLowerCase();
-            var $hr = $(this).prev('hr');
-            if (make.indexOf(target) === -1) {
-                $(this).add($hr).hide();
-            } else {
-                $(this).add($hr).show();
+    let isMatch = false;
+    $(REVIEWS_CONTENT)
+        .find(REVIEW)
+        .each(function (index, review) {
+            let make = $(this).find('.maker')
+                              .first()
+                              .text()
+                              .toLowerCase();
+            if (make.indexOf(target) >= 0) {
+                isMatch = true;
+                return;
             }
         });
-        $(REVIEW + ':visible').first().prev('hr').hide(); // removes <hr> from top of filtered reviews
+    if (isMatch) {
+        $(REVIEWS_CONTENT)
+            .find(REVIEW)
+            .each(function (index, review) {
+                let make = $(this).find('.maker')
+                                  .first()
+                                  .text()
+                                  .toLowerCase();
+                let $hr = $(this).prev('hr');
+                if (make.indexOf(target) === -1) {
+                    $(this).add($hr).hide();
+                } else {
+                    $(this).add($hr).show();
+                }
+            });
+        $(`${REVIEW}:visible`).first()
+                              .prev('hr')
+                              .hide(); // removes <hr> from top of filtered reviews
         show(FILTER_STATUS);
         $(USER_FILTER).text(droneBrands[target]);
     } else {
@@ -971,78 +1199,85 @@ function filterReviewHandler() {
 function searchFilterHandler() {
     hide(QUERY_ERROR_MESSAGE);
     // user input
-    var baseQuery = $(SEARCH_FILTER).val().trim();
+    let baseQuery = $(SEARCH_FILTER).val()
+                                    .trim();
     // grab each search keyword
-    var query = baseQuery.toLowerCase().split(' ');
+    let query = baseQuery.toLowerCase()
+                         .split(' ');
 
-    var resultFound = false;
-    $(REVIEWS_CONTENT).find(REVIEW).each(function (index, review) {
-        var make = $(this).find('.maker').first().text().toLowerCase();
-        var model = $(this).find('.model').first().text().toLowerCase();
-        var $hr = $(this).prev('hr');
+    let resultFound = false;
+    $(REVIEWS_CONTENT)
+        .find(REVIEW)
+        .each(function(index, review) {
+            let make  = $(this).find('.maker')
+                               .first()
+                               .text()
+                               .toLowerCase();
+            let model = $(this).find('.model')
+                               .first()
+                               .text()
+                               .toLowerCase();
+            let $hr = $(this).prev('hr');
 
-        var found = query.map(function (keyword) {
-            if (make.indexOf(keyword) >= 0 || model.indexOf(keyword) >= 0) {
-                return 1;
+            let found = query.map((keyword) => {
+                if(make.indexOf(keyword) >= 0 || model.indexOf(keyword) >= 0) {
+                    return 1;
+                } 
+            });
+            if(found.indexOf(1) === -1) {
+                $(review).add($hr).hide();
+            } else {
+                $(review).add($hr).show();
+                resultFound = true;
             }
         });
-        if (found.indexOf(1) === -1) {
-            $(review).add($hr).hide();
-        } else {
-            $(review).add($hr).show();
-            resultFound = true;
-        }
-    });
     $(USER_QUERY).text(baseQuery);
-    if (resultFound) {
+    if(resultFound) {
         show(QUERY_TEXT);
-        $(REVIEW + ':visible').first().prev('hr').hide();
+        $(`${REVIEW}:visible`).first()
+                              .prev('hr')
+                              .hide();
     } else {
         show(QUERY_ERROR_MESSAGE);
     }
     $(SEARCH_FILTER_FORM)[0].reset();
 }
 
+
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Bundles comments and displays them in
 // the associated post's comment section
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-function commentsFromDbHandler(comments) {
-    var mainComments = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-    var id = arguments[2];
-
+function commentsFromDbHandler(comments, mainComments = true, id) {
 
     if (mainComments) {
-        var postId = comments[0].postId;
-        var commentsHtml = comments.map(function (comment) {
-            var _checkIfFromCurrentUs = checkIfFromCurrentUser(comment),
-                byThisUser = _checkIfFromCurrentUs.byThisUser,
-                didUserLike = _checkIfFromCurrentUs.didUserLike;
-
+        let postId = comments[0].postId;
+        let commentsHtml = comments.map((comment) => {
+            let { byThisUser, didUserLike } = checkIfFromCurrentUser(comment);
             return getCommentTemplate(comment, byThisUser, didUserLike);
         });
-        var numComments = commentsHtml.length;
-        var $commentsContent = $(COMMENTS_CONTENT + '[data-post-id="' + postId + '"]');
+        let numComments = commentsHtml.length;
+        let $commentsContent = $(`${COMMENTS_CONTENT}[data-post-id="${postId}"]`);
 
-        $commentsContent.parent(COMMENTS_CONTAINER).find(NUM_COMMENTS).text(numComments);
+        $commentsContent.parent(COMMENTS_CONTAINER)
+            .find(NUM_COMMENTS)
+            .text(numComments);
         // Find comments-content by data-id and append 
         $commentsContent.append(commentsHtml.join(''));
 
         // Make additional calls to db to fetch each reply comment
-        comments.forEach(function (comment) {
+        comments.forEach((comment) => {
             getCommentsFromDb(comment.id, false);
         });
     } else {
-        var commentId = id;
-        var _commentsHtml = comments.map(function (comment) {
-            var _checkIfFromCurrentUs2 = checkIfFromCurrentUser(comment),
-                byThisUser = _checkIfFromCurrentUs2.byThisUser,
-                didUserLike = _checkIfFromCurrentUs2.didUserLike;
-
+        let commentId = id;
+        let commentsHtml = comments.map((comment) => {
+            let { byThisUser, didUserLike } = checkIfFromCurrentUser(comment);
             return getReplyCommentTemplate(comment, byThisUser, didUserLike);
         });
 
-        $(REPLY_COMMENT_CONTENT + '[data-comment-id="' + commentId + '"]').append(_commentsHtml.join(''));
+        $(`${REPLY_COMMENT_CONTENT}[data-comment-id="${commentId}"]`).append(commentsHtml.join(''));
     }
 }
 
@@ -1057,26 +1292,35 @@ function commentsFromDbHandler(comments) {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function checkIfFromCurrentUser(comment) {
     // check if current session user voted on this post
-    var usersLiked = comment.usersLiked;
-    var didUserLike = usersLiked.find(function (user) {
-        return user === state.user;
-    });
+    let usersLiked = comment.usersLiked;
+    // let didUserLike = usersLiked.find((user) => {
+    //     return user === state.user
+    // });
+
+    let didUserLike  = undefined;
+    for(let i = 0; i < usersLiked; i++) {
+        if(usersLiked[i] === state.user) {
+            didUserLike = state.user;
+        }
+    }
+
+
     // Check if post is by the current session user
-    var byThisUser = false;
+    let byThisUser = false;
     if (comment.author.username === state.user) {
         byThisUser = true;
     }
 
-    return { byThisUser: byThisUser, didUserLike: didUserLike };
+    return { byThisUser, didUserLike };
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Sets img from db to corresponding post  
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-function addImgToPostHandler(imgRes) {
-    var postId = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-
-    $(REVIEWS).find('.post[data-post-id="' + postId + '"]').find('.post-img').attr('src', imgRes.url);
+function addImgToPostHandler(imgRes, postId = null) {
+    $(REVIEWS).find(`.post[data-post-id="${postId}"]`)
+        .find('.post-img')
+        .attr('src', imgRes.url);
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -1087,7 +1331,7 @@ function postsHandler(posts) {
 
     displayPosts(posts);
     // Make call to api to get comments for each post
-    posts.forEach(function (post) {
+    posts.forEach((post) => {
         if (post.imgId !== '') {
             getFile(post.imgId, post.id);
         }
@@ -1098,29 +1342,30 @@ function postsHandler(posts) {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Upvote / Downvote post handler
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-function voteOnPost($voteBtn) {
-    var upVote = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-
+function voteOnPost($voteBtn, upVote = true) {
     if ($voteBtn.attr('data-user-voted') === state.user) {
         alert('Already voted');
         return;
     }
 
-    var $votes = $voteBtn.siblings(VOTES),
+    let $votes  = $voteBtn.siblings(VOTES),
         $posNeg = $voteBtn.siblings(POSNEG),
-        count = parseInt($votes.text()),
-        postId = $voteBtn.closest('.post').attr('data-post-id'),
-        posNeg = '';
+        count   = parseInt($votes.text()),
+        postId  = $voteBtn.closest('.post').attr('data-post-id'),
+        posNeg  = '';
 
     upVote ? ++count : --count;
-    if (count < 0) posNeg = '&#45;';else if (count > 0) posNeg = '+';
+    if (count < 0)
+        posNeg = '&#45;';
+    else if (count > 0)
+        posNeg = '+';
 
     $posNeg.html(posNeg);
     $votes.text(count);
     $voteBtn.attr('data-user-voted', state.user);
 
     getPostById(postId, function (res) {
-        var usersArr = res.usersVoted;
+        let usersArr = res.usersVoted;
         usersArr.push(state.user);
 
         updatePost({
@@ -1134,22 +1379,23 @@ function voteOnPost($voteBtn) {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Like / Dislike comments handler
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-function likeDislikeComment($btn) {
-    var like = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-
+function likeDislikeComment($btn, like = true) {
     if ($btn.attr('data-user-liked') === state.user) {
         alert('Already like');
         return;
     }
 
-    var $likes = $btn.siblings(LIKES),
-        $posNeg = $btn.siblings(POSNEG),
-        count = parseInt($likes.text()),
+    let $likes    = $btn.siblings(LIKES),
+        $posNeg   = $btn.siblings(POSNEG),
+        count     = parseInt($likes.text()),
         commentId = $btn.closest('.gen-comment').attr('data-this-id'),
-        posNeg = '';
+        posNeg    = '';
 
     like ? ++count : --count;
-    if (count < 0) posNeg = '&#45;';else if (count > 0) posNeg = '+';
+    if (count < 0)
+        posNeg = '&#45;';
+    else if (count > 0)
+        posNeg = '+';
 
     $posNeg.html(posNeg);
     $likes.text(count);
@@ -1157,7 +1403,7 @@ function likeDislikeComment($btn) {
     $btn.siblings('i').attr('data-user-liked', state.user);
 
     getCommentById(commentId, function (res) {
-        var usersArr = res.usersLiked;
+        let usersArr = res.usersLiked;
         usersArr.push(state.user);
 
         updateComment({
@@ -1173,7 +1419,7 @@ function likeDislikeComment($btn) {
 // via its post ID with a reference to the uploaded file 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function fileUploadHandler(file, postId) {
-    var updateData = {
+    let updateData = {
         id: postId,
         imgId: file.file._id
     };
@@ -1181,13 +1427,15 @@ function fileUploadHandler(file, postId) {
 }
 
 function nextSearchPageHandler() {
-    var q = state.video.query,
-        token = state.video.nextPageToken;
-    searchYoutubeNextPage(q, token, function (res) {
+    let q     = state.video.query,
+    token = state.video.nextPageToken;
+    searchYoutubeNextPage(q, token, res => {
         state.video.nextPageToken = res.nextPageToken;
         displayMoreVideos(res.items);
     }, 6);
 }
+
+
 
 //================================================================================
 // API calls
@@ -1202,16 +1450,16 @@ function createNewUser(userData) {
         type: 'POST',
         dataType: 'json',
         data: userData,
-        success: function success(res) {
+        success: (res) => {
             // Successfully signed user up, now log them in
             resetSignupForm();
             openLoginSignupModal('login');
             displayWelcomeMessage(res.username);
         },
-        error: function error(err) {
-            var message = err.responseJSON.message;
-            var location = err.responseJSON.location;
-            console.log(location + ': ' + message);
+        error: (err) => {
+            let message = err.responseJSON.message;
+            let location = err.responseJSON.location;
+            console.log(`${location}: ${message}`);
             show(LOGIN_SIGNUP_PAGE);
             displaySignupError(location, message);
         }
@@ -1225,18 +1473,18 @@ function logUserIn(loginData) {
         url: '/users/login',
         type: 'POST',
         dataType: 'json',
-        beforeSend: function beforeSend(xhr) {
+        beforeSend: function (xhr) {
             // Send basic auth, uri-encoded header with request
             xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(unescape(encodeURIComponent(loginData.username + ':' + loginData.password))));
         },
-        success: function success(res) {
+        success: (res) => {
             if (res.status) {
                 location.reload();
             } else {
                 displayLoginError(res.message);
             }
         },
-        error: function error(jqXHR, textStatus, err) {
+        error: (jqXHR, textStatus, err) => {
             console.log(err);
         }
     });
@@ -1248,10 +1496,10 @@ function logUserOut() {
         url: '/users/logout',
         type: 'GET',
         dataType: 'json',
-        success: function success(res) {
+        success: (res) => {
             location.reload();
         },
-        error: function error(jqXHR, textStatus, err) {
+        error: (jqXHR, textStatus, err) => {
             console.log(err);
         }
     });
@@ -1264,10 +1512,10 @@ function getPostsFromDb() {
         url: "/posts",
         type: 'GET',
         dataType: 'json',
-        success: function success(res) {
+        success: function (res) {
             postsHandler(res.posts);
         },
-        error: function error(jqXHR, textStatus, err) {
+        error: (jqXHR, textStatus, err) => {
             console.log(err);
         }
     });
@@ -1275,11 +1523,11 @@ function getPostsFromDb() {
 
 function getPostById(id, callback) {
     return $.ajax({
-        url: '/posts/' + id,
+        url: `/posts/${id}`,
         type: 'GET',
         dataType: 'json',
         success: callback,
-        error: function error(jqXHR, textStatus, err) {
+        error: (jqXHR, textStatus, err) => {
             console.log(err);
         }
     });
@@ -1287,41 +1535,42 @@ function getPostById(id, callback) {
 
 function createPost(postData, file) {
     $.ajax({
-        url: '/posts',
+        url: `/posts`,
         type: 'POST',
         dataType: 'json',
         data: postData,
-        success: function success(res) {
+        success: res => {
             if (file) {
                 uploadFile(file, res.id);
             } else {
                 location.reload();
             }
         },
-        error: function error(jqXHR, textStatus, err) {
+        error: (jqXHR, textStatus, err) => {
             console.log(err);
         }
     });
 }
 
 function updatePost(updateData, file) {
-    var id = updateData.id;
+    let id = updateData.id;
     $.ajax({
-        url: '/posts/' + id,
+        url: `/posts/${id}`,
         type: 'PUT',
         dataType: 'json',
         data: updateData,
-        success: function success(res) {
+        success: res => {
             if (file) {
                 if (res.imgId !== "") {
                     deleteFile(res.imgId);
                 }
                 uploadFile(file, res.id);
             } else {
-                if (res.hasOwnProperty('title') && !updateData.hasOwnProperty('votes')) location.reload();
+                if (res.hasOwnProperty('title') && !(updateData.hasOwnProperty('votes')))
+                    location.reload();
             }
         },
-        error: function error(jqXHR, textStatus, err) {
+        error: (jqXHR, textStatus, err) => {
             console.log(err);
         }
     });
@@ -1329,13 +1578,13 @@ function updatePost(updateData, file) {
 
 function deletePost(id) {
     $.ajax({
-        url: '/posts/' + id,
+        url: `/posts/${id}`,
         type: 'DELETE',
         dataType: 'json',
-        success: function success(res) {
+        success: res => {
             location.reload();
         },
-        error: function error(jqXHR, textStatus, err) {
+        error: (jqXHR, textStatus, err) => {
             console.log(err);
         }
     });
@@ -1344,7 +1593,7 @@ function deletePost(id) {
 // FILES
 
 function uploadFile(blobFile, postId) {
-    var formData = new FormData();
+    let formData = new FormData();
     formData.append('file', blobFile);
 
     $.ajax({
@@ -1353,10 +1602,10 @@ function uploadFile(blobFile, postId) {
         data: formData,
         processData: false,
         contentType: false,
-        success: function success(res) {
+        success: res => {
             fileUploadHandler(res, postId);
         },
-        error: function error(jqXHR, textStatus, err) {
+        error: (jqXHR, textStatus, err) => {
             console.log(err);
         }
     });
@@ -1364,13 +1613,13 @@ function uploadFile(blobFile, postId) {
 
 function getFile(id, postId) {
     $.ajax({
-        url: '/file/img/' + id,
+        url: `/file/img/${id}`,
         type: 'GET',
         dataType: 'json',
-        success: function success(res) {
+        success: res => {
             addImgToPostHandler(res, postId);
         },
-        error: function error(jqXHR, textStatus, err) {
+        error: (jqXHR, textStatus, err) => {
             console.log(err);
         }
     });
@@ -1378,12 +1627,12 @@ function getFile(id, postId) {
 
 function deleteFile(id) {
     $.ajax({
-        url: '/file/img/' + id,
+        url: `/file/img/${id}`,
         type: "DELETE",
-        success: function success(res) {
+        success: res => {
             // console.log(`successfully deleted img(${id})`);
         },
-        error: function error(jqXHR, textStatus, err) {
+        error: (jqXHR, textStatus, err) => {
             console.log(err);
         }
     });
@@ -1391,26 +1640,24 @@ function deleteFile(id) {
 
 // COMMENTS
 
-function getCommentsFromDb(id) {
-    var mainComments = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-
-    var url = void 0;
+function getCommentsFromDb(id, mainComments = true) {
+    let url;
     if (mainComments) {
-        url = '/posts/' + id + '/comments';
+        url = `/posts/${id}/comments`;
     } else {
-        url = '/posts/comments/' + id + '/comments';
+        url = `/posts/comments/${id}/comments`;
     }
     $.ajax({
         url: url,
         type: 'GET',
         dataType: 'json',
-        success: function success(res) {
+        success: function (res) {
             if (res.comments.length > 0) {
-                //  Main comment                //  Reply comment
-                mainComments ? commentsFromDbHandler(res.comments) : commentsFromDbHandler(res.comments, false, id);
+                                  //  Main comment                //  Reply comment
+                mainComments ? commentsFromDbHandler(res.comments) : commentsFromDbHandler(res.comments, false, id)
             }
         },
-        error: function error(jqXHR, textStatus, err) {
+        error: (jqXHR, textStatus, err) => {
             console.log(err);
         }
     });
@@ -1418,11 +1665,11 @@ function getCommentsFromDb(id) {
 
 function getCommentById(id, callback) {
     $.ajax({
-        url: '/posts/comments/' + id,
+        url: `/posts/comments/${id}`,
         type: 'GET',
         dataType: 'json',
         success: callback,
-        error: function error(jqXHR, textStatus, err) {
+        error: (jqXHR, textStatus, err) => {
             console.log(err);
         }
     });
@@ -1435,24 +1682,24 @@ function postComment(commentObj) {
         dataType: 'json',
         data: commentObj,
         success: displayComment,
-        error: function error(jqXHR, textStatus, err) {
+        error: (jqXHR, textStatus, err) => {
             console.log(err);
         }
     });
 }
 
 function updateComment(updateData) {
-    var id = updateData.id;
+    let id = updateData.id;
     $.ajax({
-        url: '/posts/comments/' + id,
+        url: `/posts/comments/${id}`,
         type: 'PUT',
         dataType: 'json',
         data: updateData,
-        success: function success(res) {
+        success: res => {
             console.log('Success');
-            console.log({ res: res });
+            console.log({ res });
         },
-        error: function error(jqXHR, textStatus, err) {
+        error: (jqXHR, textStatus, err) => {
             console.log(err);
         }
     });
@@ -1461,49 +1708,42 @@ function updateComment(updateData) {
 // * * * * * * * * * * * * * * * * * * * * * * * * * 
 // YoutTube API calls
 // * * * * * * * * * * * * * * * * * * * * * * * * *
-var YOUTUBE_KEY = 'AIzaSyCSyc7hnCXopqsh5Z9HlklFAK3gvteRMAY';
-var YOUTUBE_URL = 'https://www.googleapis.com/youtube/v3';
+const YOUTUBE_KEY = 'AIzaSyCSyc7hnCXopqsh5Z9HlklFAK3gvteRMAY';
+const YOUTUBE_URL = 'https://www.googleapis.com/youtube/v3';
 
-function searchYoutubeVideos() {
-    var query = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-    var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : printToConsole;
-    var maxResults = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 10;
-
+function searchYoutubeVideos(query = '', callback = printToConsole, maxResults = 10) {
     $.ajax({
-        url: YOUTUBE_URL + '/search/',
+        url: `${YOUTUBE_URL}/search/`,
         type: 'GET',
         dataType: 'json',
         data: {
-            maxResults: maxResults,
+            maxResults,
             key: YOUTUBE_KEY,
             part: 'snippet',
             q: query
         },
         success: callback,
-        error: function error(jqXHR, textStatus, err) {
+        error: (jqXHR, textStatus, err) => {
             console.log(err);
         }
     });
 }
 
-function searchYoutubeNextPage(query, pageToken) {
-    var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : printToConsole;
-    var maxResults = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 10;
-
+function searchYoutubeNextPage(query, pageToken, callback = printToConsole, maxResults = 10) {
     $.ajax({
-        url: YOUTUBE_URL + '/search/',
+        url: `${YOUTUBE_URL}/search/`,
         type: 'GET',
         dataType: 'json',
         data: {
-            maxResults: maxResults,
-            pageToken: pageToken,
+            maxResults,
+            pageToken,
             key: YOUTUBE_KEY,
             part: 'snippet',
-            q: query
+            q: query,
 
         },
         success: callback,
-        error: function error(jqXHR, textStatus, err) {
+        error: (jqXHR, textStatus, err) => {
             console.log(err);
         }
     });
@@ -1515,6 +1755,9 @@ function searchYoutubeNextPage(query, pageToken) {
 function printToConsole(res) {
     console.log(res);
 }
+
+
+
 
 // ================================================================================
 // Slick Carousel
@@ -1532,36 +1775,41 @@ function initDroneSlider() {
         slidesToShow: 4,
         slidesToScroll: 4,
         variableWidth: true,
-        responsive: [{
-            breakpoint: 1024,
-            settings: {
-                slidesToShow: 4,
-                slidesToScroll: 4
-            }
-        }, {
-            breakpoint: 860,
-            settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3
-            }
-        }, {
-            breakpoint: 580,
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2
-            }
-        }, {
-            breakpoint: 415,
-            settings: {
-                speed: 2000,
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                cssEase: 'ease-in-out'
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 4
+                }
+            },
+            {
+                breakpoint: 860,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3
+                }
+            },
+            {
+                breakpoint: 580,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 415,
+                settings: {
+                    speed: 2000,
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    cssEase: 'ease-in-out'
+                }
             }
             // You can unslick at a given breakpoint now by adding:
             // settings: "unslick"
             // instead of a settings object
-        }]
+        ]
     });
 }
 
@@ -1576,12 +1824,14 @@ function initDroneModelsSlider() {
         speed: 500,
         fade: true,
         cssEase: 'linear',
-        responsive: [{
-            breakpoint: 440,
-            settings: {
-                dots: false
+        responsive: [
+            {
+                breakpoint: 440,
+                settings: {
+                    dots: false
+                }
             }
-        }]
+        ]
     });
 }
 
@@ -1612,6 +1862,7 @@ function unslick(SLIDER) {
     }
 }
 
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * 
 //  Used to reslick sliders on window resize 
 //  inccrease. 
@@ -1620,7 +1871,7 @@ function unslick(SLIDER) {
 // * * * * * * * * * * * * * * * * * * * * * * * * * 
 function responsiveReslick() {
     $(window).resize(function () {
-        var width = parseInt($('body').css('width'));
+        let width = parseInt($('body').css('width'));
         if (!$(DRONE_SLIDER).hasClass('slick-initialized')) {
             initDroneSlider();
         }
@@ -1630,6 +1881,7 @@ function responsiveReslick() {
     });
 }
 
+
 //================================================================================
 // Utility functions
 //================================================================================
@@ -1638,10 +1890,7 @@ function responsiveReslick() {
 // Gives a smooth animation to page navigation bringing the 
 // target element to the top of the window
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-function smoothScroll(target) {
-    var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1200;
-    var offset = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-
+function smoothScroll(target, duration = 1200, offset = 0) {
     $('body, html').animate({
         scrollTop: $(target).offset().top - offset
     }, duration);
@@ -1651,7 +1900,7 @@ function smoothScroll(target) {
 // Check screen size to determine Mobile Vs. Desktop
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function checkSizeHandler() {
-    $(document).ready(function () {
+    $(document).ready(() => {
         checkSize();
         $(window).resize(checkSize);
     });
@@ -1664,13 +1913,13 @@ function checkSizeHandler() {
 // the main video player and gallery depending on size
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function checkSize() {
-    parseInt($("body").css('width')) <= 414 ? state.isMobile = true : state.isMobile = false;
+    (parseInt($("body").css('width')) <= 414) ? state.isMobile = true : state.isMobile = false;
 
     navUserMsgHandler();
 
     if (window.location.href.indexOf('drones') >= 0) {
 
-        if (parseInt($("body").css('width')) <= 400) {
+        if(parseInt($("body").css('width')) <= 400) {
             hide('.more-content img');
             show('.more-content iframe');
             $('.more-content .vid-wrap').addClass('mobile-vid');
@@ -1680,12 +1929,12 @@ function checkSize() {
             $('.more-content .vid-wrap').removeClass('mobile-vid');
         }
 
-        if (parseInt($("body").css('width')) <= 720) {
-            if (!$(GALLERY).prev().is(SHOWCASE)) {
+        if(parseInt($("body").css('width')) <= 720) {
+            if(! $(GALLERY).prev().is(SHOWCASE)) {
                 $(SHOWCASE).detach().insertBefore(GALLERY);
             }
         } else {
-            if (!$(GALLERY).next().is(SHOWCASE)) {
+            if (! $(GALLERY).next().is(SHOWCASE)) {
                 $(SHOWCASE).detach().insertAfter(GALLERY);
             }
         }
@@ -1698,28 +1947,27 @@ function checkSize() {
 // to fit within alotted space
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function navUserMsgHandler() {
-    if (parseInt($("body").css('width')) < 585) {
+    if((parseInt($("body").css('width')) < 585) ) {
         show('.mobile-msg');
     } else {
         hide('.mobile-msg');
     }
 
-    if (parseInt($("body").css('width')) > 700) {
+    if((parseInt($("body").css('width')) > 700) ) {
         limitNavUserMessage();
     } else {
         limitNavUserMessage(6);
     }
+
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // limits the username in message to provided limit, 10
 // char is the default max-length
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-function limitNavUserMessage() {
-    var limit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 10;
-
-    var username = state.user;
-    if (username.length > limit) {
+function limitNavUserMessage(limit = 10) {
+    let username = state.user;
+    if(username.length > limit) {
         username = username.slice(0, limit - 1);
         $('.user-nav .user-loggedin').text(username + '..');
     }
@@ -1741,23 +1989,24 @@ function limitNavUserMessage() {
 // }
 
 
+
 function fixBannerNav() {
-    $(window).scroll(function (e) {
-        var scroll = $(window).scrollTop(),
+    $(window).scroll((e) => {
+        let scroll = $(window).scrollTop(),
             offset = $('main').offset().top;
 
-        if (scroll >= offset) {
-            // past header
+        if (scroll >= offset) { // past header
 
-            if (state.isMobile) {
+            if(state.isMobile) {
                 scroll > state.prevScrollPos ? state.downScrollPos = scroll : null; // save position when upward scroll begins
-
-                if (state.downScrollPos - scroll >= 50) {
+                
+                if((state.downScrollPos - scroll) >= 50) {
                     $(BANNER_WRAP).addClass('fixed-nav'); // fix the nav on upward scroll
                     $(BANNER_WRAP).fadeIn(); // fades nav in if previously faded out
                 } else {
                     $(BANNER_WRAP).fadeOut(300); // fades nav out on downward scroll
                 }
+
             } else {
                 $(BANNER_WRAP).addClass('fixed-nav'); // not mobile, fix nav
             }
@@ -1769,33 +2018,33 @@ function fixBannerNav() {
     });
 }
 
+
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Calculates time elapsed since date given and returns
 // the appropriate time unit, rounding down to nearest whole
 // number 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function getElapsedTime(prevDate) {
-    var diff = Date.now() - prevDate,
-        min = Math.floor(diff / 60000),
-        // 60,000 ms / min
-    hrs = Math.floor(diff / 3600000),
-        // 3,600,000 ms / hr
-    days = Math.floor(diff / 86400000),
-        // 6,400,000 ms / day
-    months = Math.floor(diff / 2629746000),
-        // 2629746000 ms / month
-    years = Math.floor(diff / 31556952000); // 31,556,952,000 ms / year
-
+    let diff   = Date.now() - prevDate,
+        min    = Math.floor(diff / 60000),  // 60,000 ms / min
+        hrs    = Math.floor(diff / 3600000), // 3,600,000 ms / hr
+        days   = Math.floor(diff / 86400000), // 6,400,000 ms / day
+        months = Math.floor(diff / 2629746000),// 2629746000 ms / month
+        years  = Math.floor(diff / 31556952000);// 31,556,952,000 ms / year
+    
     if (min < 60) {
-        if (min < 1) return 'just now';else if (min === 1) return 'a minute ago';else return min + ' minutes';
+        if(min < 1)        return 'just now';
+        else if(min === 1) return 'a minute ago';
+        else               return min + ' minutes';
     } else if (hrs < 24) {
-        return hrs + ' ' + (hrs === 1 ? 'hour' : 'hours');
+        return `${hrs} ${hrs === 1 ? 'hour' : 'hours'}`;
     } else if (days < 31) {
-        return days + ' ' + (days === 1 ? 'day' : 'days');
+        return `${days} ${days === 1 ? 'day' : 'days'}`;
     } else if (months < 12) {
-        return months + ' ' + (months === 1 ? 'month' : 'months');
+        return `${months} ${months === 1 ? 'month' : 'months'}`;
     } else {
-        return years + ' ' + (years === 1 ? 'year' : 'years');
+        return `${years} ${years === 1 ? 'year' : 'years'}`;
     }
 }
 
@@ -1803,30 +2052,36 @@ function getElapsedTime(prevDate) {
 // If endpoint has #reviews, smooth scrool to reviews section
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function hashUrlHandler() {
-    if (location.hash === '#reviews') {
+    if(location.hash === '#reviews') {
         smoothScroll(REVIEWS);
     }
-}
+} 
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Checks current endpoint on page load to display correct
 // elements and styling for given page
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function checkEndpoint() {
-    var endpoint = window.location.pathname;
+    let endpoint = window.location.pathname;
     if (endpoint.indexOf('drones') >= 0) {
-        $('#main-header').removeClass('banner').addClass('drone-header');
+        $('#main-header').removeClass('banner')
+                         .addClass('drone-header');
         hide('.landing-greeting');
-        $('.drone-list a[href="' + endpoint + '"]').addClass('current-page');
-        $('.drone-list a[href="' + endpoint + '"]').parent().addClass('current-page');
+        $(`.drone-list a[href="${endpoint}"]`).addClass('current-page');
+        $(`.drone-list a[href="${endpoint}"]`).parent().addClass('current-page');
     } else if (endpoint.indexOf('mission') >= 0) {
         show('.mission-container');
         hide('.greeting');
+         
     }
 }
 
 function checkIfUserLoggedIn() {
-    if (!state.loggedIn) {
+    state.user = $('.user-loggedin').attr('data-user');
+    if(state.user) {
+        state.loggedIn = true;
+    }
+    if(!state.loggedIn) {
         hide('.logged-in');
     }
 }
@@ -1835,7 +2090,7 @@ function checkIfUserLoggedIn() {
 // If a user is logged in, display their username in nav
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function displayCurrentUser() {
-    if (state.user !== '') {
+    if(state.user !== '') {
         $('.user-loggedin').text(state.user);
     }
 }
@@ -1846,15 +2101,16 @@ function displayCurrentUser() {
 function onYouTubeIframeAPIReady() {
     state.player = new YT.Player('main-iframe', {
         events: {
-            'onReady': function onReady() {
+            'onReady': () => {
                 console.log("Main Player Ready!!");
             },
-            'onStateChange': function onStateChange() {
+            'onStateChange': () => {
                 console.log("Main Player state changed");
             }
         }
     });
-}
+} 
+
 
 //================================================================================
 // Event Listeners
@@ -1864,30 +2120,30 @@ function onYouTubeIframeAPIReady() {
 //   Nav item clicks
 // * * * * * * * * * * * * * 
 function burgerMenuClick() {
-    $(BURGER_ANCHOR).on('click', function (e) {
+    $(BURGER_ANCHOR).on('click', e => {
         e.preventDefault();
         toggleMobileMenu();
     });
 }
 
 function burgerIconTouchend() {
-    $(BURGER_ANCHOR).on('touchstart', function (e) {
+    $(BURGER_ANCHOR).on('touchstart', e => {
         $(BURGER_ICON).addClass('touchstart');
         $(BURGER_ICON).removeClass('touchend');
     });
-    $(BURGER_ANCHOR).on('touchend', function (e) {
+    $(BURGER_ANCHOR).on('touchend', e => {
         $(BURGER_ICON).removeClass('touchstart');
         $(BURGER_ICON).addClass('touchend');
     });
 }
 
 function mobileMenuItemClick() {
-    $(MOBILE_MENU_ITEM).on('click', function (e) {
+    $(MOBILE_MENU_ITEM).on('click', function(e) {
         e.preventDefault();
-        if ($(this).hasClass('coming-soon')) {
-            return;
+        if($(this).hasClass('coming-soon')) {
+            return
         } else if ($(this).hasClass('write-review') && state.loggedIn === false) {
-            return;
+            return
         } else {
             closeMobileMenu();
         }
@@ -1895,7 +2151,7 @@ function mobileMenuItemClick() {
 }
 
 function reviewsNavItemClick() {
-    $(REVIEWS_NAV_ITEM).on('click', function (e) {
+    $(REVIEWS_NAV_ITEM).on('click', e => {
         e.preventDefault();
         if (location.pathname !== '/') {
             window.location = '/#reviews';
@@ -1905,14 +2161,14 @@ function reviewsNavItemClick() {
 }
 
 function homeClick() {
-    $('.home').on('click', function (e) {
+    $('.home').on('click', e => {
         e.preventDefault();
         window.location = '/';
     });
 }
 
 function welcomeClick() {
-    $('.welcome').on('click', function (e) {
+    $('.welcome').on('click', e => {
         e.preventDefault();
         location.href = '/welcome';
     });
@@ -1922,37 +2178,40 @@ function welcomeClick() {
 //   Drone banner clicks
 // * * * * * * * * * * * * * 
 function droneBannerClicks() {
-    $('.drone-make').on('click', function (e) {
+    $('.drone-make').on('click', function(e) {
         e.preventDefault();
         droneBannerHandler($(this));
     });
 }
 
 function droneModelSlideChange() {
-    $(DRONE_MODELS_SLIDER).on('afterChange', function (e, slick, currentSlide) {
+    $(DRONE_MODELS_SLIDER).on('afterChange', function(e, slick, currentSlide) {
         e.preventDefault();
         $('.more-content').empty();
         displayDetailSpecs(currentSlide);
     });
 }
 
+
+
 // * * * * * * * * * * * * * 
 //   Login modal btn
 // * * * * * * * * * * * * * 
 function loginBtnsClick() {
     // main nav login-btn
-    $(LOGIN_BTN).on('click', function (e) {
+    $(LOGIN_BTN).on('click', e => {
         e.preventDefault();
         closeMobileMenu();
         openLoginSignupModal('login');
     });
     // comments login-btn
-    $(REVIEWS).on('click', SUB_LOGIN_BTN, function (e) {
+    $(REVIEWS).on('click', SUB_LOGIN_BTN, e => {
         e.preventDefault();
         closeMobileMenu();
         openLoginSignupModal('login');
     });
 }
+
 
 // * * * * * * * * * * * * * 
 // Login form SUBMIT
@@ -1964,36 +2223,39 @@ function loginFormSubmit() {
     });
 }
 
+
 // * * * * * * * * * * * * * 
 // Logout btn
 // * * * * * * * * * * * * * 
 function logOutBtnClick() {
-    $(LOGOUT_BTN).on('click', function (e) {
+    $(LOGOUT_BTN).on('click', (e) => {
         e.preventDefault();
-        var delay = parseInt($('body').css('width')) < 585 ? 650 : 0;
-        setTimeout(function () {
+        let delay = parseInt($('body').css('width')) < 585 ? 650 : 0;
+        setTimeout(function() {
             logUserOut();
         }, delay);
     });
 }
+
 
 // * * * * * * * * * * * * * 
 // Signup modal btn
 // * * * * * * * * * * * * * 
 function signupBtnsClick() {
     // main nav signup-btn
-    $(SIGNUP_BTN).on('click', function (e) {
+    $(SIGNUP_BTN).on('click', e => {
         e.preventDefault();
         closeMobileMenu();
         openLoginSignupModal('signup');
     });
     // comments signup-btn
-    $(REVIEWS).on('click', SUB_SIGNUP_BTN, function (e) {
+    $(REVIEWS).on('click', SUB_SIGNUP_BTN, e => {
         e.preventDefault();
         closeMobileMenu();
         openLoginSignupModal('signup');
     });
 }
+
 
 // * * * * * * * * * * * * * 
 // Signup form SUBMIT
@@ -2004,6 +2266,8 @@ function signupFormSubmit() {
         signupFormHandler($(this));
     });
 }
+
+
 
 function signupScreenClick() {
     $(SIGNUP_SCREEN_BTN).on('click', function (e) {
@@ -2020,24 +2284,25 @@ function loginScreenClick() {
 }
 
 function signupLoginCloseClick() {
-    $(window).on('click', function (e) {
+    $(window).on('click', e => {
         if (e.target === $(LOGIN_SIGNUP_PAGE)[0] || e.target === $(LOGIN_SIGNUP_X)[0]) {
             closeLoginSignupModal();
         }
     });
 }
 
+
 // * * * * * * * * * * * * * 
 // Aside Filter
 // * * * * * * * * * * * * * 
 function asideFilterBtnHover() {
-    $(ASIDE_BTN).mouseenter(function (e) {
+    $(ASIDE_BTN).mouseenter(e => {
         e.preventDefault();
         $(ASIDE_CONTAINER).addClass('slide');
         $('.aside-chevron').addClass('flip');
     });
 
-    $(ASIDE_BTN).on('click', function (e) {
+    $(ASIDE_BTN).on('click', (e) => {
         e.preventDefault();
         $(ASIDE_CONTAINER).removeClass('slide');
         $('.aside-chevron').removeClass('flip');
@@ -2048,9 +2313,10 @@ function asideFilterBtnHover() {
 // Search Filter Form SUBMIT
 //
 function searchFilterFormSubmit() {
-    $(SEARCH_FILTER_FORM).submit(function (e) {
+    $(SEARCH_FILTER_FORM).submit(function(e) {
         e.preventDefault();
-        hide(FILTER_ALERT, FILTER_STATUS);
+        hide(FILTER_ALERT, 
+             FILTER_STATUS);
         searchFilterHandler();
     });
 }
@@ -2059,10 +2325,13 @@ function searchFilterFormSubmit() {
 // Clear filters -- show all reviews
 //
 function clearAsideFiltersClick() {
-    $('.clear-btn').on('click', function (e) {
+    $('.clear-btn').on('click', e => {
         e.preventDefault();
         console.log('click');
-        hide(FILTER_ALERT, FILTER_STATUS, QUERY_ERROR_MESSAGE, QUERY_TEXT);
+        hide(FILTER_ALERT, 
+             FILTER_STATUS, 
+             QUERY_ERROR_MESSAGE, 
+             QUERY_TEXT);
         $(REVIEW).add($('.post-hr')).show();
 
         $('#radio-filter-form')[0].reset();
@@ -2073,20 +2342,24 @@ function clearAsideFiltersClick() {
 // Filter reviews
 //
 function filterBtnClick() {
-    $(FILTER_FORM).submit(function (e) {
+    $(FILTER_FORM).submit(e => {
         e.preventDefault();
-        hide(FILTER_ALERT, QUERY_ERROR_MESSAGE, QUERY_TEXT);
+        hide(FILTER_ALERT, 
+             QUERY_ERROR_MESSAGE, 
+             QUERY_TEXT);
         filterReviewHandler();
     });
 }
+
+
 
 // * * * * * * * * * * * * * 
 // Reviews / Posts
 // * * * * * * * * * * * * * 
 function writeReviewNavClick() {
-    $(WRITE_REVIEW_NAV).on('click', function (e) {
+    $(WRITE_REVIEW_NAV).on('click', function(e) {
         e.preventDefault();
-        if (state.loggedIn) {
+        if(state.loggedIn) {
             slideInReviewForm($(this), REVIEW_FORM_SCREEN);
         } else {
             alert('Must be logged in!');
@@ -2094,27 +2367,34 @@ function writeReviewNavClick() {
     });
 }
 
+
 function closeReviewFormClick() {
-    $(CLOSE_BTN).on('click', function (e) {
+    $(CLOSE_BTN).on('click', e => {
         e.preventDefault();
         slideUpReviewForm();
     });
 }
 
 function videoUploadClick() {
-    $('.video-file-input').on('click', function (e) {
+    $('.video-file-input').on('click', e => {
         e.preventDefault();
         alert('Video uploads coming soon!');
     });
 }
 
+
 function starClick() {
-    $('.star').on('click', function (e) {
+    $('.star').on('click', function(e) {
         e.preventDefault();
-        $(this).siblings('.star').addBack().removeClass('filled-star');
-        $(this).nextAll().addBack().addClass('filled-star');
+        $(this).siblings('.star')
+               .addBack()
+               .removeClass('filled-star');
+        $(this).nextAll()
+               .addBack()
+               .addClass('filled-star');
     });
 }
+
 
 // * * * * * * * * * * * * * 
 // preview post
@@ -2122,17 +2402,18 @@ function starClick() {
 function previewBtnClick() {
     $(PREVIEW_BTN).on('click', function (e) {
         e.preventDefault();
-        var $form = $(this).closest('form');
+        let $form = $(this).closest('form');
         previewReviewHandler($form);
     });
 }
 
 function previewCloseBtnClick() {
-    $(PREIVEW_CLOSE_BTN).on('click', function (e) {
+    $(PREIVEW_CLOSE_BTN).on('click', e => {
         e.preventDefault();
         hide(PREVIEW_SCREEN);
     });
 }
+
 
 // * * * * * * * * * * * * * 
 // Edit post
@@ -2140,10 +2421,11 @@ function previewCloseBtnClick() {
 function editPostIconClick() {
     $(REVIEWS).on('click', EDIT_POST_ICON, function (e) {
         e.preventDefault();
-        var $post = $(this).closest('.post');
+        let $post = $(this).closest('.post');
         displayEditPostForm($post);
     });
 }
+
 
 // * * * * * * * * * * * * * 
 // Review form SUBMIT
@@ -2165,6 +2447,7 @@ function editReviewFormSubmit() {
     });
 }
 
+
 function commentBtnClick() {
     $(REVIEWS).on('click', COMMENTS_BTN, function (e) {
         e.preventDefault();
@@ -2173,7 +2456,7 @@ function commentBtnClick() {
 }
 
 function deletePostModalBtnClick() {
-    $(DELETE_POST_MODAL_BTN).on('click', function (e) {
+    $(DELETE_POST_MODAL_BTN).on('click', e => {
         e.preventDefault();
         show(DELETE_POST_MODAL);
         $(EDIT_REVIEW_FORM_SCREEN + ' .review-form-modal').addClass('faded');
@@ -2183,18 +2466,19 @@ function deletePostModalBtnClick() {
 function deletePostBtnClick() {
     $(DELETE_POST_BTN).on('click', function (e) {
         e.preventDefault();
-        var id = $(this).closest(EDIT_REVIEW_FORM).attr('data-post-id');
+        let id = $(this).closest(EDIT_REVIEW_FORM).attr('data-post-id');
         deletePost(id);
     });
 }
 
 function goBackBtnClick() {
-    $(GO_BACK_BTN).on('click', function (e) {
+    $(GO_BACK_BTN).on('click', e => {
         e.preventDefault();
         $(EDIT_REVIEW_FORM_SCREEN + ' .review-form-modal').removeClass('faded');
         hide(DELETE_POST_MODAL);
     });
 }
+
 
 // * * * * * * * * * * * * * 
 // Post Votes 
@@ -2202,14 +2486,20 @@ function goBackBtnClick() {
 function upVoteClick() {
     $(REVIEWS).on('click', UPVOTE_ARROW, function (e) {
         e.preventDefault();
-        if (state.loggedIn) voteOnPost($(this));else alert('Must be logged in');
+        if (state.loggedIn)
+            voteOnPost($(this));
+        else
+            alert('Must be logged in');
     });
 }
 
 function downVoteClick() {
     $(REVIEWS).on('click', DOWNVOTE_ARROW, function (e) {
         e.preventDefault();
-        if (state.loggedIn) voteOnPost($(this), false);else alert('Must be logged in');
+        if (state.loggedIn)
+            voteOnPost($(this), false);
+        else
+            alert('Must be logged in');
     });
 }
 
@@ -2219,16 +2509,23 @@ function downVoteClick() {
 function commentLikeClick() {
     $(REVIEWS).on('click', LIKE, function (e) {
         e.preventDefault();
-        if (state.loggedIn) likeDislikeComment($(this));else alert('Must be logged in');
+        if (state.loggedIn)
+            likeDislikeComment($(this));
+        else
+            alert('Must be logged in');
     });
 }
 
 function commentDislikeClick() {
     $(REVIEWS).on('click', DISLIKE, function (e) {
         e.preventDefault();
-        if (state.loggedIn) likeDislikeComment($(this), false);else alert('Must be logged in');
+        if (state.loggedIn)
+            likeDislikeComment($(this), false);
+        else
+            alert('Must be logged in');
     });
 }
+
 
 // * * * * * * * * * * * * * 
 // Comment form SUBMIT
@@ -2236,21 +2533,29 @@ function commentDislikeClick() {
 function commentFormSubmit() {
     $(REVIEWS).on('submit', COMMENT_FORM, function (e) {
         e.preventDefault();
-        if (state.loggedIn) commentFormHandler($(this));else console.log('Must be logged in');
-    });
+        if (state.loggedIn)
+            commentFormHandler($(this));
+        else
+            console.log('Must be logged in');
+    })
 }
 
 function replyCommentFormSubmit() {
     $(REVIEWS).on('submit', REPLY_COMMENT_FORM, function (e) {
         e.preventDefault();
-        if (state.loggedIn) commentFormHandler($(this));else console.log('Must be logged in');
+        if (state.loggedIn)
+            commentFormHandler($(this));
+        else
+            console.log('Must be logged in');
     });
 }
 
 function replyCommentsArrowClick() {
     $(REVIEWS).on('click', '.expand-reply-comments-btn', function (e) {
         e.preventDefault();
-        $(this).closest('.comment').find('.reply-comments-container').toggleClass('expand');
+        $(this).closest('.comment')
+               .find('.reply-comments-container')
+               .toggleClass('expand');
         $(this).toggleClass('open');
         $(this).siblings().toggleClass('hidden');
     });
@@ -2269,10 +2574,10 @@ function specsBtnClick() {
 
 // open video modal
 function expandArrowClick() {
-    $(EXPAND_ARROW).on('click', function (e) {
+    $(EXPAND_ARROW).on('click', e => {
         e.preventDefault();
-        var time = Math.floor(state.player.getCurrentTime()),
-            url = $(MAIN_VID).attr('src');
+        let time = Math.floor(state.player.getCurrentTime()),
+            url  = $(MAIN_VID).attr('src');
         state.expanded = true;
         openVideoModal(url, time, -1);
     });
@@ -2280,7 +2585,7 @@ function expandArrowClick() {
 
 // close video modal
 function closeVideoModalClick() {
-    $(V_CLOSE_ICON).on('click', function (e) {
+    $(V_CLOSE_ICON).on('click', e => {
         e.preventDefault();
         state.expanded = false;
         closeVideoModal();
@@ -2289,7 +2594,7 @@ function closeVideoModalClick() {
 
 // next video click
 function nextVidBtnClick() {
-    $('.next-vid-btn').on('click', function (e) {
+    $('.next-vid-btn').on('click', e => {
         e.preventDefault();
         if (state.expanded) {
             mainModalNavController('next');
@@ -2301,7 +2606,7 @@ function nextVidBtnClick() {
 
 // prev video click
 function prevVidBtnClick() {
-    $('.prev-vid-btn').on('click', function (e) {
+    $('.prev-vid-btn').on('click', e => {
         e.preventDefault();
         if (state.expanded) {
             mainModalNavController('prev');
@@ -2311,9 +2616,10 @@ function prevVidBtnClick() {
     });
 }
 
+
 // main gallery video clicks
 function videoGalleryClicks() {
-    $(G_IMG).on('click', function (e) {
+    $(G_IMG).on('click', function(e) {
         e.preventDefault();
         videoGalleryHandler($(this));
     });
@@ -2321,9 +2627,9 @@ function videoGalleryClicks() {
 
 // sub gallery video clicks --> opens modal
 function moreVideoGalleryClicks() {
-    $('.more-content').on('click', G_IMG, function (e) {
+    $('.more-content').on('click', G_IMG, function(e) {
         e.preventDefault();
-        var url = $(this).attr('data-vid-url'),
+        let url   = $(this).attr('data-vid-url'),
             index = $('.more-content .g-video img').index(this);
         openVideoModal(url, 0, index);
     });
@@ -2331,15 +2637,15 @@ function moreVideoGalleryClicks() {
 
 // opens sub video gallery
 function openMoreVideosBtnClick() {
-    $('.more-btn').on('click', function (e) {
+    $('.more-btn').on('click', function(e) {
         e.preventDefault();
-        var $btn = $(this);
+        let $btn = $(this);
         $('.more-content-container').toggleClass('slide');
         $btn.toggleClass('open');
-        if ($btn.hasClass('open')) {
+        if($btn.hasClass('open')) {
             $btn.text('Close');
         } else {
-            setTimeout(function () {
+            setTimeout(function() {
                 $btn.text('Checkout More');
             }, 150);
         }
@@ -2348,24 +2654,25 @@ function openMoreVideosBtnClick() {
 
 // call to api to fetch more videos
 function getMoreVideosIconClick() {
-    $(MORE_ICON).on('click', function (e) {
+    $(MORE_ICON).on('click', e => {
         e.preventDefault();
         nextSearchPageHandler();
     });
 }
 
+
 // * * * * * * * * * * * * 
 // Footer clicks
 // * * * * * * * * * * * * 
 function toTopClick() {
-    $(TOP_TOP_ARROW).on('click', function (e) {
+    $(TOP_TOP_ARROW).on('click', e => {
         e.preventDefault();
         smoothScroll('#main-header', 300);
     });
 }
 
 function newsClick() {
-    $('.coming-soon').on('click', function (e) {
+    $('.coming-soon').on('click', e => {
         e.preventDefault();
         alert('RSS news feed coming soon');
     });
@@ -2447,13 +2754,12 @@ function init() {
     displayDroneSlider(); // inits drone slider and conceals FOUC
     displayDroneModelsSlider();
     droneModelSlideChange();
-    displayCurrentUser();
     checkIfUserLoggedIn();
+    displayCurrentUser();
     limitNavUserMessage();
-    if (location.href.indexOf('drones') >= 0) {
-        // only fires when user is on page slider element exists
+    if(location.href.indexOf('drones') >= 0) { // only fires when user is on page slider element exists
         displayDetailSpecs(0); // fetches specs for each review post drone model        
-    }
+    }    
 }
 
 function utils() {
@@ -2480,3 +2786,5 @@ $(function () {
 
     init();
 });
+
+
