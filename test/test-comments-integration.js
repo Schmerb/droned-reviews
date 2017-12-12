@@ -5,11 +5,11 @@ const chai     = require('chai'),
 
 const should = chai.should();
 
-const {Comment} = require('../models/comments');
-const {Post} = require('../models/posts')
+const { Comment } = require('models/comments');
+const { Post }    = require('models/posts')
 
-const {app, runServer, closeServer} = require('../server');
-const {TEST_DATABASE_URL} = require('../config/database');
+const { app, runServer, closeServer } = require('../server');
+const { TEST_DATABASE_URL  }          = require('config/database');
 
 chai.use(chaiHttp);
 

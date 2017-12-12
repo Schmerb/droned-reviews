@@ -5,10 +5,10 @@ const mongoose = require('mongoose');
 
 const should = chai.should();
 
-const {Post} = require('../models/posts');
+const { Post } = require('models/posts');
 
-const {app, runServer, closeServer} = require('../server');
-const {TEST_DATABASE_URL} = require('../config/database');
+const { app, runServer, closeServer } = require('../server');
+const { TEST_DATABASE_URL }           = require('config/database');
 
 chai.use(chaiHttp);
 

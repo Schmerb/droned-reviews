@@ -7,10 +7,10 @@ const chai     = require('chai'),
 const should = chai.should();
 const expect = chai.expect;
 
-const {User} = require('../models/user');
+const { User } = require('models/user');
 
-const {app, runServer, closeServer} = require('../server');
-const {TEST_DATABASE_URL} = require('../config/database');
+const { app, runServer, closeServer } = require('../server');
+const { TEST_DATABASE_URL }           = require('config/database');
 
 chai.use(chaiHttp);
 
