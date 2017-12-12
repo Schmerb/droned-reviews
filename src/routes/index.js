@@ -4,7 +4,7 @@ const express                     = require('express'),
       bodyParser                  = require('body-parser'),
       {checkSessionCookieVisited} = require('../services/cookieCheck');
 
-const router     = express.Router();
+const router = express.Router();
 
 
 

@@ -1595,7 +1595,7 @@ function deletePost(id) {
 function uploadFile(blobFile, postId) {
     let formData = new FormData();
     formData.append('file', blobFile);
-
+    
     $.ajax({
         url: '/file/img',
         type: 'POST',
