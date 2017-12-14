@@ -60,8 +60,8 @@ gulp.task('nodemon', (cb) => {
 ////////////////////
 // - Minify CSS
 ////////////////////
-const CSS_SRC  = './src/build/css/*.css';
-const CSS_DEST = './public/css/';
+const CSS_SRC  = 'src/build/css/*.css';
+const CSS_DEST = 'public/css/';
 
 gulp.task('minify_css', () => {
 	return gulp.src(CSS_SRC)
@@ -78,13 +78,18 @@ gulp.task('watch_css', () => {
 ////////////////////
 // - BABEL / Minify
 ////////////////////
-const JS_SRC  = './src/build/js/*.js';
-const JS_DEST = './public/js/';
+const JS_SRC  = 'src/build/js/*.js';
+const JS_DEST = 'public/js/';
  
 gulp.task('build_js', () => {
-	console.log('BUILDING');
 	return gulp.src(JS_SRC)
 		.pipe(concat('bundle.js'))
+		.pipe(babel({
+			presets: ['env']
+		}))
+		.pipe(browserify({
+			insertGlobals: true
+		}))
 		.pipe(minify({
 			ext: {
 				src: '.js',
@@ -94,18 +99,9 @@ gulp.task('build_js', () => {
 		.pipe(gulp.dest(JS_DEST));
 });
 gulp.task('watch_js', () => {
-	console.log('Inside WATCH_JS');
-	return watch(JS_SRC, () => {
-        gulp.start('build_js');
-    });
+	return watch(JS_SRC, () => gulp.start('build_js'));
 });
 
-// .pipe(babel({
-		// 	presets: ['env']
-		// }))
-		// .pipe(browserify({
-		// 	insertGlobals: true
-		// }))
  
 ////////////////////
 // - Entry point,
@@ -113,7 +109,4 @@ gulp.task('watch_js', () => {
 //	--> listens for file changes 
 //	--> triggers build
 ////////////////////
-gulp.task('default', ['browser-sync', 'build_js', 'watch_js', 'minify_css', 'watch_css'], () => {
-	console.log('TESTING');
-	console.log(process.env.NODE_PATH);
-});
+gulp.task('default', ['browser-sync', 'build_js', 'watch_js', 'minify_css', 'watch_css']);

@@ -14,7 +14,15 @@ let state = {
     downScrollPos: 0
 };  
 
-  // testing~
+// // // // // // // //
+// 
+//  ES6 Polyfills
+//
+// // // // // // // //
+const values = require('object.values');
+require('es6-object-assign').polyfill();
+
+
 // Banner Nav
 const BANNER_WRAP      = '.banner-wrap';
 const BURGER_ANCHOR    = '.burger-anchor';
@@ -932,11 +940,12 @@ function closeMobileMenu() {
 
 
 
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Adds hidden class to all classes passed in as args
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function hide() {
-    Object.values(arguments).forEach((target) => {
+    values(arguments).forEach((target) => {
         $(target).addClass('hidden');
     });
 }
@@ -945,7 +954,7 @@ function hide() {
 // Removes hidden class from all classes passed in as args
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function show() {
-    Object.values(arguments).forEach((target) => {
+    values(arguments).forEach((target) => {
         $(target).removeClass('hidden');
     });
 }
