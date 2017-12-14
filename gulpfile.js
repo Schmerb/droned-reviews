@@ -3,15 +3,16 @@
 // Module dependencies
 const gulp        = require('gulp'),
 	  browserSync = require('browser-sync'),
-	  reload      = browserSync.reload,
 	  nodemon     = require('gulp-nodemon'),
 	  rename      = require('gulp-rename'),
 	  minifyCSS   = require('gulp-clean-css'),
 	  minify      = require('gulp-minify'),
 	  concat      = require('gulp-concat'),
+	  watch    	  = require('gulp-watch'),
 	  browserify  = require('gulp-browserify'),
 	  babel       = require('gulp-babel');
 
+const reload = browserSync.reload;
 
 /////////////////////
 // - Browser-sync
@@ -19,7 +20,13 @@ const gulp        = require('gulp'),
 gulp.task('browser-sync', ['nodemon'], () =>  {
 	browserSync.init(null, {
 		proxy: "http://localhost:8080",
-        files: ["public/**/*.js"],
+        files: [
+			"public/**/*.js", 
+			"public/css/screen.min.css", 
+			"src/**/*.ejs", 
+			"src/**/*.js",
+			"src/build/js/*.js"
+		],
         browser: "google chrome",
         port: 7000,
 	});
@@ -49,52 +56,64 @@ gulp.task('nodemon', (cb) => {
     })
 });
 
-////////////////////
-// - BABEL / Minify
-////////////////////
-const JS_SRC  = 'build/js/*.js';
-const JS_DEST = 'public/js/';
- 
-gulp.task('build_es6', () => {
-	gulp.watch([JS_SRC], () => {
-		return gulp.src(JS_SRC)
-		    .pipe(concat('bundle.js'))
-			.pipe(babel({
-				presets: ['env']
-			}))
-			.pipe(browserify({
-				insertGlobals: true
-			}))
-			.pipe(minify({
-				ext: {
-					src: '.js',
-					min: '.min.js'
-				}
-			}))
-			.pipe(gulp.dest(JS_DEST))
-	});
-});
 
 ////////////////////
 // - Minify CSS
 ////////////////////
-const CSS_SRC  = 'build/css/*.css';
-const CSS_DEST = 'public/css/';
+const CSS_SRC  = './src/build/css/*.css';
+const CSS_DEST = './public/css/';
 
-gulp.task('minify-css', () => {
-	gulp.watch([CSS_SRC], () => {
-		return gulp.src(CSS_SRC)
-			.pipe(concat('screen.css'))
-			.pipe(minifyCSS())
-			.pipe(rename({suffix: '.min'}))
-			.pipe(gulp.dest(CSS_DEST))
-	});
+gulp.task('minify_css', () => {
+	return gulp.src(CSS_SRC)
+		.pipe(concat('screen.css'))
+		.pipe(minifyCSS())
+		.pipe(rename({suffix: '.min'}))
+		.pipe(gulp.dest(CSS_DEST));
 });
- 
+gulp.task('watch_css', () => {
+	return watch(CSS_SRC, () => gulp.start('minify_css'));
+});
 
-// Reload browser on file save
-gulp.task('default', ['browser-sync', 'build_es6', 'minify-css'], () => {
-	gulp.watch(["**/*.html", "**/*.css", "**/*.js", "**/**/*.ejs", "*.json", "*.md"], () => {
-		reload();
-	});
+
+////////////////////
+// - BABEL / Minify
+////////////////////
+const JS_SRC  = './src/build/js/*.js';
+const JS_DEST = './public/js/';
+ 
+gulp.task('build_js', () => {
+	console.log('BUILDING');
+	return gulp.src(JS_SRC)
+		.pipe(concat('bundle.js'))
+		.pipe(minify({
+			ext: {
+				src: '.js',
+				min: '.min.js'
+			}
+		}))
+		.pipe(gulp.dest(JS_DEST));
+});
+gulp.task('watch_js', () => {
+	console.log('Inside WATCH_JS');
+	return watch(JS_SRC, () => {
+        gulp.start('build_js');
+    });
+});
+
+// .pipe(babel({
+		// 	presets: ['env']
+		// }))
+		// .pipe(browserify({
+		// 	insertGlobals: true
+		// }))
+ 
+////////////////////
+// - Entry point,
+//  starts server  
+//	--> listens for file changes 
+//	--> triggers build
+////////////////////
+gulp.task('default', ['browser-sync', 'build_js', 'watch_js', 'minify_css', 'watch_css'], () => {
+	console.log('TESTING');
+	console.log(process.env.NODE_PATH);
 });

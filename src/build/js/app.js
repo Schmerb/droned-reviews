@@ -12,9 +12,9 @@ let state = {
     },
     prevScrollPos: 0,
     downScrollPos: 0
-};
+};  
 
- 
+  // testing~
 // Banner Nav
 const BANNER_WRAP      = '.banner-wrap';
 const BURGER_ANCHOR    = '.burger-anchor';
