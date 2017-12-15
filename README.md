@@ -116,6 +116,10 @@ Droned Reviews is a user sourced drone review website that provides a platform f
             * Allows for multiple screens to reload live and all interactions are in synchronization, mirroring actions across every browser on any device located on local network.
             * compatible with Gulp
         * Gulp + gulp-nodemon + Browsersync combine to streamline the entire development process
+        * [Browserify](http://browserify.org/)
+            * npm module support for browser
+        * [Babel](https://babeljs.io/) 
+            * ES6 support for older environments (IE8 etc)
 
 ## Notes
 * Hosted on [Heroku](https://heroku.com/)'s Cloud Application Platform 
