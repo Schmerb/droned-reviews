@@ -71,7 +71,7 @@ app.get('/.well-known/acme-challenge/W5gZYe9fttg3p1hrSaxhFJ0Z_gr65TA-rIiK5Bvlbqo
 app.use('*', (req, res) => {
     res.status(404).json({message: 'Not Found'});
 });
-
+ 
 
 // SERVER / DB CONNECTION
 
