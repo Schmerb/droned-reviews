@@ -53,7 +53,7 @@ app.use(busboyBodyParser({ limit: '10mb' })); // required for gridFS file store
 app.use(session({ 
   secret: 'secret',
   store: new MongoStore({ mongooseConnection: mongoose.connection }),
-  resave: false,
+  resave: false, 
   saveUninitialized: false
 }));
 
