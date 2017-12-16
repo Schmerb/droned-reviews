@@ -8,7 +8,6 @@ const express          = require('express'),
       bodyParser       = require('body-parser'),
       cookieParser     = require('cookie-parser'),
       path             = require('path'),
-      flash            = require('connect-flash'), // not currently used
       engine           = require('ejs-mate'),
       busboyBodyParser = require('busboy-body-parser');
 
@@ -29,7 +28,6 @@ app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/src/views'));
 
-console.log('\n\n\n', path.join(__dirname, '/src/views'), '\n\n');
 
 // MIDDLEWARE
 
@@ -58,12 +56,16 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
-// app.use(flash());
 
 
 // ROUTES
 app.use(router);
 
+
+// SSL CERT endpoint
+app.get('/.well-known/acme-challenge/W5gZYe9fttg3p1hrSaxhFJ0Z_gr65TA-rIiK5Bvlbqo', (req, res) => {
+  res.send('W5gZYe9fttg3p1hrSaxhFJ0Z_gr65TA-rIiK5Bvlbqo.r9-HcCoTZgMpW4CXYteG58b6mRvZFzcFinana_zn71Q');
+});
 
 // fallback error message for all non-existant endpoints
 app.use('*', (req, res) => {
