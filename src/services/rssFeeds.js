@@ -1,15 +1,15 @@
 'use strict';
+const FeedParser = require('feedparser');
+const request    = require('request'); // for fetching the feed
+
+
+let jsonArr = [];
 
 //================================================================================
 // TO BE IMPLEMENTED...
 //================================================================================
 
-
-let jsonArr = [];
-
 exports.getFeed = (req, res) => {
-  const FeedParser = require('feedparser');
-  const request = require('request'); // for fetching the feed
 
   req = request('http://dronelife.com/feed/');
   const feedparser = new FeedParser();

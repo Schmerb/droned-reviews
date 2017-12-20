@@ -1,8 +1,8 @@
 'use strict';
 
-const express                     = require('express'),
-      bodyParser                  = require('body-parser'),
-      {checkSessionCookieVisited} = require('../services/cookieCheck');
+const express                       = require('express'),
+      bodyParser                    = require('body-parser'),
+      { checkSessionCookieVisited } = require('../services/cookieCheck');
 
 const router = express.Router();
 
@@ -26,12 +26,11 @@ const postsRouter    = require('./postsRouter'),
 
 // routes for app
 
+// main page -- middleware redirects to /welcome page if first visit
+router.get('/', checkSessionCookieVisited, mainController.getIndex);
+
 // Landing Page * CAPSTONE PROJECT ONLY *
 router.get('/welcome', mainController.getLanding);
-
-
-// main page
-router.get('/', checkSessionCookieVisited, mainController.getIndex);
 
 // mission page
 router.get('/mission', mainController.getMission);

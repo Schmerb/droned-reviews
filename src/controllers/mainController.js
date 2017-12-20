@@ -1,9 +1,9 @@
 'use strict';
 
-const {checkSessionCookieLoggedIn} = require('../services/cookieCheck');
+const { checkSessionCookieLoggedIn } = require('../services/cookieCheck');
 
 exports.getLanding = (req, res) => {
-    let {loggedIn, username} = checkSessionCookieLoggedIn(req);
+    let { loggedIn, username } = checkSessionCookieLoggedIn(req);
 
     res.status(200).render('pages/landing', {
         loggedIn: loggedIn,
@@ -13,7 +13,7 @@ exports.getLanding = (req, res) => {
 
 
 exports.getIndex = (req, res) => {
-    let {loggedIn, username} = checkSessionCookieLoggedIn(req);
+    let { loggedIn, username } = checkSessionCookieLoggedIn(req);
 
     console.log({loggedIn, username});
 
@@ -25,7 +25,8 @@ exports.getIndex = (req, res) => {
 
 
 exports.getMission = (req, res) => {
-    let {loggedIn, username} = checkSessionCookieLoggedIn(req);
+    let { loggedIn, username } = checkSessionCookieLoggedIn(req);
+    
     res.status(200).render('pages/mission', {
         loggedIn: loggedIn,
         username: JSON.stringify(username)
