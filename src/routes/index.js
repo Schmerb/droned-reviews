@@ -6,11 +6,7 @@ const express                       = require('express'),
 
 const router = express.Router();
 
-
-
-
 router.use(bodyParser.urlencoded({ extended: true }));
-
 
 // controllers
 const mainController       = require('../controllers/mainController'),

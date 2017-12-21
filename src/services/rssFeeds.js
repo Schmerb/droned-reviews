@@ -1,53 +1,30 @@
 'use strict';
-const FeedParser = require('feedparser');
-const request    = require('request'); // for fetching the feed
+const feedparser = require('feedparser-promised');
 
-
-let jsonArr = [];
-
-//================================================================================
-// TO BE IMPLEMENTED...
-//================================================================================
 
 exports.getFeed = (req, res) => {
 
-  req = request('http://dronelife.com/feed/');
-  const feedparser = new FeedParser();
-  req.on('error', function (error) {
-    // handle any request errors
-  });
+	let urls = [
+		'http://dronelife.com/feed/',
+		'http://quadcopterhq.com/feed/',
+		'http://www.quadcopterguide.com/feed/',
+		'http://www.rotordronemag.com/?feed=rss'
+	];
 
-  req.on('response', function (res) {
-    let stream = this; // `this` is `req`, which is a stream
-
-    if (res.statusCode !== 200) {
-      this.emit('error', new Error('Bad status code'));
-    }
-    else {
-      stream.pipe(feedparser);
-    }
-  });
-
-  feedparser.on('error', function (error) {
-    // always handle errors
-  });
-
-  feedparser.on('readable', function () {
-    // This is where the action is!
-    let stream = this; // `this` is `feedparser`, which is a stream
-    let meta = this.meta; // **NOTE** the "meta" is always available in the context of the feedparser instance
-    let item;
-
-    while (item = stream.read()) {
-      console.log(item);
-      jsonArr.push(item);
-    }
-    // This part errors
-    // Error: Can't set headers after they are sent.
-    // res.json({
-    //     "test": 123,
-    //     "json" : jsonArr
-    // });
-    res.send(jsonArr);
-  });
+	let feeds = [];
+	for (let url of urls) {
+		console.log(url);
+		feeds.push(feedparser.parse(url));
+	}
+		
+	Promise.all(feeds)
+		.then(results => {
+			console.log('\n\n\nResults\n\n');
+			console.log(results);
+			res.status(200).json({
+				results
+			});
+		})
+		.catch(err => console.log(err));
 }
+
