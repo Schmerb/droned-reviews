@@ -1,5 +1,4 @@
 node_modules
 mock-code.js
+tester.js
 amazon-links.html
-server.csr
-server.pass.key
