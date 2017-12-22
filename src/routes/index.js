@@ -33,7 +33,6 @@ router.get('/mission', mainController.getMission);
 
 // RSS Feed
 router.get('/feed', feedUpdateController.getFeed);
-router.get('/feed-data', feedUpdateController.getFeedData);
 
 // send all traffic to /posts/(:id)/comments to commentsRouter
 router.all(['/posts/comments',
