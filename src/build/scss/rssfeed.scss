@@ -10,12 +10,18 @@ $blue: #29b6f6;
 
 .rss-feed-container {
     max-width: 1000px;
-    margin: 50px auto;
+    margin: 100px auto;
     
     .title {
         color: $blue;
         text-align: center;
         font-size: 36px;
+        margin-bottom: 100px;
+        &::after {
+            font-family: FontAwesome;
+            content: '\f09e';
+            margin-left: 20px;
+        }
     }
     h3 {
         margin: 0;
@@ -31,7 +37,7 @@ $blue: #29b6f6;
             list-style: none; 
             margin-bottom: 70px;
         } 
-    }
+    } 
     hr {
         border-color: rgba(#555,0.1);
         margin-bottom: 80px;
