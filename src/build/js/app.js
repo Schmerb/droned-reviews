@@ -1714,23 +1714,7 @@ function updateComment(updateData) {
     });
 }
 
-// RSS Feed calls
-function getRssFeed() {
-    $.ajax({
-        url: '/feed',
-        type: 'GET',
-        dataType: 'json',
-        success: rssCb,
-        error: (jqXHR, textStatus, err) => {
-            console.log(err);
-        }
-    });
-}
 
-function rssCb(res) {
-    let { posts } = res;
-
-}
 
 
 
