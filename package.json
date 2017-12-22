@@ -45,6 +45,8 @@
     "gulp-minify": "^2.1.0",
     "gulp-nodemon": "^2.2.1",
     "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sass-glob": "^1.0.8",
     "gulp-watch": "^4.3.11",
     "mocha": "^3.5.0"
   }

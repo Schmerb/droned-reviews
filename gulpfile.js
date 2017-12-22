@@ -4,6 +4,8 @@
 const gulp        = require('gulp'),
 	  browserSync = require('browser-sync'),
 	  nodemon     = require('gulp-nodemon'),
+	  sass     	  = require('gulp-sass'),
+	  sassGlob    = require('gulp-sass-glob'),
 	  rename      = require('gulp-rename'),
 	  minifyCSS   = require('gulp-clean-css'),
 	  minify      = require('gulp-minify'),
@@ -58,20 +60,22 @@ gulp.task('nodemon', (cb) => {
 
 
 ////////////////////
-// - Minify CSS
+// - Build CSS
 ////////////////////
-const CSS_SRC  = 'src/build/css/*.css';
+const CSS_SRC  = ['src/build/css/*.css', 'src/build/scss/*.scss'];
 const CSS_DEST = 'public/css/';
 
-gulp.task('minify_css', () => {
+gulp.task('build_css', () => {
 	return gulp.src(CSS_SRC)
 		.pipe(concat('screen.css'))
+		.pipe(sassGlob())
+		.pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
 		.pipe(minifyCSS())
 		.pipe(rename({suffix: '.min'}))
 		.pipe(gulp.dest(CSS_DEST));
 });
 gulp.task('watch_css', () => {
-	return watch(CSS_SRC, () => gulp.start('minify_css'));
+	return watch(CSS_SRC, () => gulp.start('build_css'));
 });
 
 
@@ -109,4 +113,4 @@ gulp.task('watch_js', () => {
 //	--> listens for file changes 
 //	--> triggers build
 ////////////////////
-gulp.task('default', ['browser-sync', 'build_js', 'watch_js', 'minify_css', 'watch_css']);
+gulp.task('default', ['browser-sync', 'build_js', 'watch_js', 'build_css', 'watch_css']);

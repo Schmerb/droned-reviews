@@ -1,0 +1,60 @@
+/* * * * * * * * * * * * * */
+/*
+/*      RSS FEED 
+/*
+/* * * * * * * * * * * * * */
+
+@import "_placeholders_mixins.scss";
+
+$blue: #29b6f6;
+
+.rss-feed-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    
+    .title {
+        color: $blue;
+        text-align: center;
+        font-size: 36px;
+    }
+    h3 {
+        margin: 0;
+        padding: 0;
+        margin-bottom: 15px;
+    } 
+    ul {
+        margin: 0;
+        padding: 0;
+        width: 92%;
+        margin: 0 auto;
+        li {
+            list-style: none; 
+            margin-bottom: 70px;
+        } 
+    }
+    hr {
+        border-color: rgba(#555,0.1);
+        margin-bottom: 80px;
+    }
+    .link-btn {
+        @include transition(0.2s);
+        text-decoration: none;
+        color: $blue;
+        display: block; 
+        width: 100px;
+        height: 35px;
+        line-height: 35px;  
+        border: 1px solid lightgrey;   
+        border-radius: 3px;
+        text-align: center;
+        margin: 0 auto;
+        @include mediaMin(700px) {
+            margin: 0;
+        }
+        &:hover {
+            border-color: $blue;
+            background-color: $blue;
+            color: white;
+        }
+    }
+} 

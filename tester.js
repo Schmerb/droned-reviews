@@ -3,4 +3,4 @@
 // console.log('hello', getFeed());
 
 
-require('services/rssFeeds.js').getFeed();
+require('services/rssFeeds.js').getFeedData();

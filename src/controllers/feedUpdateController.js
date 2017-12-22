@@ -4,5 +4,6 @@
 const rssFeeds = require('../services/rssFeeds');
 
 
-exports.getFeed =  rssFeeds.getFeed;
+exports.getFeed     =  rssFeeds.getFeed;
+exports.getFeedData =  rssFeeds.getFeedData;
 

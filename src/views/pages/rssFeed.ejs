@@ -1,0 +1,24 @@
+<% layout('layout') %>
+
+<!-- RSS FEEDs -->
+<div class="rss-feed-container">
+    <h2 class="title">RSS Feeds</h2>
+    <ul class="feed-list">
+        <% for(var i=0; i<posts.length; i++) {%>
+            <% const { title, author, description, link } = posts[i]; %>
+
+            <li>
+                <article>
+                    <label>
+                        <h3><%= title %></h3>
+                        <span>by <%= author || 'unknown' %></span>
+                    </label>
+                    <p><%- description %></p>
+                    <a class="link-btn" href=<%= link %> target="__blank">Read Article</a>
+                </article>
+            </li>
+            <hr>
+        <% } %>
+    </ul>
+
+</div>

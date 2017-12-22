@@ -4477,6 +4477,23 @@ function updateComment(updateData) {
     });
 }
 
+// RSS Feed calls
+function getRssFeed() {
+    $.ajax({
+        url: '/feed',
+        type: 'GET',
+        dataType: 'json',
+        success: rssCb,
+        error: function error(jqXHR, textStatus, err) {
+            console.log(err);
+        }
+    });
+}
+
+function rssCb(res) {
+    var posts = res.posts;
+}
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * 
 // YoutTube API calls
 // * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -4824,6 +4841,8 @@ function getElapsedTime(prevDate) {
 function hashUrlHandler() {
     if (location.hash === '#reviews') {
         smoothScroll(REVIEWS);
+    } else if (location.pathname === '/feed') {
+        smoothScroll('.rss-feed-container', 1200, 50);
     }
 }
 
@@ -5390,7 +5409,8 @@ function toTopClick() {
 function newsClick() {
     $('.coming-soon').on('click', function (e) {
         e.preventDefault();
-        alert('RSS news feed coming soon');
+        window.location = '/feed';
+        getRssFeed();
     });
 }
 
@@ -6091,5 +6111,5 @@ var droneBrands = {
     xiro: 'Xiro',
     udi: 'UDI'
 };
-}).call(this,require("FT5ORs"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_91b82c06.js","/")
+}).call(this,require("FT5ORs"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_9e6fc967.js","/")
 },{"FT5ORs":33,"buffer":2,"es6-object-assign":19,"object.values":30}]},{},[34])

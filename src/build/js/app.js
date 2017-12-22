@@ -1714,6 +1714,27 @@ function updateComment(updateData) {
     });
 }
 
+// RSS Feed calls
+function getRssFeed() {
+    $.ajax({
+        url: '/feed',
+        type: 'GET',
+        dataType: 'json',
+        success: rssCb,
+        error: (jqXHR, textStatus, err) => {
+            console.log(err);
+        }
+    });
+}
+
+function rssCb(res) {
+    let { posts } = res;
+
+}
+
+
+
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * 
 // YoutTube API calls
 // * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -2063,6 +2084,8 @@ function getElapsedTime(prevDate) {
 function hashUrlHandler() {
     if(location.hash === '#reviews') {
         smoothScroll(REVIEWS);
+    } else if (location.pathname === '/feed') {
+        smoothScroll('.rss-feed-container', 1200, 50);
     }
 } 
 
@@ -2683,7 +2706,8 @@ function toTopClick() {
 function newsClick() {
     $('.coming-soon').on('click', e => {
         e.preventDefault();
-        alert('RSS news feed coming soon');
+        window.location = '/feed';
+        getRssFeed();
     });
 }
 
@@ -2790,10 +2814,12 @@ $(function () {
     signupLoginFormEvents();
     writeReviewFormEvents();
     asideEvents();
-    reviewEvents();
+    reviewEvents(); 
     detailPageClicks();
 
     init();
+
+    
 });
 
 
