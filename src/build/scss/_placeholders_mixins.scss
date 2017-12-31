@@ -5,7 +5,6 @@
 // // // // // // // // // // // // // // 
 
 
-
 // ==================================================
 //      mixins
 // ==================================================
@@ -17,6 +16,7 @@
          -o-transition: $what $time $type $delay;
             transition: $what $time $type $delay;
 }
+
 @mixin benz-transition($time: 400s) {
     @include transition($time, all, cubic-bezier(0.700, 0.110, 0.890, 0.605));
 }

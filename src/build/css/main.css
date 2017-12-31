@@ -16,12 +16,17 @@ body {
     position: relative;
     background: lightgrey;
     background: #37474f;
-    background: #263238;
+    background: #263238; 
     background: white;
     margin: 0;
     width: 100%;
     min-width: 320px;
     /* overflow-x: hidden; */
+}
+
+#symbol-defs {
+    display: none;
+    height: 0;
 }
 
 /*============================================================/
@@ -2579,11 +2584,19 @@ section.review-page-container {
 
  /* social links  BASE */
 
+.social-links {
+    width: 200px;
+}
 
 .social-links, 
 .social-links li {
     padding-left: 0;
     display: inline-block;
+}
+
+.social-links li {
+    width: 33.3%;
+    float: left;
 }
 
 .social-links a { 
@@ -2602,15 +2615,20 @@ section.review-page-container {
     background-color: white;
     color: #29b6f6;
     border-color: #29b6f6;
-    transform: scale(1.2);
+    transform: scale(1.2); 
 }
 
-
-.social-links .fa {
+.social-links .fa,
+.social-links svg {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.social-links svg {
+    width: 20px;
+    height: 20px;
 }
 
 /* drone makes BASE */
